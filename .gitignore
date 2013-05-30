@@ -1,0 +1,9 @@
+*.out
+*.nav
+*.snm
+*.toc
+*.log
+*.aux
+*.lof
+*.lot
+*.sublime*

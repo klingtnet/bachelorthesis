@@ -1,0 +1,43 @@
+\documentclass{scrreprt}
+
+\include{header/header}
+\include{header/commands}
+
+\begin{document}
+\input{variables/global}
+
+% Beginn der Titelseite und Verzeichnisse
+% roemische Seitennumerrierung
+\pagenumbering{Roman}
+
+%\maketitle
+\begin{titlepage}
+    \input{frontpage/frontpage}
+\end{titlepage}
+\newpage
+% zweite Seite mit Angaben zur Arbeit etc. am unteren Ende
+\input{frontpage/title_backside}
+
+\tableofcontents
+\blankpage
+
+%
+% Beginn des eigentlichen Inhalts
+% arabische Seitennumerrierung
+%
+\pagenumbering{arabic}
+\input{content/chapter_1.tex}
+
+% Beginn des Anhangs
+\appendix 
+
+%
+% Ende der Thesis 
+%
+
+% Bilderverzeichnis
+\listoffigures
+% Tabellenverzeichnis
+\listoftables
+
+\end{document}
