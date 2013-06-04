@@ -6,4 +6,8 @@
 *.aux
 *.lof
 *.lot
+*.glg
+*.gls
+*.idx
+*.ist
 *.sublime*
