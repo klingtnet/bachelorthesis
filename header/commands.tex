@@ -1,8 +1,15 @@
+%
+% Absichtlich leer gelassene Seiten werden auch "Vakatseiten" genannt. http://de.wikipedia.org/wiki/Vakatseite
+%
 \newcommand{\blankpage}[1]{
     \newpage
     \thispagestyle{empty}
     \begin{center}
+    {
+        \small
+        \color{gray}
         #1
+    }
     \end{center}
     \mbox{}
     \newpage

@@ -4,6 +4,7 @@
 \usepackage[cm-default]{fontspec}
 \usepackage{xunicode}
 \usepackage{xltxtra}
+\usepackage{setspace}
 
 % orthography
 \usepackage[ngerman]{babel}
@@ -11,7 +12,59 @@
 \usepackage[german=guillemets]{csquotes}
 
 % urls etc.
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
+% http://tex.stackexchange.com/questions/83037/difference-between-ref-varioref-and-cleveref-decision-for-a-thesis/83051#83051
+% http://www.howtotex.com/packages/automatic-clever-references-with-cleveref/
+\usepackage{cleveref}
+
+%
+% source code
+%
+% ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\usepackage{listing}
 
 %
 \usepackage{fancyhdr}
+
+% symbols
+\usepackage{eurosym}
+\usepackage{texnames}
+
+% lorem ipsum dolor ...
+\usepackage{blindtext}
+
+% colors
+\usepackage{xcolor}
+
+% graphics, figures ...
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+
+% math
+\usepackage{amsmath}
+\usepackage{cases}
+
+% tables
+\usepackage{array}
+\usepackage{booktabs}
+
+% bibliography
+%
+% biber is not available in the fedora repositories, i've installed it under ~/bin
+%
+\usepackage[style=alphabetic, backend=biber]{biblatex}
+
+% glossary
+% 
+% http://en.wikibooks.org/wiki/LaTeX/Glossary
+\usepackage[toc]{glossaries}
+
+%
+% http://www.howtotex.com/packages/9-essential-latex-packages-everyone-should-use/
+%
+
+% latin modern, better font
+\usepackage{lmodern}
+% improves font readability, has to be loaded after all fonts
+\usepackage{microtype}

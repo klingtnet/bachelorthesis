@@ -1,43 +1,104 @@
-\documentclass{scrreprt}
+%
+% Main LaTeX file for Bachelor Thesis
+% Andreas Linz
+% 2013
+%
 
-\include{header/header}
-\include{header/commands}
+% http://www.howtotex.com/packages/the-nag-package-warns-you-for-incorrect-latex-usage/
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[a4paper]{scrreprt}
+
+\input{header/header}
+\input{header/commands}
+\input{header/settings}
+
+\makeglossaries
+\bibliography{bibliography/thesisbib}
+
+\input{appendix/glossary}
 
 \begin{document}
-\input{variables/global}
+    \input{variables/global}
 
-% Beginn der Titelseite und Verzeichnisse
-% roemische Seitennumerrierung
-\pagenumbering{Roman}
+    % Beginn der Titelseite und Verzeichnisse
+    % roemische Seitennumerrierung
+    \pagenumbering{roman}
 
-%\maketitle
-\begin{titlepage}
-    \input{frontpage/frontpage}
-\end{titlepage}
-\newpage
-% zweite Seite mit Angaben zur Arbeit etc. am unteren Ende
-\input{frontpage/title_backside}
+    %\maketitle
+    \begin{titlepage}
+        \include{frontpage/frontpage}
+    \end{titlepage}
+    
+    \blankpage{}
 
-\tableofcontents
-\blankpage
+    % zweite Seite mit Angaben zur Arbeit etc. am unteren Ende
+    \include{frontpage/title_backside}
+    
+    %
+    % Danksagungen
+    %
+    {
+        \onehalfspacing
+        \include{frontpage/acknowledgement}
+    }
 
-%
-% Beginn des eigentlichen Inhalts
-% arabische Seitennumerrierung
-%
-\pagenumbering{arabic}
-\input{content/chapter_1.tex}
+    %
+    % Abstract
+    %
+    % todo: Lizenz informationen einfuegen, CreativeCommons erlaubt?
+    %
+    {
+        \onehalfspacing
+        \include{abstract}
+    }
+    \blankpage{\thesisBlankPageText}
 
-% Beginn des Anhangs
-\appendix 
+    % Inhaltsverzeichnis
+    \tableofcontents
+    \blankpage{\thesisBlankPageText}
 
-%
-% Ende der Thesis 
-%
+    %
+    % Beginn des eigentlichen Inhalts
+    % arabische Seitennumerrierung
+    %
+    \pagenumbering{arabic}
+    {
+        \onehalfspacing
+        \include{content/chapter_1}
+    }
+    \blankpage
 
-% Bilderverzeichnis
-\listoffigures
-% Tabellenverzeichnis
-\listoftables
 
+    % Beginn des Anhangs
+    \appendix 
+    \pagenumbering{Alph}
+
+    % Glossar
+    \cleardoublepage
+    %\addcontentsline{toc}{subsection}{Glossar}
+    \glsaddall
+    \printglossary[type=main,title={Glossary},toctitle={Glossary}]
+    % Bilderverzeichnis
+        %\cleardoublepage
+    \addcontentsline{toc}{chapter}{\listfigurename}
+    \listoffigures
+    % Tabellenverzeichnis
+        %\cleardoublepage
+    \addcontentsline{toc}{chapter}{\listtablename}
+    \listoftables
+    % Literaturverzeichnis
+        %\cleardoublepage
+    \addcontentsline{toc}{chapter}{\bibname}
+    \include{bibliography/bibliography}
+    \newpage
+
+    %
+    % Ende der Thesis 
+    %
+        %\cleardoublepage
+    \addcontentsline{toc}{chapter}{\thesisAffidavitName}
+    {
+        \onehalfspacing
+        \include{affidavit}
+    }
 \end{document}
