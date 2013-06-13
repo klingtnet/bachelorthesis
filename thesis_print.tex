@@ -1,0 +1,33 @@
+%
+% Main LaTeX file for Bachelor Thesis
+% Andreas Linz
+% 2013
+%
+
+% http://www.howtotex.com/packages/the-nag-package-warns-you-for-incorrect-latex-usage/
+\RequirePackage[l2tabu, orthodox]{nag}
+% http://archiv.dante.de/dante/events/mv29/handouts/Klaus/koma-rauischholzhausen.pdf
+%
+% use Binding correction etc. before making print version
+\documentclass[a4paper, headsepline, ngerman, twoside, headings=openright, open=right, headinclude=false, DIV=calc]{scrreprt}
+
+\input{header/header}
+\input{header/commands}
+\input{header/settings}
+
+\makeglossaries
+\bibliography{bibliography/thesisbib}
+
+\input{appendix/glossary}
+
+% calculate new typearea (Satzspiegel)
+\typearea[current]{last}
+
+\newtoggle{print}
+\toggletrue{print}
+
+\makeatother
+
+\begin{document}
+    \input{document}
+\end{document}

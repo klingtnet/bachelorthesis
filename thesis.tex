@@ -7,7 +7,8 @@
 % http://www.howtotex.com/packages/the-nag-package-warns-you-for-incorrect-latex-usage/
 \RequirePackage[l2tabu, orthodox]{nag}
 % http://archiv.dante.de/dante/events/mv29/handouts/Klaus/koma-rauischholzhausen.pdf
-\documentclass[a4paper, headsepline, ngerman, twoside, openright, BCOR15mm, DIVcalc]{scrreprt}
+%
+\documentclass[a4paper, headsepline, ngerman, twoside, headings=openright, open=right, headinclude=false, DIV=calc]{scrreprt}
 
 \input{header/header}
 \input{header/commands}
@@ -22,6 +23,9 @@
 \typearea[current]{last}
 
 \makeatother
+
+\newtoggle{print}
+\togglefalse{print}
 
 \begin{document}
     \KOMAoptions{twoside = false}
@@ -79,7 +83,11 @@
     % arabische Seitennumerrierung
     %
 
-    %\KOMAoptions{twoside}
+    \iftoggle{print}{%
+      \KOMAoptions{twoside}
+    }{
+      % screen, do nothing
+    }
     \pagenumbering{arabic}
     % headline even on first page of chapter
     \renewcommand*{\chapterpagestyle}{scrheadings}

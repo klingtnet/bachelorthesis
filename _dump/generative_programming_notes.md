@@ -116,3 +116,47 @@ table 2-2
 - no differentiation between modeling variability within one application and between several applications
 - no implementation-independent means of variability modeling
 
+## p. 134
+### Main development steps in generative programming
+
+1. Domain scoping
+1. Feature modeling and concept modeling
+1. Designing a common architecture and identifying the implementation components
+1. Specifying domain-specific notations for "ordering" systems
+1. Specifying the configuration knowledge
+1. Implementing the implementation components
+1. Implementing the domain-specific notations
+1. Implementing the configuration knowledge using generators
+
+These steps could be done iterative and in a different order
+
+## p. 137 ff
+### Domain Specific Languages
+
+- a DSL is a specialized, problem-oriented language
+- can be textual (SQL) or graphical
+
+### fixed, seperate DSLs
+
+- TeX, SQL
+- need own 'translator'
+- "technological islands"
+
+### embedded DLSs
+
+- embedded in a General Purpose Language
+- represented as classes and procedures, means limitations of in expressing domain specific optimizations. error checke etc.
+- (template-)metaprogramming
+
+### modular DSLs
+
+- encapsulated- or aspectual DSLs
+advantages over monolithic DSLs:
+    - Reusability
+    - Scalability
+    - Fast feature turnover
+- embedded SQL
+
+## p.158
+
+Concrete and abstract syntax tree, Figure 5-4
