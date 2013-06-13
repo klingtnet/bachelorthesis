@@ -5,7 +5,16 @@
     \thesisAuthorAddress\\
     \href{mailto:\thesisAuthorEmail}{\thesisAuthorEmail}\\
     \href{http://\thesisAuthorWebsite}{\thesisAuthorWebsite}\\
-    \textit{\thesisTitle}\\
+    \vspace{12pt}
+    \textit{\textbf{
+	    \thesisTitle{}}
+	    \ifcsname thesisSubtitle \endcsname
+	    	% exist
+		    -- \thesisSubtitle
+		\else
+		    % don't exist
+		\fi
+		}\\
     Bachelor Thesis, HTWK-Leipzig, \today\\
     \vspace{12pt}
     made with \XeTeX{}, \LaTeX{} and \BibTeX{}.

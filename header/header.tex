@@ -12,7 +12,7 @@
 \usepackage[german=guillemets]{csquotes}
 
 % urls etc.
-\usepackage[hidelinks]{hyperref}
+\usepackage[hidelinks, colorlinks=true]{hyperref}
 % http://tex.stackexchange.com/questions/83037/difference-between-ref-varioref-and-cleveref-decision-for-a-thesis/83051#83051
 % http://www.howtotex.com/packages/automatic-clever-references-with-cleveref/
 \usepackage{cleveref}
@@ -23,8 +23,13 @@
 % ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
 \usepackage{listing}
 
-%
-\usepackage{fancyhdr}
+% headings
+\usepackage[automark]{scrpage2}
+% get lastpage \pageref{LastPage}
+%\usepackage{lastpage}
+%\usepackage{fancyhdr}
+% quotation on first page of chapter
+\usepackage{epigraph}
 
 % symbols
 \usepackage{eurosym}
@@ -36,9 +41,14 @@
 % colors
 \usepackage{xcolor}
 
+% dashed lines
+\usepackage{dashrule}
+
 % graphics, figures ...
 \usepackage{graphicx}
 \usepackage{tikz}
+%\usepackage{pgf}
+%\usepackage{pgfkeys}
 \usetikzlibrary{shapes,arrows}
 
 % math
@@ -53,7 +63,8 @@
 %
 % biber is not available in the fedora repositories, i've installed it under ~/bin
 %
-\usepackage[style=alphabetic, backend=biber]{biblatex}
+\usepackage[style=authoryear, backend=biber]{biblatex}
+%\usepackage[style=alphabetic, backend=biber]{biblatex}
 
 % glossary
 % 
@@ -67,4 +78,5 @@
 % latin modern, better font
 \usepackage{lmodern}
 % improves font readability, has to be loaded after all fonts
-\usepackage{microtype}
+% only works with pdflatex!
+%\usepackage{microtype}

@@ -12,14 +12,21 @@
         \thesisUniversityDepartment\\
 
     \vspace{24pt}
-    \rule{\textwidth}{1.0pt}
+    \rule{\textwidth}{0.5pt}
     \vspace{12pt}
 
     \Huge
         Bachelor-Thesis\\
     \vspace{12pt}
     \Large
-        \textbf{\thesisTitle}
+        \textbf{\thesisTitle}\\
+        \ifcsname thesisSubtitle \endcsname
+            % exist
+            \large
+            \thesisSubtitle
+        \else
+            % don't exist
+        \fi
     \vspace{24pt}
 
     \small

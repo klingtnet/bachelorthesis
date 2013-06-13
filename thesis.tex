@@ -6,7 +6,8 @@
 
 % http://www.howtotex.com/packages/the-nag-package-warns-you-for-incorrect-latex-usage/
 \RequirePackage[l2tabu, orthodox]{nag}
-\documentclass[a4paper]{scrreprt}
+% http://archiv.dante.de/dante/events/mv29/handouts/Klaus/koma-rauischholzhausen.pdf
+\documentclass[a4paper, headsepline, ngerman, twoside, openright, BCOR15mm, DIVcalc]{scrreprt}
 
 \input{header/header}
 \input{header/commands}
@@ -17,14 +18,21 @@
 
 \input{appendix/glossary}
 
+% calculate new typearea (Satzspiegel)
+\typearea[current]{last}
+
+\makeatother
+
 \begin{document}
+    \KOMAoptions{twoside = false}
     \input{variables/global}
+    \pagestyle{empty}
 
     % Beginn der Titelseite und Verzeichnisse
     % roemische Seitennumerrierung
-    \pagenumbering{roman}
+    \pagenumbering{Roman}
 
-    %\maketitle
+    %\maketitle    
     \begin{titlepage}
         \include{frontpage/frontpage}
     \end{titlepage}
@@ -34,6 +42,15 @@
     % zweite Seite mit Angaben zur Arbeit etc. am unteren Ende
     \include{frontpage/title_backside}
     
+    %
+    % Selbständigkeitserklärung
+    %
+    \setcounter{page}{1}
+    {
+        \onehalfspacing
+        \include{affidavit}
+    }
+
     %
     % Danksagungen
     %
@@ -53,7 +70,7 @@
     }
     \blankpage{\thesisBlankPageText}
 
-    % Inhaltsverzeichnis
+    % Inhaltsverzeichnis    
     \tableofcontents
     \blankpage{\thesisBlankPageText}
 
@@ -61,44 +78,48 @@
     % Beginn des eigentlichen Inhalts
     % arabische Seitennumerrierung
     %
+
+    %\KOMAoptions{twoside}
     \pagenumbering{arabic}
-    {
+    % headline even on first page of chapter
+    \renewcommand*{\chapterpagestyle}{scrheadings}
+    {        
+        % http://www2.informatik.hu-berlin.de/~piefel/LaTeX-PS/Archive-2004/V07-footnote.pdf
+        \pagestyle{scrheadings}
         \onehalfspacing
-        \include{content/chapter_1}
+        \include{content/introduction/introduction}
+        \include{content/basics/basics}
+        \include{content/implementation/implementation}
+        \include{content/summary/summary}
     }
     \blankpage
 
 
     % Beginn des Anhangs
-    \appendix 
-    \pagenumbering{Alph}
+    {        
+        \pagestyle{scrheadings}
+        \appendix 
+        \pagenumbering{Alph}
 
-    % Glossar
-    \cleardoublepage
-    %\addcontentsline{toc}{subsection}{Glossar}
-    \glsaddall
-    \printglossary[type=main,title={Glossary},toctitle={Glossary}]
-    % Bilderverzeichnis
-        %\cleardoublepage
-    \addcontentsline{toc}{chapter}{\listfigurename}
-    \listoffigures
-    % Tabellenverzeichnis
-        %\cleardoublepage
-    \addcontentsline{toc}{chapter}{\listtablename}
-    \listoftables
-    % Literaturverzeichnis
-        %\cleardoublepage
-    \addcontentsline{toc}{chapter}{\bibname}
-    \include{bibliography/bibliography}
-    \newpage
+        % Glossar        
+        %\addcontentsline{toc}{subsection}{Glossar}
+        \glsaddall
+        \printglossary[type=main,title={Glossary},toctitle={Glossary}]
+        % Bilderverzeichnis
+            %\cleardoublepage
+        \addcontentsline{toc}{chapter}{\listfigurename}
+        \listoffigures
+        % Tabellenverzeichnis
+            %\cleardoublepage
+        \addcontentsline{toc}{chapter}{\listtablename}
+        \listoftables
+        % Literaturverzeichnis
+            %\cleardoublepage
+        \addcontentsline{toc}{chapter}{\bibname}
+        \include{bibliography/bibliography}
+    }
 
     %
     % Ende der Thesis 
     %
-        %\cleardoublepage
-    \addcontentsline{toc}{chapter}{\thesisAffidavitName}
-    {
-        \onehalfspacing
-        \include{affidavit}
-    }
 \end{document}

@@ -3,3 +3,40 @@
 % http://www.inf.ethz.ch/personal/markusp/teaching/guides/guide-tables.pdf
 %
 \renewcommand{\arraystretch}{1.2}
+
+%
+% set chapter style
+%
+
+% \includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}
+
+\clearscrheadfoot
+% even pages
+%\lehead{\pagename{} \pagemark}
+\lehead{\pagemark}
+\rehead{\leftmark}
+
+% odd pages
+\lohead{\leftmark}
+%\rohead{\pagename{} \pagemark}
+\rohead{\pagemark}
+
+% odd and even pages
+\chead{\includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}}
+
+%
+% indent content with chapter/section heading
+%
+% http://tex.stackexchange.com/questions/118818/align-text-with-heading
+%
+\newlength\mylen
+\setlength\mylen{13mm}
+
+\renewcommand*{\chapterformat}{%
+  \llap{\protect\makebox[\mylen][l]{\chapappifchapterprefix{\nobreakspace}\thechapter\autodot\hfill}}%
+}
+\makeatletter
+\def\@seccntformat#1{\llap{\protect\makebox[\mylen][l]{\csname the#1\endcsname\autodot\hfill}}}
+
+% set the enumeration depth, otherwise subsubsections won't be enumerated by default
+\setcounter{secnumdepth}{3} % default is 2
