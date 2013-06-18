@@ -14,3 +14,25 @@
     \mbox{}
     \newpage
 }
+
+\newcommand{\chapterQuote}[3]{
+    \epigraph{
+        \enquote{#1}
+    }
+    {
+        {
+            \scriptsize
+            \uppercase{#2}\\
+            {#3}
+        }
+    }        
+}
+
+\DeclareUrlCommand\noUnderscoreEscaping{\urlstyle{rm}} % needs url package
+
+\newcommand{\printhref}[2]{
+    \href{#1}{#2}
+    \footnote{
+        \noUnderscoreEscaping{#1}
+    }
+}

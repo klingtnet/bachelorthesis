@@ -1,2 +1,73 @@
 % \newglossaryentry{tag}{name=foo, description={bar}}
-\newglossaryentry{tag}{name=foo, description={bar}}
+%
+% Note: Paragraphs are not allowed
+%
+
+\newglossaryentry{REST}{
+	name=REST, 
+	description={
+		\emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding in seiner \printhref{http://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf}{Dissertation} beschrieben wurde. Die Daten liegen dabei in eindeutig addressierbaren \emph{resources} vor. Die Interaktion basiert auf dem Austausch von \emph{representations} -- also ein Dokument was den aktuellen oder gewünschten Zustand einer resource beschreibt.
+		Beispiel-URL für das Item \emph{84} aus dem Warenkorb \emph{42}:\\
+		\texttt{http://api.spreadshirt.net/api/v1/baskets/84/item/42}
+	}
+}
+
+\newglossaryentry{RESTful}{
+	name=RESTful,
+	description={
+		Als \emph{RESTful} bezeichnet man einen Webservice der den Prinzipien von REST entspricht
+	},
+	see=REST
+}
+
+\newglossaryentry{API}{
+	name=API, 
+	description={
+		\emph{Application Programming Interface} (deutsch: \enquote{Schnittstelle zur Anwendungsprogrammierung}) spezifiziert wie Softwarekomponenten über diese Schnittstelle miteinander interagieren können
+	}
+}
+
+\newglossaryentry{XML}{
+	name=XML,
+	description={
+		\emph{Extensible Markup Language} (deutsch: \enquote{erweiterbare Auszeichnungssprache}) ist ein Mensch- und Maschinenlesbares Format für Codierung und Austausch von Daten, \printhref{http://www.w3.org/TR/REC-xml}{spezifiziert vom W3C}
+	}
+}
+
+\newglossaryentry{JSON}{
+	name=JSON,
+	description={
+		\emph{JavaScript Object Notation} ist ein Mensch- und Maschinenlesbares Format zu Codierung und Austausch von Daten. Bietet im Gegensatz zu XML keine Erweiterbarkeit und Unterstützung für Namesräume, ist aber kompakter und einfacher zu parsen
+	}, 
+	see=XML
+}
+
+\newglossaryentry{XSD}{
+	name=XSD,
+	description={
+		\emph{XML Schema Description} enthält Regeln für den Aufbau und zum Validieren einer XML-Datei
+	},
+	see=XML
+}
+
+\newglossaryentry{WADL}{
+	name=WADL,
+	description={
+		\emph{Web Application Description Language} ist eine maschinenlesbare Beschreibung einer HTTP-basierten Webanwendung
+	},
+	see=XML
+}
+
+\newglossaryentry{Polyglot}{
+	name=Polyglot,
+	description={
+		\emph{mehrsprachig}
+	}
+}
+
+\newglossaryentry{Metaprogramming}{
+	name=Metaprogramming,
+	description={
+		beschreibt das erstellen von Programmen welche sich selbst, oder andere Programme, modifizieren oder die einen Teil des Kompilierungsschrittes übernehmen (bspw. der C-Präprozessor)
+	}
+}

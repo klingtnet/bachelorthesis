@@ -59,8 +59,9 @@
   % screen, do nothing
 }
 \pagenumbering{arabic}
+
 % headline even on first page of chapter
-\renewcommand*{\chapterpagestyle}{scrheadings}
+%\renewcommand*{\chapterpagestyle}{scrheadings}
 {        
     % http://www2.informatik.hu-berlin.de/~piefel/LaTeX-PS/Archive-2004/V07-footnote.pdf
     \pagestyle{scrheadings}
@@ -80,9 +81,8 @@
     \pagenumbering{Alph}
 
     % Glossar        
-    %\addcontentsline{toc}{subsection}{Glossar}
     \glsaddall
-    \printglossary[type=main,title={Glossary},toctitle={Glossary}]
+    \printglossary[type=main,title={Glossar},toctitle={Glossar}]
     % Bilderverzeichnis
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\listfigurename}
@@ -91,6 +91,9 @@
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\listtablename}
     \listoftables
+    % Listingverzeichnis
+    \addcontentsline{toc}{chapter}{\lstlistlistingname}
+    \lstlistoflistings
     % Literaturverzeichnis
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\bibname}

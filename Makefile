@@ -45,7 +45,7 @@ endif
 
 clean:
 	@echo "I will clean up this mess ..."
-	@rm -f *.out *.nav *.snm *.toc *.log *.bcf *.bbl *.blg *.lof *.lot *.run.xml *.xdy *.glo *.glg *.gls *.idx *.ist *-blx.bib .*.bbl.swp
+	@rm -f *.out *.nav *.snm *.toc *.log *.bcf *.bbl *.blg *.lof *.lol *.lot *.run.xml *.xdy *.glo *.glg *.gls *.idx *.ist *-blx.bib .*.bbl.swp
 	@find . -name \*.aux  -type f -delete
 	@find . -name \*.bbl  -type f -delete
 	@find . -name \*.bak  -type f -delete

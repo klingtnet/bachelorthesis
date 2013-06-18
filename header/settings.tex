@@ -31,7 +31,6 @@
 %
 \newlength\mylen
 \setlength\mylen{13mm}
-
 \renewcommand*{\chapterformat}{%
   \llap{\protect\makebox[\mylen][l]{\chapappifchapterprefix{\nobreakspace}\thechapter\autodot\hfill}}%
 }
@@ -44,3 +43,42 @@
 % Polyglossia
 \setmainlanguage{german}
 \PolyglossiaSetup{german}{indentfirst=false}
+
+% Epigraph
+% http://lsi.vc.ehu.es/pablogn/investig/ficheros/Latex/epigraph.pdf
+\setlength{\epigraphwidth}{0.618\textwidth}
+
+%
+% Font settings
+%
+%\setmainfont[Ligatures={Common,TeX}, Numbers=OldStyle]{Linux Libertine O}
+\setmonofont{Consolas}
+
+%
+% define colors
+%
+\definecolor{lightgray}{gray}{0.95}
+
+%
+% Listing settings
+%
+% ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+%
+\lstset{
+		basicstyle=\ttfamily\scriptsize,
+		commentstyle=\color{gray},
+		keywordstyle=\bfseries\color{magenta},
+		identifierstyle=\color{blue},
+		%backgroundcolor=\color{lightgray},
+		numbers=left,
+		numberstyle=\ttfamily\tiny\color{grey},
+		%frame=t 	%tblrTBLR
+		%frame=shadowbox
+	}
+
+%
+% glossary style
+%
+% p. 109 ff (ftp://ftp.tu-chemnitz.de/pub/tex/macros/latex/contrib/glossaries/glossaries-user.pdf)
+%
+\glossarystyle{altlist}

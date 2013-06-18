@@ -156,7 +156,32 @@ advantages over monolithic DSLs:
     - Scalability
     - Fast feature turnover
 - embedded SQL
+- modular DSLs
+- Expression DSLs (p. 163), f.e matrix addition A(+)B^T
 
 ## p.158
 
 Concrete and abstract syntax tree, Figure 5-4
+
+---
+
+## Notes
+
+### chapter 6
+
+subtype polymorphism -- typecheck at runtime 
+<pre>
+class Adder {
+    // all types that are implementing InterfaceA
+    public InterfaceA add(InterfaceA a, InterfaceA b) 
+        return a + b;
+}
+</pre>
+parametric polymorphism -- typecheck at compile time
+<pre>
+class Adder<A> {
+    // only type A
+    public A add(A a, A b)
+        return a+b;
+}
+</pre>
