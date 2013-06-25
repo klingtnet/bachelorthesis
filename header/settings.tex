@@ -109,6 +109,11 @@
 % \newcommand{footerOrnament}{\includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}}
 \newcommand{\footerOrnament}{\adfflourishleftdouble{} \adfast3{} \adfflourishrightdouble{}}
 
+% change style of \pagemark, slightly bend and roman font family
+\renewcommand*{\pnumfont}{%
+	\normalfont\rmfamily\slshape
+}
+
 \newpagestyle{chapterStyle}
 	% header line
 	{(\textwidth,0pt)
@@ -118,22 +123,22 @@
 	(\textwidth,0.5pt)}
 	%footer line
 	{(\textwidth,0pt) 
-		{\hfill}
-		{\hfill}
+		{\decorativeLine{\footerOrnament{}}{2pt}}
+		{\decorativeLine{\footerOrnament{}}{2pt}}
 		{\decorativeLine{\footerOrnament{}}{2pt}}
 	(\textwidth,0pt)}
 
 \newpagestyle{mainpartStyle}
 	% header line
 	{(\textwidth,0pt)
-		{\hfill\pagemark{} von \pageref{lastPage}\hfill\rightmark}
-		{\leftmark\hfill\pagemark{} von \pageref{lastPage}\hfill}
+		{\pagemark{} von \pageref{lastPage}\hfill\rightmark}
+		{\leftmark\hfill\pagemark{} von \pageref{lastPage}}
 		{\leftmark\hfill\pagemark{} von \pageref{lastPage}}
 	(\textwidth,0.5pt)}
 	%footer line
 	{(\textwidth,0pt) 
-		{\hfill}
-		{\hfill}
+		{\decorativeLine{\footerOrnament{}}{2pt}}
+		{\decorativeLine{\footerOrnament{}}{2pt}}
 		{\decorativeLine{\footerOrnament{}}{2pt}}
 	(\textwidth,0pt)}
 
@@ -147,8 +152,8 @@
 	(\textwidth,0.5pt)}
 	%footer line
 	{(\textwidth,0pt) 
-		{\hfill}
-		{\hfill}
+		{\decorativeLine{\footerOrnament{}}{2pt}}
+		{\decorativeLine{\footerOrnament{}}{2pt}}
 		{\decorativeLine{\footerOrnament{}}{2pt}}
 	(\textwidth,0pt)}
 
@@ -161,8 +166,8 @@
 	(\textwidth,0.5pt)}
 	%footer line
 	{(\textwidth,0pt) 
-		{\hfill}
-		{\hfill}
+		{\decorativeLine{\footerOrnament{}}{2pt}}
+		{\decorativeLine{\footerOrnament{}}{2pt}}
 		{\decorativeLine{\footerOrnament{}}{2pt}}
 	(\textwidth,0pt)}
 
