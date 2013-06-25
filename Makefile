@@ -45,11 +45,15 @@ endif
 
 clean:
 	@echo "I will clean up this mess ..."
-	@rm -f *.out *.nav *.snm *.toc *.log *.bcf *.bbl *.blg *.lof *.lol *.lot *.run.xml *.xdy *.glo *.glg *.gls *.idx *.ist *-blx.bib .*.bbl.swp
+	@rm -f *.out *.nav *.snm *.toc *.log *.bcf *.bbl *.blg *.lof *.lol *.lot *.run.xml *.xdy *.glo *.glg *.gls *.idx *.ist *-blx.bib .*.bbl.swp *.mtc* *.maf
 	@find . -name \*.aux  -type f -delete
 	@find . -name \*.bbl  -type f -delete
 	@find . -name \*.bak  -type f -delete
 	@find . -name \*.blg  -type f -delete
+	@find . -name \*.fls  -type f -delete
+	@find . -name \*.fdb_latexmk  -type f -delete
+	@find . -name \*.vsdx  -type f -delete
+
 
 clearscreen:
 	clear

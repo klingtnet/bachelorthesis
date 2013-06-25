@@ -1,28 +1,13 @@
 %
+% define colors
+%
+\definecolor{lightgray}{gray}{0.95}
+
+%
 % make beautiful tables
 % http://www.inf.ethz.ch/personal/markusp/teaching/guides/guide-tables.pdf
 %
 \renewcommand{\arraystretch}{1.2}
-
-%
-% set chapter style
-%
-
-% \includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}
-
-\clearscrheadfoot
-% even pages
-%\lehead{\pagename{} \pagemark}
-\lehead{\pagemark}
-\rehead{\leftmark}
-
-% odd pages
-\lohead{\leftmark}
-%\rohead{\pagename{} \pagemark}
-\rohead{\pagemark}
-
-% odd and even pages
-\chead{\includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}}
 
 %
 % indent content with chapter/section heading
@@ -51,13 +36,15 @@
 %
 % Font settings
 %
+\newfontfamily\chunkFiveEx[]{ChunkFive Ex}
+%
 %\setmainfont[Ligatures={Common,TeX}, Numbers=OldStyle]{Linux Libertine O}
 \setmonofont{Consolas}
-
 %
-% define colors
-%
-\definecolor{lightgray}{gray}{0.95}
+% set section and chapter heading fonts
+% http://tex.stackexchange.com/questions/25845/koma-script-change-font-of-sectioning-headings-to-serif
+\addtokomafont{disposition}{\rmfamily}
+%\addtokomafont{disposition}{\chunkFiveEx}
 
 %
 % Listing settings
@@ -69,10 +56,13 @@
 		commentstyle=\color{gray},
 		keywordstyle=\bfseries\color{magenta},
 		identifierstyle=\color{blue},
-		%backgroundcolor=\color{lightgray},
+		backgroundcolor=\color{lightgray},
 		numbers=left,
-		numberstyle=\ttfamily\tiny\color{grey},
-		%frame=t 	%tblrTBLR
+		numberstyle=\ttfamily\tiny\color{gray!50!black},
+		escapeinside={//@}{@//},
+		belowcaptionskip=6pt,
+		frame=lines,
+		%frame=tb 	%tblrTBLR
 		%frame=shadowbox
 	}
 
@@ -82,3 +72,117 @@
 % p. 109 ff (ftp://ftp.tu-chemnitz.de/pub/tex/macros/latex/contrib/glossaries/glossaries-user.pdf)
 %
 \glossarystyle{altlist}
+
+
+% tikzstyles
+\input{header/tikzStyles}
+
+% thousands seperator for numprint package
+\npthousandsep{.}
+
+%
+% prepare minitocs
+%
+\dominitoc
+
+%
+% define new pagestyle
+%
+% see http://www.ctex.org/documents/packages/nonstd/koma-script.pdf, chapter 5.2
+% (ull,ulw){evenpage}{oddpage}{onepage}(lll,llw)
+%
+% Example
+% \newpagestyle{myStyle}
+%	% header line
+%	{(\textwidth,0pt)	% length and width of line on top of header
+%		{\pagemark{} von \pageref{lastPage}\hfill}	% even pages
+%		{\hfill\pagemark{} von \pageref{lastPage}}	% odd pages
+%		{\hfill\pagemark{} von \pageref{lastPage}}	% onepage style
+%	(\textwidth,0.5pt)}	% length and width of line below header
+%	%footer line
+%	{(\textwidth,0pt)	% length and width of line on top of footer
+%		{\hfill}	% even pages
+%		{\hfill}	% odd pages
+%		{\hfill}	% onepage style
+%	(\textwidth,0pt)}	% length and width of line below footer
+
+% \newcommand{footerOrnament}{\includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}}
+\newcommand{\footerOrnament}{\adfflourishleftdouble{} \adfast3{} \adfflourishrightdouble{}}
+
+\newpagestyle{chapterStyle}
+	% header line
+	{(\textwidth,0pt)
+		{\pagemark{} von \pageref{lastPage}\hfill}
+		{\hfill\pagemark{} von \pageref{lastPage}}
+		{\hfill\pagemark{} von \pageref{lastPage}}
+	(\textwidth,0.5pt)}
+	%footer line
+	{(\textwidth,0pt) 
+		{\hfill}
+		{\hfill}
+		{\decorativeLine{\footerOrnament{}}{2pt}}
+	(\textwidth,0pt)}
+
+\newpagestyle{mainpartStyle}
+	% header line
+	{(\textwidth,0pt)
+		{\hfill\pagemark{} von \pageref{lastPage}\hfill\rightmark}
+		{\leftmark\hfill\pagemark{} von \pageref{lastPage}\hfill}
+		{\leftmark\hfill\pagemark{} von \pageref{lastPage}}
+	(\textwidth,0.5pt)}
+	%footer line
+	{(\textwidth,0pt) 
+		{\hfill}
+		{\hfill}
+		{\decorativeLine{\footerOrnament{}}{2pt}}
+	(\textwidth,0pt)}
+
+
+\newpagestyle{appendixChapterStyle}
+	% header line
+	{(\textwidth,0pt)
+		{\pagemark\hfill}
+		{\hfill\pagemark}
+		{\hfill\pagemark}
+	(\textwidth,0.5pt)}
+	%footer line
+	{(\textwidth,0pt) 
+		{\hfill}
+		{\hfill}
+		{\decorativeLine{\footerOrnament{}}{2pt}}
+	(\textwidth,0pt)}
+
+\newpagestyle{appendixStyle}
+	% header line
+	{(\textwidth,0pt)
+		{\pagemark\hfill\rightmark}
+		{\leftmark\hfill\pagemark}
+		{\leftmark\hfill\pagemark}
+	(\textwidth,0.5pt)}
+	%footer line
+	{(\textwidth,0pt) 
+		{\hfill}
+		{\hfill}
+		{\decorativeLine{\footerOrnament{}}{2pt}}
+	(\textwidth,0pt)}
+
+%% old method
+%
+% set chapter style
+%
+
+%%% % \includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}
+
+%%% \clearscrheadfoot
+%%% % even pages
+%%% %\lehead{\pagename{} \pagemark}
+%%% \lehead[\pagemark{} von \pageref{lastPage}]{\pagemark{} von \pageref{lastPage}}
+%%% \rehead{\leftmark}
+
+%%% % odd pages
+%%% \lohead{\leftmark}
+%%% %\rohead{\pagename{} \pagemark}
+%%% \rohead[\pagemark{} von \pageref{lastPage}]{\pagemark{} von \pageref{lastPage}}
+
+%%% % odd and even pages
+%%% %\chead{\includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}}

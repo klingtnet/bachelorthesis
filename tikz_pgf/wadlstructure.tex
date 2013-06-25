@@ -1,0 +1,347 @@
+\begin{figure}[htb]
+    \begin{center}
+    \resizebox{\textwidth}{!}{
+        \begin{tikzpicture}[
+            level 1/.style={
+                font=\large,
+                sibling distance=4cm,
+                level distance=5cm
+            },
+            level 2/.style={
+                font=\normalsize,
+                level distance=4.5cm,
+                sibling distance=7cm
+            },
+            level 3/.style={
+                font=\small,
+                level distance=4cm,
+                sibling distance=2cm
+            },
+            level 4/.style={
+                level distance=3cm,
+                sibling distance=2cm
+            }
+            edge from parent/.style={
+                draw=black,
+                shorten >=5mm,
+                shorten <=5mm
+            },
+            edgeText/.style={
+                sloped,
+                near end,
+                above
+            },    
+            centeredEdgeText/.style={
+                sloped,
+                above
+            },                
+            every two node part/.style={
+                color=magenta,
+                font=\scriptsize,
+                align=left
+            },
+            element/.style={
+                rectangle,
+                rounded corners,
+                draw=gray,
+                very thick
+            },
+            splitElement/.style={
+                rectangle,
+                rounded corners,
+                draw=gray,
+                very thick,
+                rectangle split, 
+                rectangle split parts=2
+            }
+        ]
+        \node {\Large \textbf{application}}
+        child {
+            node [splitElement] {
+                doc
+                \nodepart{two}
+                xml:lang\\
+                title
+            }
+            edge from parent node[edgeText] {0..*};
+        }
+        child {
+            node [element] {grammars}
+            child [level distance = 2.5cm] {
+                node [splitElement] {
+                    include
+                    \nodepart{two}
+                    href
+                }
+                edge from parent node[edgeText] {0..*};
+            }
+            edge from parent node[edgeText] {0..1};
+        }
+        child {
+            node [splitElement] {
+                resources
+                \nodepart{two}
+                base
+                }
+            child [sibling distance=6cm] {
+                node [splitElement] {
+                    resource\_type
+                    \nodepart{two}
+                    id
+                }
+                child {
+                    node [splitElement] {
+                        doc
+                        \nodepart{two}
+                        \ldots
+                    }
+                    edge from parent node [edgeText] {0..*};
+                }
+                child {
+                    node [splitElement] {
+                        param
+                        \nodepart{two}
+                        id\\
+                        name\\
+                        style\\
+                        type\\
+                        default\\
+                        path\\
+                        required\\
+                        repeating\\
+                        fixed
+                    }
+                    child {
+                        node [splitElement] {
+                            option
+                            \nodepart{two}
+                            value
+                        }
+                        child {
+                            node [splitElement] {
+                                doc
+                                \nodepart{two}
+                                \ldots
+                            }
+                            edge from parent node [edgeText] {0..*};
+                        }
+                    }
+                    child {
+                        node [splitElement] {
+                            link
+                            \nodepart{two}
+                            resource\_type\\
+                            rel\\
+                            rev\\
+                            location\\
+                            index
+                        } 
+                        edge from parent node [edgeText] {0..*};
+                    }
+                    edge from parent node [edgeText] {0..*};
+                }
+                child {
+                    node [splitElement] {
+                        method
+                        \nodepart{two}
+                        \ldots
+                    }
+                    edge from parent node [edgeText] {0..*};
+                }
+                edge from parent node [edgeText] {0..*};
+            }
+            child {
+                node [splitElement] {
+                    resource
+                    \nodepart{two}
+                    id\\
+                    path\\
+                    type\\
+                    queryType
+                    }
+                child {
+                    node [splitElement] {
+                        doc
+                        \nodepart{two}
+                        \ldots
+                    }
+                    edge from parent node[edgeText] {0..*};       
+                }
+                child  {
+                    node [splitElement] {
+                        param
+                        \nodepart{two}
+                        \ldots
+                        }
+                    edge from parent node[edgeText] {0..*};                    
+                }
+                child {
+                    node [splitElement] {
+                        method
+                        \nodepart{two}
+                        \ldots
+                    }
+                    edge from parent node[edgeText] {0..*};                    
+                }
+                child {
+                    node [splitElement] {
+                        resource
+                        \nodepart{two}
+                        \ldots
+                    }
+                    edge from parent node[edgeText] {0..*};
+                }
+                edge from parent node [edgeText] {0..*};                                
+            }
+            edge from parent node[edgeText] {0..1};
+        }
+        child {
+            node [element] {resource\_type}
+            edge from parent node [edgeText] {0..*};
+        }            
+        child [level distance = 6cm] {
+            node [element] {method}
+            child [sibling distance = 3cm] {
+                node [splitElement] {
+                    method
+                    \nodepart{two}
+                    href
+                }
+                edge from parent node [centeredEdgeText] {reference};
+            }
+            child [sibling distance = 3cm, level distance=6cm] {
+                node [splitElement] {
+                    method
+                    \nodepart{two}
+                    name\\
+                    id
+                }
+                child [sibling distance = 2.5cm] {
+                    node [element] {request}
+                    child {
+                        node [element, rectangle split, rectangle split parts=2, align=left] {
+                            representation
+                            \nodepart{two}
+                            \color{green!50!black}
+                            nur PUT \& POST\\
+                            \ldots
+                        }
+                        edge from parent node [edgeText] {0..*};                 
+                    }
+                    child {
+                        node [splitElement] {
+                            doc
+                            \nodepart{two}
+                            \ldots
+                        }
+                        edge from parent node [edgeText] {0..*};
+                    }
+                    child {
+                        node [splitElement] {
+                            param
+                            \nodepart{two}
+                            \ldots
+                        }
+                        edge from parent node [edgeText] {0..*};
+                    }
+                    edge from parent node [edgeText] {0..*};
+                }
+                child {
+                    node [splitElement] {
+                        doc
+                        \nodepart{two}
+                        \ldots
+                    }
+                    edge from parent node [edgeText] {0..*};
+                }
+                child [sibling distance = 2.5cm, level distance = 7cm] {
+                    node [element] {response}
+                    child {
+                        node [splitElement] {
+                            doc
+                            \nodepart{two}
+                            \ldots
+                        }
+                        edge from parent node [edgeText] {0..*};
+                    }
+                    child {
+                        node [splitElement] {
+                            representation
+                            \nodepart{two}
+                            \ldots
+                        }
+                        edge from parent node [edgeText] {0..*};
+                    }
+                    child {
+                        node [splitElement] {
+                            fault
+                            \nodepart{two}
+                            \ldots
+                        }
+                        edge from parent node [edgeText] {0..*};
+                    }
+                    child {
+                        node [splitElement] {
+                            param
+                            \nodepart{two}
+                            \color{green!50!black}                    
+                            style=header
+                            \\
+                            \ldots
+                        }
+                        edge from parent node [edgeText] {0..*};
+                    }
+                    edge from parent node [edgeText] {0..*};
+                }
+                edge from parent node [centeredEdgeText] {declaration};
+            }
+            edge from parent node [edgeText] {0..*};
+        }           
+        child {
+            node [element] {representation}
+            child [sibling distance = 3cm,level distance=2.5cm] {
+                node [splitElement] {
+                    representation
+                    \nodepart{two}
+                    href
+                }
+                edge from parent node [centeredEdgeText] {reference};
+            }
+            child [sibling distance = 3cm, level distance=3.5cm] {
+                node [splitElement] {
+                    representation
+                    \nodepart{two}
+                    id\\
+                    mediaType\\
+                    element\\
+                    profile []\\
+                    status []
+                }
+                child {
+                    node [splitElement] {
+                        param
+                        \nodepart{two}
+                        \ldots
+                    }
+                    edge from parent node [edgeText] {0..*};
+                }
+                edge from parent node [centeredEdgeText] {definition};
+            }
+            edge from parent node [edgeText] {0..*};
+        }           
+        child {
+            node [splitElement] {
+                fault
+                \nodepart{two}
+                \color{green!50!black}
+                entspricht \emph{representation}
+            }
+            edge from parent node [edgeText] {0..*};
+        }
+        ;
+        \end{tikzpicture}  
+    }
+    \end{center}
+    \caption{Struktur einer WADL-Datei, nach Kapitel 2 \cite{hadleyWADL}}
+    \label{fig:wadlstructure}
+\end{figure}

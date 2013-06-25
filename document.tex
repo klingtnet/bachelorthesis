@@ -2,6 +2,9 @@
 \input{variables/global}
 \pagestyle{empty}
 
+% hack, to "deactivate" link coloring
+\hypersetup{linkcolor=black}
+
 % Beginn der Titelseite und Verzeichnisse
 % roemische Seitennumerrierung
 \pagenumbering{Roman}
@@ -52,6 +55,8 @@
 % Beginn des eigentlichen Inhalts
 % arabische Seitennumerrierung
 %
+% hack to activate link coloring
+\hypersetup{linkcolor=magenta}
 
 \iftoggle{print}{%
   \KOMAoptions{twoside}
@@ -61,23 +66,25 @@
 \pagenumbering{arabic}
 
 % headline even on first page of chapter
-%\renewcommand*{\chapterpagestyle}{scrheadings}
-{        
+\renewcommand*{\chapterpagestyle}{chapterStyle}
+{           
     % http://www2.informatik.hu-berlin.de/~piefel/LaTeX-PS/Archive-2004/V07-footnote.pdf
-    \pagestyle{scrheadings}
+    \pagestyle{mainpartStyle}
     \onehalfspacing
     \include{content/introduction/introduction}
     \include{content/basics/basics}
     \include{content/implementation/implementation}
     \include{content/summary/summary}
+    \label{lastPage}
 }
 \blankpage
 
 
 % Beginn des Anhangs
+\renewcommand*{\chapterpagestyle}{appendixChapterStyle}
 {        
-    \pagestyle{scrheadings}
     \appendix 
+    \pagestyle{appendixStyle}
     \pagenumbering{Alph}
 
     % Glossar        

@@ -1,1 +1,8 @@
 \section{RESTful Web Service}
+
+\emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding erstmals beschrieben wurde \cite{fieldingDissertation}. Als \gls{RESTful} bezeichnet man dabei eine Webanwendung die den Prinzipien von \gls{REST} entspricht. 
+Die Daten liegen dabei in eindeutig addressierbaren sogenannten \emph{resources} vor. 
+\emph{Resource} bezeichnet jede Art von Entität, die durch die API bereitgestellt wird.
+Die Interaktion basiert auf dem Austausch von \emph{representations} -- also ein Dokument was den aktuellen oder gewünschten Zustand einer resource beschreibt.
+Beispiel-URL für das Item \emph{84} aus dem Warenkorb \emph{42}:\\
+\texttt{http://api.spreadshirt.net/api/v1/baskets/84/item/42}

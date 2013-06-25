@@ -1,0 +1,28 @@
+\begin{figure}[htb]
+    \begin{center}
+    \resizebox{\textwidth}{!}{
+        \begin{tikzpicture}[
+            node distance=12mm and 8mm,
+            every node/.style={font=\scriptsize}
+            ]
+            \node(wadl)[greyBlock]{WADL};
+            \node(xsd)[double copy shadow, greyBlock,below of=wadl]{XSD};
+            \node(parser)[greyBlock, right=of wadl]{Parser};
+            \node(model)[greyBlock, right=of parser]{Datenmodell};
+            \node(generator)[greyBlock, right=of model]{Codegenerator};
+            \node(templates)[double copy shadow, greyBlock, below=of generator]{Templates};
+            \node(biblio)[greyBlock, right=of generator]{Client-Bibliothek};         
+
+            \path [line] (xsd) -- (wadl);
+            \path [arrow, ->] (wadl) -- (parser);            
+            \path [arrow, ->] (parser) -- (model);
+            %\path [line] (parser) -- node[auto] {erzeugt} (model);
+            \path [arrow, ->] (model) -- (generator);
+            \path [line] (templates) -- (generator);
+            \path [arrow, ->] (generator) -- (biblio);
+        \end{tikzpicture}   
+    }
+    \end{center}
+    \caption{Vereinfachtes Modell eines Generatorsystems}
+    \label{fig:generierungsschema}
+\end{figure}

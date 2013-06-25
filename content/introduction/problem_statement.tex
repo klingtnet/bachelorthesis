@@ -1,2 +1,11 @@
 % Problemstellung
-\section{Warum Code generieren?}
+\section{Ziel der Arbeit}
+
+Es ist ein Codegenerator zu erstellen, der aus der abstrakten Beschreibung der \gls{RESTful} Spreadshirt \gls{API} eine Client-Bibliothek erstellt. 
+
+Der Generator soll eine flexible Wahl der Zielsprache bieten, wobei mit \enquote{Zielsprache} im folgenden die Programmiersprache der erzeugten Bibliothek gemeint ist. 
+Für das Bibliotheksdesign ist eine \gls{DSL} (Domain-Specific Language) zu realisieren, mit dem Ziel die Nutzung der \gls{API} zu vereinfachen. 
+
+Als Programmiersprache für den Generator wird \emph{Java} verwendet, als Zielsprache der Bibliothek dient \emph{PHP}. Um die gewünschte Flexibilität bezüglich der Zielsprache zu erreichen, wird eine \gls{template-engine} verwendet.
+
+\input{tikz_pgf/generatorstructure}

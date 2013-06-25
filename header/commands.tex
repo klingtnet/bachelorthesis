@@ -15,18 +15,22 @@
     \newpage
 }
 
-\newcommand{\chapterQuote}[3]{
+\newcommand{\chapterQuote}[4]{
     \epigraph{
         \enquote{#1}
     }
     {
         {
             \scriptsize
-            \uppercase{#2}\\
-            {#3}
+            \textit{
+            {#4}\\
+            \vspace{-3pt}
+            {\textbf{#2}} ({#3})
+            }
         }
     }        
 }
+
 
 \DeclareUrlCommand\noUnderscoreEscaping{\urlstyle{rm}} % needs url package
 
@@ -36,3 +40,15 @@
         \noUnderscoreEscaping{#1}
     }
 }
+
+\newcommand{\decorativeLine}[2]{
+    \hrulefill\hspace{4pt}
+        \raisebox{-#2}[10pt][10pt]{#1}
+    \hspace{4pt}\hrulefill
+}
+
+\makeatletter
+\renewcommand{\@epirule}{\hrulefill\hspace{4pt}
+        \raisebox{-2pt}[10pt][10pt]{\adfflourishleftdouble}
+    \hspace{4pt}\hrulefill}
+\makeatother
