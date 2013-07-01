@@ -32,13 +32,11 @@
 }
 
 
-\DeclareUrlCommand\noUnderscoreEscaping{\urlstyle{rm}} % needs url package
+\DeclareUrlCommand\noUnderscoreEscaping{\urlstyle{}} % needs url package
 
 \newcommand{\printhref}[2]{
     \href{#1}{#2}
-    \footnote{
-        \noUnderscoreEscaping{#1}
-    }
+    \footnote{\texttt{\noUnderscoreEscaping{#1}}}
 }
 
 \newcommand{\decorativeLine}[2]{

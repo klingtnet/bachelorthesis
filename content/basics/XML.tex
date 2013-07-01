@@ -1,0 +1,20 @@
+\subsection{XML}
+
+Die \emph{Extensible Markup Language}, kurz \gls{XML}, ist eine Auszeichnungssprache (\enquote{Markup Language}) die eine Menge von Regeln beschreibt um Dokumente in einem mensch- und maschinen lesbaren Format zu kodieren \cite{XML10Specification}. Obwohl das Design von XML auf Dokumente ausgerichtet ist, wird es häufig für die Darstellung von beliebigen Daten benutzt \cite{wiki:xml}, z.B. um diese für die Übertragung zu serialisieren.
+
+Mit Hilfe von \emph{XML Schema} (siehe \cref{sec:xmlschema}) kann der Inhalt und die Struktur eines Dokumentes festgelegt und gegen diese validiert werden. Der Begriff \emph{XML Schema} ist mehrdeutig und wird oft auch für eine konkrete Beschreibungssprache, die \enquote{XML Schema Definition}, kurz \gls{XSD}, verwendet.
+
+\begin{lstlisting}[language=XML, caption=Minimalbeispiel für eine XML-Datei][htb]
+<?xml version="1.0" encoding="UTF-8" ?> //@\ding{202}@//
+<tagname key="value"> //@\ding{203}@//
+    <emptyElement i_am_empty="true"/> //@\ding{204}@//
+    <person>
+        <surname>Andreas</surname>
+        <lastname>Linz</lastname>
+    </person>
+</tagname> //@\ding{205}@//
+\end{lstlisting}
+
+Eine valide XML-Datei beginnt mit der \emph{XML-Deklaration} \ding{202}, diese enthält Angaben über die verwendete XML-Spezifikation und die Kodierung der Datei. 
+Im Gegensatz zu gewöhnlichen Tags, wird dieses mit \texttt{<?} und mit \texttt{?>} beendet. 
+Danach folgen beliebig viele baumartig geschachtelte \emph{Elemente} mit einem Wurzelelement \ding{203}. Die Elemente könnten Attribute enthalten und werden, wenn sie kein leeres Element sind \ding{204}, von einem schließenden Tag in der gleichen Stufe abgeschlossen \ding{205}. Leere Elemente dürfen Attribute enthalten.

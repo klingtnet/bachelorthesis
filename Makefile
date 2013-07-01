@@ -9,11 +9,10 @@
 #
 # conditionals are not allowed to have a starting tab, 
 # otherwise they will be sent to the shell
-DEBUG='true'
+DEBUG='false'
 .PHONY : clearscr clean screen print
 
 all: screen print
-	@echo "Trying to build this bloody piece of ... :)"	
 
 screen:
 	@echo "Building screen version ..."

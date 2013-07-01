@@ -45,7 +45,8 @@
     \onehalfspacing
     \include{abstract}
 }
-\blankpage{\thesisBlankPageText}
+
+\include{license}
 
 % Inhaltsverzeichnis    
 \tableofcontents
@@ -104,7 +105,10 @@
     % Literaturverzeichnis
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\bibname}
-    \include{bibliography/bibliography}
+    \input{bibliography/bibliography}
+
+    \input{bibtexEntry}    
+    \label{lastAppendixPage}
 }
 
 %

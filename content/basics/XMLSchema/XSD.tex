@@ -1,0 +1,11 @@
+w\subsection{XML Schema Description (XSD)}
+\label{sec:xsd}
+
+Die \emph{XML Schema Description} ist der stark erweiterte Nachfolger der \emph{DTD} (Document Type Definition), derzeit spezifiert in Version 1.1 \cite{XMLSchema11Specification}. 
+Die Syntax von \emph{XSD} ist XML, damit ist die Schemabeschreibung ebenfalls ein gültiges XML-Dokument.
+% ToDo: Satz behalten?
+Zur Beschreibung der Spreadshirt-API Daten wird dieses Format genutzt...
+Die Spreadshirt API liefert XSDs zur Schemabeschreibung aus, deshalb wird die Beschreibungssprache im folgenden detailierter behandelt.
+
+Komplexe Typen werden durch Elemente vom Typ \texttt{xsd:complexType} definiert, sie dienen zur Definition von XML-Inhalt aus Elementen mit Attributen. Elemente können hierbei Deklarationen oder Referenzen auf Elementdeklarationen sein.
+Simple Typen \texttt{xsd:simpleType} 

@@ -2,12 +2,18 @@
 % define colors
 %
 \definecolor{lightgray}{gray}{0.95}
+\definecolor{darkgray}{gray}{0.4}
 
 %
 % make beautiful tables
 % http://www.inf.ethz.ch/personal/markusp/teaching/guides/guide-tables.pdf
 %
-\renewcommand{\arraystretch}{1.2}
+\renewcommand{\arraystretch}{1.3}
+%
+% remove white lines when coloring table rows
+%
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
 
 %
 % indent content with chapter/section heading
@@ -15,7 +21,7 @@
 % http://tex.stackexchange.com/questions/118818/align-text-with-heading
 %
 \newlength\mylen
-\setlength\mylen{13mm}
+\setlength\mylen{15mm}
 \renewcommand*{\chapterformat}{%
   \llap{\protect\makebox[\mylen][l]{\chapappifchapterprefix{\nobreakspace}\thechapter\autodot\hfill}}%
 }
@@ -24,6 +30,11 @@
 
 % set the enumeration depth, otherwise subsubsections won't be enumerated by default
 \setcounter{secnumdepth}{3} % default is 2
+
+%
+% compact list settings (paralist package)
+%
+\setlength{\pltopsep}{0.4em}
 
 % Polyglossia
 \setmainlanguage{german}
@@ -47,6 +58,12 @@
 %\addtokomafont{disposition}{\chunkFiveEx}
 
 %
+% setup captions
+%
+\setkomafont{caption}{\footnotesize}
+\setkomafont{captionlabel}{\usekomafont{caption}\bfseries}
+
+%
 % Listing settings
 %
 % ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
@@ -55,16 +72,35 @@
 		basicstyle=\ttfamily\scriptsize,
 		commentstyle=\color{gray},
 		keywordstyle=\bfseries\color{magenta},
-		identifierstyle=\color{blue},
+		identifierstyle=\itshape\color{cyan},
+		stringstyle=\itshape\color{cyan!75!black},
 		backgroundcolor=\color{lightgray},
 		numbers=left,
-		numberstyle=\ttfamily\tiny\color{gray!50!black},
+		numberstyle=\rmfamily\tiny\color{gray!50!black},
 		escapeinside={//@}{@//},
-		belowcaptionskip=6pt,
 		frame=lines,
+		captionpos=b,
+		breaklines=true,
+		breakautoindent=true,
+		xleftmargin=8mm,
+		framexleftmargin=8mm,
+		aboveskip=\baselineskip
 		%frame=tb 	%tblrTBLR
 		%frame=shadowbox
 	}
+%
+% thanks to: http://lenaherrmann.net/2010/05/20/
+%
+\lstdefinelanguage{JavaScript}{
+	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+	ndkeywords={class, export, boolean, throw, implements, import, this},
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	sensitive=false,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]',
+	morestring=[b]"
+}
 
 %
 % glossary style
@@ -107,7 +143,7 @@
 %	(\textwidth,0pt)}	% length and width of line below footer
 
 % \newcommand{footerOrnament}{\includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}}
-\newcommand{\footerOrnament}{\adfflourishleftdouble{} \adfast3{} \adfflourishrightdouble{}}
+\newcommand{\footerOrnament}{\adfflourishleftdouble{} \adfast4{} \adfflourishrightdouble{}}
 
 % change style of \pagemark, slightly bend and roman font family
 \renewcommand*{\pnumfont}{%
@@ -146,9 +182,9 @@
 \newpagestyle{appendixChapterStyle}
 	% header line
 	{(\textwidth,0pt)
-		{\pagemark\hfill}
-		{\hfill\pagemark}
-		{\hfill\pagemark}
+		{\pagemark{} von \pageref{lastAppendixPage}\hfill}
+		{\hfill\pagemark{} von \pageref{lastAppendixPage}}
+		{\hfill\pagemark{} von \pageref{lastAppendixPage}}
 	(\textwidth,0.5pt)}
 	%footer line
 	{(\textwidth,0pt) 
@@ -160,9 +196,9 @@
 \newpagestyle{appendixStyle}
 	% header line
 	{(\textwidth,0pt)
-		{\pagemark\hfill\rightmark}
-		{\leftmark\hfill\pagemark}
-		{\leftmark\hfill\pagemark}
+		{\pagemark{} von \pageref{lastAppendixPage}\hfill\rightmark}
+		{\leftmark\hfill\pagemark{} von \pageref{lastAppendixPage}}
+		{\leftmark\hfill\pagemark{} von \pageref{lastAppendixPage}}
 	(\textwidth,0.5pt)}
 	%footer line
 	{(\textwidth,0pt) 

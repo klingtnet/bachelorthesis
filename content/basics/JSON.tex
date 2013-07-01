@@ -1,0 +1,44 @@
+\subsection{JSON}
+
+\emph{Javascript Object Notation}, kurz \emph{JSON}, ist ein leichtgewichtiges, textbasiertes und sprachunbhängiges Datenaustauschformat. Es ist von \emph{JavaScript} abgeleitet und definiert eine kleine Menge von Formatierungsregeln für die transportable Darstellung (Serialisierung) von strukturierten Daten (nach \cite{JSONRFC}).
+
+Im Gegensatz zu XML ist JSON weit weniger mächtig, es gibt z.B. keine Unterstützung für Namensräume und es wird nur eine geringe Menge an Datentypen unterstützt (siehe \cref{tab:jsonDatatypes}). Andererseits erzeugt es bei der Serialisierung, durch seine einfache Struktur, einen deutlich geringeren \enquote{syntaktischen Overhead}.
+Mit \printhref{http://tools.ietf.org/id/draft-zyp-json-schema-03.html}{JSON Schema} ist es möglich eine Dokumentstruktur vorzugeben und gegen diese zu validieren. 
+
+\begin{table}[htb]
+	\begin{longtable}{l l}
+	\toprule
+	\rowcolor{lightgray}
+	\textbf{primitiv} 	& \textbf{strukturiert}\\
+	\midrule
+	Zeichenketten		& Objekte\\
+	Ganz- und 
+	Fließkommazahlen	& Arrays\\
+	Booleans			& \\
+	null				& \\
+	\bottomrule
+	\end{longtable}
+	\caption{JSON Datentypen}
+	\label{tab:jsonDatatypes}
+\end{table}
+
+%
+% wrapping in a minipage prevents the listings block from splitting on pagebreak
+%
+\begin{minipage}{\textwidth}
+	\begin{lstlisting}[language=JavaScript, caption=Minimalbeispiel für eine JSON-Datei]
+{
+	"key": "value",
+	"another_key": 42,
+	"an_object": {
+		"foo": "bar",
+		"some_boolean": false
+	},
+	"an_array": [
+		"surname": "Andreas",
+		"lastname": "Linz"
+	],
+	"empty": null
+}
+	\end{lstlisting}
+\end{minipage}

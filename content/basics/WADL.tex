@@ -1,7 +1,7 @@
 \section{WADL}
 
 Die \emph{Web Application Description Language} (kurz \gls{WADL}) ist eine maschinenlesbare Beschreibung einer HTTP-basierten Webanwendung, einschließlich einer Menge von\emph{XML Schematas} \cite{hadleyWADL}.
-Die aktuelle Revision ist vom \printhref{http://www.w3.org/Submission/wadl/}{31. August 2009}, im weiteren beziehe ich mich aber hier auf die in der Spreadshirt-API verwendeten Version vom 9. November 2006\footnote{Die Unterschiede zwischen beiden Revisionen können unter der folgenden URL nachvollzogen werden \href{http://www.w3.org/Submission/wadl/\#x3-41000D.1}{\texttt{http://www.w3.org/Submission/wadl/\#x3-41000D.1}}.}.
+Die aktuelle Revision ist vom \printhref{http://www.w3.org/Submission/wadl/}{31. August 2009}, im weiteren beziehe ich mich aber hier auf die in der Spreadshirt-API verwendeten Version vom 9. November 2006\footnote{Die Unterschiede zwischen beiden Revisionen können unter der folgenden URL nachvollzogen werden \printhref{http://www.w3.org/Submission/wadl/\#x3-41000D.1}{http://www.w3.org/Submission/wadl/\#x3-41000D.1}.}.
 
 Die Beschreibung eines Webservices durch WADL besteht nach \cite{hadleyWADL} im groben aus den folgenden vier Bestandteilen:
 \begin{description}
@@ -11,6 +11,7 @@ Die Beschreibung eines Webservices durch WADL besteht nach \cite{hadleyWADL} im 
      \item[Resource representation formats] Die unterstützten \gls{MIME}-Typen und verwendeten Datenschemas (\cref{sec:xsd})
  \end{description} 
 
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[language=XML, caption={Beispielaufbau einer WADL-Datei anhand der Spreadshirt-API Beschreibung}, label=lst:wadlstructure, name=wadlstructure]
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?> //@\ding{202}@//
 <application xmlns="http://research.sun.com/wadl/2006/10"> //@\ding{203}@//
@@ -50,6 +51,7 @@ Die Beschreibung eines Webservices durch WADL besteht nach \cite{hadleyWADL} im 
                    	}
                 ...
 \end{lstlisting}
+\end{minipage}
 
 %% ToDo: verfeinern der Beschreibung, was ist erlaubt, was nicht?
 Die Datei beginnt mit der Angabe der XML-Deklaration \ding{202}.

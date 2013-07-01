@@ -1,8 +1,56 @@
 \section{RESTful Web Service}
 
-\emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding erstmals beschrieben wurde \cite{fieldingDissertation}. Als \gls{RESTful} bezeichnet man dabei eine Webanwendung die den Prinzipien von \gls{REST} entspricht. 
-Die Daten liegen dabei in eindeutig addressierbaren sogenannten \emph{resources} vor. 
-\emph{Resource} bezeichnet jede Art von Entität, die durch die API bereitgestellt wird.
-Die Interaktion basiert auf dem Austausch von \emph{representations} -- also ein Dokument was den aktuellen oder gewünschten Zustand einer resource beschreibt.
-Beispiel-URL für das Item \emph{84} aus dem Warenkorb \emph{42}:\\
-\texttt{http://api.spreadshirt.net/api/v1/baskets/84/item/42}
+\emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding\footnote{Roy Thomas Fielding, geboren 1965, ist einer der Hauptautoren der HTTP-Spezifikation} in seiner Dissertation aus dem Jahre 2000  beschrieben wurde \cite{fieldingDissertation}. 
+
+Als \gls{RESTful} bezeichnet man dabei eine Webanwendung die den Prinzipien von \gls{REST} entspricht. 
+
+Die fünf Grundlegenden REST-Prinzipien (nach \cite{Tilkov09}):
+\begin{compactitem}
+	\item Ressourcen mit eindeutiger Indentifikation
+	\item Verknüpfungen / Hypermedia
+	\item Standartmethoden\footnote{GET, PUT, POST, DELETE bei Nutzung von HTTP}
+	\item Unterschiedliche Repräsentationen
+	\item Statuslose Kommunikation
+\end{compactitem}
+
+\subsection{Eindeutige Identifikation}
+
+Um eine \emph{eindeutige Identifikation} zu erreichen, wird jeder Ressource eine \gls{URI} vergeben. Dadurch ist es möglich zu jeder verfügbaren Ressource einen Link zu setzen. 
+Nachfolgend eine Beispiel-\gls{URI}, um den Artikel 42 aus dem Warenkorb 84 anzusprechen:
+\[
+	\underbrace{http://api.spreadshirt.net/api/v1/}_{Basis-URL}\underbrace{\overbrace{baskets/84}^{Warenkorb}\overbrace{/item/42}^{Artikel}}_{Ressource}
+	\label{RESTexampleURL}
+\]
+
+\subsection{Hypermedia}
+
+Innerhalb einer Ressource kann auf weitere verlinkt werden (\emph{Hypermedia}), als Nebeneffekt der eindeutigen Identifikation duch \glspl{URI} sind diese auch außerhalb des Kontextes der aktuellen Anwendung gültig. Das Folgen eines Links entspricht dabei einer Zustandsänderung innerhalb der Anwendung.
+Die vorhandenen Verknüpfungen legen fest welche Zustandsübergänge  erlaubt sind.
+
+\subsection{Standartmethoden}
+
+Durch die Nutzung von \emph{Standartmethoden} ist abgesichert das die Anwendung mit den Ressourcen arbeiten kann, vorausgesetzt sie unterstützt diese. \gls{REST} ist nicht auf HTTP beschränkt, praktisch alle REST-APIs nutzen aber dieses Protokoll. HTTP umfasst dabei folgende Methoden\footnote{Kapitel 9 der HTTP 1.1 Spezifikation beschreibt diese umfassend \cite{HTTP11Specification}}:
+\begin{compactitem}
+    \item GET
+    \item PUT
+    \item POST
+    \item DELETE
+    \item HEAD
+    \item OPTIONS
+\end{compactitem}
+
+Alle bis auf \emph{POST} sind \emph{idempotent}, d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf.
+
+\subsection{Repräsentationen von Ressourcen}
+
+Die Repräsentation sollte unabhängig von der Ressource sein, um die Darstellung gegebenenfalls für den Client anzupassen. Per \emph{Query-Parameter} oder als Information im HTTP-Header kann die Clientanwendung nun das gewünschte Format angeben und bekommt vom Server die entsprechend formatierte Antwort. Der Client kann anhand des \emph{Content-Type} Feldes das Format der Antwort überprüfen, für \gls{JSON} lautet dies bspw. \texttt{application/json}.
+
+\subsection{Statuslose Kommunikation}
+
+Es soll kein Sitzungsstatus (\emph{session-state}) vom Server gespeichert werden, d.h. jede Anfrage des Client muss alle Informationen enthalten, die nötig sind um diese serverseitig verarbeiten zu können. Der Sitzungstatus wird dabei vollständig vom Client gehalten. Diese Restriktion führt zu einigen Vorteilen:
+\begin{compactitem}
+	\item Verringerung der Kopplung zwischen Client und Server
+	\item zwei aufeinanderfolgende Anfragen können von unterschiedlichen Serverinstanzen beantwortet werden
+	\item[$\hookrightarrow$] verbesserte Skalierbarkeit
+\end{compactitem}
+Diese Vorteile werden mit erhöhter Netzwerklast erkauft, da die Statusinformationen bei jeder Anfrage mitgesendet werden müssen.
