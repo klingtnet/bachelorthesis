@@ -28,27 +28,27 @@ Die Beschreibung eines Webservices durch WADL besteht nach \cite{hadleyWADL} im 
                 <doc>...</doc>
                 <request> //@\ding{208}@//
                     <param 
-                    	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-                    	name="mediaType" 
-                    	style="query" 
-                    	type="xsd:string">
+                        xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                        name="mediaType" 
+                        style="query" 
+                        type="xsd:string">
                     <doc>...</doc>
                     </param>
                     ...
                 </request>
                 <response> //@\ding{209}@//
                     <representation 
-                    	xmlns:sns="http://api.spreadshirt.net"
-                    	element="sns:user" 
-                    	status="200" 
-                    	mediaType="application/xml">
+                        xmlns:sns="http://api.spreadshirt.net"
+                        element="sns:user" 
+                        status="200" 
+                        mediaType="application/xml">
                     <doc title="Success"/>
                     </representation>
                     <fault status="500" mediaType="text/plain">
                         <doc title="Internal Server Error"/>
                     </fault>
-                   	...
-                   	}
+                    ...
+                    }
                 ...
 \end{lstlisting}
 \end{minipage}

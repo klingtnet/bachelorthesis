@@ -1,11 +1,196 @@
-w\subsection{XML Schema Description (XSD)}
+\subsection{XML Schema Description (XSD)}
 \label{sec:xsd}
 
-Die \emph{XML Schema Description} ist der stark erweiterte Nachfolger der \emph{DTD} (Document Type Definition), derzeit spezifiert in Version 1.1 \cite{XMLSchema11Specification}. 
-Die Syntax von \emph{XSD} ist XML, damit ist die Schemabeschreibung ebenfalls ein gültiges XML-Dokument.
-% ToDo: Satz behalten?
-Zur Beschreibung der Spreadshirt-API Daten wird dieses Format genutzt...
-Die Spreadshirt API liefert XSDs zur Schemabeschreibung aus, deshalb wird die Beschreibungssprache im folgenden detailierter behandelt.
+\emph{XML Schema Description} ist ein stark erweiterte Nachfolger der \emph{DTD} (Document Type Definition), derzeit spezifiert in Version 1.1 \cite{XMLSchema11Specification}. 
+Die Syntax von \emph{XSD} ist XML, damit ist die Schemabeschreibung ebenfalls ein gültiges XML-Dokument. Als Dateiendung wird üblicherweise \texttt{.xsd} verwendet.
+Die Hauptmerkmale von XSD sind nach \cite{taxonomyXMLSchema} % Kapitel 3.2
+, die folgenden:
+\begin{compactitem}
+    \item Komplexe Typen (strukturierter Inhalt)
+    \item anonyme Typen (besitzen kein \texttt{type}-Attribut)
+    \item Modellgruppen
+    \item Ableitung durch Erweiterung oder Einschränkung (\enquote{derivation by extension/restriction})
+    \item Definition von abstrakten Typen
+    \item Integritätsbedingungen (\enquote{integrity constraints}):\\
+        \emph{unique}, \emph{keys} und \emph{keyref}, dies entspricht den \emph{unique-}, \emph{primary-} und \emph{foreign}-keys aus dem Bereich der Datenbanken
+\end{compactitem}
 
-Komplexe Typen werden durch Elemente vom Typ \texttt{xsd:complexType} definiert, sie dienen zur Definition von XML-Inhalt aus Elementen mit Attributen. Elemente können hierbei Deklarationen oder Referenzen auf Elementdeklarationen sein.
-Simple Typen \texttt{xsd:simpleType} 
+Die XSD Spezifikation enthält bereits eine Menge vordefinierter Datentypen, dargestellt in \cref{fig:xsddatatypes}.
+
+% todo: standalone attribute, elementFormDefault?
+\begin{lstlisting}[language=XML, caption=Minimalbeispiel für eine Schemabeschreibung mit XSD, label=lst:minimalXSD]
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xsd:schema 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    version="1.0" 
+    targetNamespace="myNamespace" 
+    elementFormDefault="qualified">
+    <xsd:complexType name="product">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="price" type="xsd:decimal"/>
+            <xsd:element name="description"
+                ref="myNamespace:description"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="description">
+        <xsd:all>
+            <xsd:element name="title" type="xsd:string">
+            <xsd:element name="content" type="xsd:string">
+        </xsd:all>
+    </xsd:complexType>
+</xsd:schema>
+\end{lstlisting}
+
+\begin{figure}[htb]
+    \centering
+    \tikzstyle{blueBox}=[
+        rounded rectangle,
+        fill={blue!15},
+        draw,
+        font=\sffamily
+    ]      
+    \tikzstyle{grayBox}=[
+        rounded rectangle,
+        fill=lightgray,
+        text=black,
+        font=\sffamily,
+        draw
+    ]
+    \tikzstyle{violetBox}=[
+        rounded rectangle,
+        fill=violet,
+        text=white,
+        font=\sffamily,
+        draw
+    ]
+    \tikzstyle{greenBox}=[
+        rounded rectangle,
+        fill=green!50,
+        text=black,
+        font=\sffamily,
+        draw
+    ]
+    \tikzstyle{derivedFromList}=[
+        dashed,
+        cyan
+    ]
+    \resizebox{\textwidth}{!}{
+        \begin{tikzpicture}[
+            level distance=1.1cm,
+            level 1/.style={sibling distance=4cm},
+            level 2/.style={sibling distance=2cm},
+            level 3/.style={sibling distance=2.5cm},
+          ]
+          \node (root) [violetBox] {anyType}
+            [edge from parent fork down]
+            child {node[grayBox] {all complex types}
+                edge from parent[loosely dashed, magenta]
+            }
+            child {node[violetBox] {anySimpleType}
+                    child {node[blueBox] {duration}}
+                    child {node[blueBox] {dateTime}}
+                    child {node[blueBox] {time}}
+                    child {node[blueBox] {date}}
+                    child {node[blueBox] {gYearMonth}}
+                    child {node[blueBox] {gYear}}
+                    child {node[blueBox] {gMonthDay}}
+                    child {node[blueBox] {gDay}}
+                    child {node[blueBox] {gMonth}}
+                    child {
+                        child [sibling distance = 3cm]{
+                            child {node[blueBox] {string}
+                                child {node[greenBox] {normalizedString}}
+                                child {node[greenBox] {token}
+                                    child {node[greenBox] {language}}
+                                    child {node[greenBox] {Name}
+                                        child {node[greenBox] {NCName}
+                                            child {node[greenBox] {ID}}
+                                            child {node[greenBox] {IDREF}
+                                                child {node[greenBox] {IDREFS}
+                                                    edge from parent[derivedFromList]
+                                                }
+                                            }
+                                            child {node[greenBox] {ENTITY}
+                                                child {node[greenBox] {ENTITIES}
+                                                    edge from parent[derivedFromList]
+                                                }
+                                            }
+                                        }
+                                    }
+                                    child {node[greenBox] {NMTOKEN}
+                                        child  {node [greenBox] {NMTOKENS}
+                                            edge from parent[derivedFromList]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        child {node[blueBox] {boolean}}
+                        child {node[blueBox] {base64Binary}}
+                        child {node[blueBox] {hexBinary}}
+                        child {node[blueBox] {float}}
+                        child [sibling distance = 3cm] {
+                            child {node[blueBox] {decimal}
+                                child [sibling distance = 4cm] {node[greenBox] {integer}
+                                    child {node[greenBox] {nonPositiveInteger}
+                                        child {node[greenBox] {negativeInteger}}
+                                    }
+                                    child {node[greenBox] {long}
+                                        child {node[greenBox] {int}
+                                            child {node[greenBox] {short}
+                                                child {node[greenBox] {byte}}
+                                            }
+                                        }
+                                    }
+                                    child {node[greenBox] {nonNegativeInteger}
+                                        child {node[greenBox] {unsignedLong}
+                                            child {node[greenBox] {unsignedInt}
+                                                child {node[greenBox] {unsignedShort}
+                                                    child {node[greenBox] {unsignedByte}}
+                                                }
+                                            }
+                                        }
+                                        child {node[greenBox] {positiveInteger}}
+                                    }
+                                }
+                            }
+                        }
+                        child {node[blueBox] {double}}
+                        child {node[blueBox] {anyURI}}
+                        child {node[blueBox] {QName}}
+                        child {node[blueBox] {NOTATION}}
+                    }
+            };
+        \end{tikzpicture}
+    }
+
+    \vspace{\baselineskip}
+
+    \resizebox{0.5\textwidth}{!}{
+        \begin{tikzpicture}[framed]
+            \node (title) [font=\bfseries] {Legende:};
+            \node (base) [violetBox, right = of title] {Basis Typ};
+            \node (primitive) [blueBox, right = of base] {Primitiver Typ};
+            \node (derived) [greenBox, right = of primitive] {Abgeleiteter Typ};
+            \node (complex) [grayBox, right = of derived] {Komplexer Typ};
+            \node (d1) [below = of base] {};
+            \node (d2) [below = of primitive] {}
+                edge [] node[swap, align=center]{Abgeleitet durch\\Einschränkung} (d1);
+            \node (d3) [below = of derived] {};
+            \node (d4) [below = of complex] {}
+                edge [dashed, cyan] node[swap, align=center]{von Liste\\abgeleitet} (d3);
+            \node (d5) [below = of d2] {};
+            \node (d6) [below = of d3] {}
+                edge [loosely dashed, magenta] node[swap, align=center]{Abgeleitet durch\\Erweiterung/Einschränkung} (d5);
+        \end{tikzpicture}
+    }
+    \caption{vordefinierte XSD Datentypen nach \cite{XMLSchema11Specification} Kapitel 3}
+    \label{fig:xsddatatypes}
+\end{figure}
+
+%
+% todo: wie detailiert Grundlangen beschreiben?
+%
+
+%Komplexe Typen werden durch Elemente vom Typ \texttt{xsd:complexType} definiert, sie dienen zur Definition von XML-Inhalt aus Elementen mit Attributen. Elemente können hierbei Deklarationen oder Referenzen auf Elementdeklarationen sein.

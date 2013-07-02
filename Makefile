@@ -9,7 +9,7 @@
 #
 # conditionals are not allowed to have a starting tab, 
 # otherwise they will be sent to the shell
-DEBUG='false'
+DEBUG='true'
 .PHONY : clearscr clean screen print
 
 all: screen print
@@ -17,12 +17,16 @@ all: screen print
 screen:
 	@echo "Building screen version ..."
 ifeq ($(DEBUG) , 'true')
-	xelatex thesis			
-	biber thesis			
-	makeglossaries thesis	
-	xelatex thesis			
+	@echo "\n------------------ xelatex --------------------\n"		
+	@xelatex thesis | grep --ignore-case warning
+	@echo "\n------------------- biber ---------------------\n"	
+	@biber thesis
+	@echo "\n--------------- makeglossaries ----------------\n"			
+	@makeglossaries thesis
+	@echo "\n------------------ xelatex --------------------\n"	
+	@xelatex thesis | grep --ignore-case warning		
 else
-	@xelatex thesis > /dev/null			
+	@xelatex thesis > /dev/null	
 	@biber thesis > /dev/null			
 	@makeglossaries thesis > /dev/null	
 	@xelatex thesis > /dev/null			
@@ -31,10 +35,14 @@ endif
 print:
 	@echo "Building print version ..."
 ifeq ($(DEBUG) , 'true')
-	xelatex thesis_print		
-	biber thesis_print		
-	makeglossaries thesis_print
-	xelatex thesis_print		
+	@echo "\n------------------ xelatex --------------------\n"	
+	@xelatex thesis_print | grep --ignore-case warning
+	@echo "\n------------------- biber ---------------------\n"		
+	@biber thesis_print		
+	@echo "\n--------------- makeglossaries ----------------\n"	
+	@makeglossaries thesis_print
+	@echo "\n------------------ xelatex --------------------\n"		
+	@xelatex thesis_print | grep --ignore-case warning		
 else
 	@xelatex thesis_print > /dev/null			
 	@biber thesis_print > /dev/null			
@@ -52,7 +60,7 @@ clean:
 	@find . -name \*.fls  -type f -delete
 	@find . -name \*.fdb_latexmk  -type f -delete
 	@find . -name \*.vsdx  -type f -delete
-
+	@find `pwd` -name '*in Konflikt stehende*' -delete
 
 clearscreen:
 	clear

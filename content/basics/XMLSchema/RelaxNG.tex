@@ -2,4 +2,52 @@
 \label{sec:relaxng}
 
 % Wikipedia, satz abändern
-\emph{Regular Language Description for XML New Generation} ist eine XML-Schemasprache zur Definition und Struktur von XML-Dokumenten. Schemas werden in \emph{RelaxNG} durch XML-Syntax oder durch eine eigene, kompaktere nicht-XML Syntax formuliert. Ebenso wie bei \emph{XML Schema} werden Namespaces unterstützt.
+Ebenso wie XSD (siehe \cref{sec:xsd}) ist \emph{Regular Language Description for XML New Generation} eine XML-Schemasprache zur Definition der Struktur von XML-Dokumenten. Schemas werden in \emph{RelaxNG} durch XML-Syntax oder eine eigene, kompaktere nicht-XML Syntax formuliert. Ebenso wie bei \emph{XML Schema} werden Namespaces unterstützt. RelaxNG Schemabeschreibungen verwenden meist \texttt{.rng} als Dateiendung.
+
+Unterschiede zu XML Schema:
+\begin{compactitem}
+    \item Unterstützung von ungeordneten Inhalten
+    \item kompaktere nicht-XML Syntax
+    \item \emph{nichtdeterministisches} oder auch \emph{mehrdeutiges} Inhaltsmodell (\cite{RelaxNGVlist} Kapitel 16)% ToDo: Belge, warum, Erklärung
+    \begin{lstlisting}[language=XML]
+    <element name="foo">
+      <choice>
+        <data type="boolean"/>
+        <data type="integer"/>
+      </choice>
+    </element>
+    \end{lstlisting}
+\end{compactitem}
+
+% Beispiel von http://pike.psu.edu/publications/toit05.pdf Seite 17
+\begin{lstlisting}[language=XML, caption=Minimalbeispiel für eine Schemadefinition in RelaxNG, label=minimalRelaxNG]
+<?xml version="1.0" encoding="utf-8"?>
+<grammar 
+    xmlns="http://relaxng.org/ns/structure/1.0"
+    ns="myNamespace">
+    <start>
+        <ref name="product"/>
+    </start>
+    <define name="product">
+        <oneOrMore>
+            <element name="name"/>
+                <text/>
+            </element>
+            <element name="price"/>
+                <text/>
+            </element>
+            <ref name="description"/>
+        </oneOrMore>
+    </define>
+    <define name="description">
+        <oneOrMore>
+            <element name="title">
+                <text/>
+            </element>
+            <element name="content">
+                <text/>
+            </element>
+        </oneOrMore>
+    </define>
+</grammar>
+\end{lstlisting}
