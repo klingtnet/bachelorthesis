@@ -24,7 +24,7 @@ copy_sources:
 
 copy_output:
 	@echo "Copying generated PDFs to output folder: $(OUTPUT_DIR)"
-	@cp --update $(BUILD_DIR)/*.pdf $(OUTPUT_DIR)
+	@cp -f $(BUILD_DIR)/*.pdf $(OUTPUT_DIR)
 
 screen:
 	@echo "Building screen version ..."

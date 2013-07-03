@@ -17,21 +17,21 @@ if [ -f ~/bin/ack-grep ]; then
 	echo "using ack-grep"
 	echo "--------------------------------------------"
 	if [ $# == 0 ]; then
-		ack-grep --ignore-file=is:todos.sh --ignore-case --sort-files "todo:"
+		ack-grep --ignore-file=is:todos.sh --ignore-directory=is:.build --ignore-case --sort-files "todo:"
 	elif [ $# -gt 1 ]; then
 		echo "usage: ./todos.sh search_keyword"
 	else
-		ack-grep --sort-files --ignore-file=is:todos.sh --ignore-case $1
+		ack-grep --sort-files --ignore-file=is:todos.sh --ignore-directory=is:.build --ignore-case $1
 	fi
 else 
 	echo "using grep"
 	echo "--------------------------------------------"
 	if [ $# == 0 ]; then
-		grep -iRnH --exclude=todos.sh 'todo:'
+		grep -iRnH --exclude="todos.sh*" --exclude-dir=.build 'todo:'
 	elif [ $# -gt 1 ]; then
 		echo "usage: ./todos.sh search_keyword"
 	else
-		grep -iRnH $1 *
+		grep -iRnH --exclude-dir=.build $1 *
 	fi
 fi
 echo "--------------------------------------------"
