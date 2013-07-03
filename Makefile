@@ -9,58 +9,55 @@
 #
 # conditionals are not allowed to have a starting tab, 
 # otherwise they will be sent to the shell
+#
 DEBUG='true'
-.PHONY : clearscr clean screen print
+ROOT_DIR=$(shell pwd)
+BUILD_DIR=$(ROOT_DIR)/.build
+OUTPUT_DIR=$(ROOT_DIR)/output
+#.PHONY : clearscr clean screen print
 
-all: screen print
+all: copy_sources screen print copy_output
+
+copy_sources:
+	@echo "Copying sources to build folder: $(BUILD_DIR)"
+	@rsync --verbose --checksum --recursive --human-readable --progress --exclude=.build --exclude=.build_scripts --exclude=output --exclude=.git --exclude=.gitignore $(ROOT_DIR)/ $(ROOT_DIR)/.build
+
+copy_output:
+	@echo "Copying generated PDFs to output folder: $(OUTPUT_DIR)"
+	@cp --update $(BUILD_DIR)/*.pdf $(OUTPUT_DIR)
 
 screen:
 	@echo "Building screen version ..."
 ifeq ($(DEBUG) , 'true')
-	@echo "\n------------------ xelatex --------------------\n"		
-	@xelatex thesis | grep --ignore-case warning
-	@echo "\n------------------- biber ---------------------\n"	
-	@biber thesis
-	@echo "\n--------------- makeglossaries ----------------\n"			
-	@makeglossaries thesis
-	@echo "\n------------------ xelatex --------------------\n"	
-	@xelatex thesis | grep --ignore-case warning		
+	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG) 
 else
-	@xelatex thesis > /dev/null	
-	@biber thesis > /dev/null			
-	@makeglossaries thesis > /dev/null	
-	@xelatex thesis > /dev/null			
+	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG)
 endif
 
 print:
 	@echo "Building print version ..."
 ifeq ($(DEBUG) , 'true')
-	@echo "\n------------------ xelatex --------------------\n"	
-	@xelatex thesis_print | grep --ignore-case warning
-	@echo "\n------------------- biber ---------------------\n"		
-	@biber thesis_print		
-	@echo "\n--------------- makeglossaries ----------------\n"	
-	@makeglossaries thesis_print
-	@echo "\n------------------ xelatex --------------------\n"		
-	@xelatex thesis_print | grep --ignore-case warning		
+	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG) 		
 else
-	@xelatex thesis_print > /dev/null			
-	@biber thesis_print > /dev/null			
-	@makeglossaries thesis_print > /dev/null	
-	@xelatex thesis_print > /dev/null			
+	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG)
 endif
 
 clean:
 	@echo "I will clean up this mess ..."
-	@rm -f *.out *.nav *.snm *.toc *.log *.bcf *.bbl *.blg *.lof *.lol *.lot *.run.xml *.xdy *.glo *.glg *.gls *.idx *.ist *-blx.bib .*.bbl.swp *.mtc* *.maf
-	@find . -name \*.aux  -type f -delete
-	@find . -name \*.bbl  -type f -delete
-	@find . -name \*.bak  -type f -delete
-	@find . -name \*.blg  -type f -delete
-	@find . -name \*.fls  -type f -delete
-	@find . -name \*.fdb_latexmk  -type f -delete
-	@find . -name \*.vsdx  -type f -delete
-	@find `pwd` -name '*in Konflikt stehende*' -delete
+	@cd $(BUILD_DIR); rm -r *
+
+clean_all: clean
+	@cd $(OUTPUT_DIR); rm *
+# remove the following commands, if the build was started in the BUILD_DIR successfully
+#	@rm -f *.out *.nav *.snm *.toc *.log *.bcf *.bbl *.blg *.lof *.lol *.lot *.run.xml *.xdy *.glo *.glg *.gls *.idx *.ist *-blx.bib .*.bbl.swp *.mtc* *.maf
+#	@find . -name \*.aux  -type f -delete
+#	@find . -name \*.bbl  -type f -delete
+#	@find . -name \*.bak  -type f -delete
+#	@find . -name \*.blg  -type f -delete
+#	@find . -name \*.fls  -type f -delete
+#	@find . -name \*.fdb_latexmk  -type f -delete
+#	@find . -name \*.vsdx  -type f -delete
+#	@find $(ROOT_DIR) -name '*in Konflikt stehende*' -delete
 
 clearscreen:
 	clear
