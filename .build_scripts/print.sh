@@ -1,5 +1,8 @@
 #!/bin/bash
 #
+# script for generating the print pdfs
+# this script should be called from the Makefile in the document root
+#
 # check number of arguments with `$# -eq 0`
 #
 
