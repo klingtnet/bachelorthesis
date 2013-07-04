@@ -45,6 +45,7 @@ endif
 clean:
 	@echo "I will clean up this mess ..."
 	@cd $(BUILD_DIR); rm -r *
+	@find $(ROOT_DIR) -name '*in Konflikt stehende*' -delete
 
 clean_all: clean
 	@cd $(OUTPUT_DIR); rm *

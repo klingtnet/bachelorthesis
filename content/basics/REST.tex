@@ -29,7 +29,7 @@ Die vorhandenen Verknüpfungen legen fest welche Zustandsübergänge  erlaubt si
 
 \subsection{Standartmethoden}
 
-Durch die Nutzung von \emph{Standartmethoden} ist abgesichert das die Anwendung mit den Ressourcen arbeiten kann, vorausgesetzt sie unterstützt diese. \gls{REST} ist nicht auf HTTP beschränkt, praktisch alle REST-APIs nutzen aber dieses Protokoll. HTTP umfasst dabei folgende Methoden\footnote{Kapitel 9 der HTTP 1.1 Spezifikation beschreibt diese umfassend \cite{HTTP11Specification}}:
+Durch die Nutzung von \emph{Standartmethoden} ist abgesichert das die Anwendung mit den Ressourcen arbeiten kann, vorausgesetzt sie unterstützt diese. \gls{REST} ist nicht auf HTTP beschränkt, praktisch alle REST-APIs nutzen aber dieses Protokoll. HTTP umfasst dabei folgende Methoden\footnote{Kapitel 9 des HTTP 1.1 RFC2616 beschreibt diese inklusive \emph{TRACE} und \emph{CONNECT} umfassend \cite{HTTP11RFC}}:
 \begin{compactitem}
     \item GET
     \item PUT
@@ -39,7 +39,7 @@ Durch die Nutzung von \emph{Standartmethoden} ist abgesichert das die Anwendung 
     \item OPTIONS
 \end{compactitem}
 
-Alle bis auf \emph{POST} sind \emph{idempotent}, d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf.
+Alle bis auf \emph{POST} und \emph{OPTIONS} sind \emph{idempotent} (\cite{HTTP11RFC} Kapitel 9), d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf.
 
 \subsection{Repräsentationen von Ressourcen}
 
