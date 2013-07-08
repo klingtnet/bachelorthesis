@@ -35,7 +35,7 @@
 % compact list settings (paralist package)
 %
 % seperation on top lists
-\setlength{\pltopsep}{0.2\baselineskip}
+\setlength{\pltopsep}{0.5\baselineskip}
 
 % Polyglossia
 \setmainlanguage{german}
@@ -49,6 +49,7 @@
 % Font settings
 %
 \newfontfamily\chunkFiveEx[]{ChunkFive Ex}
+\newfontfamily\vollkorn[]{Vollkorn}
 %
 %\setmainfont[Ligatures={Common,TeX}, Numbers=OldStyle]{Linux Libertine O}
 \setmonofont{Consolas}
@@ -57,6 +58,10 @@
 % http://tex.stackexchange.com/questions/25845/koma-script-change-font-of-sectioning-headings-to-serif
 \addtokomafont{disposition}{\rmfamily}
 %\addtokomafont{disposition}{\chunkFiveEx}
+%\addtokomafont{disposition}{\vollkorn}
+%
+% set style of description labels
+\renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}\textrm{\textsl{\textbf{\small{#1:}}}}}
 
 %
 % setup captions
@@ -143,8 +148,10 @@
 %		{\hfill}	% onepage style
 %	(\textwidth,0pt)}	% length and width of line below footer
 
-% \newcommand{footerOrnament}{\includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}}
-\newcommand{\footerOrnament}{\adfflourishleftdouble{} \adfast4{} \adfflourishrightdouble{}}
+\newcommand{\footerlogowidth}{32pt}
+%\newcommand{footerOrnament}{\includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}}
+%\newcommand{\footerOrnament}{\adfflourishleftdouble{} \adfast4{} \adfflourishrightdouble{}}
+\newcommand{\footerOrnament}{\raisebox{-8pt}{\includegraphics[width=\footerlogowidth]{frontpage/HTWK_Logo_schwarz}}}
 
 % change style of \pagemark, slightly bend and roman font family
 \renewcommand*{\pnumfont}{%

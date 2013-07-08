@@ -20,7 +20,7 @@ if [ $# == 2 ]; then
         echo -e "\n--------------- makeglossaries ----------------\n"         
         makeglossaries thesis
         echo -e "\n------------------ xelatex --------------------\n" 
-        xelatex thesis $(XELATEX_OPTS) #| grep --ignore-case warning 
+        xelatex thesis $(XELATEX_OPTS) | grep --ignore-case warning 
     else
         xelatex thesis $(XELATEX_OPTS) > /dev/null  
         biber thesis $(BIBER_OPTS) > /dev/null          
