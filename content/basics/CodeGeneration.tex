@@ -2,7 +2,7 @@
 \label{sec:generatorsystems}
 
 %Generative Programming p. 333
-Ein \emph{Codegenerator} ist ein Programm, welches aus der höhersprachigen Spezifikation\footnote{mit anderen Worten: auf einem höheren Abstraktionslevel als die zur Implementierung verwendete Programmiersprache} einer Software oder eines Teilaspektes, die Implementierung erzeugt (nach \cite{czarnecki2000generative}).
+Ein \emph{Codegenerator} ist ein Programm, welches aus einer höhersprachigen Spezifikation\footnote{m. a. W.: auf einem höheren Abstraktionslevel als die zur Implementierung verwendete Programmiersprache} einer Software oder eines Teilaspektes, die Implementierung erzeugt (nach \cite{czarnecki2000generative}).
 
 % todo: folgende Liste entfernen?
 Generatoren widmen sich drei wichtigen Problemen\cite{czarnecki2000generative}:
@@ -12,7 +12,7 @@ Generatoren widmen sich drei wichtigen Problemen\cite{czarnecki2000generative}:
     \item[\enquote{Library scaling problem}] Nur die durch die Spezifikation benötigten Methoden generieren.
 \end{description}
 
-% todo: Satz ändern, quasi nur Übersetzung
+% todo: Satz ändern, quasi nur Übersetzung, Code-Transformatoren nicht erklärt
 Der Begriff \enquote{Generator} ist sehr allgemein und wird für verschiedene Technologien verwendet, wie \emph{Compiler}, \emph{Präprozessoren}, Metafunktionen (Template-Metaprogramming in C++), Code-Transformatoren und natürlich Code-Generatoren.
 
 \subsection{Aufgaben eines Generators}
@@ -23,59 +23,25 @@ Der Begriff \enquote{Generator} ist sehr allgemein und wird für verschiedene Te
     \item Implementierung erzeugen
 \end{compactenum}
 
-Generatoren die eine Spezifikation in Textform erwarten, müssen einen \emph{Analyse}-Schritt (parsing) durchführen um die Spezifikation in die interne Darstellung zu überführen, z.B. ein \emph{Abstrakter Syntaxbaum} bei einem Compiler. Daraus lässt sich schließen, dass der Grad der Automatisierung durch Codegenerierung abhängig von dem Informationsgehalt der Spezifikation ist.
+Je nach Form der Spezifikation, muss diese durch einen Analyse-Schritt (\emph{parsing}) in die interne Darstellung des Generators überfürht werden, bspw. bei einem Compiler in einen \emph{Abstrakten Syntaxbaum}.
+Der Informationsgehalt der Spezifikation ist ausschlaggebend für den Grad der zu erreichenden Automatisierung.
 
-\subsection{Konzeptuelles Modell}
+\subsection{Nutzen einer Codegenerierungslösung für den Entwickler\cite{herrington2003code}}
 
-Ein Modell bildet die Funktionen und Beziehungen eines Bereiches der Wirklichkeit ab.
-Ein solches Modell, beispielsweise in Form einer \gls{WADL}-Datei zur Beschreibung einer Web-API, dient als Eingabe für einen Generator. Außerdem ist es der Ausgangspunkt in der modell-getriebenen Softwareentwicklung (\gls{MDSD}) oder -architektur (\gls{MDA}).
-
-\begin{figure}[tb]
-    \begin{center}
-    %\resizebox{\textwidth}{!}{
-        \begin{tikzpicture}[
-            node distance=12mm and 8mm,
-            every node/.style={font=\scriptsize}
-            ]
-            \node(model)[greyBlock]{Modell};
-            \node(generator)[greyBlock, right=of model]{Codegenerator};
-            \node(sourcecode)[greyBlock, double copy shadow, right=of generator]{Quellcode};
-            \node(templates)[greyBlock, double copy shadow, above=of generator]{Templates};
-            \node(infrastructurecode)[greyBlock, double copy shadow, below=of generator]{Infrastrukturcode};     
-
-            \path [arrow, ->] (model) -- (generator);
-            \path [arrow, ->] (templates) -- (generator);
-            \path [arrow, ->] (infrastructurecode) -- (generator);
-            \path [arrow, ->] (generator) -- (sourcecode);
-        \end{tikzpicture}   
-    %}
-    \end{center}
-    \caption{Simples Generatorsystem}
-    \label{fig:generatorsystem}
-\end{figure}
-
-
-% todo: überarbeiten und Überleitung herstellen
-\subsection{Transformationen}
-
-% p. 344 Generative Programming
-Eine Transformation ist eine automatisierte und semantisch korrekte Modifikation einer Programmdarstellung %-beschreibung
-(Quelltext, Abstrakte Beschreibung, UML, \ldots).
-
-\subsubsection{Verfeinerung}
-
-\begin{description}[style=nextline]
-    \item[Dekomposition\footnote{Auflösung}]
-        Auflösen der Konzepte der höheren Abstraktions- in der niedrigeren Abstraktionsebene.
-    \item[Wahl der Darstellung] 
-        Auswahl eines passenden Datentyps.
-    \item[Wahl der Algorithmen]
-        Abhängig vom Datentyp und den \emph{nicht-funktionalen Anforderungen} wie z.B. Performanzkriterien, Speicherplatzbeschränkung oder Antwortzeit
-    \item[Spezialisierung]
-        Anpassung allgemein formulierter abstrakter Beschreibung an Details der Implementierung
-    \item[Konkretisierung]
-        Hinzufügen von Implementationsdetails
+\begin{description}
+    \item[Qualität]
+        Bugfixes und Verbesserungen werden durch das Generatorsystem in die gesamte Codebasis propagiert.
+    \item[Konsistenz]
+        Durch ein vorgegebenes Schema für die Schnittstellen- und Variablenbezeichner wird eine hohe Einheitlichkeit erreicht.
+    \item[Zentrale Wissensbasis]
+        % todo: Metamodell erklären
+        Das domänenspezifische Wissen wird in dem Metamodell gebündelt, das dem Generator als Eingabe dient. Änderungen am Modell werden durch den Generator in die gesamte Codebasis eingepflegt.
+    \item[signifikantere Designentscheidungen]
+        Aufgrund des verringerten Implementierungsaufwandes kann der Entwickler mehr Zeit für das Design seiner Architektur , API etc. verwenden. Designfehlentscheidungen können durch Änderungen an den Templates korrigiert werden und bedürfen somit keiner manuellen Korrektur aller generierten Klassen.
 \end{description}
+
+Die Erstellung eines Generatorsystems geht mit einem nicht unerheblichen Aufwand einher, dieser sollte in Relation zum Umfang des zu erzeugenden Codes gesehen werden.
+Ist der Umfang des Erzeugnisses zu gering, kann der Aufwand zur Entwicklung einer Generatorlösung kontraproduktiv sein.
 
 \subsubsection{Optimierung durch den Generator}
 
@@ -104,3 +70,32 @@ Eine Transformation ist eine automatisierte und semantisch korrekte Modifikation
 % global optimizations?
 
 Viele dieser Optimierungen werden vom Compiler durchgeführt, deren Effektivität steigt aber mit dem Abstraktionslevel. Deshalb ist es effektiver diese auch durch den Generator durchführen zu lassen, da dieser auch anhand domänen-spezifischen Wissens optimieren kann (\emph{domain-specific optimization}).
+
+\section{Konzeptuelles Modell}
+
+Ein Modell bildet die Funktionen und Beziehungen eines Bereiches der Wirklichkeit ab.
+Ein solches Modell, beispielsweise in Form einer \gls{WADL}-Datei zur Beschreibung einer Web-API, dient als Eingabe für einen Generator. Außerdem ist es der Ausgangspunkt in der modell-getriebenen Softwareentwicklung (\gls{MDSD}) oder -architektur (\gls{MDA}).
+
+\begin{figure}[tb]
+    \begin{center}
+    %\resizebox{\textwidth}{!}{
+        \begin{tikzpicture}[
+                node distance=12mm and 8mm,
+                every node/.style={font=\scriptsize}
+            ]
+            \node(model)[greyBlock]{Modell};
+            \node(generator)[greyBlock, right=of model]{Codegenerator};
+            \node(sourcecode)[greyBlock, double copy shadow, right=of generator]{Quellcode};
+            \node(templates)[greyBlock, double copy shadow, above=of generator]{Templates};
+            \node(infrastructurecode)[greyBlock, double copy shadow, below=of generator]{Infrastrukturcode};     
+
+            \path [arrow, ->] (model) -- (generator);
+            \path [arrow, ->] (templates) -- (generator);
+            \path [arrow, ->] (infrastructurecode) -- (generator);
+            \path [arrow, ->] (generator) -- (sourcecode);
+        \end{tikzpicture}   
+    %}
+    \end{center}
+    \caption{Simples Generatorsystem}
+    \label{fig:generatorsystem}
+\end{figure}
