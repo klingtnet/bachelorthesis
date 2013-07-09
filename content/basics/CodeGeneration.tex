@@ -43,33 +43,65 @@ Der Informationsgehalt der Spezifikation ist ausschlaggebend für den Grad der z
 Die Erstellung eines Generatorsystems geht mit einem nicht unerheblichen Aufwand einher, dieser sollte in Relation zum Umfang des zu erzeugenden Codes gesehen werden.
 Ist der Umfang des Erzeugnisses zu gering, kann der Aufwand zur Entwicklung einer Generatorlösung kontraproduktiv sein.
 
-\subsubsection{Optimierung durch den Generator}
+\subsection{Generatorformen}
+
+Eine Möglichkeit zur Klassifikation von Codegeneratoren ist nach der Menge des erzeugten Codes:
+
+\begin{longtable}[htb]{l l l}
+    \toprule
+    \rowcolor{lightgray}
+    \textbf{teilweise}   & \textbf{vollständig}     & \textbf{mehrfach}\\
+    \midrule
+    Inline-Code Expander    & Tier\footnote{tier, zu deutsch: Stufe}-Generator    & n-Tier Generator\\
+    Mixed-Code Generator & &\\
+    Partial-Class Generator & & \\
+    \bottomrule
+    \caption{Generatoren Klassifikation nach Generierungsmenge}
+    \label{tab:generatorclassification}
+\end{longtable} 
+
+% nötig
+Generatorformen nach \cite{herrington2003code}:
+\begin{description}
+    \item[Inline-Code Expander]
+        Ein Inline-Code Expander nimmt Quellcode als Eingabe und ersetzt spezielle Mark-Up Sequenzen durch seine Ausgabe. Die Änderungen werden hierbei nicht in das Quellfile übernommen sondern meist direkt zu dem Compiler oder Interpreter weitergeleitet.
+    \item[Mixed-Code Generator]
+        Der Mixed-Code Generator arbeitet grundsätzlich wie der Inline-Code Expander, seine Änderungen werden aber in die Quelle zurückgeschrieben.
+    \item[Partial-Class Generator]
+        Partial-Class Generatoren erzeugen aus einer abstrakten Beschreibung und Templates einen Satz von Klassen, diese bilden aber nicht das vollständige Programm sondern werden durch manuell erzeugten Code vervollständigt. % todo: manuell erzeugt = handgeschrieben?
+    \item[Tier-Generator]
+        Die Arbeitsweise des Stufen- oder Tier-Generators entspricht der des Partial-Class Generators, mit der Ausnahme das vollständiger Code erzeugt wird, der keiner Nacharbeit bedarf.\footnote{Der im Laufe dieser Arbeit entwickelte Generator entspricht diesem Schema.}
+    \item[$n$-Tier Generator] 
+        Ein $n$-Tier Generator erzeugt neben dem eigentlichen Quellcode noch beliebige andere Informationen, bspw. eine Dokumentation oder Testfälle.
+\end{description}
+
+Die Entwicklung einer \enquote{Full-Domain Language} stellt die oberste Stufe der Generatorformen. Eine solche Sprache ist Turing-vollständig und speziell auf die Problemdomäne ausgerichtet.
+
+\subsection{Optimierung durch den Generator}
+
+Die Effektivität von Optimierungen steigt mit dem Abstraktionslevel, deshalb ist es ratsam diese vom Generator durchführen zu lassen. Im Gegensatz zum Compiler, der viele dieser Optimierungen auch selbst durchführt, besitzt der Generator domänenspezifisches \enquote{Wissen} (\emph{domain-specific optimization}) und kann teilweise ohne Abhängigkeiten der Zielsprache optimieren.
+% global optimizations?
 
 \begin{description}[style=nextline]
 \item[Inlining]
-    Ein Symbol durch seine Definition ersetzen, anstelle eines Funktionsaufrufes, die Deklaration der Funktion selbst einfügen
+    Ein Symbol durch seine Definition ersetzen oder anstelle eines Funktionsaufrufes, die Deklaration der Funktion selbst einfügen
 \item[Constant folding]
     Auswertung von Ausdrücken deren Operanden während der \emph{compile time} bekannt sind.
 \item[Data caching]
     Anstatt mehrfach denselben Ausdruck auszuwerten, das Ergebnis einmal berechnen und darauf an anderer Stelle referenzieren
 \item[Loop fusion]
-    \ldots
+    Zusammenführen von Schleifen, die über den gleichen Bereich iterieren und deren Schleifenkörper unabhängig voneinander ist.
 \item[Loop unrolling]
-    Die Schleife durch $n$-mal den Inhalt ersetzen, wobei $n$ die Anzahl der Iterationen ist
-\item[Parallelization]
-    %todo: wann moeglich
+    Die Schleife durch $n$-mal deren Inhalt ersetzen, wobei $n$ die Anzahl der Iterationen ist.
 \item[Code motion]
     Invariante\footnote{unveränderliche} Codebereiche aus dem Schleifenkörper herausnehmen
 \item[Dead-code elimination]
     Entfernen von ungenutzten Variablen und unerreichbaren Codebereichen
-\item[Partial evaluation]
-    \ldots
-\item[Finite differencing]     
+\item[Partial evaluation/Specialisation]
+    \emph{Partial evaluation} oder auch \emph{Specialisation} meinen das Erzeugen von spezialisierten Funktionen. Diese implementieren statische Eingaben mit dem Ziel einer kleineren Signatur.
+\item[Parallelization]
+    %todo: wann moeglich
 \end{description}
-
-% global optimizations?
-
-Viele dieser Optimierungen werden vom Compiler durchgeführt, deren Effektivität steigt aber mit dem Abstraktionslevel. Deshalb ist es effektiver diese auch durch den Generator durchführen zu lassen, da dieser auch anhand domänen-spezifischen Wissens optimieren kann (\emph{domain-specific optimization}).
 
 \section{Konzeptuelles Modell}
 
