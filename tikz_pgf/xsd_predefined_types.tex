@@ -1,0 +1,87 @@
+\begin{tikzpicture}[
+    level distance=1.1cm,
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm},
+    level 3/.style={sibling distance=2.5cm}
+  ]
+  \node (root) [violetBox] {anyType}
+    [edge from parent fork down]
+    child {node[grayBox] {all complex types}
+        edge from parent[loosely dashed, magenta]
+    }
+    child {node[violetBox] {anySimpleType}
+            child {node[blueBox] {duration}}
+            child {node[blueBox] {dateTime}}
+            child {node[blueBox] {time}}
+            child {node[blueBox] {date}}
+            child {node[blueBox] {gYearMonth}}
+            child {node[blueBox] {gYear}}
+            child {node[blueBox] {gMonthDay}}
+            child {node[blueBox] {gDay}}
+            child {node[blueBox] {gMonth}}
+            child {
+                child [sibling distance = 3cm]{
+                    child {node[blueBox] {string}
+                        child {node[greenBox] {normalizedString}}
+                        child {node[greenBox] {token}
+                            child {node[greenBox] {language}}
+                            child {node[greenBox] {Name}
+                                child {node[greenBox] {NCName}
+                                    child {node[greenBox] {ID}}
+                                    child {node[greenBox] {IDREF}
+                                        child {node[greenBox] {IDREFS}
+                                            edge from parent[derivedFromList]
+                                        }
+                                    }
+                                    child {node[greenBox] {ENTITY}
+                                        child {node[greenBox] {ENTITIES}
+                                            edge from parent[derivedFromList]
+                                        }
+                                    }
+                                }
+                            }
+                            child {node[greenBox] {NMTOKEN}
+                                child  {node [greenBox] {NMTOKENS}
+                                    edge from parent[derivedFromList]
+                                }
+                            }
+                        }
+                    }
+                }
+                child {node[blueBox] {boolean}}
+                child {node[blueBox] {base64Binary}}
+                child {node[blueBox] {hexBinary}}
+                child {node[blueBox] {float}}
+                child [sibling distance = 3cm] {
+                    child {node[blueBox] {decimal}
+                        child [sibling distance = 4cm] {node[greenBox] {integer}
+                            child {node[greenBox] {nonPositiveInteger}
+                                child {node[greenBox] {negativeInteger}}
+                            }
+                            child {node[greenBox] {long}
+                                child {node[greenBox] {int}
+                                    child {node[greenBox] {short}
+                                        child {node[greenBox] {byte}}
+                                    }
+                                }
+                            }
+                            child {node[greenBox] {nonNegativeInteger}
+                                child {node[greenBox] {unsignedLong}
+                                    child {node[greenBox] {unsignedInt}
+                                        child {node[greenBox] {unsignedShort}
+                                            child {node[greenBox] {unsignedByte}}
+                                        }
+                                    }
+                                }
+                                child {node[greenBox] {positiveInteger}}
+                            }
+                        }
+                    }
+                }
+                child {node[blueBox] {double}}
+                child {node[blueBox] {anyURI}}
+                child {node[blueBox] {QName}}
+                child {node[blueBox] {NOTATION}}
+            }
+    };
+\end{tikzpicture}

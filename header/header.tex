@@ -1,65 +1,78 @@
-%
-% XeTeX specific packages
-%
+%------------------------------------------------------------------------------
+% XeTeX and format specific
+%------------------------------------------------------------------------------
 \usepackage[cm-default]{fontspec}
 \usepackage{xunicode}
 \usepackage{xltxtra}
-\usepackage{setspace}
+\usepackage{setspace}   % linespacing
+\usepackage{scrhack}    % removes "Usage of deprecated \float@listhead!", caused by listings package
+
+%------------------------------------------------------------------------------
+% lists
+%------------------------------------------------------------------------------
 \usepackage{enumerate}
 \usepackage{enumitem}
 \usepackage{paralist} % compressed lists
 %\usepackage{import} % relative import paths
 
-% orthography
-%\usepackage[ngerman]{babel}
+%------------------------------------------------------------------------------
+% language & orthography
+%------------------------------------------------------------------------------
 \usepackage{polyglossia}
 \setdefaultlanguage{german}
 \setotherlanguage{english}
 \usepackage{hyphenat}
 \usepackage[german=quotes]{csquotes}
 
-% urls etc.
+%------------------------------------------------------------------------------
+% urls, references etc.
+%------------------------------------------------------------------------------
 \usepackage{hyperref}
 % http://tex.stackexchange.com/questions/83037/difference-between-ref-varioref-and-cleveref-decision-for-a-thesis/83051#83051
 % http://www.howtotex.com/packages/automatic-clever-references-with-cleveref/
 \usepackage{cleveref}
 
-%
-% source code
+%------------------------------------------------------------------------------
+% source code listings
+%------------------------------------------------------------------------------
 %
 % ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
 \usepackage{listings}
 
-% headings
+%------------------------------------------------------------------------------
+% headings, pagestyle etc.
+%------------------------------------------------------------------------------
 \usepackage[automark]{scrpage2}
 % get lastpage \pageref{LastPage}
-%\usepackage{lastpage}
-%\usepackage{fancyhdr}
+
 % quotation on first page of chapter
 \usepackage{epigraph}
 
+%------------------------------------------------------------------------------
 % symbols
+%------------------------------------------------------------------------------
 %
 % http://ftp.gwdg.de/pub/ctan/info/symbols/comprehensive/symbols-letter.pdf
-%
 \usepackage{eurosym}
-\usepackage{pifont}	% circled numbers
-\usepackage{texnames}
-\usepackage{adforn}	% decorative ornaments
+\usepackage{pifont}	    % circled numbers
+\usepackage{texnames}   % \XeTeX
+\usepackage{adforn}	    % decorative ornaments
 
-% lorem ipsum dolor ...
-\usepackage{blindtext}
-
+%------------------------------------------------------------------------------
+% colors, linestyles, graphics etc.
+%------------------------------------------------------------------------------
 % colors
 \usepackage[dvipsnames]{xcolor}
-\usepackage{colortbl}
-
+\usepackage{colortbl}   % imports a lot of color definitions
 % dashed lines
 \usepackage{dashrule}
-
 % graphics, figures ...
 \usepackage{graphicx}
 % ftp://ftp.rrzn.uni-hannover.de/pub/mirror/tex-archive/graphics/pgf/base/doc/generic/pgf/pgfmanual.pdf
+
+%------------------------------------------------------------------------------
+% tikz
+%------------------------------------------------------------------------------
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
@@ -70,35 +83,41 @@
 \usetikzlibrary{decorations}
 \usepackage{tikz-qtree, tikz-qtree-compat}
 
+%------------------------------------------------------------------------------
 % math
+%------------------------------------------------------------------------------
 \usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+%\usepackage[amsmath,thmmarks,standard]{ntheorem}
+\usepackage{thmtools}   % theorem tools, \listoftheorems
+\renewcommand\listtheoremname{Definitionsverzeichnis}
+%\theoremclass{Definition}
+%\theoremstyle{plain}
+%\theoremseparator{.}
+%\theoremsymbol{}
+%\theoremheaderfont{\normalfont\bfseries}
+%\theorembodyfont{\normalfont\itshape}
+\newtheorem{thesisDefinition}{Definition} % Environment- und Definitonsname
 \usepackage{numprint}
 \usepackage{cases}
 
+%------------------------------------------------------------------------------
 % tables
-\usepackage{array}
+%------------------------------------------------------------------------------
 \usepackage{booktabs}
 
+%------------------------------------------------------------------------------
 % bibliography
+%------------------------------------------------------------------------------
 %
 % biber is not available in the fedora repositories, i've installed it under ~/bin
 %
 \usepackage[style=alphabetic-verb, backend=biber]{biblatex}
 
+%------------------------------------------------------------------------------
 % glossary
-% 
+% ------------------------------------------------------------------------------
+%
 % http://en.wikibooks.org/wiki/LaTeX/Glossary
 \usepackage[toc]{glossaries}
-
-%
-% http://www.howtotex.com/packages/9-essential-latex-packages-everyone-should-use/
-%
-
-% improves font readability, has to be loaded after all fonts
-% only works with pdflatex!
-%\usepackage{microtype}
-
-%
-% use mini table of contents at every chapter with \minitoc
-%
-\usepackage{minitoc}

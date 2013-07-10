@@ -51,7 +51,7 @@ clean: clean_conflicts
 	@cd $(BUILD_DIR); rm -r *
 
 clean_all: clean
-	@cd rm $(OUTPUT_DIR)/*
+	@rm $(OUTPUT_DIR)/*
 
 clearscreen:
 	clear
@@ -66,3 +66,4 @@ clearscreen:
 #	@find . -name \*.fdb_latexmk  -type f -delete
 #	@find . -name \*.vsdx  -type f -delete
 #	@find $(ROOT_DIR) -name '*in Konflikt stehende*' -delete
+ 

@@ -75,116 +75,36 @@ Die XSD Spezifikation enthält bereits eine Menge vordefinierter Datentypen, dar
         dashed,
         cyan
     ]
-    \resizebox{\textwidth}{!}{
-        \begin{tikzpicture}[
-            level distance=1.1cm,
-            level 1/.style={sibling distance=4cm},
-            level 2/.style={sibling distance=2cm},
-            level 3/.style={sibling distance=2.5cm},
-          ]
-          \node (root) [violetBox] {anyType}
-            [edge from parent fork down]
-            child {node[grayBox] {all complex types}
-                edge from parent[loosely dashed, magenta]
-            }
-            child {node[violetBox] {anySimpleType}
-                    child {node[blueBox] {duration}}
-                    child {node[blueBox] {dateTime}}
-                    child {node[blueBox] {time}}
-                    child {node[blueBox] {date}}
-                    child {node[blueBox] {gYearMonth}}
-                    child {node[blueBox] {gYear}}
-                    child {node[blueBox] {gMonthDay}}
-                    child {node[blueBox] {gDay}}
-                    child {node[blueBox] {gMonth}}
-                    child {
-                        child [sibling distance = 3cm]{
-                            child {node[blueBox] {string}
-                                child {node[greenBox] {normalizedString}}
-                                child {node[greenBox] {token}
-                                    child {node[greenBox] {language}}
-                                    child {node[greenBox] {Name}
-                                        child {node[greenBox] {NCName}
-                                            child {node[greenBox] {ID}}
-                                            child {node[greenBox] {IDREF}
-                                                child {node[greenBox] {IDREFS}
-                                                    edge from parent[derivedFromList]
-                                                }
-                                            }
-                                            child {node[greenBox] {ENTITY}
-                                                child {node[greenBox] {ENTITIES}
-                                                    edge from parent[derivedFromList]
-                                                }
-                                            }
-                                        }
-                                    }
-                                    child {node[greenBox] {NMTOKEN}
-                                        child  {node [greenBox] {NMTOKENS}
-                                            edge from parent[derivedFromList]
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        child {node[blueBox] {boolean}}
-                        child {node[blueBox] {base64Binary}}
-                        child {node[blueBox] {hexBinary}}
-                        child {node[blueBox] {float}}
-                        child [sibling distance = 3cm] {
-                            child {node[blueBox] {decimal}
-                                child [sibling distance = 4cm] {node[greenBox] {integer}
-                                    child {node[greenBox] {nonPositiveInteger}
-                                        child {node[greenBox] {negativeInteger}}
-                                    }
-                                    child {node[greenBox] {long}
-                                        child {node[greenBox] {int}
-                                            child {node[greenBox] {short}
-                                                child {node[greenBox] {byte}}
-                                            }
-                                        }
-                                    }
-                                    child {node[greenBox] {nonNegativeInteger}
-                                        child {node[greenBox] {unsignedLong}
-                                            child {node[greenBox] {unsignedInt}
-                                                child {node[greenBox] {unsignedShort}
-                                                    child {node[greenBox] {unsignedByte}}
-                                                }
-                                            }
-                                        }
-                                        child {node[greenBox] {positiveInteger}}
-                                    }
-                                }
-                            }
-                        }
-                        child {node[blueBox] {double}}
-                        child {node[blueBox] {anyURI}}
-                        child {node[blueBox] {QName}}
-                        child {node[blueBox] {NOTATION}}
-                    }
-            };
-        \end{tikzpicture}
+    \begin{minipage}[b]{0.45\linewidth}
+    \rotatebox{90}{
+    \resizebox{!}{\textwidth}{
+            \input{tikz_pgf/xsd_predefined_types}
+        }
     }
-
-    \vspace{\baselineskip}
-
-    \resizebox{0.5\textwidth}{!}{
-        \begin{tikzpicture}[framed]
-            \node (title) [font=\bfseries] {Legende:};
-            \node (base) [violetBox, right = of title] {Basis Typ};
-            \node (primitive) [blueBox, right = of base] {Primitiver Typ};
-            \node (derived) [greenBox, right = of primitive] {Abgeleiteter Typ};
-            \node (complex) [grayBox, right = of derived] {Komplexer Typ};
-            \node (d1) [below = of base] {};
-            \node (d2) [below = of primitive] {}
-                edge [] node[swap, align=center]{Abgeleitet durch\\Einschränkung} (d1);
-            \node (d3) [below = of derived] {};
-            \node (d4) [below = of complex] {}
-                edge [dashed, cyan] node[swap, align=center]{von Liste\\abgeleitet} (d3);
-            \node (d5) [below = of d2] {};
-            \node (d6) [below = of d3] {}
-                edge [loosely dashed, magenta] node[swap, align=center]{Abgeleitet durch\\Erweiterung/Einschränkung} (d5);
-        \end{tikzpicture}
+    \end{minipage}
+    \hspace{12pt}
+    \begin{minipage}[b]{0.45\linewidth}
+    \rotatebox{90}{
+        \resizebox{!}{0.3\textwidth}{
+            \begin{tikzpicture}[framed]
+                \node (title) [font=\bfseries] {Legende:};
+                \node (base) [violetBox, right = of title] {Basis Typ};
+                \node (primitive) [blueBox, right = of base] {Primitiver Typ};
+                \node (derived) [greenBox, right = of primitive] {Abgeleiteter Typ};
+                \node (complex) [grayBox, right = of derived] {Komplexer Typ};
+                \node (d1) [below = of base] {};
+                \node (d2) [below = of primitive] {}
+                    edge [] node[swap, align=center]{Abgeleitet durch\\Einschränkung} (d1);
+                \node (d3) [below = of derived] {};
+                \node (d4) [below = of complex] {}
+                    edge [dashed, cyan] node[swap, align=center]{von Liste\\abgeleitet} (d3);
+                \node (d5) [below = of d2] {};
+                \node (d6) [below = of d3] {}
+                    edge [loosely dashed, magenta] node[swap, align=center]{Abgeleitet durch\\Erweiterung/Einschränkung} (d5);
+            \end{tikzpicture}
+        }
     }
+    \end{minipage}
     \caption{vordefinierte XSD Datentypen nach \cite{XMLSchema11Specification} Kapitel 3}
     \label{fig:xsddatatypes}
 \end{figure}

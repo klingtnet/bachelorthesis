@@ -1,23 +1,16 @@
-\begin{figure}[tb]
-    \centering
-    \resizebox{\textwidth}{!}{
-        \begin{tikzpicture}[
-            	node distance=12mm and 8mm,
-            	every node/.style={font=\scriptsize}
-            ]
-            % Blocks
-            \node(abstract)[greyBlock, double copy shadow]{abstrakte\\API Beschreibung};
-            \node(parser)[greyBlock, right=of abstract]{Parser};
-            \node(generator)[greyBlock, right=of parser]{Codegenerator\\\emph{Java}};
-            \node(templates)[greyBlock, double copy shadow, below=of generator]{Templates};        
-        	\node(bib)[greyBlock, right=of generator]{Client-Bibliothek\\\emph{PHP}};
-			% Lines  
-			\path[arrow, ->] (abstract) -- (parser);
-			\path[arrow, ->] (parser) -- (generator);
-			\path[arrow, ->] (templates) -- (generator);
-			\path[arrow, ->] (generator) -- (bib);
-        \end{tikzpicture}   
-    }
-    \caption{Aufbau des Generatorsystems}
-    \label{fig:generatorstructure}
-\end{figure}
+\begin{tikzpicture}[
+    	node distance=12mm and 8mm,
+    	every node/.style={font=\scriptsize}
+    ]
+    % Blocks
+    \node(abstract)[greyBlock, double copy shadow]{abstrakte\\API Beschreibung};
+    \node(parser)[greyBlock, right=of abstract]{Parser};
+    \node(generator)[greyBlock, right=of parser]{Codegenerator\\\emph{Java}};
+    \node(templates)[greyBlock, double copy shadow, below=of generator]{Templates};        
+	\node(bib)[greyBlock, right=of generator]{Client-Bibliothek\\\emph{PHP}};
+	% Lines  
+	\path[arrow, ->] (abstract) -- (parser);
+	\path[arrow, ->] (parser) -- (generator);
+	\path[arrow, ->] (templates) -- (generator);
+	\path[arrow, ->] (generator) -- (bib);
+\end{tikzpicture}

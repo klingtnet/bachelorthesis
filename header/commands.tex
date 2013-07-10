@@ -1,6 +1,6 @@
-%
+%------------------------------------------------------------------------------
 % Absichtlich leer gelassene Seiten werden auch "Vakatseiten" genannt. http://de.wikipedia.org/wiki/Vakatseite
-%
+%------------------------------------------------------------------------------
 \newcommand{\blankpage}[1]{
     \newpage
     \thispagestyle{empty}
@@ -15,6 +15,9 @@
     \newpage
 }
 
+%------------------------------------------------------------------------------
+% quotation style for epigraph
+%------------------------------------------------------------------------------
 \newcommand{\chapterQuote}[4]{
     \epigraph{
         \enquote{#1}
@@ -31,22 +34,48 @@
     }        
 }
 
+%------------------------------------------------------------------------------
+% decorative hrule under chapter quote (epigraph)
+%------------------------------------------------------------------------------
+\makeatletter
+\renewcommand{\@epirule}{\hrulefill\hspace{4pt}
+        \raisebox{-2pt}[10pt][10pt]{\adfflourishleftdouble}
+    \hspace{4pt}\hrulefill}
+\makeatother
 
-\DeclareUrlCommand\noUnderscoreEscaping{\urlstyle{}} % needs url package
-
-\newcommand{\printhref}[2]{
-    \href{#1}{#2}
-    \footnote{\texttt{\noUnderscoreEscaping{#1}}}
-}
-
+%------------------------------------------------------------------------------
+% decorative hrule used for pagestyle definition
+%------------------------------------------------------------------------------
 \newcommand{\decorativeLine}[2]{
     \hrulefill\hspace{4pt}
         \raisebox{-#2}[10pt][10pt]{#1}
     \hspace{4pt}\hrulefill
 }
 
-\makeatletter
-\renewcommand{\@epirule}{\hrulefill\hspace{4pt}
-        \raisebox{-2pt}[10pt][10pt]{\adfflourishleftdouble}
-    \hspace{4pt}\hrulefill}
-\makeatother
+%------------------------------------------------------------------------------
+% hack to escape underscores
+%------------------------------------------------------------------------------
+\DeclareUrlCommand\noUnderscoreEscaping{\urlstyle{}} % needs url package
+
+%------------------------------------------------------------------------------
+% href that prints the url into the footline
+%------------------------------------------------------------------------------
+\newcommand{\printhref}[2]{
+    \href{#1}{#2}
+    \footnote{\texttt{\noUnderscoreEscaping{#1}}}
+}
+
+%------------------------------------------------------------------------------
+% quotation style
+%------------------------------------------------------------------------------
+\newcommand{\thesisquote}[1]{
+    {
+        \singlespacing
+        \begin{quote}
+            %\rule{\linewidth}{0.5pt}
+            \textsl{\enquote{#1}}
+            %\\
+            %\rule{\linewidth}{0.5pt}
+        \end{quote}
+    }
+}

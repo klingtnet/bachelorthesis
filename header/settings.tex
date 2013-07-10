@@ -1,10 +1,29 @@
-%
-% define colors
-%
+%------------------------------------------------------------------------------
+% polyglossia settings
+%------------------------------------------------------------------------------
+\setmainlanguage{german}
+\PolyglossiaSetup{german}{indentfirst=false}
+
+%------------------------------------------------------------------------------
+% epigraph settings
+%------------------------------------------------------------------------------
+% http://lsi.vc.ehu.es/pablogn/investig/ficheros/Latex/epigraph.pdf
+\setlength{\epigraphwidth}{0.618\textwidth}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% style section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%------------------------------------------------------------------------------
+% color definitions
+%------------------------------------------------------------------------------
 \definecolor{lightgray}{gray}{0.95}
 \definecolor{darkgray}{gray}{0.4}
 
-%
+%------------------------------------------------------------------------------
+% table settings
+%------------------------------------------------------------------------------
 % make beautiful tables
 % http://www.inf.ethz.ch/personal/markusp/teaching/guides/guide-tables.pdf
 %
@@ -15,9 +34,9 @@
 \setlength{\aboverulesep}{0pt}
 \setlength{\belowrulesep}{0pt}
 
-%
+%------------------------------------------------------------------------------
 % indent content with chapter/section heading
-%
+%------------------------------------------------------------------------------
 % http://tex.stackexchange.com/questions/118818/align-text-with-heading
 %
 \newlength\mylen
@@ -28,52 +47,26 @@
 \makeatletter
 \def\@seccntformat#1{\llap{\protect\makebox[\mylen][l]{\csname the#1\endcsname\autodot\hfill}}}
 
+%------------------------------------------------------------------------------
 % set the enumeration depth, otherwise subsubsections won't be enumerated by default
+%------------------------------------------------------------------------------
 \setcounter{secnumdepth}{3} % default is 2
 
-%
+%------------------------------------------------------------------------------
 % compact list settings (paralist package)
-%
-% seperation on top lists
+%------------------------------------------------------------------------------
 \setlength{\pltopsep}{0.5\baselineskip}
 
-% description settings
-\setlist[description]{style=nextline}
+%------------------------------------------------------------------------------
+% hyperref
+%------------------------------------------------------------------------------
+\hypersetup{hidelinks,	% remove box
+			colorlinks=true
+			}
 
-% Polyglossia
-\setmainlanguage{german}
-\PolyglossiaSetup{german}{indentfirst=false}
-
-% Epigraph
-% http://lsi.vc.ehu.es/pablogn/investig/ficheros/Latex/epigraph.pdf
-\setlength{\epigraphwidth}{0.618\textwidth}
-
-%
-% Font settings
-%
-\newfontfamily\chunkFiveEx[]{ChunkFive Ex}
-\newfontfamily\vollkorn[]{Vollkorn}
-%
-%\setmainfont[Ligatures={Common,TeX}, Numbers=OldStyle]{Linux Libertine O}
-\setmonofont{Consolas}
-%
-% set section and chapter heading fonts
-% http://tex.stackexchange.com/questions/25845/koma-script-change-font-of-sectioning-headings-to-serif
-\addtokomafont{disposition}{\rmfamily}
-%\addtokomafont{disposition}{\chunkFiveEx}
-%\addtokomafont{disposition}{\vollkorn}
-%
-% set style of description labels
-\renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}\textrm{\textsl{\textbf{\small{#1:}}}}}
-
-%
-% setup captions
-%
-\setkomafont{caption}{\footnotesize}
-\setkomafont{captionlabel}{\usekomafont{caption}\bfseries}
-
-%
-% Listing settings
+%------------------------------------------------------------------------------
+% listing settings
+%------------------------------------------------------------------------------
 %
 % ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
 %
@@ -97,6 +90,9 @@
 		%frame=tb 	%tblrTBLR
 		%frame=shadowbox
 	}
+
+%
+% definition of javascript syntax highlighting
 %
 % thanks to: http://lenaherrmann.net/2010/05/20/
 %
@@ -111,27 +107,51 @@
 	morestring=[b]"
 }
 
-%
+%------------------------------------------------------------------------------
 % glossary style
+%------------------------------------------------------------------------------
 %
 % p. 109 ff (ftp://ftp.tu-chemnitz.de/pub/tex/macros/latex/contrib/glossaries/glossaries-user.pdf)
 %
 \glossarystyle{altlist}
 
-
-% tikzstyles
+%------------------------------------------------------------------------------
+% load tikzstyles
+%------------------------------------------------------------------------------
 \input{header/tikzStyles}
 
 % thousands seperator for numprint package
 \npthousandsep{.}
 
-%
-% prepare minitocs
-%
-\dominitoc
+%------------------------------------------------------------------------------
+% font settings
+%------------------------------------------------------------------------------
+\newfontfamily\chunkFiveEx[]{ChunkFive Ex}
+\newfontfamily\vollkorn[]{Vollkorn}
+%\setmainfont[Ligatures={Common,TeX}, Numbers=OldStyle]{Linux Libertine O}
+\setmonofont{Consolas}
 
 %
-% define new pagestyle
+% set section and chapter heading fonts
+% http://tex.stackexchange.com/questions/25845/koma-script-change-font-of-sectioning-headings-to-serif
+%
+\addtokomafont{disposition}{\rmfamily}
+
+%
+% set style of description labels
+%
+\renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}\textrm{\textsl{\textbf{\small{#1:}}}}}
+\setlist[description]{style=nextline}
+
+%
+% setup captions
+%
+\setkomafont{caption}{\footnotesize}
+\setkomafont{captionlabel}{\usekomafont{caption}\bfseries}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% pagestyle definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % see http://www.ctex.org/documents/packages/nonstd/koma-script.pdf, chapter 5.2
 % (ull,ulw){evenpage}{oddpage}{onepage}(lll,llw)
@@ -217,31 +237,3 @@
 		{\decorativeLine{\footerOrnament{}}{2pt}}
 		{\decorativeLine{\footerOrnament{}}{2pt}}
 	(\textwidth,0pt)}
-
-%% old method
-%
-% set chapter style
-%
-
-%%% % \includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}
-
-%%% \clearscrheadfoot
-%%% % even pages
-%%% %\lehead{\pagename{} \pagemark}
-%%% \lehead[\pagemark{} von \pageref{lastPage}]{\pagemark{} von \pageref{lastPage}}
-%%% \rehead{\leftmark}
-
-%%% % odd pages
-%%% \lohead{\leftmark}
-%%% %\rohead{\pagename{} \pagemark}
-%%% \rohead[\pagemark{} von \pageref{lastPage}]{\pagemark{} von \pageref{lastPage}}
-
-%%% % odd and even pages
-%%% %\chead{\includegraphics[width=32pt]{frontpage/HTWK_Logo_schwarz}}
-
-%
-% hyperref
-%
-\hypersetup{hidelinks,	% remove box
-			colorlinks=true
-			}

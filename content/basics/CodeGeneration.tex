@@ -2,7 +2,9 @@
 \label{sec:generatorsystems}
 
 %Generative Programming p. 333
+\begin{thesisDefinition}[Codegenerator]
 Ein \emph{Codegenerator} ist ein Programm, welches aus einer höhersprachigen Spezifikation\footnote{m. a. W.: auf einem höheren Abstraktionslevel als die zur Implementierung verwendete Programmiersprache} einer Software oder eines Teilaspektes, die Implementierung erzeugt (nach \cite{czarnecki2000generative}).
+\end{thesisDefinition}
 
 % todo: folgende Liste entfernen?
 Generatoren widmen sich drei wichtigen Problemen\cite{czarnecki2000generative}:
@@ -109,7 +111,7 @@ Ein Modell bildet die Funktionen und Beziehungen eines Bereiches der Wirklichkei
 Ein solches Modell, beispielsweise in Form einer \gls{WADL}-Datei zur Beschreibung einer Web-API, dient als Eingabe für einen Generator. Außerdem ist es der Ausgangspunkt in der modell-getriebenen Softwareentwicklung (\gls{MDSD}) oder -architektur (\gls{MDA}).
 
 \begin{figure}[tb]
-    \begin{center}
+    \centering
     %\resizebox{\textwidth}{!}{
         \begin{tikzpicture}[
                 node distance=12mm and 8mm,
@@ -127,7 +129,7 @@ Ein solches Modell, beispielsweise in Form einer \gls{WADL}-Datei zur Beschreibu
             \path [arrow, ->] (generator) -- (sourcecode);
         \end{tikzpicture}   
     %}
-    \end{center}
     \caption{Simples Generatorsystem}
     \label{fig:generatorsystem}
 \end{figure}
+
