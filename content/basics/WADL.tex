@@ -11,7 +11,7 @@ Die Beschreibung eines Webservices durch WADL besteht nach \cite{hadleyWADL} im 
      \item[Resource representation formats] Die unterstützten \gls{MIME}-Typen und verwendeten Datenschemas (\cref{sec:xsd})
  \end{description} 
 
-\begin{minipage}{\textwidth}
+%\begin{minipage}{\textwidth}
 \begin{lstlisting}[language=XML, caption={Beispielaufbau einer WADL-Datei anhand der Spreadshirt-API Beschreibung}, label=lst:wadlstructure, name=wadlstructure]
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?> //@\ding{202}@//
 <application xmlns="http://research.sun.com/wadl/2006/10"> //@\ding{203}@//
@@ -51,7 +51,7 @@ Die Beschreibung eines Webservices durch WADL besteht nach \cite{hadleyWADL} im 
                     }
                 ...
 \end{lstlisting}
-\end{minipage}
+%\end{minipage}
 
 %% ToDo: verfeinern der Beschreibung, was ist erlaubt, was nicht?
 Die Datei beginnt mit der Angabe der XML-Deklaration \ding{202}.
@@ -66,7 +66,8 @@ Um das Listing nicht unnötig zu verlängern habe ich die schließenden \emph{Ta
 
 Kapitel 2 von \cite{hadleyWADL} beschreibt die Elemente im Detail.
 
-\begin{figure}[p]
+\newpage
+\begin{figure}[!htb]
     \centering
     \resizebox{\textwidth}{!}{
         \input{tikz_pgf/wadlstructure}

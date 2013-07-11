@@ -49,20 +49,21 @@ Ist der Umfang des Erzeugnisses zu gering, kann der Aufwand zur Entwicklung eine
 
 Eine Möglichkeit zur Klassifikation von Codegeneratoren ist nach der Menge des erzeugten Codes:
 
-\begin{longtable}[htb]{l l l}
-    \toprule
-    \rowcolor{lightgray}
-    \textbf{teilweise}   & \textbf{vollständig}     & \textbf{mehrfach}\\
-    \midrule
-    Inline-Code Expander    & Tier\footnote{tier, zu deutsch: Stufe}-Generator    & n-Tier Generator\\
-    Mixed-Code Generator & &\\
-    Partial-Class Generator & & \\
-    \bottomrule
-    \caption{Generatoren Klassifikation nach Generierungsmenge}
-    \label{tab:generatorclassification}
-\end{longtable} 
+\begin{minipage}{\textwidth}
+    \begin{longtable}[htb]{l l l}
+        \toprule
+        \rowcolor{lightgray}
+        \textbf{teilweise}   & \textbf{vollständig}     & \textbf{mehrfach}\\
+        \midrule
+        Inline-Code Expander    & Tier-Generator    & n-Tier Generator\\
+        Mixed-Code Generator & &\\
+        Partial-Class Generator & & \\
+        \bottomrule
+        \caption{Generatoren Klassifikation nach Generierungsmenge}
+        \label{tab:generatorclassification}
+    \end{longtable} 
+\end{minipage}
 
-% nötig
 Generatorformen nach \cite{herrington2003code}:
 \begin{description}
     \item[Inline-Code Expander]
@@ -72,7 +73,7 @@ Generatorformen nach \cite{herrington2003code}:
     \item[Partial-Class Generator]
         Partial-Class Generatoren erzeugen aus einer abstrakten Beschreibung und Templates einen Satz von Klassen, diese bilden aber nicht das vollständige Programm sondern werden durch manuell erzeugten Code vervollständigt. % todo: manuell erzeugt = handgeschrieben?
     \item[Tier-Generator]
-        Die Arbeitsweise des Stufen- oder Tier-Generators entspricht der des Partial-Class Generators, mit der Ausnahme das vollständiger Code erzeugt wird, der keiner Nacharbeit bedarf.\footnote{Der im Laufe dieser Arbeit entwickelte Generator entspricht diesem Schema.}
+        Die Arbeitsweise des Stufen- oder Tier\footnote{Tier, zu deutsch \enquote{Stufe}}-Generators entspricht der des Partial-Class Generators, mit der Ausnahme das vollständiger Code erzeugt wird, der keiner Nacharbeit bedarf.\footnote{Der im Laufe dieser Arbeit entwickelte Generator entspricht diesem Schema.}
     \item[$n$-Tier Generator] 
         Ein $n$-Tier Generator erzeugt neben dem eigentlichen Quellcode noch beliebige andere Informationen, bspw. eine Dokumentation oder Testfälle.
 \end{description}
@@ -104,32 +105,3 @@ Die Effektivität von Optimierungen steigt mit dem Abstraktionslevel, deshalb is
 \item[Parallelization]
     %todo: wann moeglich
 \end{description}
-
-\section{Konzeptuelles Modell}
-
-Ein Modell bildet die Funktionen und Beziehungen eines Bereiches der Wirklichkeit ab.
-Ein solches Modell, beispielsweise in Form einer \gls{WADL}-Datei zur Beschreibung einer Web-API, dient als Eingabe für einen Generator. Außerdem ist es der Ausgangspunkt in der modell-getriebenen Softwareentwicklung (\gls{MDSD}) oder -architektur (\gls{MDA}).
-
-\begin{figure}[tb]
-    \centering
-    %\resizebox{\textwidth}{!}{
-        \begin{tikzpicture}[
-                node distance=12mm and 8mm,
-                every node/.style={font=\scriptsize}
-            ]
-            \node(model)[greyBlock]{Modell};
-            \node(generator)[greyBlock, right=of model]{Codegenerator};
-            \node(sourcecode)[greyBlock, double copy shadow, right=of generator]{Quellcode};
-            \node(templates)[greyBlock, double copy shadow, above=of generator]{Templates};
-            \node(infrastructurecode)[greyBlock, double copy shadow, below=of generator]{Infrastrukturcode};     
-
-            \path [arrow, ->] (model) -- (generator);
-            \path [arrow, ->] (templates) -- (generator);
-            \path [arrow, ->] (infrastructurecode) -- (generator);
-            \path [arrow, ->] (generator) -- (sourcecode);
-        \end{tikzpicture}   
-    %}
-    \caption{Simples Generatorsystem}
-    \label{fig:generatorsystem}
-\end{figure}
-

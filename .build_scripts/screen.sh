@@ -10,7 +10,11 @@ if [ $# == 2 ]; then
     echo "Changing directory to: $1"
     cd $1
     if [ $2 = 'true' ]; then
-        echo "12345: $XELATEX_OPTS"
+        echo " ______"
+        echo "|      |"
+        echo "|      | Building"
+        echo "|______| Screen version"
+        echo "  /__\\ "
         echo -e "\n------------------ xelatex --------------------\n"     
         xelatex $XELATEX_OPTS thesis #|grep --ignore-case --extended-regex "info|warning|error|^\([A-Za-z0-9]*\)"
         echo -e "\n------------------- biber ---------------------\n" 

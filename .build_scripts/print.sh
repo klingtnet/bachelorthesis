@@ -13,6 +13,11 @@ if [ $# == 2 ]; then
     echo "Changing directory to: $1"
     cd $1
     if [ $2 = 'true' ]; then
+        echo " _ _"
+        echo "| |_\\"
+        echo "|    | Building"
+        echo "|    | Print version"
+        echo "|____|"
         echo -e "\n------------------ xelatex --------------------\n"     
         xelatex $XELATEX_OPTS thesis_print > /dev/null
         echo -e "\n------------------- biber ---------------------\n" 

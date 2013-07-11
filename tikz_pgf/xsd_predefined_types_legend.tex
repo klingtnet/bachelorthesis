@@ -1,0 +1,16 @@
+\begin{tikzpicture}[framed]
+    \node (title) [font=\bfseries] {Legende:};
+    \node (base) [violetBox, right = of title] {Basis Typ};
+    \node (primitive) [blueBox, right = of base] {Primitiver Typ};
+    \node (derived) [greenBox, right = of primitive] {Abgeleiteter Typ};
+    \node (complex) [grayBox, right = of derived] {Komplexer Typ};
+    \node (d1) [below = of base] {};
+    \node (d2) [below = of primitive] {}
+        edge [] node[swap, align=center]{Abgeleitet durch\\Einschränkung} (d1);
+    \node (d3) [below = of derived] {};
+    \node (d4) [below = of complex] {}
+        edge [dashed, cyan] node[swap, align=center]{von Liste\\abgeleitet} (d3);
+    \node (d5) [below = of d2] {};
+    \node (d6) [below = of d3] {}
+        edge [loosely dashed, magenta] node[swap, align=center]{Abgeleitet durch\\Erweiterung/Einschränkung} (d5);
+\end{tikzpicture}
