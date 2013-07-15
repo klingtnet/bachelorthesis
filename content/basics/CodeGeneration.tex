@@ -1,6 +1,3 @@
-\section{Generatorsysteme}
-\label{sec:generatorsystems}
-
 %Generative Programming p. 333
 \begin{thesisDefinition}[Codegenerator]
 Ein \emph{Codegenerator} ist ein Programm, welches aus einer höhersprachigen Spezifikation\footnote{m. a. W.: auf einem höheren Abstraktionslevel als die zur Implementierung verwendete Programmiersprache} einer Software oder eines Teilaspektes, die Implementierung erzeugt (nach \cite{czarnecki2000generative}).
@@ -17,7 +14,7 @@ Generatoren widmen sich drei wichtigen Problemen\cite{czarnecki2000generative}:
 % todo: Satz ändern, quasi nur Übersetzung, Code-Transformatoren nicht erklärt
 Der Begriff \enquote{Generator} ist sehr allgemein und wird für verschiedene Technologien verwendet, wie \emph{Compiler}, \emph{Präprozessoren}, Metafunktionen (Template-Metaprogramming in C++), Code-Transformatoren und natürlich Code-Generatoren.
 
-\subsection{Aufgaben eines Generators}
+\section{Aufgaben eines Generators}
 \begin{compactenum}
     \item Validieren der Spezifikation
     \item Spezifikation durch Vorgabewerte vervollständigen
@@ -28,7 +25,7 @@ Der Begriff \enquote{Generator} ist sehr allgemein und wird für verschiedene Te
 Je nach Form der Spezifikation, muss diese durch einen Analyse-Schritt (\emph{parsing}) in die interne Darstellung des Generators überfürht werden, bspw. bei einem Compiler in einen \emph{Abstrakten Syntaxbaum}.
 Der Informationsgehalt der Spezifikation ist ausschlaggebend für den Grad der zu erreichenden Automatisierung.
 
-\subsection{Nutzen einer Codegenerierungslösung für den Entwickler\cite{herrington2003code}}
+\section{Nutzen einer Codegenerierungslösung für den Entwickler\cite{herrington2003code}}
 
 \begin{description}
     \item[Qualität]
@@ -45,7 +42,7 @@ Der Informationsgehalt der Spezifikation ist ausschlaggebend für den Grad der z
 Die Erstellung eines Generatorsystems geht mit einem nicht unerheblichen Aufwand einher, dieser sollte in Relation zum Umfang des zu erzeugenden Codes gesehen werden.
 Ist der Umfang des Erzeugnisses zu gering, kann der Aufwand zur Entwicklung einer Generatorlösung kontraproduktiv sein.
 
-\subsection{Generatorformen}
+\section{Generatorformen}
 
 Eine Möglichkeit zur Klassifikation von Codegeneratoren ist nach der Menge des erzeugten Codes:
 
@@ -80,7 +77,7 @@ Generatorformen nach \cite{herrington2003code}:
 
 Die Entwicklung einer \enquote{Full-Domain Language} stellt die oberste Stufe der Generatorformen. Eine solche Sprache ist Turing-vollständig und speziell auf die Problemdomäne ausgerichtet.
 
-\subsection{Optimierung durch den Generator}
+\section{Optimierung durch den Generator}
 
 Die Effektivität von Optimierungen steigt mit dem Abstraktionslevel, deshalb ist es ratsam diese vom Generator durchführen zu lassen. Im Gegensatz zum Compiler, der viele dieser Optimierungen auch selbst durchführt, besitzt der Generator domänenspezifisches \enquote{Wissen} (\emph{domain-specific optimization}) und kann teilweise ohne Abhängigkeiten der Zielsprache optimieren.
 % global optimizations?
