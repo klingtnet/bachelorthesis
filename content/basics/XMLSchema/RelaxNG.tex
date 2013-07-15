@@ -9,18 +9,13 @@ Unterschiede zu XML Schema:
     \item Unterstützung von ungeordneten Inhalten
     \item kompaktere nicht-XML Syntax
     \item \emph{nichtdeterministisches} oder auch \emph{mehrdeutiges} Inhaltsmodell (\cite{RelaxNGVlist} Kapitel 16)% ToDo: Belge, warum, Erklärung
-    \begin{lstlisting}[language=XML]
-    <element name="foo">
-      <choice>
-        <data type="boolean"/>
-        <data type="integer"/>
-      </choice>
-    </element>
-    \end{lstlisting}
 \end{compactitem}
 
 % Beispiel von http://pike.psu.edu/publications/toit05.pdf Seite 17
-\begin{lstlisting}[language=XML, caption=Minimalbeispiel für eine Schemadefinition in RelaxNG, label=minimalRelaxNG]
+\begin{lstlisting}[
+    language=XML, 
+    caption=Minimalbeispiel für eine Schemadefinition in RelaxNG, 
+    label=minimalRelaxNG]
 <?xml version="1.0" encoding="utf-8"?>
 <grammar 
     xmlns="http://relaxng.org/ns/structure/1.0"

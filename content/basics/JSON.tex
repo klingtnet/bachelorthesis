@@ -1,6 +1,14 @@
 \subsection{JSON}
 
-\begin{longtable}[htb]{l l}
+\begin{thesisDefinition}[JSON]
+\emph{Javascript Object Notation}, kurz \emph{JSON}, ist ein leichtgewichtiges, textbasiertes und sprachunbhängiges Datenaustauschformat. Es ist von \emph{JavaScript} abgeleitet und definiert eine kleine Menge von Formatierungsregeln für die transportable Darstellung (Serialisierung) von strukturierten Daten (nach \cite{JSONRFC}).
+\end{thesisDefinition}
+
+Im Gegensatz zu XML ist JSON weit weniger mächtig, es gibt z.B. keine Unterstützung für Namensräume und es wird nur eine geringe Menge an Datentypen unterstützt (siehe \cref{tab:jsonDatatypes}). 
+Durch seine einfache Struktur wird aber ein deutlich geringerer \enquote{syntaktischen Overhead} erzeugt.
+Mit \printhref{http://tools.ietf.org/id/draft-zyp-json-schema-03.html}{JSON Schema} ist es möglich eine Dokumentstruktur vorzugeben und gegen diese zu validieren. 
+
+\begin{longtable}[tb]{l l}
     \toprule
     \rowcolor{lightgray}
     \textbf{primitiv}   & \textbf{strukturiert}\\
@@ -15,31 +23,31 @@
     \label{tab:jsonDatatypes}
 \end{longtable}
 
-\begin{thesisDefinition}[JSON]
-\emph{Javascript Object Notation}, kurz \emph{JSON}, ist ein leichtgewichtiges, textbasiertes und sprachunbhängiges Datenaustauschformat. Es ist von \emph{JavaScript} abgeleitet und definiert eine kleine Menge von Formatierungsregeln für die transportable Darstellung (Serialisierung) von strukturierten Daten (nach \cite{JSONRFC}).
-\end{thesisDefinition}
-
-Im Gegensatz zu XML ist JSON weit weniger mächtig, es gibt z.B. keine Unterstützung für Namensräume und es wird nur eine geringe Menge an Datentypen unterstützt (siehe \cref{tab:jsonDatatypes}). 
-Durch seine einfache Struktur wird aber ein deutlich geringerer \enquote{syntaktischen Overhead} erzeugt.
-Mit \printhref{http://tools.ietf.org/id/draft-zyp-json-schema-03.html}{JSON Schema} ist es möglich eine Dokumentstruktur vorzugeben und gegen diese zu validieren. 
-
+Objekte werden in JSON von geschweiften- \ding{202}, Arrays hingegen von geschlossenen Klammern begrenzt\ding{203}. Diese dürfen beliebig tief geschachtelt werden und auch Schlüssel-Wert-Paare (\emph{key-value-pairs} \ding{204}) enthalten. \emph{Schlüssel sind immer Zeichenketten}, die Werte dürfen von allen Typen aus \cref{tab:jsonDatatypes} sein.
 %
 % wrapping in a minipage prevents the listings block from splitting on pagebreak
 %
-\begin{minipage}{\textwidth}
-    \begin{lstlisting}[language=JavaScript, caption=Minimalbeispiel für eine JSON-Datei]
+\begin{lstlisting}[
+    language=JavaScript,
+    caption=Die gekürzte Antwort der API-Ressource \emph{users/{userid}/designs/{designID}} als Beispiel für eine JSON-Datei
+]
 {
-    "key": "value",
-    "another_key": 42,
-    "an_object": {
-        "foo": "bar",
-        "some_boolean": false
-    },
-    "an_array": [
-        "surname": "Andreas",
-        "lastname": "Linz"
-    ],
-    "empty": null
+    "name": "tape_recorder", //@\ding{204}@//
+    "description": "",
+    "user": { //@\ding{202}@//
+        "id": "1956580",
+        "href": "http://api.spreadshirt.net/api/v1/users/1956580"
+    }, //@\ding{202}@//
+    "resources": [ //@\ding{203}@//
+    ...
+        {
+            "mediaType": "png",
+            "type": "preview",
+            "href": "http://image.spreadshirt.net/image-server/v1/designs/15513946"
+        }, 
+        ...
+    ], //@\ding{203}@//
+    "created": "30.03.2013 12:37:54",
+    ...
 }
-    \end{lstlisting}
-\end{minipage}
+\end{lstlisting}    
