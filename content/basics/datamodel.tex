@@ -1,4 +1,37 @@
 \chapter{Datenmodell}
 
+\begin{thesisDefinition}[Datenmodell]
+Das Datenmodell, oder auch \enquote{Datenstruktur} im Kontext von Programmiersprachen genannt, beschreibt die Beziehungen, Einschränkungen, Semantik und Struktur der darin enthaltenen Daten.
+\end{thesisDefinition}
+
+Im Allgemeinen enthält das Modell die Daten von den Geschäftsprozessen gebraucht und erzeugt werden und erfasst explizit deren Struktur. Modelle werden meist in einer speziellen (grafischen) Notation beschrieben (bspw. ER-Diagramm). 
+
+Einteilung der Datenmodellschemas nach ANSI: %ToDo: Bibtex entry
+\begin{description}
+    \item[Konzeptuelles Schema]
+        beschreibt die Semantiken der Domäne und legt den Gültigkeitsbereich des Datenmodells fest.
+    \item[Logisches Schema]
+        dient der Strukturbeschreibung des Modells. Wird oft durch Verfeinerung aus dem Konzeptuellen Schema entwickelt.
+    \item[Physisches Schema]
+        definiert die Form der Speicherung der Daten auf einem Physischen Datenträger.
+\end{description}
+
+Das Datenmodell dient als Eingabe für den Generator und ist somit die Basis für die Codegenerierung. Bei der Erstellung ist darauf zu achten das Modell möglichst präzise zu formulieren um Mehrdeutigkeiten bei der Interpretation zu vermeiden. 
+Neben den direkt im Modell enthaltenen Informationen kann der Generator auch Abhängigkeiten darin erkennen und das Modell damit semantisch anreichern. Beispielweise die Beziehungen zwischen Datentypen die aus der \gls{XSD} extrahiert wurden \ldots
+
 Als Eingabe des Generators dient ein \emph{Datenmodell}, welches sich aus dem Inhalt der Webanwendungsbeschreibung (\cref{sec:wadl}) und dem der Datentypbeschreibungen (\cref{sec:xsd}) zusammensetzt. 
-Neben den direkt aus den jeweiligen Beschreibungsformaten abzulesenden Informationen, werden noch Abhängigkeiten zwischen den Datentypen erkannt und dem Modell hinzugefügt. %Todo: Verweis auf parsing step indem dies geschieht
+Neben den direkt aus den jeweiligen Beschreibungsformaten abzulesenden Informationen werden durch den Generator Abhängigkeiten zwischen den Datentypen erkannt und dem Modell hinzugefügt. %Todo: Verweis auf parsing step indem dies geschieht
+
+Die Struktur des Modells entspricht einem \gls{AST}
+
+
+\section{PHP Beispiele}
+
+\begin{lstlisting}[
+    language=PHP,
+    caption=Abfrage der Designs eines Users per HTTP-GET
+    ]
+<?php
+
+?>
+\end{lstlisting}
