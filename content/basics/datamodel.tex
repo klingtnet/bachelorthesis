@@ -1,7 +1,7 @@
 \chapter{Datenmodell}
 
 \begin{thesisDefinition}[Datenmodell]
-Das Datenmodell, oder auch \enquote{Datenstruktur} im Kontext von Programmiersprachen genannt, beschreibt die Beziehungen, Einschränkungen, Semantik und Struktur der darin enthaltenen Daten.
+Das Datenmodell, oder auch \enquote{Datenstruktur} im Kontext von Programmiersprachen genannt, beschreibt die Beziehungen, Einschränkungen, Semantik und Struktur der darin enthaltenen Daten \cite{wiki:datamodel}.
 \end{thesisDefinition}
 
 Im Allgemeinen enthält das Modell die Daten von den Geschäftsprozessen gebraucht und erzeugt werden und erfasst explizit deren Struktur. Modelle werden meist in einer speziellen (grafischen) Notation beschrieben (bspw. ER-Diagramm). 
@@ -19,11 +19,44 @@ Einteilung der Datenmodellschemas nach ANSI: %ToDo: Bibtex entry
 Das Datenmodell dient als Eingabe für den Generator und ist somit die Basis für die Codegenerierung. Bei der Erstellung ist darauf zu achten das Modell möglichst präzise zu formulieren um Mehrdeutigkeiten bei der Interpretation zu vermeiden. 
 Neben den direkt im Modell enthaltenen Informationen kann der Generator auch Abhängigkeiten darin erkennen und das Modell damit semantisch anreichern. Beispielweise die Beziehungen zwischen Datentypen die aus der \gls{XSD} extrahiert wurden \ldots
 
-Als Eingabe des Generators dient ein \emph{Datenmodell}, welches sich aus dem Inhalt der Webanwendungsbeschreibung (\cref{sec:wadl}) und dem der Datentypbeschreibungen (\cref{sec:xsd}) zusammensetzt. 
-Neben den direkt aus den jeweiligen Beschreibungsformaten abzulesenden Informationen werden durch den Generator Abhängigkeiten zwischen den Datentypen erkannt und dem Modell hinzugefügt. %Todo: Verweis auf parsing step indem dies geschieht
+% konkretes Modell
 
-Die Struktur des Modells entspricht einem \gls{AST}
+Das konkrete Modell für die Spreadshirt-API, setzt sich aus deren Beschreibung im \gls{WADL} und \gls{XSD} zusammen. Die Schnittpunkte beider Beschreibungen finden sich in der Angabe der Methodenparameter- und Rückgabewerte der \gls{WADL}-Datei. 
 
+\begin{lstlisting}[
+    language=XML,
+    label=lst:wadlintersection,
+    caption=HTTP-GET-Methode zur Anzeige von Produkttypen eines Users (gekürzt)]
+<resource path="users/{userId}/productTypes">
+    ...
+    <method name="GET">
+        ...
+        <request>
+            ...
+            <param xmlns:xsd="http://www.w3.org/2001/XMLSchema"//@\ding{204}@// name="sessionId" style="query" type="xsd:string" //@\ding{202}@//>
+                <doc>The security session id, e.g. 123.</doc>
+            </param>
+            ...
+        </request>
+        <response>
+            <representation xmlns:sns="http://api.spreadshirt.net"//@\ding{205}@// element="sns:productTypes" //@\ding{203}@// status="200" mediaType="application/xml">
+                <doc title="Success"/>
+            </representation>
+            <fault status="500" mediaType="text/plain">
+                <doc title="Internal Server Error"/>
+            </fault>
+            ...
+        </response>
+    </method>
+</resource>
+\end{lstlisting}
+
+\Cref{lst:wadlintersection} zeigt einen Ausschnitt aus der Beschreibung der API-Methode zum Erhalt der \emph{Produkttypen} eines bestimmten \emph{Users}. Punkt \ding{202} und \ding{203} sind Typangaben, wobei ersteres einen Parameter- und letzteres einen Rückgabetyp ist. Die jeweiligen Namensräume der Typen werden unter \ding{204} und \ding{205} angegeben.
+
+%Als Eingabe des Generators dient ein \emph{Datenmodell}, welches sich aus dem Inhalt der Webanwendungsbeschreibung (\cref{sec:wadl}) und dem der Datentypbeschreibungen (\cref{sec:xsd}) zusammensetzt. Neben den direkt aus den jeweiligen Beschreibungsformaten abzulesenden Informationen werden durch den Generator Abhängigkeiten zwischen den Datentypen erkannt und dem Modell hinzugefügt. %Todo: Verweis auf parsing step indem dies geschieht
+%Die Struktur des Modells entspricht einem \gls{AST}
+
+\section{Abstract Syntax Tree (AST)}
 
 \section{PHP Beispiele}
 

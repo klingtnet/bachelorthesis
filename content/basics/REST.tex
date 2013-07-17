@@ -1,10 +1,10 @@
 \section{RESTful Web Service}
 
-\emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding\footnote{Roy Thomas Fielding, geboren 1965, ist einer der Hauptautoren der HTTP-Spezifikation} in seiner Dissertation aus dem Jahre 2000  beschrieben wurde \cite{fieldingDissertation}. 
+\emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding\footnote{Roy Thomas Fielding, geboren 1965, ist einer der Hauptautoren der HTTP-Spezifikation} in seiner Dissertation aus dem Jahre 2000  beschrieben wurde \cite[Kapitel 5][95 ff.]{fieldingDissertation}. 
 
 Als \gls{RESTful} bezeichnet man dabei eine Webanwendung die den Prinzipien von \gls{REST} entspricht. 
 
-Die fünf Grundlegenden REST-Prinzipien (nach \cite{Tilkov09}):
+Die fünf Grundlegenden REST-Prinzipien, nach \cite[11 ff.]{Tilkov09}:
 \begin{compactitem}
 	\item Ressourcen mit eindeutiger Indentifikation
 	\item Verknüpfungen / Hypermedia
@@ -14,6 +14,7 @@ Die fünf Grundlegenden REST-Prinzipien (nach \cite{Tilkov09}):
 \end{compactitem}
 
 \subsection{Eindeutige Identifikation}
+\label{sec:unambigiousidentification}
 
 Um eine \emph{eindeutige Identifikation} zu erreichen, wird jeder Ressource eine \gls{URI} vergeben. Dadurch ist es möglich zu jeder verfügbaren Ressource einen Link zu setzen. 
 Nachfolgend eine Beispiel-\gls{URI}, um den Artikel 42 aus dem Warenkorb 84 anzusprechen:
@@ -42,6 +43,7 @@ Durch die Nutzung von \emph{Standartmethoden} ist abgesichert das die Anwendung 
 Alle bis auf \emph{POST} und \emph{OPTIONS} sind \emph{idempotent} (\cite{HTTP11RFC} Kapitel 9), d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf.
 
 \subsection{Repräsentationen von Ressourcen}
+\label{sec:representationofresources}
 
 Die Repräsentation sollte unabhängig von der Ressource sein, um die Darstellung gegebenenfalls für den Client anzupassen. Per \emph{Query-Parameter} oder als Information im HTTP-Header kann die Clientanwendung nun das gewünschte Format angeben und bekommt vom Server die entsprechend formatierte Antwort. Der Client kann anhand des \emph{Content-Type} Feldes das Format der Antwort überprüfen, für \gls{JSON} lautet dies bspw. \texttt{application/json}.
 
@@ -54,3 +56,23 @@ Es soll kein Sitzungsstatus (\emph{session-state}) vom Server gespeichert werden
 	\item[$\hookrightarrow$] verbesserte Skalierbarkeit
 \end{compactitem}
 Diese Vorteile werden mit erhöhter Netzwerklast erkauft, da die Statusinformationen bei jeder Anfrage mitgesendet werden müssen.
+
+% Diesen Part über die Grundprinzipien verschieben
+\subsection{Elemente von REST}
+
+\subsubsection{Ressource}
+
+Eine Ressource stellt die wichtigste Abstraktion von Information im REST-Modell dar. Fielding definiert eine \emph{ressource} wie folgt:
+
+\thesisquote{Any information that can be named can be a resource: a document or image, \ldots. A resource is a conceptual mapping
+to a set of entities, not the entity that corresponds to the mapping at any particular point in
+time.}
+
+Eine Ressource kann somit alle Konzepte abbilden die sich über einen Bezeichner referenzieren lassen. Dies können konkrete Dokumente, aber auch Dienste oder sogar Sammlungen von Ressourcen sein.
+Außerdem identifiziert ein Ressourcenbezeichner, meist eine \emph{URI} (siehe \cref{sec:unambigiousidentification}), immer dieselbe Ressource, nicht aber deren Wert oder Zustand.
+
+\subsubsection{Repräsentation}
+
+Eine Repräsentation stellt den aktuellen oder den gewünschten Zustand einer Ressource dar. Das Format der Repräsentation ist dabei unabhängig von dem der Ressource, siehe \cref{sec:representationofresources}.
+Aktionen mit Komponenten einer REST-API werden durch den Austausch von solchen Repräsentationen durchgeführt.
+Im Allgemeinen wird unter einer Repräsentation nur eine Folge von Bytes verstanden, inklusive Metainformationen welche den Inhalt der Bytefolge klassifiziert.
