@@ -73,6 +73,26 @@ Außerdem identifiziert ein Ressourcenbezeichner, meist eine \emph{URI} (siehe \
 
 \subsubsection{Repräsentation}
 
-Eine Repräsentation stellt den aktuellen oder den gewünschten Zustand einer Ressource dar. Das Format der Repräsentation ist dabei unabhängig von dem der Ressource, siehe \cref{sec:representationofresources}.
+Eine Repräsentation (\emph{representation}) stellt den aktuellen oder den gewünschten Zustand einer Ressource dar. Das Format der Repräsentation ist dabei unabhängig von dem der Ressource, siehe \cref{sec:representationofresources}.
 Aktionen mit Komponenten einer REST-API werden durch den Austausch von solchen Repräsentationen durchgeführt.
-Im Allgemeinen wird unter einer Repräsentation nur eine Folge von Bytes verstanden, inklusive Metainformationen welche den Inhalt der Bytefolge klassifiziert.
+Im Allgemeinen wird unter einer Repräsentation nur eine Folge von Bytes verstanden, inklusive \emph{Metainformationen} welche den Inhalt der Bytefolge klassifiziert, sowie \emph{Kontrolldaten} die die gewünschte Aktion oder die Bedeutung der Anfrage beschreiben.
+
+\begin{minipage}{\textwidth}
+    \begin{lstlisting}[
+        language=XML,
+        caption=Beispiel zu Metainformationen für REST-Repräsentation aus WADL-Datei der Spreadshirt-API,
+        label=lst:metainformationREST
+        ]
+    ...
+    <response>
+        <representation xmlns:sns="http://api.spreadshirt.net" //@{\ding{202}\,}@//element="sns:productTypes" status="200" //@{\ding{203\,}@//mediaType="application/xml">
+            <doc title="Success"/>
+        </representation>
+        ...
+    </response>
+    \end{lstlisting}
+\end{minipage}
+
+Ein Beispiel für eine solche Angabe von Metainformationen ist in \Cref{lst:metainformationREST} zu finden, \ding{202} zeigt dies in Form einer \emph{Typangabe} und eines \emph{mediaType}-Attributes \ding{203}.
+
+Kontrolldaten sind meist HTTP-Header-Felder\footnote{für die HTTP-Header-Definitionen siehe \url{http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html\#sec14.43}}, bspw. um das Cachingverhalten zu ändern.
