@@ -16,7 +16,8 @@ BUILD_DIR=$(ROOT_DIR)/.build
 OUTPUT_DIR=$(ROOT_DIR)/output
 #.PHONY : clearscr clean screen print
 
-all: copy_sources screen print copy_output
+# todo: add print target to 'all' target
+all: copy_sources screen copy_output
 
 copy_sources:
 	@echo "Copying sources to build folder: $(BUILD_DIR)"
