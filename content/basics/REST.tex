@@ -4,61 +4,10 @@
 
 Als \gls{RESTful} bezeichnet man dabei eine Webanwendung die den Prinzipien von \gls{REST} entspricht. 
 
-Die fünf Grundlegenden REST-Prinzipien, nach \cite[11 ff.]{Tilkov09}:
-\begin{compactitem}
-	\item Ressourcen mit eindeutiger Indentifikation
-	\item Verknüpfungen / Hypermedia
-	\item Standartmethoden\footnote{GET, PUT, POST, DELETE bei Nutzung von HTTP}
-	\item Unterschiedliche Repräsentationen
-	\item Statuslose Kommunikation
-\end{compactitem}
-
-\subsection{Eindeutige Identifikation}
-\label{sec:unambigiousidentification}
-
-Um eine \emph{eindeutige Identifikation} zu erreichen, wird jeder Ressource eine \gls{URI} vergeben. Dadurch ist es möglich zu jeder verfügbaren Ressource einen Link zu setzen. 
-Nachfolgend eine Beispiel-\gls{URI}, um den Artikel 42 aus dem Warenkorb 84 anzusprechen:
-\[
-	\underbrace{http://api.spreadshirt.net/api/v1/}_{Basis-URL}\underbrace{\overbrace{baskets/84}^{Warenkorb}\overbrace{/item/42}^{Artikel}}_{Ressource}
-	\label{RESTexampleURL}
-\]
-
-\subsection{Hypermedia}
-
-Innerhalb einer Ressource kann auf weitere verlinkt werden (\emph{Hypermedia}), als Nebeneffekt der eindeutigen Identifikation duch \glspl{URI} sind diese auch außerhalb des Kontextes der aktuellen Anwendung gültig. Das Folgen eines Links entspricht dabei einer Zustandsänderung innerhalb der Anwendung.
-Die vorhandenen Verknüpfungen legen fest welche Zustandsübergänge  erlaubt sind.
-
-\subsection{Standartmethoden}
-
-Durch die Nutzung von \emph{Standartmethoden} ist abgesichert das die Anwendung mit den Ressourcen arbeiten kann, vorausgesetzt sie unterstützt diese. \gls{REST} ist nicht auf HTTP beschränkt, praktisch alle REST-APIs nutzen aber dieses Protokoll. HTTP umfasst dabei folgende Methoden\footnote{Kapitel 9 des HTTP 1.1 RFC2616 beschreibt diese inklusive \emph{TRACE} und \emph{CONNECT} umfassend \cite{HTTP11RFC}}:
-\begin{compactitem}
-    \item GET
-    \item PUT
-    \item POST
-    \item DELETE
-    \item HEAD
-    \item OPTIONS
-\end{compactitem}
-
-Alle bis auf \emph{POST} und \emph{OPTIONS} sind \emph{idempotent} (\cite{HTTP11RFC} Kapitel 9), d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf.
-
-\subsection{Repräsentationen von Ressourcen}
-\label{sec:representationofresources}
-
-Die Repräsentation sollte unabhängig von der Ressource sein, um die Darstellung gegebenenfalls für den Client anzupassen. Per \emph{Query-Parameter} oder als Information im HTTP-Header kann die Clientanwendung nun das gewünschte Format angeben und bekommt vom Server die entsprechend formatierte Antwort. Der Client kann anhand des \emph{Content-Type} Feldes das Format der Antwort überprüfen, für \gls{JSON} lautet dies bspw. \texttt{application/json}.
-
-\subsection{Statuslose Kommunikation}
-
-Es soll kein Sitzungsstatus (\emph{session-state}) vom Server gespeichert werden, d.h. jede Anfrage des Client muss alle Informationen enthalten, die nötig sind um diese serverseitig verarbeiten zu können. Der Sitzungstatus wird dabei vollständig vom Client gehalten. Diese Restriktion führt zu einigen Vorteilen:
-\begin{compactitem}
-	\item Verringerung der Kopplung zwischen Client und Server
-	\item zwei aufeinanderfolgende Anfragen können von unterschiedlichen Serverinstanzen beantwortet werden
-	\item[$\hookrightarrow$] verbesserte Skalierbarkeit
-\end{compactitem}
-Diese Vorteile werden mit erhöhter Netzwerklast erkauft, da die Statusinformationen bei jeder Anfrage mitgesendet werden müssen.
-
 % Diesen Part über die Grundprinzipien verschieben
 \subsection{Elemente von REST}
+
+Im folgenden werden die Grundbausteine einer REST-Anwendung erläutert. \Cref{sec:RESTcomponents} beschreibt die Komponenten, die an einer Aktion auf einer \emph{Ressource} beteiligt sind. Dieser Abschnitt basiert auf Kapitel 5.2 von \cite[][S. 86 ff.]{fieldingDissertation}.
 
 \subsubsection{Ressource}
 
@@ -98,3 +47,103 @@ Ein Beispiel für eine solche Angabe von Metainformationen ist in \Cref{lst:meta
 Kontrolldaten sind meist HTTP-Header-Felder\footnote{für die HTTP-Header-Definitionen siehe \url{http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html\#sec14.43}}, bspw. um das Cachingverhalten zu ändern.
 
 \subsubsection{Konnektoren}
+
+Konnektoren stellen eine Schnittstelle für die Kommunikation mit Komponenten der REST-Webanwendung dar. Aktionen auf Ressourcen und der Austausch von Repräsentationen finden über diese Schnittstellen statt. Der Konnektor bildet die Parameter der Schnittstelle auf das gewünschte Protkoll ab.
+
+Eingangsparameter\footnote{\textperiodcentered optionaler Parameter}:
+\begin{compactitem}
+    \item Anfrage-Kontrolldaten
+    \item Ressourcenidentifizierung (Ressourcenbezeichner)
+    \item[\textperiodcentered] Repräsentation der Ressource
+\end{compactitem}
+Ausgangsparameter:
+\begin{compactitem}
+    \item Antwort-Kontrolldaten
+    \item[\textperiodcentered] Metainformationen
+    \item[\textperiodcentered] Repräsentation der Ressource
+\end{compactitem}
+
+\begin{longtable}[htb]{l l}
+    \toprule
+    \rowcolor{lightgray}
+    \textbf{Konnektor}   & \textbf{Beispiel}\\
+    \midrule
+    client      & libwww\\
+    server      & libwww, Apache HTTP-Server API\\
+    cache       & browser cache, Akamai\\
+    resolver    & bind\\
+    tunnel      & SOCKS\\
+    \bottomrule
+    \caption{Beispiele für Konnektoren nach \cite{fieldingDissertation}}
+    \label{tab:RESTconnectors}
+\end{longtable}
+
+\subsubsection{Komponenten}
+\label{sec:RESTcomponents}
+
+\begin{description}
+    \item[Ursprungsserver] 
+        Serverseitiger Konnektor der den Namespace der angeforderten Ressource verwaltet. Er ist die einzige Quelle für Representationen von und Änderungen auf seinen Ressourcen (siehe \cref{sec:unambigiousidentification}).
+        %ToDo: overwork proxy and gateway part
+    \item[Proxy] Zwischenkomponente die explizit vom Client verwendet kann, aus Sicherheits-, Performance- oder Kompatiblitätsgründen.
+    \item[Gateway] Dient als Schnittstelle zwischen Client- und Servernetzwerk, kann zusätzlich aus den gleichen Gründen wie der Proxy verwendet werden. Konträr zum Proxy kann der Client aber nicht entscheiden ob er einen Gateway nutzen möchte.
+    \item[User Client] 
+        Ein clientseitiger \emph{Konnektor}, der die Anfrage an die API startet und einziger Empfänger der Antwort ist. In den meisten Fällen ist dies einfach ein \emph{Webbrowser}.
+\end{description}
+
+%%%%%%%%%%%%
+
+\subsection{REST-Prinzipien}
+
+Die fünf Grundlegenden REST-Prinzipien, nach \cite[11 ff.]{Tilkov09}:
+\begin{compactitem}
+    \item Ressourcen mit eindeutiger Indentifikation
+    \item Verknüpfungen / Hypermedia
+    \item Standartmethoden\footnote{GET, PUT, POST, DELETE bei Nutzung von HTTP}
+    \item Unterschiedliche Repräsentationen
+    \item Statuslose Kommunikation
+\end{compactitem}
+
+\subsubsection{Eindeutige Identifikation}
+\label{sec:unambigiousidentification}
+
+Um eine \emph{eindeutige Identifikation} zu erreichen, wird jeder Ressource eine \gls{URI} vergeben. Dadurch ist es möglich zu jeder verfügbaren Ressource einen Link zu setzen. 
+Nachfolgend eine Beispiel-\gls{URI}, um den Artikel 42 aus dem Warenkorb 84 anzusprechen:
+\[
+    \underbrace{http://api.spreadshirt.net/api/v1/}_{Basis-URL}\underbrace{\overbrace{baskets/84}^{Warenkorb}\overbrace{/item/42}^{Artikel}}_{Ressource}
+    \label{RESTexampleURL}
+\]
+
+\subsubsection{Hypermedia}
+
+Innerhalb einer Ressource kann auf weitere verlinkt werden (\emph{Hypermedia}), als Nebeneffekt der eindeutigen Identifikation duch \glspl{URI} sind diese auch außerhalb des Kontextes der aktuellen Anwendung gültig. Das Folgen eines Links entspricht dabei einer Zustandsänderung innerhalb der Anwendung.
+Die vorhandenen Verknüpfungen legen fest welche Zustandsübergänge  erlaubt sind.
+
+\subsubsection{Standartmethoden}
+
+Durch die Nutzung von \emph{Standartmethoden} ist abgesichert das die Anwendung mit den Ressourcen arbeiten kann, vorausgesetzt sie unterstützt diese. \gls{REST} ist nicht auf HTTP beschränkt, praktisch alle REST-APIs nutzen aber dieses Protokoll. HTTP umfasst dabei folgende Methoden\footnote{Kapitel 9 des HTTP 1.1 RFC2616 beschreibt diese inklusive \emph{TRACE} und \emph{CONNECT} umfassend \cite{HTTP11RFC}}:
+\begin{compactitem}
+    \item GET
+    \item PUT
+    \item POST
+    \item DELETE
+    \item HEAD
+    \item OPTIONS
+\end{compactitem}
+
+Alle bis auf \emph{POST} und \emph{OPTIONS} sind \emph{idempotent} (\cite{HTTP11RFC} Kapitel 9), d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf.
+
+\subsubsection{Repräsentationen von Ressourcen}
+\label{sec:representationofresources}
+
+Die Repräsentation sollte unabhängig von der Ressource sein, um die Darstellung gegebenenfalls für den Client anzupassen. Per \emph{Query-Parameter} oder als Information im HTTP-Header kann die Clientanwendung nun das gewünschte Format angeben und bekommt vom Server die entsprechend formatierte Antwort. Der Client kann anhand des \emph{Content-Type} Feldes das Format der Antwort überprüfen, für \gls{JSON} lautet dies bspw. \texttt{application/json}.
+
+\subsubsection{Statuslose Kommunikation}
+
+Es soll kein Sitzungsstatus (\emph{session-state}) vom Server gespeichert werden, d.h. jede Anfrage des Client muss alle Informationen enthalten, die nötig sind um diese serverseitig verarbeiten zu können. Der Sitzungstatus wird dabei vollständig vom Client gehalten. Diese Restriktion führt zu einigen Vorteilen:
+\begin{compactitem}
+    \item Verringerung der Kopplung zwischen Client und Server
+    \item zwei aufeinanderfolgende Anfragen können von unterschiedlichen Serverinstanzen beantwortet werden
+    \item[$\hookrightarrow$] verbesserte Skalierbarkeit
+\end{compactitem}
+Diese Vorteile werden mit erhöhter Netzwerklast erkauft, da die Statusinformationen bei jeder Anfrage mitgesendet werden müssen.
