@@ -25,7 +25,6 @@ Abstraktes Modell der Daten (so ähnlich wie backus-naur)
 
 ## Generatorsysteme
 
-
 nächsten Freitag Konsultation, Datenschema konkrete Implementierungen etc.
 
 PDF als mail kein Problem
