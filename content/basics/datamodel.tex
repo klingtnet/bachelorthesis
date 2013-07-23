@@ -59,13 +59,47 @@ Das konkrete Modell für die Spreadshirt-API, setzt sich aus deren Beschreibung 
 
 \section{Abstract Syntax Tree (AST)}
 
-\begin{thesisDefinition}[Abstract Syntax Tree (Grune)]
-Der abstrakte Syntaxbaum (engl. \enquote{Abstract Syntax Tree}) stellt die verschiedenen Teile eines Programmtextes aus Sicht der Grammatik der verwendeten Programmiersprache, dar \cite[][S. 9 ff.]{gruneCompiler}.
+\begin{thesisDefinition}[Abstract Syntax Tree -- Grune]
+Der abstrakte Syntaxbaum (engl. \enquote{Abstract Syntax Tree}) stellt die verschiedenen Teile eines Programmtextes aus Sicht der Grammatik, dar \cite[][S. 9 ff.]{gruneCompiler}.
 \end{thesisDefinition}
-\begin{thesisDefinition}[Abstract Syntax Tree (Aho)]
-Jeder Knoten eines \emph{Abstrakten Syntax Baumes} für einen Ausdruck, repräsentiert einen \emph{Operator} und dessen Kindknoten stellen die  \emph{Operanden} dar. Im Allgemeinen kann für jedes Programmierkonstrukt ein Operator erzeugt werden, dessen semantisch bedeutsamen Komponenten dann als Operanden gehandhabt werden (nach \cite{ahoCompiler}).
+\begin{thesisDefinition}[Abstract Syntax Tree -- Aho]
+Ein Abstrakter Syntaxbaum ist die Darstellung eines Ausdrucks, wo jeder Knoten einen \emph{Operator} und dessen Kindknoten die \emph{Operanden} repräsentieren.
+%Jeder Knoten eines \emph{Abstrakten Syntax Baumes} für einen Ausdruck, repräsentiert einen \emph{Operator} und dessen Kindknoten stellen die  \emph{Operanden} dar. 
+Im Allgemeinen kann für jedes Programmierkonstrukt ein Operator erzeugt werden, dessen semantisch bedeutsamen Komponenten dann als Operanden gehandhabt werden (nach \cite[][S. 69]{ahoCompiler}).
 \end{thesisDefinition}
-Er ist das Endprodukt eines Parsingschrittes des Quelltextes, im Gegensatz zum \emph{konkreten Syntaxbaum} enthält der \emph{AST} keine Syntaxinformationen die zur Formatierung dienen (bspw. Klammern). 
+Er ist das Endprodukt eines Parsingschrittes des Quelltextes, im Gegensatz zum \emph{konkreten Syntaxbaum} (auch \emph{Parse Tree}) enthält der \emph{AST} keine Formatierungsspezifische Syntax (bspw. Klammern). 
+
+\begin{figure}[htb]
+    \centering
+    %\resizebox{\textwidth}{!}{
+        \centering
+        \begin{tikzpicture}
+            \Tree 
+                [ .gcd 
+                    [ .= 
+                        [ .if 
+                            [ .== 
+                                [ .b ] 
+                                [ .0 ]
+                            ]
+                            [ .a ]
+                        ] 
+                        [ .else 
+                            [ .gcd
+                                [ .b ]
+                                [ .\% 
+                                    [ .a ]
+                                    [ .b ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+        \end{tikzpicture}        
+    %}
+    \caption{Beispiel AST für den rekursiven euklidischen Algorithmus}
+    \label{fig:ast}   
+\end{figure}
 
 \section{PHP Beispiele}
 
