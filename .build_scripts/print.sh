@@ -6,8 +6,7 @@
 # check number of arguments with `$# -eq 0`
 #
 
-XELATEX_OPTS=""
-BIBER_OPTS=""
+XELATEX_OPTS=-interaction=nonstopmode
 
 if [ $# == 2 ]; then
     echo "Changing directory to: $1"
@@ -19,7 +18,7 @@ if [ $# == 2 ]; then
         echo "|    | Print version"
         echo "|____|"
         echo -e "\n------------------ xelatex --------------------\n"     
-        xelatex $XELATEX_OPTS thesis_print > /dev/null
+        xelatex $XELATEX_OPTS -no-pdf thesis_print > /dev/null
         echo -e "\n------------------- biber ---------------------\n" 
         biber $BIBER_OPTS thesis_print 
         echo -e "\n--------------- makeglossaries ----------------\n"         
@@ -27,7 +26,7 @@ if [ $# == 2 ]; then
         echo -e "\n------------------ xelatex --------------------\n" 
         xelatex $XELATEX_OPTS thesis_print | grep --ignore-case --extended-regex "info|warning|error|^\([A-Za-z0-9]*\)"
     else
-        xelatex $XELATEX_OPTS thesis_print > /dev/null  
+        xelatex $XELATEX_OPTS -no-pdf thesis_print > /dev/null  
         biber $BIBER_OPTS thesis_print > /dev/null          
         makeglossaries thesis_print > /dev/null   
         xelatex $XELATEX_OPTS thesis_print > /dev/null
