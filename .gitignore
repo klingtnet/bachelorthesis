@@ -26,6 +26,6 @@
 *.vsdx
 *.xdy
 .build/*
-.dump/*
+dump/*
 *~
 resources/books/*
