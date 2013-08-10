@@ -25,11 +25,13 @@ if [ $# == 2 ]; then
         makeglossaries thesis_print
         echo -e "\n------------------ xelatex --------------------\n" 
         xelatex $XELATEX_OPTS thesis_print | grep --ignore-case --extended-regex "info|warning|error|^\([A-Za-z0-9]*\)"
+        true
     else
         xelatex $XELATEX_OPTS -no-pdf thesis_print > /dev/null  
         biber $BIBER_OPTS thesis_print > /dev/null          
         makeglossaries thesis_print > /dev/null   
         xelatex $XELATEX_OPTS thesis_print > /dev/null
+        true
     fi
 else
     echo "Number of arguments given: $#"
