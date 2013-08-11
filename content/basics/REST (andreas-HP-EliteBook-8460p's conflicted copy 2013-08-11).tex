@@ -138,7 +138,7 @@ Die Repräsentation sollte unabhängig von der Ressource sein, um die Darstellun
 
 \subsubsection{Statuslose Kommunikation}
 
-Es soll kein Sitzungsstatus (\emph{session-state}) vom Server gespeichert werden, d.h. jede Anfrage des Client muss alle Informationen enthalten, die nötig sind um diese serverseitig verarbeiten zu können. Der Sitzungstatus wird dabei vollständig vom Client gehalten. Diese Restriktion führt zu einigen Vorteilen:
+Es soll kein Sitzungsstatus (\emph{session-state}) vom Server gespeichert werden, d.h. jede Anfrage des Client muss alle Informationen enthalten, die nötig sind um diese serverseitig verarbeiten zu können. Der Sitzungsstatus wird dabei vollständig vom Client gehalten. Diese Restriktion führt zu einigen Vorteilen:
 \begin{compactitem}
     \item Verringerung der Kopplung zwischen Client und Server
     \item zwei aufeinanderfolgende Anfragen können von unterschiedlichen Serverinstanzen beantwortet werden

@@ -3,6 +3,7 @@
 In diesem Kapitel werden die verwendeten Softwarebibliotheken kurz erläutert und die Gründe für deren Auswahl dargelegt. Außerdem wird die konkrete Implementierung des Datenmodells hier vorgestellt. Der Generator ist in \emph{Java} implementiert worden.
 
 \section{XML-Parser}
+%todo: quellen
 
 Um mit der abstrakten Beschreibung der Spreadshirt-API arbeiten zu können, muss diese zuerst in das interne Datenmodell überführt werden. Diese liegt in XML-basierter Form vor, welche in \cref{sec:webServices} näher beschrieben wurde. Folglich wird ein XML-Parser für die Verarbeitung der Beschreibungsformate benötigt.  
 
@@ -29,6 +30,6 @@ Die \emph{Java API for XML Processing} kurz \emph{JAXP} abstrahiert die Parsersc
     \label{tab:xmlParsingModels}
 \end{longtable}
 
-Bei dem zu entwickelnden Codegenerator gehört der Speicherverbrauch und die verwendete CPU-Zeit nicht zu den \emph{nichtfunktionalen Anforderungen}, somit fiel die Entscheidung auf einen DOM-Parser. Dieser lässt sich durch das komplett im Speicher gehaltene Objektmodell mit geringem Aufwand verwenden. Durch JAXP ist die Implementierung transparent und es wird die im \emph{JDK} enthaltene Standart DOM-Parser Implementierung verwendet.
+Bei dem zu entwickelnden Codegenerator sind der Speicherverbrauch und die verwendete CPU-Zeit kein Teil der \emph{nichtfunktionalen Anforderungen}, somit fiel die Entscheidung auf einen DOM-Parser. Dieser lässt sich durch das komplett im Speicher gehaltene Objektmodell mit geringem Aufwand verwenden. Durch JAXP ist die Implementierung transparent und es wird die im \emph{JDK} enthaltene Standart DOM-Parser Implementierung verwendet.
 
 % Tabelle mit Vor und Nachteilen
