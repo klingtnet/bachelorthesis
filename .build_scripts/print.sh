@@ -6,7 +6,7 @@
 # check number of arguments with `$# -eq 0`
 #
 
-XELATEX_OPTS=-interaction=nonstopmode
+XELATEX_OPTS=-halt-on-error
 
 if [ $# == 2 ]; then
     echo "Changing directory to: $1"

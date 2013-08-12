@@ -1,35 +1,9 @@
 \chapter{Implementierung}
+\label{chap:implementation}
 
 In diesem Kapitel werden die verwendeten Softwarebibliotheken kurz erläutert und die Gründe für deren Auswahl dargelegt. Außerdem wird die konkrete Implementierung des Datenmodells hier vorgestellt. Der Generator ist in \emph{Java} implementiert worden.
 
-\section{XML-Parser}
-%todo: quellen
+\input{content/implementation/xml_parser}
 
-Um mit der abstrakten Beschreibung der Spreadshirt-API arbeiten zu können, muss diese zuerst in das interne Datenmodell überführt werden. Diese liegt in XML-basierter Form vor, welche in \cref{sec:webServices} näher beschrieben wurde. Folglich wird ein XML-Parser für die Verarbeitung der Beschreibungsformate benötigt.  
-
-Die \emph{Java API for XML Processing} kurz \emph{JAXP} abstrahiert die Parserschnittstelle von der eigentlichen Implementierung. JAXP ist dabei keine einzelne API sondern es beschreibt Schnittstellen für folgende vier XML-Parser Modelle:
-
-\begin{description}
-    \item[DOM] \emph{Document Object Model}-Parser überführen das XML-Dokument in ein baumartiges Objektmodell, welches vollständig im Arbeitsspeicher liegt.
-    \item[SAX] \emph{Simple API for XML} basierte, sogenannte Push-Parser verarbeiten das XML-Dokument seriell und eventbasiert. Ein Event ist hierbei bspw. ein öffnendes oder schließendes XML-Element.
-    \item[StAX] \emph{Streaming API for XML} basierte, sogenannte Pull-Parser arbeiten ebenso wie bei \emph{SAX} seriell und eventbasiert, können aber im Gegensatz dazu die Erzeugung von Events selber steuern. 
-    \item[TrAX] \emph{Transformation API for XML} bietet eine Schnittstelle mit der sich XML-Dokumente durch \emph{Extensible Stylesheet Language Transformations (XSLT)} in Java transformieren lassen.
-\end{description}
-
-Bei dem zu entwickelnden Codegenerator sind der Speicherverbrauch und die verwendete CPU-Zeit kein Teil der \emph{nichtfunktionalen Anforderungen}, somit fiel die Entscheidung auf einen DOM-Parser. Dieser lässt sich durch das komplett im Speicher gehaltene Objektmodell mit geringem Aufwand verwenden. Durch JAXP ist die Implementierung transparent und es wird die im \emph{JDK} enthaltene Standart DOM-Parser Implementierung verwendet.
-
-\begin{longtable}[tb]{r l l l}
-    \toprule
-    \rowcolor{lightgray}
-    & \textbf{DOM}   & \textbf{SAX}   & \textbf{StAX} \\
-    \midrule
-    \textbf{Speicherverbrauch} & hoch & gering & \textless{} DOM\\
-    \textbf{Prozessorlast} & hoch & gering & gering \\
-    \textbf{Elementzugriff} & beliebig & seriell & seriell \\
-    \textbf{Implementierungsaufwand} & niedrig & hoch & mittel \\
-    \bottomrule
-    \caption{Übersicht über die verschiedenen XML-Parsing Konzepte in JAXP}
-    \label{tab:xmlParsingModels}
-\end{longtable}
-
+\input{content/implementation/generator_interface}
 % Tabelle mit Vor und Nachteilen
