@@ -17,11 +17,10 @@ Einteilung der Datenmodellschemas nach ANSI: %ToDo: Bibtex entry
 \end{description}
 
 Das Datenmodell dient als Eingabe für den Generator und ist somit die Basis für die Codegenerierung. Bei der Erstellung ist darauf zu achten das Modell möglichst präzise zu formulieren um Mehrdeutigkeiten bei der Interpretation zu vermeiden. 
-Neben den direkt im Modell enthaltenen Informationen kann der Generator auch Abhängigkeiten darin erkennen und das Modell damit semantisch anreichern. Beispielweise die Beziehungen zwischen Datentypen die aus der \gls{XSD} extrahiert wurden \ldots
+%Neben den direkt im Modell enthaltenen Informationen kann der Generator auch Abhängigkeiten darin erkennen und das Modell damit semantisch anreichern. Beispielweise die Beziehungen zwischen Datentypen die aus der \gls{XSD} extrahiert wurden \ldots
 
 % konkretes Modell
-
-Das konkrete Modell für die Spreadshirt-API, setzt sich aus deren Beschreibung im \gls{WADL} und \gls{XSD} zusammen. Die Schnittpunkte beider Beschreibungen finden sich in der Angabe der Methodenparameter- und Rückgabewerte der \gls{WADL}-Datei. 
+Das konkrete Modell für die Spreadshirt-API, setzt sich aus deren Beschreibung im \gls{WADL} und \gls{XSD} zusammen. Die Schnittpunkte beider Beschreibungen finden sich in der Angabe der Methodenparameter- und Rückgabewerte der \gls{WADL}-Datei, wie das folgende Listing zeigt.
 
 \begin{lstlisting}[
     language=XML,
@@ -53,9 +52,6 @@ Das konkrete Modell für die Spreadshirt-API, setzt sich aus deren Beschreibung 
 \end{lstlisting}
 
 \Cref{lst:wadlintersection} zeigt einen Ausschnitt aus der Beschreibung der API-Methode zum Erhalt der \emph{Produkttypen} eines bestimmten \emph{Users}. Punkt \ding{202} und \ding{203} sind Typangaben, wobei ersteres einen Parameter- und letzteres einen Rückgabetyp ist. Die jeweiligen Namensräume der Typen werden unter \ding{204} und \ding{205} angegeben.
-
-%Als Eingabe des Generators dient ein \emph{Datenmodell}, welches sich aus dem Inhalt der Webanwendungsbeschreibung (\cref{sec:wadl}) und dem der Datentypbeschreibungen (\cref{sec:xsd}) zusammensetzt. Neben den direkt aus den jeweiligen Beschreibungsformaten abzulesenden Informationen werden durch den Generator Abhängigkeiten zwischen den Datentypen erkannt und dem Modell hinzugefügt. %Todo: Verweis auf parsing step indem dies geschieht
-%Die Struktur des Modells entspricht einem \gls{AST}
 
 \section{Abstract Syntax Tree (AST)}
 
@@ -100,6 +96,8 @@ Er ist das Endprodukt eines Parsingschrittes des Quelltextes, im Gegensatz zum \
     \caption{Beispiel AST für den rekursiven euklidischen Algorithmus}
     \label{fig:ast}   
 \end{figure}
+
+Ein \emph{AST} bildet auch die Grundstruktur des Datenmodells für den Generator. 
 
 \section{PHP Beispiele}
 

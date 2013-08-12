@@ -49,9 +49,9 @@ clean_conflicts:
 
 clean: clean_conflicts
 	@echo "I will clean up this mess ..."
-	@find $(ROOT_DIR) -regex '.*~$$' -delete
+#	@find $(ROOT_DIR) -regex '.*~' -delete
 # $ has to be escaped to $$
-	@cd $(BUILD_DIR); rm -r *
+	@cd $(BUILD_DIR); rm --recursive --verbose *
 
 clean_all: clean
 	@rm $(OUTPUT_DIR)/*
