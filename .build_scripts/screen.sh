@@ -24,9 +24,9 @@ if [ $# == 2 ]; then
         echo -e "\n--------------- makeglossaries ---------------------\n"         
         makeglossaries thesis
         echo -e "\n------------------ xelatex (#2) --------------------\n" 
-        xelatex $XELATEX_OPTS thesis | grep --ignore-case --extended-regex "info|warning|error|^\([A-Za-z0-9]*\)"
+        xelatex $XELATEX_OPTS thesis | grep --ignore-case --extended-regex "info|Reference|warning|error|^\([A-Za-z0-9]*\)"
         echo -e "\n------------------ xelatex (#3) --------------------\n" 
-        xelatex $XELATEX_OPTS thesis | grep --ignore-case --extended-regex "info|warning|error|^\([A-Za-z0-9]*\)"
+        xelatex $XELATEX_OPTS thesis | grep --ignore-case --extended-regex "info|Reference|warning|error|^\([A-Za-z0-9]*\)"
         true
     else
         xelatex $XELATEX_OPTS -no-pdf thesis > /dev/null  
