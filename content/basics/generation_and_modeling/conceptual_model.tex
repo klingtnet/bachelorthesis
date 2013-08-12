@@ -12,26 +12,3 @@ Die Implementierung der Konzepte des Modells kann entweder manuell oder automati
 
 %Ein Modell bildet die Funktionen und Beziehungen eines Bereiches der Wirklichkeit ab.
 %Ein solches Modell, beispielsweise in Form einer \gls{WADL}-Datei zur Beschreibung einer Web-API, dient als Eingabe für einen Generator. Außerdem ist es der Ausgangspunkt in der modell-getriebenen Softwareentwicklung (\gls{MDSD}) oder -architektur (\gls{MDA}).
-
-\begin{figure}[tb]
-    \centering
-    %\resizebox{\textwidth}{!}{
-        \begin{tikzpicture}[
-                node distance=12mm and 8mm,
-                every node/.style={font=\scriptsize}
-            ]
-            \node(model)[greyBlock]{Modell};
-            \node(generator)[greyBlock, right=of model]{Codegenerator};
-            \node(sourcecode)[greyBlock, double copy shadow, right=of generator]{Quellcode};
-            \node(templates)[greyBlock, double copy shadow, above=of generator]{Templates};
-            \node(infrastructurecode)[greyBlock, double copy shadow, below=of generator]{Infrastrukturcode};     
-
-            \path [arrow, ->] (model) -- (generator);
-            \path [arrow, ->] (templates) -- (generator);
-            \path [arrow, ->] (infrastructurecode) -- (generator);
-            \path [arrow, ->] (generator) -- (sourcecode);
-        \end{tikzpicture}   
-    %}
-    \caption{Simples Generatorsystem}
-    \label{fig:generatorsystem}
-\end{figure}

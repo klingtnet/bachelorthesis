@@ -13,6 +13,7 @@
 DEBUG='true'
 ROOT_DIR=$(shell pwd)
 BUILD_DIR=$(ROOT_DIR)/.build
+BUILD_LOG="build.log"
 OUTPUT_DIR=$(ROOT_DIR)/output
 #.PHONY : clearscr clean screen print
 
@@ -30,17 +31,17 @@ copy_output:
 screen:
 	@echo "Building screen version ..."
 ifeq ($(DEBUG) , 'true')
-	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG) 
+	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG)
 else
-	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG)
+	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG)
 endif
 
 print:
 	@echo "Building print version ..."
 ifeq ($(DEBUG) , 'true')
-	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG) 		
+	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG) 
 else
-	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG)
+	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG) 
 endif
 
 clean_conflicts:
