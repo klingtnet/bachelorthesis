@@ -18,7 +18,7 @@ OUTPUT_DIR=$(ROOT_DIR)/output
 #.PHONY : clearscr clean screen print
 
 # todo: add print target to 'all' target
-all: copy_sources screen copy_output
+all: copy_sources screen copy_output todos
 
 copy_sources:
 	@echo "Copying sources to build folder: $(BUILD_DIR)"
@@ -59,3 +59,7 @@ clean_all: clean
 
 clearscreen:
 	clear
+
+todos:
+	@echo -e "\n--------------------- What you have to do --------------------- \n"
+	@./todos.sh
