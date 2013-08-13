@@ -18,7 +18,6 @@ BUILD_LOG_PRINT="build_print.log"
 OUTPUT_DIR=$(ROOT_DIR)/output
 #.PHONY : clearscr clean screen print
 
-# todo: add print target to 'all' target
 all: copy_sources screen print copy_output todos
 
 copy_sources:

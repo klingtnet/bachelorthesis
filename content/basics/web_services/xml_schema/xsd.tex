@@ -1,60 +1,9 @@
 \subsection{XML Schema Description (XSD)}
 \label{sec:xsd}
 
-\begin{figure}[tb]
-    \centering
-    \tikzstyle{blueBox}=[
-        rectangle,
-        fill={blue!15},
-        draw,
-        font=\sffamily
-    ]      
-    \tikzstyle{grayBox}=[
-        rectangle,
-        fill=lightgray,
-        text=black,
-        font=\sffamily,
-        draw
-    ]
-    \tikzstyle{violetBox}=[
-        rectangle,
-        fill=violet,
-        text=white,
-        font=\sffamily,
-        draw
-    ]
-    \tikzstyle{greenBox}=[
-        rectangle,
-        fill=green!50,
-        text=black,
-        font=\sffamily,
-        draw
-    ]
-    \tikzstyle{derivedFromList}=[
-        dashed,
-        cyan
-    ]
-    \begin{minipage}[b]{0.45\linewidth}
-    \rotatebox{90}{
-    \resizebox{!}{\textwidth}{
-            \input{tikz_pgf/xsd_predefined_types}
-        }
-    }
-    \end{minipage}
-    \hspace{12pt}
-    \begin{minipage}[b]{0.45\linewidth}
-    \rotatebox{90}{
-        \resizebox{!}{0.3\textwidth}{
-            \input{tikz_pgf/xsd_predefined_types_legend}
-        }
-    }
-    \end{minipage}
-    \caption{vordefinierte XSD Datentypen nach \cite{XMLSchema11Specification} Kapitel 3}
-    \label{fig:xsddatatypes}
-\end{figure}
-
 \emph{XML Schema Description} ist ein stark erweiterte Nachfolger der \emph{DTD} (Document Type Definition), derzeit spezifiert in Version 1.1 \cite{XMLSchema11Specification}. 
 Die Syntax von \emph{XSD} ist XML, damit ist die Schemabeschreibung ebenfalls ein gültiges XML-Dokument. Als Dateiendung wird üblicherweise \texttt{.xsd} verwendet.
+
 Die Hauptmerkmale von XSD sind nach \cite{taxonomyXMLSchema} % Kapitel 3.2
 , die folgenden:
 \begin{compactitem}
@@ -99,3 +48,59 @@ Die XSD Spezifikation enthält bereits eine Menge vordefinierter Datentypen, dar
 %
 
 %Komplexe Typen werden durch Elemente vom Typ \texttt{xsd:complexType} definiert, sie dienen zur Definition von XML-Inhalt aus Elementen mit Attributen. Elemente können hierbei Deklarationen oder Referenzen auf Elementdeklarationen sein.
+
+\newpage
+
+\begin{figure}[!t]
+    \centering
+    \tikzstyle{blueBox}=[
+        rectangle,
+        fill={blue!15},
+        draw,
+        font=\sffamily
+    ]      
+    \tikzstyle{grayBox}=[
+        rectangle,
+        fill=lightgray,
+        text=black,
+        font=\sffamily,
+        draw
+    ]
+    \tikzstyle{violetBox}=[
+        rectangle,
+        fill=violet,
+        text=white,
+        font=\sffamily,
+        draw
+    ]
+    \tikzstyle{greenBox}=[
+        rectangle,
+        fill=green!50,
+        text=black,
+        font=\sffamily,
+        draw
+    ]
+    \tikzstyle{derivedFromList}=[
+        dashed,
+        cyan
+    ]
+    \resizebox{!}{0.92\textheight} {
+        \begin{minipage}[b]{0.45\linewidth}
+        \rotatebox{90}{
+        \resizebox{!}{\textwidth}{
+                \input{tikz_pgf/xsd_predefined_types}
+            }
+        }
+        \end{minipage}
+        \hspace{12pt}
+        \begin{minipage}[b]{0.45\linewidth}
+        \rotatebox{90}{
+            \resizebox{!}{0.3\textwidth}{
+                \input{tikz_pgf/xsd_predefined_types_legend}
+            }
+        }
+        \end{minipage}
+    }
+    \caption{vordefinierte XSD Datentypen nach \cite{XMLSchema11Specification} Kapitel 3}
+    \label{fig:xsddatatypes}
+\end{figure}

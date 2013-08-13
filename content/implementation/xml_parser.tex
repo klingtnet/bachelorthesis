@@ -15,16 +15,18 @@ Die \emph{Java API for XML Processing} kurz \emph{JAXP} abstrahiert die Parsersc
 
 Bei dem zu entwickelnden Codegenerator sind der Speicherverbrauch und die verwendete CPU-Zeit kein Teil der \emph{nichtfunktionalen Anforderungen}, somit fiel die Entscheidung auf einen DOM-Parser. Dieser lässt sich durch das komplett im Speicher gehaltene Objektmodell mit geringem Aufwand verwenden. Durch JAXP ist die Implementierung transparent und es wird die im \emph{JDK} enthaltene Standart DOM-Parser Implementierung verwendet.
 
-\begin{longtable}[tb]{r l l l}
-    \toprule
-    \rowcolor{lightgray}
-    & \textbf{DOM}   & \textbf{SAX}   & \textbf{StAX} \\
-    \midrule
-    \textbf{Speicherverbrauch} & hoch & gering & \textless{} DOM\\
-    \textbf{Prozessorlast} & hoch & gering & gering \\
-    \textbf{Elementzugriff} & beliebig & seriell & seriell \\
-    \textbf{Implementierungsaufwand} & niedrig & hoch & mittel \\
-    \bottomrule
-    \caption{Übersicht über die verschiedenen XML-Parsing Konzepte in JAXP}
-    \label{tab:xmlParsingModels}
-\end{longtable}
+\begin{table}[tb]
+    \begin{longtable}[c]{r l l l}
+        \toprule
+        \rowcolor{lightgray}
+        & \textbf{DOM}   & \textbf{SAX}   & \textbf{StAX} \\
+        \midrule
+        \textbf{Speicherverbrauch} & hoch & gering & \textless{} DOM\\
+        \textbf{Prozessorlast} & hoch & gering & gering \\
+        \textbf{Elementzugriff} & beliebig & seriell & seriell \\
+        \textbf{Implementierungsaufwand} & niedrig & hoch & mittel \\
+        \bottomrule
+        \caption{Übersicht über die verschiedenen XML-Parsing Konzepte in JAXP}
+        \label{tab:xmlParsingModels}
+    \end{longtable}
+\end{table}
