@@ -13,12 +13,13 @@
 DEBUG='true'
 ROOT_DIR=$(shell pwd)
 BUILD_DIR=$(ROOT_DIR)/.build
-BUILD_LOG="build.log"
+BUILD_LOG_SCREEN="build_screen.log"
+BUILD_LOG_PRINT="build_print.log"
 OUTPUT_DIR=$(ROOT_DIR)/output
 #.PHONY : clearscr clean screen print
 
 # todo: add print target to 'all' target
-all: copy_sources screen copy_output todos
+all: copy_sources screen print copy_output todos
 
 copy_sources:
 	@echo "Copying sources to build folder: $(BUILD_DIR)"
@@ -31,17 +32,17 @@ copy_output:
 screen:
 	@echo "Building screen version ..."
 ifeq ($(DEBUG) , 'true')
-	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG)
+	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG_SCREEN)
 else
-	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG)
+	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG_SCREEN)
 endif
 
 print:
 	@echo "Building print version ..."
 ifeq ($(DEBUG) , 'true')
-	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG) 
+	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG_PRINT)
 else
-	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG) 
+	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG_PRINT)
 endif
 
 clean_conflicts:

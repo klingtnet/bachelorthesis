@@ -17,15 +17,16 @@ if [ $# == 2 ]; then
         echo "|    | Building"
         echo "|    | Print version"
         echo "|____|"
-        echo -e "\n------------------ xelatex --------------------\n"     
+        echo -e "\n------------------ xelatex (#1) --------------------\n"     
         xelatex $XELATEX_OPTS -no-pdf thesis_print
         echo -e "\n------------------- biber ---------------------\n" 
         biber $BIBER_OPTS thesis_print 
         echo -e "\n--------------- makeglossaries ----------------\n"         
         makeglossaries thesis_print
-        echo -e "\n------------------ xelatex --------------------\n" 
-        xelatex $XELATEX_OPTS thesis_print | grep --ignore-case --extended-regex "info|warning|error|^\([A-Za-z0-9]*\)"
-        xelatex $XELATEX_OPTS thesis_print | grep --ignore-case --extended-regex "info|warning|error|^\([A-Za-z0-9]*\)"
+        echo -e "\n------------------ xelatex (#2) --------------------\n" 
+        xelatex $XELATEX_OPTS thesis_print | grep --ignore-case --extended-regex "info|Reference|warning|error|^\([A-Za-z0-9]*\)"
+        echo -e "\n------------------ xelatex (#3) --------------------\n" 
+        xelatex $XELATEX_OPTS thesis_print | grep --ignore-case --extended-regex "info|Reference|warning|error|^\([A-Za-z0-9]*\)"
         true
     else
         xelatex $XELATEX_OPTS -no-pdf thesis_print > /dev/null  

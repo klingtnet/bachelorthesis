@@ -2,7 +2,12 @@
 % todo: search for citations and add pages when necessary \cite[page]{}
 %
 
-\KOMAoptions{twoside = false} % creates the "dirty hack"-error
+%\KOMAoptions{twoside = false} % creates the "dirty hack"-error
+\iftoggle{print}{%
+  %\KOMAoptions{twoside}
+}{
+  \KOMAoptions{twoside = false} % creates the "dirty hack"-error
+}
 
 \input{variables/global}
 \pagestyle{empty}
@@ -34,23 +39,26 @@
 
 % zweite Seite mit Angaben zur Arbeit etc. am unteren Ende
 \include{frontpage/title_backside}
+\cleardoublepage{}
 
 %
 % Selbständigkeitserklärung
 %
 \setcounter{page}{1}
-{
+{    
     \onehalfspacing
     \include{affidavit}
 }
+\cleardoublepage{}
 
 %
 % Danksagungen
 %
-{
+{    
     \onehalfspacing
     \include{frontpage/acknowledgement}
 }
+\cleardoublepage{}
 
 %
 % Abstract
@@ -60,11 +68,13 @@
     \include{abstract}
 }
 
+\cleardoublepage{}
 \include{license}
 
 % Inhaltsverzeichnis    
 %
 % manuelles einfuegen eines Lesezeichens im PDF-Index
+\cleardoublepage{}
 \pdfbookmark[1]{\contentsname}{toc}
 \tableofcontents
 \blankpage{\thesisBlankPageText}
@@ -81,11 +91,6 @@
             filecolor=cyan
             }
 
-\iftoggle{print}{%
-  \KOMAoptions{twoside}
-}{
-  % screen, do nothing
-}
 \pagenumbering{arabic}
 
 % headline even on first page of chapter
@@ -108,7 +113,9 @@
 
 % Beginn des Anhangs
 \renewcommand*{\chapterpagestyle}{appendixChapterStyle}
-{        
+{   
+    % remove cleardoublepage for appendix     
+    \let\cleardoublepage\relax
     \appendix 
     \pagestyle{appendixStyle}
     \pagenumbering{Alph}
@@ -116,25 +123,30 @@
     % Glossar        
     \glsaddall
     \printglossary[type=main,title={Glossar},toctitle={Glossar}]
+    \newpage
     % Bilderverzeichnis
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\listfigurename}
     \listoffigures
+    \newpage
     % Tabellenverzeichnis
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\listtablename}
     \listoftables
+    \newpage    
     % Listingverzeichnis
     \addcontentsline{toc}{chapter}{\lstlistlistingname}
     \lstlistoflistings
+    \newpage    
     % Definitionsverzeichnis
     \addcontentsline{toc}{chapter}{\listtheoremname}
     \listoftheorems
+    \newpage    
     % Literaturverzeichnis
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\bibname}
     \input{bibliography/bibliography}
-
+    \newpage
     \input{bibtex_entry}    
     \label{lastAppendixPage}
 }
