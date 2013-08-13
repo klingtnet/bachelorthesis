@@ -89,8 +89,7 @@ Ausgangsparameter:
 
 \begin{description}
     \item[Ursprungsserver] 
-        Serverseitiger Konnektor der den Namespace der angeforderten Ressource verwaltet. Er ist die einzige Quelle für Repräsentationen, sowie der endgültige Empfänger von Änderungsanfragen an seine Ressourcen. (siehe \cref{sec:unambigiousidentification})
-        %ToDo: overwork proxy and gateway part
+        Serverseitiger Konnektor der den Namespace der angeforderten Ressource verwaltet. Er ist die einzige Quelle für Repräsentationen, sowie der endgültige Empfänger von Änderungsanfragen an seine Ressourcen. (siehe \cref{sec:unambigiousidentification}).
     \item[Proxy] Zwischenkomponente die explizit vom Client verwendet kann, aus Sicherheits-, Performance- oder Kompatibilitätsgründen.
     \item[Gateway] Dient als Schnittstelle zwischen Client- und Servernetzwerk, kann zusätzlich aus den gleichen Gründen wie der Proxy verwendet werden. Konträr zum Proxy kann der Client aber nicht entscheiden ob er einen Gateway nutzen möchte.
     \item[User Client] 
@@ -104,8 +103,8 @@ Die fünf Grundlegenden REST-Prinzipien, nach \cite[11 ff.]{Tilkov09}:
     \item Ressourcen mit eindeutiger Indentifikation
     \item Verknüpfungen / Hypermedia
     \item Standartmethoden (siehe \cref{sec:standardmethods})
-    \item Unterschiedliche Repräsentationen
-    \item Statuslose Kommunikation
+    \item unterschiedliche Repräsentationen
+    \item statuslose Kommunikation
 \end{compactitem}
 
 \subsubsection{Eindeutige Identifikation}

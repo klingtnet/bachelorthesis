@@ -1,4 +1,6 @@
 %Generative Programming p. 333
+%todo: \cite{czarnecki2000generative} in der Kapiteleinleitung erwähnen um sich wiederholende Referenzen zu vermeiden
+
 \begin{thesisDefinition}[Codegenerator]
 Ein \emph{Codegenerator} ist ein Programm, welches aus einer höhersprachigen Spezifikation\footnote{m. a. W.: auf einem höheren Abstraktionslevel als die zur Implementierung verwendete Programmiersprache} einer Software oder eines Teilaspektes, die Implementierung erzeugt (nach \cite{czarnecki2000generative}).
 \end{thesisDefinition}
@@ -12,7 +14,7 @@ Generatoren widmen sich drei wichtigen Problemen\cite{czarnecki2000generative}:
 \end{description}
 
 % todo: Satz ändern, quasi nur Übersetzung, Code-Transformatoren nicht erklärt
-Der Begriff \enquote{Generator} ist sehr allgemein und wird für verschiedene Technologien verwendet, wie \emph{Compiler}, \emph{Präprozessoren}, Metafunktionen (Template-Metaprogramming in C++), Code-Transformatoren und natürlich Code-Generatoren.
+Der Begriff \enquote{Generator} ist sehr allgemein und wird für verschiedene Technologien verwendet, wie \emph{Compiler}, \emph{Präprozessoren}, \emph{Metafunktionen} (Template-Metaprogramming in C++), \emph{Codetransformatoren} und natürlich \emph{Codegeneratoren}.
 
 \section{Aufgaben eines Generators}
 \begin{compactenum}
@@ -22,19 +24,19 @@ Der Begriff \enquote{Generator} ist sehr allgemein und wird für verschiedene Te
     \item Implementierung erzeugen
 \end{compactenum}
 
-Je nach Form der Spezifikation, muss diese durch einen Analyse-Schritt (\emph{parsing}) in die interne Darstellung des Generators überfürht werden, bspw. bei einem Compiler in einen \emph{Abstrakten Syntaxbaum}.
+Je nach Form der Spezifikation, muss diese durch einen Analyse-Schritt (\emph{parsing}) in die interne Darstellung des Generators überfürht werden, bspw. bei einem Compiler in einen \emph{Abstrakten Syntaxbaum} (siehe \cref{sec:ast}).
 Der Informationsgehalt der Spezifikation ist ausschlaggebend für den Grad der zu erreichenden Automatisierung.
 
 \section{Vorteile für den Entwickler}
 
-Die folgende Auflistung basiert auf \cite[][S. 15]{czarnecki2000generative}.
+Die folgende Auflistung basiert ebenfalls auf \cite[][S. 15]{czarnecki2000generative}.
 
 \begin{description}
     \item[Qualität]
         Bugfixes und Verbesserungen werden durch das Generatorsystem in die gesamte Codebasis propagiert.
     \item[Konsistenz]
         Durch ein vorgegebenes Schema für die Schnittstellen- und Variablenbezeichner wird eine hohe Einheitlichkeit erreicht.
-    \item[Zentrale Wissensbasis]
+    \item[zentrale Wissensbasis]
         % todo: Metamodell erklären
         Das domänenspezifische Wissen wird in dem Metamodell gebündelt, das dem Generator als Eingabe dient. Änderungen am Modell werden durch den Generator in die gesamte Codebasis eingepflegt.
     \item[signifikantere Designentscheidungen]
@@ -46,7 +48,7 @@ Ist der Umfang des Erzeugnisses zu gering, kann der Aufwand zur Entwicklung eine
 
 \section{Generatorformen}
 
-Eine Möglichkeit zur Klassifikation von Codegeneratoren ist nach der Menge des erzeugten Codes:
+Eine Form der Klassifikation von Codegeneratoren ist nach der Menge des erzeugten Codes:
 
 \begin{table}[htb]
     \begin{longtable}[c]{l l l}
@@ -77,30 +79,32 @@ Generatorformen nach \cite{herrington2003code}:
         Ein $n$-Tier Generator erzeugt neben dem eigentlichen Quellcode noch beliebige andere Informationen, bspw. eine Dokumentation oder Testfälle.
 \end{description}
 
-Die Entwicklung einer \enquote{Full-Domain Language} stellt die oberste Stufe der Generatorformen. Eine solche Sprache ist Turing-vollständig und speziell auf die Problemdomäne ausgerichtet.
+Die Entwicklung einer \enquote{Full-Domain Language} stellt die oberste Stufe der Generatorformen dar. Eine solche Sprache ist Turing-vollständig und speziell auf die Problemdomäne ausgerichtet.
 
 \section{Optimierung durch den Generator}
 
 Die Effektivität von Optimierungen steigt mit dem Abstraktionslevel, deshalb ist es ratsam diese vom Generator durchführen zu lassen. Im Gegensatz zum Compiler, der viele dieser Optimierungen auch selbst durchführt, besitzt der Generator domänenspezifisches \enquote{Wissen} (\emph{domain-specific optimization}) und kann teilweise ohne Abhängigkeiten der Zielsprache optimieren.
+
+Nachfolgend eine Auflistung möglicher Optimierungen:
 % global optimizations?
 
 \begin{description}[style=nextline]
 \item[Inlining]
-    Ein Symbol durch seine Definition ersetzen oder anstelle eines Funktionsaufrufes, die Deklaration der Funktion selbst einfügen
+    Ein Symbol durch seine Definition ersetzen oder anstelle eines Funktionsaufrufes, die Deklaration der Funktion selbst einfügen.
 \item[Constant folding]
     Auswertung von Ausdrücken deren Operanden während der \emph{compile time} bekannt sind.
 \item[Data caching]
-    Anstatt mehrfach denselben Ausdruck auszuwerten, das Ergebnis einmal berechnen und darauf an anderer Stelle referenzieren
+    Anstatt mehrfach denselben Ausdruck auszuwerten, das Ergebnis einmal berechnen und darauf an anderer Stelle referenzieren.
 \item[Loop fusion]
     Zusammenführen von Schleifen, die über den gleichen Bereich iterieren und deren Schleifenkörper unabhängig voneinander ist.
 \item[Loop unrolling]
     Die Schleife durch $n$-mal deren Inhalt ersetzen, wobei $n$ die Anzahl der Iterationen ist.
 \item[Code motion]
-    Invariante\footnote{unveränderliche} Codebereiche aus dem Schleifenkörper herausnehmen
+    Invariante\footnote{unveränderliche} Codebereiche aus dem Schleifenkörper herausnehmen.
 \item[Dead-code elimination]
-    Entfernen von ungenutzten Variablen und unerreichbaren Codebereichen
+    Entfernen von ungenutzten Variablen und unerreichbaren Codebereichen.
 \item[Partial evaluation/Specialisation]
-    \emph{Partial evaluation} oder auch \emph{Specialisation} meinen das Erzeugen von spezialisierten Funktionen. Diese implementieren statische Eingaben mit dem Ziel einer kleineren Signatur.
+    \emph{Partial evaluation} oder auch \emph{Specialisation} meinen das Erzeugen von spezialisierten Funktionen. Diese implementieren statische Eingaben mit dem Ziel einer kleineren Funktionssignatur.
 \item[Parallelization]
-    %todo: wann moeglich
+    Analyse der Datenabhängigkeit durch den Generator und eventuelles parallelisieren voneinander unabhängiger Bereiche.
 \end{description}
