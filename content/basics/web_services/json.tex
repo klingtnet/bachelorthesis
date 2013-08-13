@@ -9,20 +9,22 @@ Im Gegensatz zu XML ist JSON weit weniger mächtig, es gibt z.B. keine Unterstü
 Durch seine einfache Struktur wird aber ein deutlich geringerer \enquote{syntaktischer Overhead} erzeugt.
 Mit \printhref{http://tools.ietf.org/id/draft-zyp-json-schema-03.html}{JSON Schema} ist es möglich eine Dokumentstruktur vorzugeben und gegen diese zu validieren. 
 
-\begin{longtable}[tb]{l l}
-    \toprule
-    \rowcolor{lightgray}
-    \textbf{primitiv}   & \textbf{strukturiert}\\
-    \midrule
-    Zeichenketten       & Objekte\\
-    Ganz- und 
-    Fließkommazahlen    & Arrays\\
-    Booleans            & \\
-    null                & \\
-    \bottomrule
-    \caption{JSON Datentypen}
-    \label{tab:jsonDatatypes}
-\end{longtable}
+\begin{table}[tb]
+    \begin{longtable}[c]{l l}
+        \toprule
+        \rowcolor{lightgray}
+        \textbf{primitiv}   & \textbf{strukturiert}\\
+        \midrule
+        Zeichenketten       & Objekte\\
+        Ganz- und 
+        Fließkommazahlen    & Arrays\\
+        Booleans            & \\
+        null                & \\
+        \bottomrule
+        \caption{JSON Datentypen}
+        \label{tab:jsonDatatypes}
+    \end{longtable}
+\end{table}
 
 Objekte werden in JSON von geschweiften- \ding{202}, Arrays hingegen von geschlossenen Klammern begrenzt \ding{203}. Diese dürfen beliebig tief geschachtelt werden und auch Schlüssel-Wert-Paare (\emph{key-value-pairs} \ding{204}) enthalten. \emph{Schlüssel sind immer Zeichenketten}, die Werte dürfen von allen Typen aus \cref{tab:jsonDatatypes} sein.
 %
