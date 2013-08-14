@@ -1,13 +1,17 @@
-\chapter{Datenmodell}
-\label{chap:datamodel}
+\section{Datenmodell}
+\label{section:datamodel}
 
+% todo: Spezifikation oder domänenspezifisches Modell?
+Das Datenmodell enthält die Informationen der Spezifikation und ist somit die Basis der Codegenerierung. \citeauthor{wiki:datamodel} definiert den Begriff folgendermaßen:
+% Definition ersetzen durch "Modellgetriebne Softwareentwicklung - Trompeter"
 \begin{thesisDefinition}[Datenmodell]
 Das Datenmodell, oder auch \enquote{Datenstruktur} im Kontext von Programmiersprachen genannt, beschreibt die Beziehungen, Einschränkungen, Semantik und Struktur der darin enthaltenen Daten \cite{wiki:datamodel}.
 \end{thesisDefinition}
 
-Im Allgemeinen enthält das Modell die Daten von den Geschäftsprozessen gebraucht und erzeugt werden und erfasst explizit deren Struktur. Modelle werden meist in einer speziellen (grafischen) Notation beschrieben (bspw. ER-Diagramm). 
+Im Allgemeinen enthält das Modell die Daten die von den Geschäftsprozessen gebraucht und erzeugt werden und erfasst explizit deren Struktur. Bei der Erstellung ist darauf zu achten das Modell möglichst präzise zu formulieren um Mehrdeutigkeiten bei der Interpretation zu vermeiden. 
+%Modelle werden meist in einer speziellen (grafischen) Notation beschrieben (bspw. ER-Diagramm). 
 
-Einteilung der Datenmodellschemas nach ANSI: %ToDo: Bibtex entry
+Einteilung der Datenmodellschemas nach ANSI:
 \begin{description}
     \item[Konzeptuelles Schema]
         beschreibt die Semantiken der Domäne und legt den Gültigkeitsbereich des Datenmodells fest.
@@ -16,9 +20,6 @@ Einteilung der Datenmodellschemas nach ANSI: %ToDo: Bibtex entry
     \item[Physisches Schema]
         definiert die Form der Speicherung der Daten auf einem Physischen Datenträger.
 \end{description}
-
-Das Datenmodell dient als Eingabe für den Generator und ist somit die Basis für die Codegenerierung. Bei der Erstellung ist darauf zu achten das Modell möglichst präzise zu formulieren um Mehrdeutigkeiten bei der Interpretation zu vermeiden. 
-%Neben den direkt im Modell enthaltenen Informationen kann der Generator auch Abhängigkeiten darin erkennen und das Modell damit semantisch anreichern. Beispielweise die Beziehungen zwischen Datentypen die aus der \gls{XSD} extrahiert wurden \ldots
 
 % konkretes Modell
 Das konkrete Modell für die Spreadshirt-API, setzt sich aus deren Beschreibung im \gls{WADL} und \gls{XSD} zusammen. Die Schnittpunkte beider Beschreibungen finden sich in der Angabe der Methodenparameter- und Rückgabewerte der \gls{WADL}-Datei, wie das folgende Listing zeigt.
@@ -52,9 +53,11 @@ Das konkrete Modell für die Spreadshirt-API, setzt sich aus deren Beschreibung 
 </resource>
 \end{lstlisting}
 
-\Cref{lst:wadlintersection} zeigt einen Ausschnitt aus der Beschreibung der API-Methode zum Erhalt der \emph{Produkttypen} eines bestimmten \emph{Users}. Punkt \ding{202} und \ding{203} sind Typangaben, wobei ersteres einen Parameter- und letzteres einen Rückgabetyp ist. Die jeweiligen Namensräume der Typen werden unter \ding{204} und \ding{205} angegeben.
+\Cref{lst:wadlintersection} zeigt einen Ausschnitt aus der Beschreibung der API-Methode zum Erhalt der \emph{Produkttypen} eines bestimmten \emph{Users}. Punkt \ding{202} und \ding{203} sind Typangaben, wobei ersteres einen Parameter- und letzteres ein Rückgabetyp ist. Die jeweiligen Namensräume der Typen werden unter \ding{204} und \ding{205} angegeben.
 
-\section{Abstract Syntax Tree (AST)}
+% todo: Datenmodell aus der Spezifikation erstellen, bei REST Vereinigung der WADL und Schemata in ein Datenmodell. Erkennen von Semantik in Spezifikation oder Datenmodell, beispielweise auflösen von Abhängigkeiten. Listing zeigt Schnittpunkte zwischen beiden Modellen. Gemeinsames Modell in Form eines Baumes (AST).
+
+\subsection{Abstract Syntax Tree (AST)}
 \label{sec:ast}
 
 \begin{thesisDefinition}[Abstract Syntax Tree -- Grune]
@@ -101,7 +104,7 @@ Er ist das Endprodukt eines Parsingschrittes des Quelltextes, im Gegensatz zum \
 
 Ein \emph{AST} bildet auch die Grundstruktur des Datenmodells für den Generator. 
 
-\section{PHP Beispiele}
+\subsection{PHP Beispiele}
 
 \begin{lstlisting}[
     language=PHP,
