@@ -1,22 +1,22 @@
-%Generative Programming p. 333
+\section{Codegeneratoren}
+
 %todo: \cite{czarnecki2000generative} in der Kapiteleinleitung erwähnen um sich wiederholende Referenzen zu vermeiden
+% todo: Satz ändern, quasi nur Übersetzung, Code-Transformatoren nicht erklärt
+
+Der Begriff \enquote{Generator} ist sehr allgemein und wird für verschiedene Technologien verwendet, wie \emph{Compiler}, \emph{Präprozessoren}, \emph{Metafunktionen} (Template-Metaprogramming in C++), \emph{Codetransformatoren} und natürlich \emph{Codegeneratoren}. 
+\emph{Generator} und \emph{Codegenerator} werden in diesem Kapitel synonym verwendet.
 
 \begin{thesisDefinition}[Codegenerator]
 Ein \emph{Codegenerator} ist ein Programm, welches aus einer höhersprachigen Spezifikation\footnote{m. a. W.: auf einem höheren Abstraktionslevel als die zur Implementierung verwendete Programmiersprache} einer Software oder eines Teilaspektes, die Implementierung erzeugt (nach \cite{czarnecki2000generative}).
 \end{thesisDefinition}
 
-% todo: folgende Liste entfernen?
-Generatoren widmen sich drei wichtigen Problemen\cite{czarnecki2000generative}:
-\begin{description}[style=nextline]
-    \item[Relevanz von Systembeschreibungen erhöhen] Eine Systembeschreibung sollte direkt und explizit die Anforderungen bestimmen und mit der Sprache der Problemdomäne formuliert sein.
-    \item[Erzeugung einer effizienten Implementierung] Die größte Herausforderung bei der Erstellung eines Generators liegt in der Abbildung von der Spezifikation zur Implementierung, da es meist keine direkte Übereinstimmung zwischen beiden Konzepten gibt.
-    \item[\enquote{Library scaling problem}] Nur die durch die Spezifikation benötigten Methoden generieren.
-\end{description}
+Folglich ist der Generator die Schnittstelle zwischen dem \emph{Modell-} und \emph{Implementationsraum}. Der Modellraum beinhaltet das \emph{domänenspezifische Modell}. Dieses Modell wird durch die höhersprachige Spezifikation in einer \emph{Systemspezifikationssprache} beschrieben. In Bezug auf einen RESTful Webservice ist bspw. \gls{WADL}\footnote{\Cref{sec:wadl}} die Spezifikationssprache und eine WADL-Datei mit den konkreten Spezifikationen demzufolge das domänenspezifische Modell.
 
-% todo: Satz ändern, quasi nur Übersetzung, Code-Transformatoren nicht erklärt
-Der Begriff \enquote{Generator} ist sehr allgemein und wird für verschiedene Technologien verwendet, wie \emph{Compiler}, \emph{Präprozessoren}, \emph{Metafunktionen} (Template-Metaprogramming in C++), \emph{Codetransformatoren} und natürlich \emph{Codegeneratoren}.
+Der Informationsgehalt der Spezifikation ist ausschlaggebend für den Grad der zu erreichenden Automatisierung.
 
 \section{Aufgaben eines Generators}
+\label{sec:generator_tasks}
+
 \begin{compactenum}
     \item Validieren der Spezifikation
     \item Spezifikation durch Vorgabewerte vervollständigen
@@ -24,8 +24,7 @@ Der Begriff \enquote{Generator} ist sehr allgemein und wird für verschiedene Te
     \item Implementierung erzeugen
 \end{compactenum}
 
-Je nach Form der Spezifikation, muss diese durch einen Analyse-Schritt (\emph{parsing}) in die interne Darstellung des Generators überfürht werden, bspw. bei einem Compiler in einen \emph{Abstrakten Syntaxbaum} (siehe \cref{sec:ast}).
-Der Informationsgehalt der Spezifikation ist ausschlaggebend für den Grad der zu erreichenden Automatisierung.
+Je nach Form der Spezifikation, muss diese durch einen Analyse-Schritt (\emph{parsing}) in die interne Darstellung des Generators überführt werden, bspw. bei einem Compiler in einen \emph{Abstrakten Syntaxbaum} (siehe \cref{sec:ast}).
 
 \section{Vorteile für den Entwickler}
 
