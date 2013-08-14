@@ -18,6 +18,7 @@ Der Informationsgehalt der Spezifikation ist ausschlaggebend für den Grad der z
 \label{sec:generator_tasks}
 
 \begin{compactenum}
+    \item[optional)] Analyse der Spezifikation
     \item Validieren der Spezifikation
     \item Spezifikation durch Vorgabewerte vervollständigen
     \item Optimierungen vornehmen
@@ -27,8 +28,9 @@ Der Informationsgehalt der Spezifikation ist ausschlaggebend für den Grad der z
 Je nach Form der Spezifikation, muss diese durch einen Analyse-Schritt (\emph{parsing}) in die interne Darstellung des Generators überführt werden, bspw. bei einem Compiler in einen \emph{Abstrakten Syntaxbaum} (siehe \cref{sec:ast}).
 
 \section{Vorteile für den Entwickler}
+\label{sec:advantages_for_the_developer}
 
-Die folgende Auflistung basiert ebenfalls auf \cite[][S. 15]{czarnecki2000generative}.
+Bei der Nutzung eines Codegenerierungsansatzes ergeben sich nach \cite[][S. 15]{herrington2003code} folgende Vorteile für den Entwickler:
 
 \begin{description}
     \item[Qualität]
@@ -37,18 +39,18 @@ Die folgende Auflistung basiert ebenfalls auf \cite[][S. 15]{czarnecki2000genera
         Durch ein vorgegebenes Schema für die Schnittstellen- und Variablenbezeichner wird eine hohe Einheitlichkeit erreicht.
     \item[zentrale Wissensbasis]
         % todo: Metamodell erklären
-        Das domänenspezifische Wissen wird in dem Metamodell gebündelt, das dem Generator als Eingabe dient. Änderungen am Modell werden durch den Generator in die gesamte Codebasis eingepflegt.
+        Das domänenspezifische Wissen wird in dem Meta- oder auch domänenspezifischen Modell gebündelt, das dem Generator als Eingabe dient. Änderungen am Modell werden durch den Generator in die gesamte Codebasis eingepflegt.
     \item[signifikantere Designentscheidungen]
-        Aufgrund des verringerten Implementierungsaufwandes kann der Entwickler mehr Zeit für das Design seiner Architektur , API etc. verwenden. Designfehlentscheidungen können durch Änderungen an den Templates korrigiert werden und bedürfen somit keiner manuellen Korrektur aller generierten Klassen.
+        Aufgrund des verringerten Implementierungsaufwandes kann der Entwickler mehr Zeit für das Design seiner Architektur, API etc. verwenden. Designfehlentscheidungen können durch Änderungen am Modell oder auch Templates\footnote{Falls der Generator seinen Code über einen Templateansatz erzeugt.} korrigiert werden und bedürfen somit keiner manuellen Korrektur aller generierten Klassen.
 \end{description}
 
 Die Erstellung eines Generatorsystems geht mit einem nicht unerheblichen Aufwand einher, dieser sollte in Relation zum Umfang des zu erzeugenden Codes gesehen werden.
 Ist der Umfang des Erzeugnisses zu gering, kann der Aufwand zur Entwicklung einer Generatorlösung kontraproduktiv sein.
 
 \section{Generatorformen}
+\label{sec:generator_models}
 
-Eine Form der Klassifikation von Codegeneratoren ist nach der Menge des erzeugten Codes:
-
+Die folgende Tabelle klassifiziert einige Generatorformen nach der Menge des erzeugten Codes:
 \begin{table}[htb]
     \begin{longtable}[c]{l l l}
         \toprule
@@ -64,7 +66,7 @@ Eine Form der Klassifikation von Codegeneratoren ist nach der Menge des erzeugte
     \end{longtable} 
 \end{table}
 
-Generatorformen nach \cite{herrington2003code}:
+\citeauthor{herrington2003code} beschreibt in \cite[Kapitel 4][]{herrington2003code} die Formen aus \Cref{tab:generatorclassification} so:
 \begin{description}
     \item[Inline-Code Expander]
         Ein Inline-Code Expander nimmt Quellcode als Eingabe und ersetzt spezielle Mark-Up Sequenzen durch seine Ausgabe. Die Änderungen werden hierbei nicht in das Quellfile übernommen sondern meist direkt zu dem Compiler oder Interpreter weitergeleitet.
@@ -82,10 +84,9 @@ Die Entwicklung einer \enquote{Full-Domain Language} stellt die oberste Stufe de
 
 \section{Optimierung durch den Generator}
 
-Die Effektivität von Optimierungen steigt mit dem Abstraktionslevel, deshalb ist es ratsam diese vom Generator durchführen zu lassen. Im Gegensatz zum Compiler, der viele dieser Optimierungen auch selbst durchführt, besitzt der Generator domänenspezifisches \enquote{Wissen} (\emph{domain-specific optimization}) und kann teilweise ohne Abhängigkeiten der Zielsprache optimieren.
+Die Effektivität von Optimierungen steigt mit dem Abstraktionslevel, deshalb ist es ratsam diese vom Generator durchführen zu lassen. Im Gegensatz zum Compiler, der viele dieser Optimierungen auch selbst durchführt, besitzt der Generator domänenspezifisches \enquote{Wissen} und kann teilweise ohne Abhängigkeiten der Zielsprache optimieren (\emph{domain-specific optimization}).
 
-Nachfolgend eine Auflistung möglicher Optimierungen:
-% global optimizations?
+\citeauthor{czarnecki2000generative} beschreiben in \cite{czarnecki2000generative} Optimierungen die vom Generator durchgeführt werden können, einen um \emph{Parallelisierung} erweiterten Auszug bietet die nachfolgende Liste:
 
 \begin{description}[style=nextline]
 \item[Inlining]
