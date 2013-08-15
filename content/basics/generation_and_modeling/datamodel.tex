@@ -2,14 +2,19 @@
 \label{section:datamodel}
 
 % todo: Spezifikation oder domänenspezifisches Modell?
-Das Datenmodell enthält die Informationen der Spezifikation und ist somit die Basis der Codegenerierung. \citeauthor{wiki:datamodel} definiert den Begriff folgendermaßen:
-% Definition ersetzen durch "Modellgetriebne Softwareentwicklung - Trompeter"
-\begin{thesisDefinition}[Datenmodell]
-Das Datenmodell, oder auch \enquote{Datenstruktur} im Kontext von Programmiersprachen genannt, beschreibt die Beziehungen, Einschränkungen, Semantik und Struktur der darin enthaltenen Daten \cite{wiki:datamodel}.
-\end{thesisDefinition}
+Das Datenmodell enthält die Informationen der Spezifikation und dient als Eingabe für den Generator, es ist somit die \emph{Basis der Codegenerierung}. \citeauthor{rfc3198} definieren den Begriff in \cite{rfc3198} folgenderweise\footnote{eigene Übersetzung}:
 
-Im Allgemeinen enthält das Modell die Daten die von den Geschäftsprozessen gebraucht und erzeugt werden und erfasst explizit deren Struktur. Bei der Erstellung ist darauf zu achten das Modell möglichst präzise zu formulieren um Mehrdeutigkeiten bei der Interpretation zu vermeiden. 
-%Modelle werden meist in einer speziellen (grafischen) Notation beschrieben (bspw. ER-Diagramm). 
+\thesisDefinition{Datenmodell}{
+    Ein Datenmodell ist im Grunde die Darstellung eines Informationsmodells unter Berücksichtigung einer Menge von Mechanismen für die Darstellung, Organisierung, Speicherung und Bearbeitung von Daten.
+    Das Modell besteht aus einer Sammlung von \ldots
+    \begin{compactitem}
+        \item{Datenstrukturen, wie Listen, Tabellen, Relationen etc.}
+        \item{Operationen die auf die Strukturen angewendet werden können, wie Abfrage, Aktualisierung, ...}
+        \item{Integritätsbedingungen die gültige Zustände (Menge von Werten) odder Zustandsänderungen (Operationen auf Werten) definieren.}
+    \end{compactitem}
+}
+
+Bei dieser Definition wird der Begriff \emph{Informationsmodell} genutzt, er beschreibt die Informationen die im Datenmodell abgebildet werden sollen ohne Berücksichtigung softwaretechnischer Aspekte. Das Informationsmodell stellt somit die \enquote{natürlichen Daten} dar.
 
 Einteilung der Datenmodellschemas nach ANSI:
 \begin{description}
@@ -60,14 +65,16 @@ Das konkrete Modell für die Spreadshirt-API, setzt sich aus deren Beschreibung 
 \subsection{Abstract Syntax Tree (AST)}
 \label{sec:ast}
 
-\begin{thesisDefinition}[Abstract Syntax Tree -- Grune]
-Der abstrakte Syntaxbaum (engl. \enquote{Abstract Syntax Tree}) stellt die verschiedenen Teile eines Programmtextes aus Sicht der Grammatik, dar \cite[][S. 9 ff.]{gruneCompiler}.
-\end{thesisDefinition}
-\begin{thesisDefinition}[Abstract Syntax Tree -- Aho]
+\thesisDefinition{Abstract Syntax Tree -- Grune}{
+Der abstrakte Syntaxbaum (engl. \enquote{Abstract Syntax Tree}) stellt die verschiedenen Teile eines Programmtextes aus Sicht der Grammatik, dar %\cite[][S. 9 ff.]{gruneCompiler}.
+}
+
+\thesisDefinition{Abstract Syntax Tree -- Aho}{
 Ein Abstrakter Syntaxbaum ist die Darstellung eines Ausdrucks, wo jeder Knoten einen \emph{Operator} und dessen Kindknoten die \emph{Operanden} repräsentieren.
 %Jeder Knoten eines \emph{Abstrakten Syntax Baumes} für einen Ausdruck, repräsentiert einen \emph{Operator} und dessen Kindknoten stellen die  \emph{Operanden} dar. 
-Im Allgemeinen kann für jedes Programmierkonstrukt ein Operator erzeugt werden, dessen semantisch bedeutsamen Komponenten dann als Operanden gehandhabt werden (nach \cite[][S. 69]{ahoCompiler}).
-\end{thesisDefinition}
+%Im Allgemeinen kann für jedes Programmierkonstrukt ein Operator erzeugt werden, dessen semantisch bedeutsamen Komponenten dann als Operanden gehandhabt werden (nach \cite[][S. 69]{ahoCompiler}).
+}
+
 Er ist das Endprodukt eines Parsingschrittes des Quelltextes, im Gegensatz zum \emph{konkreten Syntaxbaum} (auch \emph{Parse Tree}) enthält der \emph{AST} keine Formatierungsspezifische Syntax (bspw. Klammern). 
 
 \begin{figure}[htb]
