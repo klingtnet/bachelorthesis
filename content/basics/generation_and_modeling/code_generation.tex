@@ -14,7 +14,7 @@ Folglich ist der Generator die Schnittstelle zwischen dem \emph{Modell-} und \em
 
 Der Informationsgehalt der Spezifikation ist ausschlaggebend für den Grad der zu erreichenden Automatisierung.
 
-\section{Aufgaben eines Generators}
+\subsection{Aufgaben eines Generators}
 \label{sec:generator_tasks}
 
 \begin{compactenum}
@@ -27,7 +27,7 @@ Der Informationsgehalt der Spezifikation ist ausschlaggebend für den Grad der z
 
 Je nach Form der Spezifikation, muss diese durch einen Analyse-Schritt (\emph{parsing}) in die interne Darstellung des Generators überführt werden, bspw. bei einem Compiler in einen \emph{Abstrakten Syntaxbaum} (siehe \cref{sec:ast}).
 
-\section{Vorteile für den Entwickler}
+\subsection{Vorteile für den Entwickler}
 \label{sec:advantages_for_the_developer}
 
 Bei der Nutzung eines Codegenerierungsansatzes ergeben sich nach \cite[][S. 15]{herrington2003code} folgende Vorteile für den Entwickler:
@@ -47,7 +47,7 @@ Bei der Nutzung eines Codegenerierungsansatzes ergeben sich nach \cite[][S. 15]{
 Die Erstellung eines Generatorsystems geht mit einem nicht unerheblichen Aufwand einher, dieser sollte in Relation zum Umfang des zu erzeugenden Codes gesehen werden.
 Ist der Umfang des Erzeugnisses zu gering, kann der Aufwand zur Entwicklung einer Generatorlösung kontraproduktiv sein.
 
-\section{Generatorformen}
+\subsection{Generatorformen}
 \label{sec:generator_models}
 
 Die folgende Tabelle klassifiziert einige Generatorformen nach der Menge des erzeugten Codes:
@@ -82,7 +82,7 @@ Die folgende Tabelle klassifiziert einige Generatorformen nach der Menge des erz
 
 Die Entwicklung einer \enquote{Full-Domain Language} stellt die oberste Stufe der Generatorformen dar. Eine solche Sprache ist Turing-vollständig und speziell auf die Problemdomäne ausgerichtet.
 
-\section{Optimierung durch den Generator}
+\subsection{Optimierung durch den Generator}
 
 Die Effektivität von Optimierungen steigt mit dem Abstraktionslevel, deshalb ist es ratsam diese vom Generator durchführen zu lassen. Im Gegensatz zum Compiler, der viele dieser Optimierungen auch selbst durchführt, besitzt der Generator domänenspezifisches \enquote{Wissen} und kann teilweise ohne Abhängigkeiten der Zielsprache optimieren (\emph{domain-specific optimization}).
 

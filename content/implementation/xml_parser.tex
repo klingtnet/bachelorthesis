@@ -13,6 +13,8 @@ Die \emph{Java API for XML Processing} kurz \emph{JAXP} abstrahiert die Parsersc
     \item[TrAX] \emph{Transformation API for XML} bietet eine Schnittstelle mit der sich XML-Dokumente durch \emph{Extensible Stylesheet Language Transformations (XSLT)} in Java transformieren lassen.
 \end{description}
 
+\Cref{tab:xmlParsingModels} enthält eine Übersicht zu den Parsing-Konzepten, ausgenommen \emph{TrAX} da diese API vorwiegend für die Modifikation von XML-Dateien gedacht ist.
+
 Bei dem zu entwickelnden Codegenerator sind der Speicherverbrauch und die verwendete CPU-Zeit kein Teil der \emph{nichtfunktionalen Anforderungen}, somit fiel die Entscheidung auf einen DOM-Parser. Dieser lässt sich durch das komplett im Speicher gehaltene Objektmodell mit geringem Aufwand verwenden. Durch JAXP ist die Implementierung transparent und es wird die im \emph{JDK} enthaltene Standart DOM-Parser Implementierung verwendet.
 
 \begin{table}[tb]
@@ -21,10 +23,12 @@ Bei dem zu entwickelnden Codegenerator sind der Speicherverbrauch und die verwen
         \rowcolor{lightgray}
         & \textbf{DOM}   & \textbf{SAX}   & \textbf{StAX} \\
         \midrule
-        \textbf{Speicherverbrauch} & hoch & gering & \textless{} DOM\\
-        \textbf{Prozessorlast} & hoch & gering & gering \\
-        \textbf{Elementzugriff} & beliebig & seriell & seriell \\
-        \textbf{Implementierungsaufwand} & niedrig & hoch & mittel \\
+        \textbf{API-Typ}                    & In-Memory Tree    & push-streaming    & pull-streaming\\
+        \textbf{Speicherverbrauch}          & hoch              & gering            & \textless{} DOM\\
+        \textbf{Prozessorlast}              & hoch              & gering            & gering \\
+        \textbf{Elementzugriff}             & beliebig          & seriell           & seriell \\
+        \textbf{Nutzerfreundlichkeit}       & niedrig           & hoch              & mittel \\
+        \textbf{XML schreiben}              & ja                & nein              & ja \\
         \bottomrule
         \caption{Übersicht über die verschiedenen XML-Parsing Konzepte in JAXP}
         \label{tab:xmlParsingModels}

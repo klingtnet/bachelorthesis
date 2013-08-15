@@ -1,5 +1,5 @@
 \section{Datenmodell}
-\label{section:datamodel}
+\label{sec:datamodel}
 
 % todo: Spezifikation oder domänenspezifisches Modell?
 Das Datenmodell enthält die Informationen der Spezifikation und dient als Eingabe für den Generator, es ist somit die \emph{Basis der Codegenerierung}. \citeauthor{rfc3198} definieren den Begriff in \cite{rfc3198} folgenderweise\footnote{eigene Übersetzung}:
@@ -16,19 +16,23 @@ Das Datenmodell enthält die Informationen der Spezifikation und dient als Einga
 
 Bei dieser Definition wird der Begriff \emph{Informationsmodell} genutzt, er beschreibt die Informationen die im Datenmodell abgebildet werden sollen ohne Berücksichtigung softwaretechnischer Aspekte. Das Informationsmodell stellt somit die \enquote{natürlichen Daten} dar.
 
-% todo: Datenmodell aus der Spezifikation erstellen, bei REST Vereinigung der WADL und Schemata in ein Datenmodell. Erkennen von Semantik in Spezifikation oder Datenmodell, beispielweise auflösen von Abhängigkeiten. Listing zeigt Schnittpunkte zwischen beiden Modellen. Gemeinsames Modell in Form eines Baumes (AST).
+Bei einem Codegenerator entspricht das Datenmodell der internen Darstellung der Spezifikation. Neben den direkt in der Spezifikation enthaltenen Informationen kann der Generator im Analyseschritt (siehe \cref{sec:generator_tasks}) bspw. Datenabhängigkeiten erkennen und diese zur Optimierung nutzen oder das interne Datenmodell damit anreichern. Das \emph{erkennen von Semantik} im Eingabemodell ist aber nicht auf Datenabhängigkeiten beschränkt sondern kann auf beliebige Beziehungen ausgeweitet werden. 
+
+% todo: Datenmodell aus der Spezifikation erstellen, bei REST Vereinigung der WADL und Schemata in ein Datenmodell. Listing zeigt Schnittpunkte zwischen beiden Modellen. Gemeinsames Modell in Form eines Baumes (AST).
+% todo: Erklärung warum AST erklärt wird ...
 
 \subsection{Abstract Syntax Tree (AST)}
 \label{sec:ast}
 
-\thesisDefinition{Abstract Syntax Tree -- Grune}{
-Der abstrakte Syntaxbaum (engl. \enquote{Abstract Syntax Tree}) stellt die verschiedenen Teile eines Programmtextes aus Sicht der Grammatik, dar %\cite[][S. 9 ff.]{gruneCompiler}.
+Eine anschauliche Definition enthält \cite[][S. 69]{ahoCompiler} (eigene Übersetzung) :
+\thesisDefinition{Abstract Syntax Tree -- \citeauthor{ahoCompiler}}{
+Ein Abstrakter Syntaxbaum ist die Darstellung eines Ausdrucks, wo jeder Knoten einen \emph{Operator} und dessen Kindknoten die \emph{Operanden} repräsentieren.
+Im Allgemeinen kann für jedes Programmierkonstrukt ein Operator erzeugt werden, dessen semantisch bedeutsamen Komponenten dann als Operanden gehandhabt werden.
 }
 
-\thesisDefinition{Abstract Syntax Tree -- Aho}{
-Ein Abstrakter Syntaxbaum ist die Darstellung eines Ausdrucks, wo jeder Knoten einen \emph{Operator} und dessen Kindknoten die \emph{Operanden} repräsentieren.
-%Jeder Knoten eines \emph{Abstrakten Syntax Baumes} für einen Ausdruck, repräsentiert einen \emph{Operator} und dessen Kindknoten stellen die  \emph{Operanden} dar. 
-%Im Allgemeinen kann für jedes Programmierkonstrukt ein Operator erzeugt werden, dessen semantisch bedeutsamen Komponenten dann als Operanden gehandhabt werden (nach \cite[][S. 69]{ahoCompiler}).
+Etwas kürzer definiert \citeauthor{gruneCompiler} den Begriff in \cite[][S. 9 ff.]{gruneCompiler} (eigene Übersetzung):
+\thesisDefinition{Abstract Syntax Tree -- \citeauthor{gruneCompiler}}{
+Der abstrakte Syntaxbaum stellt die verschiedenen Teile eines Programmtextes aus Sicht der Grammatik, dar.
 }
 
 Er ist das Endprodukt eines Parsingschrittes des Quelltextes, im Gegensatz zum \emph{konkreten Syntaxbaum} (auch \emph{Parse Tree}) enthält der \emph{AST} keine Formatierungsspezifische Syntax (bspw. Klammern). 
@@ -67,17 +71,8 @@ Er ist das Endprodukt eines Parsingschrittes des Quelltextes, im Gegensatz zum \
 
 Ein \emph{AST} bildet auch die Grundstruktur des Datenmodells für den Generator. 
 
-\subsection{PHP Beispiele}
+%\subsection{PHP Beispiele}
 
-\begin{lstlisting}[
-    language=PHP,
-    caption=Abfrage der Designs eines Users per HTTP-GET
-    ]
-<?php
+%\input{content/basics/generation_and_modeling/conceptual_model}
 
-?>
-\end{lstlisting}
-
-\input{content/basics/generation_and_modeling/conceptual_model}
-
-\input{content/basics/generation_and_modeling/dsl}
+%\input{content/basics/generation_and_modeling/dsl}
