@@ -18,8 +18,7 @@ Bei dieser Definition wird der Begriff \emph{Informationsmodell} genutzt, er bes
 
 Bei einem Codegenerator entspricht das Datenmodell der internen Darstellung der Spezifikation. Neben den direkt in der Spezifikation enthaltenen Informationen kann der Generator im Analyseschritt (siehe \cref{sec:generator_tasks}) bspw. Datenabhängigkeiten erkennen und diese zur Optimierung nutzen oder das interne Datenmodell damit anreichern. Das \emph{erkennen von Semantik} im Eingabemodell ist aber nicht auf Datenabhängigkeiten beschränkt sondern kann auf beliebige Beziehungen ausgeweitet werden. 
 
-% todo: Datenmodell aus der Spezifikation erstellen, bei REST Vereinigung der WADL und Schemata in ein Datenmodell. Listing zeigt Schnittpunkte zwischen beiden Modellen. Gemeinsames Modell in Form eines Baumes (AST).
-% todo: Erklärung warum AST erklärt wird ...
+Wie man in \Cref{fig:wadlstructure} erkennen kann, entspricht die Struktur einer WADL-Datei einem Baum. Aus diesem Grund eignet sich eine Baumstruktur für das Datenmodell des Generators besonders gut. Um die Zielsprache (siehe \cref{sec:target_language}) im internen Datenmodell abbilden zu können, wird ein \gls{AST} als Datenstruktur gewählt.
 
 \subsection{Abstract Syntax Tree (AST)}
 \label{sec:ast}
@@ -70,9 +69,3 @@ Er ist das Endprodukt eines Parsingschrittes des Quelltextes, im Gegensatz zum \
 \end{figure}
 
 Ein \emph{AST} bildet auch die Grundstruktur des Datenmodells für den Generator. 
-
-%\subsection{PHP Beispiele}
-
-%\input{content/basics/generation_and_modeling/conceptual_model}
-
-%\input{content/basics/generation_and_modeling/dsl}
