@@ -1,0 +1,40 @@
+* About to connect() to api.spreadshirt.net port 80 (#0)
+*   Trying 2.17.214.208...
+* Connected to api.spreadshirt.net (2.17.214.208) port 80 (#0)
+> GET /api/v1/locales HTTP/1.1
+> User-Agent: curl/7.29.0
+> Host: api.spreadshirt.net
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< Expires: Tue, 20 Aug 2013 19:05:25 GMT
+< Content-Language: en-gb
+< Content-Type: application/xml;charset=UTF-8
+< X-Cache-Lookup: MISS from fish07:80
+< X-Server-Name: mem1
+< True-Client-IP: 88.79.226.66
+< Date: Tue, 20 Aug 2013 07:20:25 GMT
+< Content-Length: 1659
+< Connection: keep-alive
+< 
+{ [data not shown]
+* Connection #0 to host api.spreadshirt.net left intact
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<locales xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://api.spreadshirt.net" xlink:href="http://api.spreadshirt.net/api/v1/locales" offset="0" limit="50" count="16" sortField="default" sortOrder="default">
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/de_DE" id="de_DE"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/fr_FR" id="fr_FR"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/en_GB" id="en_GB"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/nl_NL" id="nl_NL"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/it_IT" id="it_IT"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/no_NO" id="no_NO"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/se_SE" id="se_SE"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/es_ES" id="es_ES"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/en_EU" id="en_EU"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/en_IE" id="en_IE"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/dk_DK" id="dk_DK"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/pl_PL" id="pl_PL"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/fi_FI" id="fi_FI"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/de_AT" id="de_AT"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/fr_BE" id="fr_BE"/>
+    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/nl_BE" id="nl_BE"/>
+</locales>

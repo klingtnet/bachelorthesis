@@ -130,7 +130,7 @@ Die vorhandenen Verknüpfungen legen fest welche Zustandsübergänge  erlaubt si
 
 Durch die Nutzung von \emph{Standardmethoden} ist abgesichert das eine Anwendung mit den Ressourcen arbeiten kann, vorausgesetzt sie unterstützt diese. 
 
-\gls{REST} ist nicht auf HTTP beschränkt, praktisch alle REST-APIs nutzen aber dieses Protokoll. HTTP umfasst dabei folgende Methoden\footnote{Kapitel 9 des HTTP 1.1 RFC2616 beschreibt diese inklusive \emph{TRACE} und \emph{CONNECT} umfassend \cite{HTTP11RFC}}:
+\gls{REST} ist nicht auf HTTP beschränkt, praktisch alle REST-APIs nutzen aber dieses Protokoll. HTTP umfasst dabei folgende Methoden\footnote{Kapitel 9 des HTTP 1.1 RFC2616 beschreibt diese inklusive \emph{TRACE} und \emph{CONNECT} umfassend \cite{rfc2616}}:
 \begin{compactitem}
     \item GET
     \item PUT
@@ -140,13 +140,13 @@ Durch die Nutzung von \emph{Standardmethoden} ist abgesichert das eine Anwendung
     \item OPTIONS
 \end{compactitem}
 
-Alle bis auf \emph{POST} und \emph{OPTIONS} sind \emph{idempotent} (\cite{HTTP11RFC} Kapitel 9), d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf. Dies bedeutet das sich ein \emph{RESTful Web Service} serverseitig ebenso verhalten muss.
+Alle bis auf \emph{POST} und \emph{OPTIONS} sind \emph{idempotent} (\cite{rfc2616} Kapitel 9), d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf. Dies bedeutet das sich ein \emph{RESTful Web Service} serverseitig ebenso verhalten muss.
 
 \subsubsection{Repräsentationen von Ressourcen}
 \label{sec:representationofresources}
 
 Die Repräsentation sollte unabhängig von der Ressource sein, um die Darstellung gegebenenfalls für den Client anzupassen. 
-Die Client-Anwendung kann dadurch mittels \emph{Query-Parameter} oder als Information im \emph{HTTP-Header} das gewünschte Format angeben und erhält die entsprechend formatierte Antwort.
+Die Client-Anwendung kann dadurch mittels \emph{Query-Parameter} oder als Information im \emph{HTTP-Header} (siehe \cref{sec:http-header}) das gewünschte Format angeben und erhält die entsprechend formatierte Antwort.
 Anhand des \emph{Content-Type} Feldes aus dem HTTP-Header kann der Client das Format der Antwort überprüfen, für \gls{JSON} lautet dies bspw. \texttt{application/json}.
 
 \subsubsection{Statuslose Kommunikation}
