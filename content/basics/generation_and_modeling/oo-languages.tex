@@ -28,13 +28,21 @@ Die Beschreibung der Elemente einer OO-Sprache basiert auf \cite{oopSkript2012}.
     \item[Access Modifier]    
         Access Modifier regeln den Zugriff auf die Elemente eines Objektes, die gebräuchlichsten sind hierbei \texttt{public, private} und \texttt{protected}, durch deren Verwendung wird die Kapselung von Daten erreicht. Welche Arten der Zugriffskontrolle letztendlich vorhanden sind ist abhängig von der verwendeten Programmiersprache.
     \item[Namensräume]
-        Namensräume erlauben die Verwendung von gleichen Bezeichnern in unterschiedlichen Namensräumen. Wie im Punkt Objekte erwähnt, bilden diese bspw. einen eigenen Namensraum. Der Zugriff auf ein Element eines Objektes erfolgt über seinen Namensraum, will man auf das Element \texttt{bar} des Objektes \texttt{foo} zugreifen, geschieht dies z.B. in Java folgendermaßen: \texttt{foo.bar}.
+        Namensräume erlauben die Verwendung von gleichen Bezeichnern in unterschiedlichen Namensräumen. Wie im Punkt Objekte erwähnt, bilden diese bspw. einen eigenen Namensraum. Der Zugriff auf ein Element eines Objektes erfolgt über seinen Namensraum, will man auf das Element \texttt{bar} des Objektes \texttt{foo} zugreifen, geschieht dies z.B. in PHP folgendermaßen: \texttt{foo->bar}.
+        % todo: packages, namespace (section 7 of the java language specification)
+        % PHP als Beispiel
 \end{description}
 
 \subsection{PHP}
 \label{sec:php}
 
-PHP ist keine \enquote{reine} OO-Programmiersprache sondern unterstützt wie die meisten OO-Sprachen mehrere Paradigmen. 
+Objektorientierung seit PHP 5
+
+\begin{compactitem}
+    \item interpretiert, nicht kompiliert
+    \item dynamisch typisiert
+\end{compactitem}
+
 
 \begin{lstlisting}[language=php]
 <?php
@@ -55,6 +63,7 @@ class foo {
 ?>
 \end{lstlisting}
 
-Listing, Besonderheiten erwähnen (Syntax)
+% listing besonderheiten, keine reine OO-Sprache, unterstützt mehrere Paradigmen
 
 % todo: Sprachmodell .php basierend auf Datei, da letztendlich auch files generiert werden sollen.
+
