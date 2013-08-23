@@ -21,12 +21,14 @@ time.}
 Eine Ressource kann somit alle Konzepte abbilden die sich über einen Bezeichner referenzieren lassen. Dies können konkrete Dokumente, aber auch Dienste oder sogar Sammlungen von Ressourcen sein.
 Außerdem identifiziert ein Ressourcenbezeichner, meist eine \emph{URI} (siehe \cref{sec:unambigiousidentification}), immer dieselbe Ressource, nicht aber deren Wert oder Zustand.
 
+Ein Beispiel für eine Ressource in der Spreadshirt API \texttt{/users/\{userid\}}, wobei \texttt{\{userid\}} die ID eines konkreten Nutzers bezeichnet. Diese Ressource enthält dabei eine Menge von Elementen, ein Beispiel für eine Ressource die nur ein einziges Element enthält ist \texttt{/serverTime}. 
+
 \subsubsection{Repräsentation}
 
 Eine Repräsentation (\emph{representation}) stellt den aktuellen oder den gewünschten Zustand einer Ressource dar. Das Format der Repräsentation ist dabei unabhängig von dem der Ressource, siehe \cref{sec:representationofresources}.
 Aktionen mit Komponenten einer REST-API werden durch den Austausch von solchen Repräsentationen durchgeführt.
 
-Im Allgemeinen wird unter einer Repräsentation nur eine Folge von Bytes verstanden, inklusive \emph{Metainformationen} welche den Inhalt der Bytefolge klassifiziert, sowie \emph{Kontrolldaten} die die gewünschte Aktion oder die Bedeutung der Anfrage beschreiben. Letztere sind meist HTTP-Header-Felder\footnote{für die HTTP-Header-Definitionen siehe \url{http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html\#sec14.43}}, bspw. um das Cachingverhalten zu ändern.
+Im Allgemeinen wird unter einer Repräsentation nur eine Folge von Bytes verstanden, inklusive \emph{Metainformationen} welche den Inhalt der Bytefolge klassifiziert, sowie \emph{Kontrolldaten} die die gewünschte Aktion oder die Bedeutung der Anfrage beschreiben. Letztere sind meist HTTP-Header-Felder (siehe \cref{sec:http-header}), bspw. um das Cachingverhalten zu ändern.
 
 \begin{minipage}{\textwidth}
     \begin{lstlisting}[
@@ -89,7 +91,7 @@ Ausgangsparameter:
 
 \begin{description}
     \item[Ursprungsserver] 
-        Serverseitiger Konnektor der den Namespace der angeforderten Ressource verwaltet. Er ist die einzige Quelle für Repräsentationen, sowie der endgültige Empfänger von Änderungsanfragen an seine Ressourcen. (siehe \cref{sec:unambigiousidentification}).
+        Serverseitiger Konnektor der die angeforderten Ressourcen verwaltet. Er ist die einzige Quelle für Repräsentationen, sowie der endgültige Empfänger von Änderungsanfragen an seine Ressourcen. (siehe \cref{sec:unambigiousidentification}).
     \item[Proxy] Zwischenkomponente die explizit vom Client verwendet kann, aus Sicherheits-, Performance- oder Kompatibilitätsgründen.
     \item[Gateway] Dient als Schnittstelle zwischen Client- und Servernetzwerk, kann zusätzlich aus den gleichen Gründen wie der Proxy verwendet werden. Konträr zum Proxy kann der Client aber nicht entscheiden ob er einen Gateway nutzen möchte.
     \item[User Client] 
@@ -122,8 +124,7 @@ Nachfolgend eine Beispiel-URI, um den Artikel 42 aus dem Warenkorb 84 anzusprech
 
 Innerhalb einer Ressource kann auf weitere verlinkt werden (\emph{Hypermedia}). Als Nebeneffekt der eindeutigen Identifikation durch \glspl{URI} sind diese auch außerhalb des Kontextes der aktuellen Anwendung gültig. 
 
-Das Folgen eines Links entspricht dabei einer Zustandsänderung innerhalb der Anwendung.
-Die vorhandenen Verknüpfungen legen fest welche Zustandsübergänge  erlaubt sind.
+% Das Folgen eines Links entspricht dabei einer Zustandsänderung innerhalb der Anwendung. Die vorhandenen Verknüpfungen legen fest welche Zustandsübergänge erlaubt sind.
 
 \subsubsection{Standardmethoden}
 \label{sec:standardmethods}

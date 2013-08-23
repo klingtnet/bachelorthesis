@@ -7,7 +7,7 @@
 
 Im Gegensatz zu XML ist JSON weit weniger mächtig, es gibt z.B. keine Unterstützung für Namensräume und es wird nur eine geringe Menge an Datentypen unterstützt (siehe \cref{tab:jsonDatatypes}). 
 Durch seine einfache Struktur wird aber ein deutlich geringerer \enquote{syntaktischer Overhead} erzeugt.
-Mit \printhref{http://tools.ietf.org/id/draft-zyp-json-schema-03.html}{JSON Schema} ist es möglich eine Dokumentstruktur vorzugeben und gegen diese zu validieren. 
+Mit \emph{JSON Schema} \cite{json-schema-draft} ist es möglich eine Dokumentstruktur vorzugeben und gegen diese zu validieren. 
 
 \begin{table}[tb]
     \begin{longtable}[c]{l l}
@@ -26,7 +26,8 @@ Mit \printhref{http://tools.ietf.org/id/draft-zyp-json-schema-03.html}{JSON Sche
     \end{longtable}
 \end{table}
 
-Objekte werden in JSON von geschweiften- \ding{202}, Arrays hingegen von geschlossenen Klammern begrenzt \ding{203}. Diese dürfen beliebig tief geschachtelt werden und auch Schlüssel-Wert-Paare (\emph{key-value-pairs} \ding{204}) enthalten. \emph{Schlüssel sind immer Zeichenketten}, die Werte dürfen von allen Typen aus \cref{tab:jsonDatatypes} sein.
+Objekte werden in JSON von geschweiften- \ding{202}, Arrays hingegen von eckigen Klammern begrenzt \ding{203}. 
+Objekte enthalten \emph{key-value-pairs} (Schlüssel-Wert-Paare) \ding{204}. Schlüssel sind immer Zeichenketten, die Werte dürfen von allen Typen aus \cref{tab:jsonDatatypes} sein und beliebig tief geschachtelt werden.
 %
 % wrapping in a minipage prevents the listings block from splitting on pagebreak
 %
