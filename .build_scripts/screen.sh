@@ -18,7 +18,7 @@ if [ $# == 2 ]; then
         echo "|______| Screen version"
         echo "  /__\\ "
         echo -e "\n------------------ xelatex (#1) --------------------\n"     
-        xelatex $XELATEX_OPTS -no-pdf thesis #|grep --ignore-case --extended-regex "info|warning|error|^\([A-Za-z0-9]*\)"
+        xelatex $XELATEX_OPTS -no-pdf thesis
         echo -e "\n------------------- biber --------------------------\n" 
         biber $BIBER_OPTS thesis
         echo -e "\n--------------- makeglossaries ---------------------\n"         
