@@ -15,7 +15,7 @@ Um effektiv mit der XML Darstellung arbeiten zu können wird diese zuerst mit ei
     \begin{center}
         \includegraphics[width=0.5\textwidth]{resources/restmodel}
     \end{center}
-    \caption{UML-Diagramm des REST-Modells}
+    \caption{UML Klassendiagramm des REST-Modells}
     \label{fig:restmodel}
 \end{figure}
 
@@ -33,10 +33,24 @@ Das \textbf{Response} Element enthält eine Menge von \emph{Representations}, so
 
 \textbf{Representation} dient zur Beschreibung der Daten welche entweder zur API gesendet oder von dieser empfangen werden, sie besteht aus einer Angabe des \emph{media-type}, des HTTP-Statuscodes und eine Referenz auf die Definition des Datentyps. Die \emph{Representation} eines Request einer PUT- oder POST-Methode charakterisiert zum Beispiel den Aufbau der Daten welche der Ressource übermittelt werden, üblicherweise im HTTP-Body. Die Charakterisierung erfolgt dabei in Form einer Referenz auf einen Typ aus einer Schemabeschreibung sowie der Angabe des \emph{media-type}. Die \emph{Representation} der PUT-Methode auf Ressource \texttt{users/\{userId\}/designs/\{designId\}} enthält den media-type \texttt{application/xml} und eine Referenz auf den Typ \texttt{sns:design}. 
 
-Referenzen auf Typdeklaration aus einer Schemabeschreibung werden nachfolgend im Modell durch die konkrete Deklaration des Typs aus der XML-Schemabeschreibung ersetzt, siehe \cref{sec:application_model}. \textbf{Doc} Element enthalten nur einen Titel und eine Kurzbeschreibung des zugehörigen Elements. Aus dieser \emph{Dokumentation} wird durch den Generator in ein Kommentar erzeugt.
+Referenzen auf Typdeklaration aus einer Schemabeschreibung werden nachfolgend im Modell durch die konkrete Deklaration des Typs aus der XML-Schemabeschreibung ersetzt, siehe \cref{sec:application_model}. Ein \textbf{Doc} Element enthält einen Titel und eine Kurzbeschreibung des zugehörigen Elements. Aus dieser \emph{Dokumentation} wird durch den Generator in ein Kommentar erzeugt.
 
 \subsection{Schema-Modell}
 \label{sec:schema_model}
+
+\textbf{Schema} bildet die Wurzel des Schemadatenmodells. Ein Schema kann andere Schemadateien einbinden, dies wird über das Element \textbf{Import} abgebildet. Ein Schema kann weiterhin mehrere \emph{Complex-}, und \emph{SimpleType} sowie \emph{Element} enthalten.
+
+\textbf{Complex-}, \textbf{SimpleType} enthalten die Definitionen von Typen solcher Art aus der Schemabeschreibung (siehe \cref{sec:xsd}). ComplexTypes können \emph{Attribute}, \emph{Element} und weiteren strukturierten Inhalt (\emph{ComplexContent}) enthalten.
+
+Ein \textbf{Element} besitzt einen Bezeichner und einen Typ.
+
+\begin{figure}[tb]
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{resources/typemodel}
+    \end{center}
+    \caption{UML Klassendiagramm des Schemadatenmodells}
+    \label{fig:schema_model}
+\end{figure}
 
 \subsection{Applikationsmodell}
 \label{sec:application_model}
@@ -44,9 +58,47 @@ Referenzen auf Typdeklaration aus einer Schemabeschreibung werden nachfolgend im
 \subsection{Zielsprachenmodell}
 \label{sec:abstract_target_language_model}
 
+\begin{figure}[tb]
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{resources/languagemodel}
+    \end{center}
+    \caption{UML Klassendiagramm des Zielsprachenmodells}
+    \label{fig:language_model}
+\end{figure}
+
+\begin{lstlisting}[
+        basicstyle=\footnotesize,
+        stringstyle=\ttfamily,
+        identifierstyle=\color{black},
+        stringstyle=\color{black},
+        keywordstyle=\color{black},
+        numbers=none,
+        caption=EBNF des Expression-Typs aus dem Zielsprachenmodell
+    ]
+Expression = Literal | Identifier | Term | FunctionCall | Operator | Statement | Condition ;
+Term = [Expression], Operator, Expression | Expression ;
+FunctionCall = {Parameter}, Name, ReturnType ;
+Operator = Symbol ;
+Statement = Identifier, Term | Term ;
+Condition = Term, {Statement} ;
+Literal = PrimitiveType ;
+Identifier = Name ;
+PrimitiveType = Prefix, Value, Postfix ;
+Prefix = String ;
+Postfix = String ;
+Value = String ;
+Name = String ;
+ReturnType = String ;
+Symbol = String ;
+String = '"' , {UTF-8} , '"'
+
+\end{lstlisting}
+
 \subsection{PHP-Zielsprachenmodell}
 \label{sec:php_target_language_model}
 
 % Sprachschnittstelle!
 \subsection{Language Factory}
 \label{sec:language_factory}
+
+Um eine Zielsprachenunabhänhigkeit zu erreichen, wird dem Generator bei der Erzeugung eine \enquote{Language Factory} übergeben. Der Generator erzeugt Sprachelemente nur über diese Factory. Ein Aufruf einer Factorymethode gibt ein Element der vom Typ der Sprache zurück, der Generator kennt aber nur den Interface-Typ. Für ihn ist die konkrete Implementierung somit transparent.
