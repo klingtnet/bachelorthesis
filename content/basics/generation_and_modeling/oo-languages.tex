@@ -36,30 +36,58 @@ Die Beschreibung der Elemente einer OO-Sprache basiert auf \cite{oopSkript2012}.
 \subsection{PHP}
 \label{sec:php}
 
-PHP ist eine \gls{GPL} die aber vorwiegend auf die Entwicklung von Webapplikationen ausgerichtet ist. PHP Skripte können in HTML-Dateien eingebettet werden, welche der Server bei einer Client-Anfrage verarbeitet, die PHP Elemente durch deren Ausgabe ersetzt und dem Client zurücksendet. Die Sprache gehört somit zu den \emph{Server-Side Scripting Languages}. Die Verwendung ist aber nicht auf diesen Bereich beschränkt, denn PHP Anweisungen müssen nicht in HTML eingebettet sein sondern können auch unabhängig davon, als eigene Datei, ausgeführt werden.
-Im Gegensatz zu \emph{Java} ist PHP nicht statisch typisiert und muss zur Ausführung auch nicht kompiliert werden. PHP ist \emph{dynamisch typsiert} und wird von einem Interpreter --- dem namensgebenden \emph{Hypertext Preprocessor} --- ausgeführt.
-Es werden mehrere Programmierparadigmen unterstützt, seit Version 5.0 neben Imperativer- auch Objektorientierte Programmierung. Ab Version 5.3 werden auch \glspl{closure} unterstützt.
+PHP ist eine \gls{GPL} die aber vorwiegend auf die Entwicklung von serverseitigen Webapplikationen ausgerichtet ist. PHP Skripte können in HTML-Dateien eingebettet werden, welche der Server bei einer Client-Anfrage verarbeitet, die PHP Elemente durch deren Ausgabe ersetzt und dem Client zurücksendet. Die Sprache gehört somit zu den \emph{Server-Side Scripting Languages}. Die Verwendung ist aber nicht auf diesen Bereich beschränkt, denn PHP Anweisungen müssen nicht in HTML eingebettet sein sondern können auch unabhängig davon, als eigene Datei, ausgeführt werden.
+Im Gegensatz zu \emph{Java} ist PHP nicht statisch typisiert und muss zur Ausführung auch nicht kompiliert werden. PHP ist \emph{dynamisch typisiert} und wird von einem Interpreter --- dem namensgebenden \emph{Hypertext Preprocessor} --- ausgeführt.
+Es werden mehrere Programmierparadigmen unterstützt, seit Version 5.0 neben Imperativer- auch Objektorientierte Programmierung. Version 5.3 fügte die Unterstützung von \glspl{closure} hinzu.
 
-\begin{lstlisting}[language=php]
-<?php
+\begin{lstlisting}[language=php, caption=Durch den Generator erzeugte BatchDTO Datenklasse der Spreadshirt-API als Beispiel für eine PHP-Datei]
+<?php //@\ding{202}@//
+   require_once('Dto.php'); //@\ding{203}@//
+   require_once('OperationDTO.php'); //@\ding{203}@//
 
-class foo {
+   class BatchDTO
+   {
+      private $operations = array(); // operationDTO 
 
-    private foobar;
+      function __construct(operationDTO //@\ding{204}@// $operations) 
+      {
+         $this->operations = $operations;
+      }
 
-    public function __construct() {
-        foobar = bar(1);
-    } 
+      public function getOperations()
+      {
+         return $operations = $this->operations;
+      }
 
-    private function bar( /* int */ i) {
-        return i++;
-    }
-}
+      public function setOperations(operationDTO $operations)
+      {
+         $this->operations = $operations;
+      }
 
-?>
+      public function toJSON()
+      {
+         $json = json_decode(/* BatchDTO */ $this);
+         return $json;
+      }
+
+      ...
+
+      public static //@\ding{205}@// function fromXML(SimpleXMLElement $xml)
+      {
+         $operations = OperationDTO::fromXML(/* SimpleXMLElement */ $xml->operations);
+         $BatchDTO =  new BatchDTO(/* operationDTO */ $operations);
+         return $BatchDTO;
+      }
+
+      ...
+   }
+
+?> //@\ding{202}@//
 \end{lstlisting}
 
-% listing besonderheiten, keine reine OO-Sprache, unterstützt mehrere Paradigmen
-
-% todo: Sprachmodell .php basierend auf Datei, da letztendlich auch files generiert werden sollen.
-
+\begin{compactitem}
+    \item[\ding{202}] Start- und Endtags eines PHPFiles, wobei letzteres optional ist. Deren Funktion ist die Abgrenzung vom umliegenden Markup, bspw. wenn der PHP-Code in eine HTML Datei eingebettet ist.
+    \item[\ding{203}] PHP unterstützt das importieren von Quellcodefiles anhand verschiedener Befehle, in diesem Fall \texttt{require\_once}.
+    \item[\ding{204}] Nur in der Argumentliste einer Methodendefinition sind Typangaben erlaubt, solange der Typ kein primitiver ist, d.h. den sprachinternen primitiven Datentypen wie bspw. String oder Integer entspricht. 
+    \item[\ding{205}] Statische Methoden, können ohne Instanz der umgebenden Klasse aufgerufen werden, sind ebenfalls ünterstützt.
+\end{compactitem}

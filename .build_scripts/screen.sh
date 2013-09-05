@@ -7,6 +7,8 @@
 #
 
 XELATEX_OPTS=-halt-on-error
+#PRETTY_PRINT=pplatex -v --input -
+PRETTY_PRINT='grep --ignore-case --extended-regex "info|Reference|warning|error|^\([A-Za-z0-9]*\)"'
 
 if [ $# == 2 ]; then
     echo "Changing directory to: $1"
@@ -24,9 +26,9 @@ if [ $# == 2 ]; then
         echo -e "\n--------------- makeglossaries ---------------------\n"         
         makeglossaries thesis
         echo -e "\n------------------ xelatex (#2) --------------------\n" 
-        xelatex $XELATEX_OPTS thesis -no-pdf | grep --ignore-case --extended-regex "info|Reference|warning|error|^\([A-Za-z0-9]*\)"
+        xelatex $XELATEX_OPTS thesis -no-pdf #| $PRETTY_PRINT
         echo -e "\n------------------ xelatex (#3) --------------------\n" 
-        xelatex $XELATEX_OPTS thesis | grep --ignore-case --extended-regex "info|Reference|warning|error|^\([A-Za-z0-9]*\)"
+        xelatex $XELATEX_OPTS thesis #| $PRETTY_PRINT
         true
     else
         xelatex $XELATEX_OPTS -no-pdf thesis > /dev/null  

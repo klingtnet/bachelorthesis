@@ -10,7 +10,7 @@
 # conditionals are not allowed to have a starting tab, 
 # otherwise they will be sent to the shell
 #
-DEBUG='true'
+DEBUG='false'
 ROOT_DIR=$(shell pwd)
 BUILD_DIR=$(ROOT_DIR)/.build
 BUILD_LOG_SCREEN="build_screen.log"
@@ -18,7 +18,7 @@ BUILD_LOG_PRINT="build_print.log"
 OUTPUT_DIR=$(ROOT_DIR)/output
 #.PHONY : clearscr clean screen print
 
-all: copy_sources screen print copy_output todos
+all: copy_sources screen print copy_output loganalysis todos
 
 copy_sources:
 	@echo "Copying sources to build folder: $(BUILD_DIR)"
@@ -31,7 +31,7 @@ copy_output:
 screen:
 	@echo "Building screen version ..."
 ifeq ($(DEBUG) , 'true')
-	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG_SCREEN)
+	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG)
 else
 	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG_SCREEN)
 endif
@@ -39,7 +39,7 @@ endif
 print:
 	@echo "Building print version ..."
 ifeq ($(DEBUG) , 'true')
-	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG_PRINT)
+	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG)
 else
 	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG_PRINT)
 endif
@@ -59,6 +59,14 @@ clean_all: clean
 
 clearscreen:
 	clear
+
+loganalysis:
+	@echo -e "\n\n--------------------- Screen log --------------------- \n\n"
+	#@texloganalyser -w .build/thesis.log
+	@pplatex --input .build/thesis_print.log
+	@echo -e "\n\n--------------------- Print log --------------------- \n\n"
+	#@texloganalyser -w .build/thesis_print.log
+	@pplatex --input .build/thesis_print.log
 
 todos:
 	@echo -e "\n--------------------- What you have to do --------------------- \n"
