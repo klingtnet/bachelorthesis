@@ -33,6 +33,19 @@ Die Beschreibung der Elemente einer OO-Sprache basiert auf \cite{oopSkript2012}.
         % PHP als Beispiel
 \end{description}
 
+\subsection{Typsystem}
+\label{sec:typesystem}
+
+\citeauthor{voelterDSLEngineering} definieren den Begriff \enquote{Typsystem} auf \cite[][S. 253]{voelterDSLEngineering} so (eigene Übersetzung):
+
+\thesisDefinition{Typsystem}{
+    Ein Typsystem ordnet den Programmelementen Typen zu und prüft die Konformität dieser Typen nach bestimmten vordefinierten Regeln.
+}
+
+Der \emph{Typ} ist eine Eigenschaft eines Programmkonstruktes, ein solches Konstrukt ist z.B. eine Konstante, Variable, Methode.
+
+Es wird zwischen zwei grundlegenden Formen von Typsystemen unterschieden, \emph{statisch} und \emph{dynamisch}. Das Unterscheidungskriterium ist der Zeitpunkt der Typprüfung. Dynamische Typsysteme prüfen erst während der Laufzeit des Programms, bei statischen Typsystemen hingegen übernimmt der \emph{Compiler} diese Aufgabe. Ein statisches Typsystem erfordert in den meisten Fällen die explizite Angabe des Typs durch den Programmierer. Programmiersprachen mit statischen Typsystemen welche \emph{Typinferenz} bieten, können oft anhand des Wertes eines Konstruktes seinen Typ erkennen und ersparen in diesen Fällen dem Programmierer dessen explizite Angabe.
+
 \subsection{PHP}
 \label{sec:php}
 
