@@ -7,9 +7,8 @@ Die durch die WADL-Datei beschriebene Baumstruktur muss in ein Datenmodell beste
 Um effektiv mit der XML Darstellung arbeiten zu können wird diese zuerst mit einem Parser (siehe \cref{sec:xml_parser}) in ein \emph{Document Object Model} (kurz DOM) überführt welches im Arbeitsspeicher gehalten wird und damit einen schnellen Zugriff für nachfolgende Operationen darauf erlaubt. In einem nächsten Schritt wird das DOM, welches noch viele XML spezifische Informationen enthält, auf die wesentlichen API beschreibenden Merkmale reduziert. Im Gegensatz zu der in \cref{fig:wadlstructure} veranschaulichten Webanwendungsbeschreibung werden Referenzen durch deren Definition im Modell ersetzt. Die Klassenamen des Datenmodells orientieren sich an den WADL Elementnamen.
 
 \begin{figure}[tb]
-    \begin{center}
-        \includegraphics[width=0.5\textwidth]{resources/restmodel}
-    \end{center}
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/restmodel}
     \caption{UML Klassendiagramm des REST-Modells}
     \label{fig:restmodel}
 \end{figure}

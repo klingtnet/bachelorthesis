@@ -1,23 +1,40 @@
 \subsection{Sprachenmodell}
 \label{sec:language_model}
 
-\begin{figure}[tb]
-    \begin{center}
-        \includegraphics[width=0.6\textwidth]{resources/languagemodel_common}
-    \end{center}
+% Bild aktualisieren
+\begin{sidewaysfigure}[tb]
+    \centering
+    \includegraphics[width=\textwidth]{resources/languagemodel_common}
     \caption{UML Klassendiagramm des Zielsprachenmodells}
     \label{fig:language_model}
-\end{figure}
+\end{sidewaysfigure}
 
-Die Aufgabe des Generators ist die Transformierung des Applikationsmodells in das Modell der Zielsprache. Um die gewünschte Austauschbarkeit der Zielsprache zu gewährleisten wurde ein Sprachenmodell entworfen welches allgemeine Elemente einer Objektorientierten Programmiersprache enthält. %Anforderungen erstellen und referenzieren.
+Die Aufgabe des Generators ist die Transformierung des Applikationsmodells in das Modell der Zielsprache. 
+
+Um die gewünschte Austauschbarkeit der Zielsprache zu gewährleisten wurde ein abstraktes Sprachenmodell entworfen welches die Konstrukte einer dateibasierten Objektorientierten Programmiersprache (siehe \cref{sec:oo_languages}) abbildet. 
+%Anforderungen erstellen und referenzieren.
+Die gewünschte Zielsprache muss dabei die Klassen und Methoden des Modells implementieren sowie eine \emph{Language Factory} (siehe \cref{sec:language_factory}) bereitstellen um vom Generator genutzt werden zu können.
+
+Syntax ist kein Bestandteil des Modells sondern wird von einem \emph{LanguageVisitor} (siehe \cref{sec:language_visitor}) implementiert, das Sprachenmodell enthält nur die nötigen \emph{accept}-Methoden für den Visitor.
+
+Basis des Modells ist die Klasse \textbf{ClassFile}, sie abstrahiert eine Klassendatei mit den Eigenschaften:
+\begin{compactitem}
+    \item Dateiname
+    \item Namensraum
+    \item Liste von Abhängigkeiten (\emph{Dependency}-Klasse)
+    \item Klassendefinition
+\end{compactitem}
+
+Die Liste von Abhängigkeiten der zu generierenden Klassen muss vorher aus dem Eingabemodell ermittelt werden, dies geschieht durch Analyse der in den Elementdefinitionen des Schemamodells enthaltenen Typen. 
+
+% Modifier sind Schlüsselwörter einer Sprache die deren Verhalten ändern.
+
+\textbf{Keywords} und \textbf{Symbols} dienen zur Kapselung der Schlüsselwörter und Symbole einer Sprache. Keywords enthält Methoden zur Abfrage typischer Schlüsselworte wie \emph{class}, \emph{import}, \emph{new} oder \emph{this}. Sprachspezifische Symbole wie \emph{Verkettungs}- und \emph{Scope}-Operatoren oder Präfixe für Variablennamen können über Methoden der Klasse Symbols vom Generator abgefragt werden.
 
 \subsection{Language Visitor}
 \label{sec:language_visitor}
 
 Kapitel gehört eher zu Generator
-
-\subsection{PHP-Zielsprachenmodell}
-\label{sec:php_target_language_model}
 
 % Sprachschnittstelle!
 \subsection{Language Factory}
