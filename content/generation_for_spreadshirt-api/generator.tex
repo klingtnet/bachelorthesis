@@ -3,16 +3,20 @@
 
 Ablauf des Generators und Diagramm
 
-\subsection{Language Visitor}
-\label{sec:language_visitor}
-
-Kapitel gehört eher zu Generator
+\begin{sidewaysfigure}
+    \centering
+    \resizebox{0.9\textwidth}{!}{
+        \input{tikz_pgf/generation_sequence}
+    } 
+    \caption{Ablaufdiagram des Generators}
+    \label{fig:generation_process}
+\end{sidewaysfigure}
 
 % Sprachschnittstelle!
 \subsection{Language Factory}
 \label{sec:language_factory}
 
-Um eine Zielsprachenunabhänhigkeit zu erreichen, wird dem Generator bei der Erzeugung eine \enquote{Language Factory} übergeben. Der Generator erzeugt Sprachelemente nur über diese Factory. Ein Aufruf einer Factorymethode gibt ein Element der vom Typ der Sprache zurück, der Generator kennt aber nur den Interface-Typ. Für ihn ist die konkrete Implementierung somit transparent.
+Um eine Zielsprachenunabhänhigkeit zu erreichen, wird dem Generator bei der Erzeugung eine Factory Klasse übergeben die das Interface \emph{Language Factory} des Sprachmodells implementiert. Der Generator erzeugt Sprachelemente nur über diese Factory. Ein Aufruf einer Factorymethode gibt ein Sprachelement der Zielsprache zurück, der Generator kennt aber nur den Interface-Typ. Für ihn ist die konkrete Implementierung somit transparent.
 
 \subsection{Datenklassen}
 \label{sec:dataclasses}
@@ -24,7 +28,6 @@ Zielsprachenabhängige Repräsentation
 
 Nur Zielsprachenabhängig
 
-
 \subsection{Serialisierer}
 \label{sec:serialiser}
 
@@ -33,7 +36,11 @@ Transportorientierte Repräsentation
 \subsection{Deserialisierer}
 \label{sec:deserialiser}
 
-
 \subsection{Ausgabemodul}
 \label{sec:printer}
+
+\subsubsection{Language Visitor}
+\label{sec:language_visitor}
+
+Kapitel gehört eher zu Generator
 % Attribut information aus Modell und nicht aus Datenklassen

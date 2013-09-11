@@ -117,9 +117,7 @@ Referenzen haben die Form \emph{Namensraumbezeicher}:\emph{Elementname}. Wobei m
 % todo: xml schema genauer beschreiben, relaxng entfernen --: Beispiel fuer Instanz und Definition des Typs!
 %
 
-\newpage
-
-\begin{figure}[!t]
+\begin{sidewaysfigure}
     \centering
     \tikzstyle{blueBox}=[
         rectangle,
@@ -152,23 +150,13 @@ Referenzen haben die Form \emph{Namensraumbezeicher}:\emph{Elementname}. Wobei m
         dashed,
         cyan
     ]
-    \resizebox{!}{0.92\textheight} {
-        \begin{minipage}[b]{0.45\linewidth}
-        \rotatebox{90}{
-        \resizebox{!}{\textwidth}{
-                \input{tikz_pgf/xsd_predefined_types}
-            }
-        }
-        \end{minipage}
-        \hspace{12pt}
-        \begin{minipage}[b]{0.45\linewidth}
-        \rotatebox{90}{
-            \resizebox{!}{0.3\textwidth}{
-                \input{tikz_pgf/xsd_predefined_types_legend}
-            }
-        }
-        \end{minipage}
+    \resizebox{\textheight}{!}{
+            \input{tikz_pgf/xsd_predefined_types}
     }
+    \vspace{\baselineskip}\\
+    \resizebox{0.5\textheight}{!}{
+            \input{tikz_pgf/xsd_predefined_types_legend}
+    }        
     \caption{vordefinierte XSD Datentypen nach \cite{XMLSchema11Specification} Kapitel 3}
     \label{fig:xsddatatypes}
-\end{figure}
+\end{sidewaysfigure}
