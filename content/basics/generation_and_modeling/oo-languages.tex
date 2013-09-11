@@ -3,10 +3,26 @@
 
 Ziel des Generators ist die Erzeugung von Code in einer Objektorientierten\footnote{nachfolgend nur noch OO} Sprache. Aus diesem Grund werden die elementaren Konzepte solcher Sprachen in diesem Abschnitt näher erläutert, sowie die Besonderheiten der Generatorzielsprache (PHP) beschrieben.
 
-Im Gegensatz zu \emph{Prozeduralen Sprachen}\footnote{Zu den Prozeduralen Sprachen zählt bspw. C und Pascal}, in denen ein Programm eine Liste von Funktionen ist, wird dieses im OO-Programmierparadigma aus der Interaktion von \emph{Objekten} gebildet. 
+Im Gegensatz zu \emph{Prozeduralen Sprachen} (z.B. C), in denen ein Programm eine Liste von Funktionen ist, wird dieses im OO-Programmierparadigma aus der Interaktion von \emph{Objekten} gebildet. 
 
-% OO gehört zu den Imperativen Sprachen, Prozedurale Programmierung Submenge der Objekt-orientierten Programmierung? 
-%Ein Programm in einer OO-Sprache welches nur aus einer Klasse besteht, welche nur öffentliche Methoden besitzt kann direkt auf eine Prozedruale Sprache  abgebildet werden.
+OO-Sprachen stellen eine Teilmenge der Imperativen Sprachen dar. Programme aus einer Imperativen Sprache bestehen dabei aus einer Folge von \emph{Anweisungen} (\enquote{Statements}). Anweisungen sind Befehle formuliert in der Syntax der Programmiersprache, bspw. Zuweisungen, Unterprogrammaufrufe oder Schleifen. \emph{Ausdrücke} (\enquote{Expressions}) unterscheiden sich zu Anweisungen, indem sie nebenwirkungsfrei sind und nach der Auswertung einen Wert zurückliefern. Viele Programmiersprachen vermischen beide Konstrukte, ein Beispiel dafür ist das Inkrement-Operator (\texttt{++}), er inkrementiert den Wert einer Variable und liefert ihn zurück, ist also nicht nebenwirkungsfrei.
+Ein Operator ist ein Operationssymbol der Programmiersprache mit einer bestimmten Stelligkeit und Notation (Post-, Prä-, Infix).
+\Cref{lst:expression} zeigt den Aufbau eines Ausdrucks dargestellt durch eine EBNF.
+
+\begin{lstlisting}[
+  style=EBNF, 
+  language=EBNF,
+  caption=Aufbau eines Ausdrucks einer Imperativen Programmiersprache als EBNF,
+  label=lst:expression
+]
+Ausdruck ::=  Wert 
+              | Bezeichner
+              | [ Operator ] Ausdruck
+              | Ausdruck  [ Operator ]
+              | Ausdruck  Operator  Ausdruck
+\end{lstlisting}
+\vspace{-\baselineskip}
+{\footnotesize \begin{center} \texttt{[]} optional, \texttt{|} Auswahl, \texttt{::=} Definition. \end{center}}
 
 \subsection{Elemente}
 \label{sec:elements_of_object_oriented_languages}

@@ -103,6 +103,30 @@
 		%frame=shadowbox
 	}
 
+\lstdefinestyle{EBNF}{
+	numbers=none,
+	basicstyle=\ttfamily\footnotesize,
+	keywordstyle=\color{cyan},
+	identifierstyle=\color{black},
+	stringstyle=\color{black},
+	backgroundcolor=\color{lightgray},
+	escapeinside={//@}{@//},
+	frame=lines,
+	captionpos=b,
+	breaklines=true,
+	breakautoindent=true,
+	xleftmargin=8mm,
+	framexleftmargin=8mm,
+	aboveskip=\baselineskip,
+	belowskip=0.5\baselineskip
+}
+
+\lstdefinelanguage{EBNF}{
+	alsoletter={\|, [, ]},
+	keywords={\|, [, ]},
+	sensitive=false
+}
+
 %
 % definition of javascript syntax highlighting
 %
