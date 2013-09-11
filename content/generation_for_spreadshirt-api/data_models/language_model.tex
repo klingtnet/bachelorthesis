@@ -14,10 +14,10 @@ Die Aufgabe des Generators ist die Transformierung des Applikationsmodells in da
 Um die gewünschte Austauschbarkeit der Zielsprache zu gewährleisten wurde ein abstraktes Sprachenmodell entworfen welches die Konstrukte einer dateibasierten Objektorientierten Programmiersprache (siehe \cref{sec:oo_languages}) abbildet. 
 %Anforderungen erstellen und referenzieren.
 Die gewünschte Zielsprache muss dabei die Klassen und Methoden des Modells implementieren sowie eine \emph{Language Factory} (siehe \cref{sec:language_factory}) bereitstellen um vom Generator genutzt werden zu können.
+Abgesehen von Symbolen und Schlüsselwörtern wird die Syntax der Zielsprache in der Klasse \emph{LanguageVisitor} (siehe \cref{sec:language_visitor}) gekapselt. 
+Alle Interfaces des Modells erweitern das Interface \textbf{Visitor}, somit ist sichergestellt das alle Klassen die diese Schnittstellen implementieren eine \emph{accept}-Methode für den \emph{LanguageVisitor} bereitstellen.
 
-Syntax ist kein Bestandteil des Modells sondern wird von einem \emph{LanguageVisitor} (siehe \cref{sec:language_visitor}) implementiert, das Sprachenmodell enthält nur die nötigen \emph{accept}-Methoden für den Visitor.
-
-Basis des Modells ist die Klasse \textbf{ClassFile}, sie abstrahiert eine Klassendatei mit den Eigenschaften:
+Basis des Modells ist das Interface \textbf{ClassFile}, es abstrahiert eine Klassendatei mit den Eigenschaften:
 \begin{compactitem}
     \item Dateiname
     \item Namensraum
@@ -27,7 +27,9 @@ Basis des Modells ist die Klasse \textbf{ClassFile}, sie abstrahiert eine Klasse
 
 Die Liste von Abhängigkeiten der zu generierenden Klassen muss vorher aus dem Eingabemodell ermittelt werden, dies geschieht durch Analyse der in den Elementdefinitionen des Schemamodells enthaltenen Typen. 
 
-% Modifier sind Schlüsselwörter einer Sprache die deren Verhalten ändern.
+\textbf{Dependency} enthält das Schlüsselwort oder Methodenaufruf zum Import einer Quellcodedatei. In PHP werden solche Dateien bpsw. so importiert: \texttt{require\_once("foo.php");}.
+
+Operatoren der Zielsprache müssen das Interface \textbf{Operator} implementieren, ein Operator ist durch seine Arität (Stelligkeit), Notation und sein Symbol gekennzeichnet. Zum Beispiel der Dereferenzierungsoperator in PHP ist zweistellig, Infix notiert und wird gekennzeichnet durch das Symbol \texttt{->}.
 
 \textbf{Keywords} und \textbf{Symbols} dienen zur Kapselung der Schlüsselwörter und Symbole einer Sprache. Keywords enthält Methoden zur Abfrage typischer Schlüsselworte wie \emph{class}, \emph{import}, \emph{new} oder \emph{this}. Sprachspezifische Symbole wie \emph{Verkettungs}- und \emph{Scope}-Operatoren oder Präfixe für Variablennamen können über Methoden der Klasse Symbols vom Generator abgefragt werden.
 

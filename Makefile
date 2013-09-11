@@ -10,7 +10,7 @@
 # conditionals are not allowed to have a starting tab, 
 # otherwise they will be sent to the shell
 #
-DEBUG='true'
+DEBUG='false'
 ROOT_DIR=$(shell pwd)
 BUILD_DIR=$(ROOT_DIR)/.build
 BUILD_LOG_SCREEN="build_screen.log"
