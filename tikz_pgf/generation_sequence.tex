@@ -16,6 +16,7 @@
     \node(languageFactory)[greyBlock, below=of generator]{Language Factory};
     \node(filePrinter)[greyBlock, right=of languageModel]{File Printer};
     \node(library)[greyBlock, double copy shadow, right=of filePrinter]{Bibliotheks-\\Dateien};
+    \node(staticFiles)[greyBlock, double copy shadow, below=of library]{Statische Dateien};
 
     %\node(languagemodel)[greyBlock, right= of generator]{Sprachenmodell\\\emph{Abstrakter Syntaxbaum}};
     % Lines  
@@ -31,6 +32,7 @@
     \path[arrow, ->] (generator) -- (languageModel);
     \path[arrow, ->] (languageModel) -- (filePrinter);
     \path[arrow, ->] (filePrinter) -- (library);
+    \path[arrow, ->] (staticFiles) -- (library);
 
     %\path[arrow, ->] (infrastructurecode) -- (generator);
 \end{tikzpicture}

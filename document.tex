@@ -103,49 +103,54 @@
     \include{content/implementation/implementation}
     \include{content/evaluation/evaluation}
     \include{content/summary/summary}
-    \label{lastPage}
+    \phantomsection\label{lastPage}
 }
 \blankpage
 
-
 % Beginn des Anhangs
 \renewcommand*{\chapterpagestyle}{appendixChapterStyle}
-{   
+{
     % remove cleardoublepage for appendix     
-    \let\cleardoublepage\relax
+    %\let\cleardoublepage\relax
     \appendix 
     \pagestyle{appendixStyle}
     \pagenumbering{Alph}
 
     % Glossar        
-    \glsaddall
+    %\glsaddall
     \printglossary[type=main,title={Glossar},toctitle={Glossar}]
     \newpage
+
     % Bilderverzeichnis
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\listfigurename}
     \listoffigures
     \newpage
+
     % Tabellenverzeichnis
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\listtablename}
     \listoftables
     \newpage    
+
     % Listingverzeichnis
     \addcontentsline{toc}{chapter}{\lstlistlistingname}
     \lstlistoflistings
     \newpage    
+
     % Definitionsverzeichnis
     \addcontentsline{toc}{chapter}{\listtheoremname}
     \listoftheorems
     \newpage    
+
     % Literaturverzeichnis
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\bibname}
     \input{bibliography/bibliography}
     \newpage
-    \input{bibtex_entry}    
-    \label{lastAppendixPage}
+
+    \input{bibtex_entry}
+    \phantomsection\label{lastPageAppendix}
 }
 
 %

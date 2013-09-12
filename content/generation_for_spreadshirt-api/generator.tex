@@ -1,7 +1,7 @@
 \section{Generatorsystem}
 \label{sec:generatorsystem}
 
-Ablauf des Generators und Diagramm
+\Cref{fig:generation_process} zeigt ein Ablaufdiagramm des Generators
 
 \begin{sidewaysfigure}
     \centering
@@ -16,25 +16,10 @@ Ablauf des Generators und Diagramm
 \subsection{Language Factory}
 \label{sec:language_factory}
 
-Um eine Zielsprachenunabhänhigkeit zu erreichen, wird dem Generator bei der Erzeugung eine Factory Klasse übergeben die das Interface \emph{Language Factory} des Sprachmodells implementiert. Der Generator erzeugt Sprachelemente nur über diese Factory. Ein Aufruf einer Factorymethode gibt ein Sprachelement der Zielsprache zurück, der Generator kennt aber nur den Interface-Typ. Für ihn ist die konkrete Implementierung somit transparent.
+Das \emph{Factory}-Pattern behandelt das Problem Familien von Objekten erzeugen zu wollen ohne die konkreten Klassen zu spezifizieren, sondern nur Interfaces festzulegen \cite[][S. 26]{patternsKompakt}.
+Um eine Zielsprachenunabhängigkeit zu erreichen, wird aus diesem Grund dem Generator bei der Erzeugung eine Factory übergeben die das Interface \emph{Language Factory} des Sprachmodells implementiert. 
 
-\subsection{Datenklassen}
-\label{sec:dataclasses}
-
-Zielsprachenabhängige Repräsentation
-
-\subsection{Ressourcenklassen}
-\label{sec:ressourceclasses}
-
-Nur Zielsprachenabhängig
-
-\subsection{Serialisierer}
-\label{sec:serialiser}
-
-Transportorientierte Repräsentation
-
-\subsection{Deserialisierer}
-\label{sec:deserialiser}
+Der Generator erzeugt Sprachelemente nur über diese Factory. Ein Aufruf einer Factorymethode gibt ein Sprachelement der Zielsprache zurück, der Generator kennt aber nur den Interface-Typ. Für ihn ist die konkrete Implementierung somit transparent.
 
 \subsection{Ausgabemodul}
 \label{sec:printer}

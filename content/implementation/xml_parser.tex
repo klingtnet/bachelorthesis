@@ -4,7 +4,7 @@
 
 Um mit der abstrakten Beschreibung der Spreadshirt-\textsc{Api} arbeiten zu können, muss diese zuerst in das interne Datenmodell überführt werden. Diese liegt in \textsc{Xml}-basierter Form vor, welche in \cref{sec:web_services} näher beschrieben wurde. Folglich wird ein \textsc{Xml}-Parser für die Verarbeitung der Beschreibungsformate benötigt.  
 
-Die \enquote{Java \textsc{Api} for \textsc{Xml} Processing} kurz {\textsc{Jaxp} abstrahiert die Parserschnittstelle von der eigentlichen Implementierung. \textsc{Jaxp} ist dabei keine einzelne \textsc{Api} sondern es beschreibt Schnittstellen für folgende vier \textsc{Xml}-Parser Modelle:
+Die \enquote{Java \textsc{Api} for \textsc{Xml} Processing} kurz \textsc{Jaxp} abstrahiert die Parserschnittstelle von der eigentlichen Implementierung. \textsc{Jaxp} ist dabei keine einzelne \textsc{Api} sondern es beschreibt Schnittstellen für folgende vier \textsc{Xml}-Parser Modelle:
 
 \begin{description}
     \item[\textsc{Dom}] \enquote{Document Object Model}-Parser überführen das \textsc{Xml}-Dokument in ein baumartiges Objektmodell, welches vollständig im Arbeitsspeicher liegt.
@@ -13,22 +13,22 @@ Die \enquote{Java \textsc{Api} for \textsc{Xml} Processing} kurz {\textsc{Jaxp} 
     \item[TrAX] \enquote{Transformation \textsc{Api} for \textsc{Xml}} bietet eine Schnittstelle mit der sich \textsc{Xml}-Dokumente durch \emph{Extensible Stylesheet Language Transformations (\textsc{Xslt})} in Java transformieren lassen.
 \end{description}
 
-\Cref{tab:xmlParsingModels} enthält eine Übersicht zu den Parsing-Konzepten, ausgenommen \emph{TrAX} da diese \textsc{Api} vorwiegend für die Modifikation von \textsc{Xml}-Dateien gedacht ist.
+\Cref{tab:xmlParsingModels} enthält eine Übersicht zu den Parsing-Konzepten, ausgenommen TrAX da diese \textsc{Api} vorwiegend für die Modifikation von \textsc{Xml}-Dateien gedacht ist.
 
-Bei dem zu entwickelnden Codegenerator sind der Speicherverbrauch und die verwendete \textsc{Cpu}-Zeit kein Teil der \emph{nichtfunktionalen Anforderungen}, somit fiel die Entscheidung auf einen \textsc{Dom}-Parser. Dieser lässt sich durch das komplett im Speicher gehaltene Objektmodell mit geringem Aufwand verwenden. Durch \textsc{Jaxp} ist die Implementierung transparent und es wird die im \textsc{JDK} enthaltene Standart \textsc{Dom}-Parser Implementierung verwendet.
+Bei dem zu entwickelnden Codegenerator sind der Speicherverbrauch und die verwendete \textsc{Cpu}-Zeit kein Teil der \emph{nichtfunktionalen Anforderungen}, somit fiel die Entscheidung auf einen \textsc{Dom}-Parser. Dieser lässt sich durch das komplett im Speicher gehaltene Objektmodell mit geringem Aufwand verwenden. Durch \textsc{Jaxp} ist die Implementierung transparent und es wird die im \textsc{Jdk} enthaltene Standart \textsc{Dom}-Parser Implementierung verwendet.
 
 \begin{table}[hb]
     \begin{longtable}[c]{r l l l}
         \toprule
         \rowcolor{lightgray}
-        & \textbf{\textsc{Dom}}   & \textbf{\textsc{Sax}}   & \textbf{StAX} \\
+        & \textbf{DOM}   & \textbf{SAX}   & \textbf{StAX} \\
         \midrule
-        \textbf{\textsc{Api}-Typ}                    & In-Memory Tree    & push-streaming    & pull-streaming\\
+        \textbf{API-Typ}                    & In-Memory Tree    & push-streaming    & pull-streaming\\
         \textbf{Speicherverbrauch}          & hoch              & gering            & \textless{} \textsc{Dom}\\
         \textbf{Prozessorlast}              & hoch              & gering            & gering \\
         \textbf{Elementzugriff}             & beliebig          & seriell           & seriell \\
         \textbf{Nutzerfreundlichkeit}       & niedrig           & hoch              & mittel \\
-        \textbf{\textsc{Xml} schreiben}              & ja                & nein              & ja \\
+        \textbf{XML schreiben}              & ja                & nein              & ja \\
         \bottomrule
         \caption{Übersicht über die verschiedenen \textsc{Xml}-Parsing Konzepte in \textsc{Jaxp}}
         \label{tab:xmlParsingModels}

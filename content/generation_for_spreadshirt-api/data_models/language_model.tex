@@ -23,28 +23,29 @@ Die Liste von Abhängigkeiten der zu generierenden Klassen muss vorher aus dem E
 \textbf{Dependency} enthält das Schlüsselwort oder Methodenaufruf zum Import einer Quellcodedatei. In \textsc{Php} werden solche Dateien bpsw. so importiert: \texttt{require\_once("foo.php");}.
 
 \textbf{Executable} implementieren alle Elemente der Zielsprache die \enquote{ausführbar} sind. Das Modell unterscheidet dabei zwischen \emph{Ausdruck} und \emph{Anweisung} (siehe \cref{sec:oo_languages}). 
+
 Das Interface \textbf{CommonClass} dient zur Implementierung einer Klassendefinition. Da das Interface selbst \emph{Statement} erweitert, kann eine Klasse weitere Klassendefinitionen beinhalten. Eine Klassendefinition besteht dabei aus einem Klassename, Modifiers und aus einer Menge von Statements:
 \begin{compactitem}
     \item \emph{DefinitionStatement} zur Einführung von lokalen Variablen.
     \item \emph{Method} zur Definition von Methoden.
 \end{compactitem}
 
-Das \textbf{Modifier}-Interface beschreibt Methoden um die Schlüsselwörter für Sichtbarkeitsmodifikatoren (\enquote{Access Modifier}) und \enquote{Non Access Modifiers} wie \texttt{static} oder \texttt{final}, zu erhalten.
+Das \textbf{Modifier}-Interface deklariert Methoden um die Schlüsselwörter für \emph{Sichtbarkeitsmodifikatoren} (\enquote{Access Modifier}) und \enquote{Non Access Modifiers} wie \texttt{static} oder \texttt{final}, zu erhalten.
 
 Durch das \textbf{Method}-Interface kann eine Methodendefinition implementiert werden. Eine Methode beinhaltet dabei:
 \begin{compactitem}
     \item Modifier
     \item Methodenname
     \item Rückgabetyp
-    \item Liste von Parametern % todo: liste von variablen, wie abstrahiert?
+    \item Liste von Parametern (Parameter können dabei alle Klassen sein die \emph{Expression} implementieren) % todo: liste von variablen, wie abstrahiert?
     \item \emph{Block}
 \end{compactitem}
 
 \textbf{Block} kapselt eine Menge von Statements.
 
-Operatoren der Zielsprache müssen das Interface \textbf{Operator} implementieren, ein Operator ist durch seine Arität (Stelligkeit), Notation und sein Symbol gekennzeichnet. Zum Beispiel der Dereferenzierungsoperator in \textsc{Php} ist zweistellig, Infix notiert und wird gekennzeichnet durch das Symbol \texttt{->}.
+Operatoren der Zielsprache müssen das Interface \textbf{Operator} implementieren, ein Operator ist durch seine Arität (Stelligkeit), Notation und sein Symbol gekennzeichnet. Zum Beispiel der Dereferenzierungsoperator in \textsc{Php} ist \emph{zweistellig}, \emph{Infix} notiert und durch das Symbol \texttt{->} gekennzeichnet.
 
-\textbf{Keywords} und \textbf{Symbols} dienen zur Kapselung der Schlüsselwörter und Symbole einer Sprache. Keywords enthält Methoden zur Abfrage typischer Schlüsselworte wie \emph{class}, \emph{import}, \emph{new} oder \emph{this}. Sprachspezifische Symbole wie \emph{Verkettungs}- und \emph{Scope}-Operatoren oder Präfixe für Variablennamen können über Methoden der Klasse Symbols vom Generator abgefragt werden.
+\textbf{Keywords} und \textbf{Symbols} dienen zur Kapselung der Schlüsselwörter und Symbole einer Sprache. Keywords enthält Methoden zur Abfrage typischer Schlüsselworte wie \texttt{class}, \texttt{import}, \texttt{new} oder \texttt{this}. Sprachspezifische Symbole wie \emph{Verkettungs}- und \emph{Scope}-Operatoren oder Präfixe für Variablennamen können über Methoden der Klasse Symbols vom Generator abgefragt werden.
 
 \begin{sidewaysfigure}
     \centering

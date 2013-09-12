@@ -8,9 +8,9 @@
     \node(APImodel)[greyBlock, right=of parser]{REST-API\\Modell};
     \node(generator)[greyBlock, right=of APImodel]{Codegenerator\\\textbf{Java}};
     \node(languagemodel)[greyBlock, right= of generator]{Sprachenmodell\\\emph{Abstrakter}\\ \emph{Syntaxbaum}};
-    \node(infrastructurecode)[greyBlock, above=of generator]{Infrastrukturcode};
+    \node(infrastructurecode)[greyBlock, above=of generator]{Statische Dateien};
     \node(printer)[greyBlock, right= of languagemodel]{Ausgabemodul};
-	\node(bib)[greyBlock, right=of printer]{Client-Bibliothek\\\textbf{php}};
+	\node(bib)[greyBlock, right=of printer]{Client-Bibliothek\\\textbf{PHP}};
 	% Lines  
 	\path[arrow, ->] (abstract) -- (parser);
 	\path[arrow, ->] (parser) -- (APImodel);

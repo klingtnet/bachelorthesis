@@ -20,15 +20,15 @@ if [ $# == 2 ]; then
         echo "|______| Screen version"
         echo "  /__\\ "
         echo -e "\n------------------ xelatex (#1) --------------------\n"     
-        xelatex $XELATEX_OPTS -no-pdf thesis
+        xelatex $XELATEX_OPTS -no-pdf thesis > /dev/null
         echo -e "\n------------------- biber --------------------------\n" 
         biber $BIBER_OPTS thesis
         echo -e "\n--------------- makeglossaries ---------------------\n"         
         makeglossaries thesis
         echo -e "\n------------------ xelatex (#2) --------------------\n" 
-        xelatex $XELATEX_OPTS thesis -no-pdf #| $PRETTY_PRINT
+        xelatex $XELATEX_OPTS thesis -no-pdf  > /dev/null
         echo -e "\n------------------ xelatex (#3) --------------------\n" 
-        xelatex $XELATEX_OPTS thesis #| $PRETTY_PRINT
+        xelatex $XELATEX_OPTS thesis
         true
     else
         xelatex $XELATEX_OPTS -no-pdf thesis > /dev/null  

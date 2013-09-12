@@ -10,7 +10,7 @@
 # conditionals are not allowed to have a starting tab, 
 # otherwise they will be sent to the shell
 #
-DEBUG='false'
+DEBUG='true'
 ROOT_DIR=$(shell pwd)
 BUILD_DIR=$(ROOT_DIR)/.build
 BUILD_LOG_SCREEN="build_screen.log"
@@ -30,16 +30,16 @@ copy_output:
 
 screen:
 	@echo "Building screen version ..."
-ifeq ($(DEBUG) , 'true')
-	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG)
+ifeq ($(DEBUG) , 'false')
+	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG) 
 else
 	.build_scripts/screen.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG_SCREEN)
 endif
 
 print:
 	@echo "Building print version ..."
-ifeq ($(DEBUG) , 'true')
-	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG)
+ifeq ($(DEBUG) , 'false')
+	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG) 
 else
 	.build_scripts/print.sh $(BUILD_DIR) $(DEBUG) > $(BUILD_LOG_PRINT)
 endif
