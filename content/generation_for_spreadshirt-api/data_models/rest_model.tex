@@ -15,7 +15,7 @@ Um effektiv mit der \textsc{Xml} Darstellung arbeiten zu können wird diese zuer
 
 Wurzelelement des Modells (siehe \cref{fig:restmodel}) ist die Klasse \textbf{Application}, sie enthält \emph{Ressource}-Objekte und den Basisbezeichner der \textsc{Api} bspw. \texttt{\small http://api.spreadshirt.net/api/v1/}. 
 
-Eine \textbf{Ressource}-Klasse enthält eine Menge von \emph{Method}-Objekten, sowie einen Ressourcenbezeichner, dieser ist relativ zum Basisbezeichner des Wurzelelements. Die Ressourcenbezeichner können \emph{Template-Parameter} enthalten, diese werden bei einer Anfrage durch einen konkreten Wert ersetzt. Beispielweise enthält der Bezeichner für die Ressource eines bestimmten Users den Template-Parameter \{userid\}, vollständiger Ressourcenbezeichner \texttt{users/\{userid\}}. Ressourcenbezeichner werden durch die Klasse \textbf{SplitPath} repräsentiert. 
+Eine \textbf{Ressource}-Klasse enthält eine Menge von \emph{Method}-Objekten, sowie einen Ressourcenbezeichner, dieser ist relativ zum Basisbezeichner des Wurzelelements. Die Ressourcenbezeichner können \emph{Template-Parameter} enthalten, diese werden bei einer Anfrage durch einen konkreten Wert ersetzt. Beispielweise enthält der Bezeichner für die Ressource eines bestimmten Users den Template-Parameter \texttt{\{userid\}}, vollständiger Ressourcenbezeichner \texttt{users/\{userid\}}. Ressourcenbezeichner werden durch die Klasse \textbf{SplitPath} repräsentiert. 
 
 Jede \textbf{Method}-Klasse enthält ein \emph{Request} und ein \emph{Response} Objekt. Sie enthalten die nötigen Informationen für den Aufruf der Methode, bzw. über den Aufbau der Antwortnachricht.
 
