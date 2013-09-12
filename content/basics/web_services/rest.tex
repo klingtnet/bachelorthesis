@@ -21,7 +21,7 @@ time.}
 Eine Ressource kann somit alle Konzepte abbilden die sich über einen Bezeichner referenzieren lassen. Dies können konkrete Dokumente, aber auch Dienste oder sogar Sammlungen von Ressourcen sein.
 Außerdem identifiziert ein Ressourcenbezeichner, meist eine \emph{URI} (siehe \cref{sec:unambigiousidentification}), immer dieselbe Ressource, nicht aber deren Wert oder Zustand.
 
-Ein Beispiel für eine Ressource in der Spreadshirt API \texttt{/users/\{userid\}}, wobei \texttt{\{userid\}} die ID eines konkreten Nutzers bezeichnet. Diese Ressource enthält dabei eine Menge von Elementen, ein Beispiel für eine Ressource die nur ein einziges Element enthält ist \texttt{/serverTime}. 
+Ein Beispiel für eine Ressource in der Spreadshirt API \texttt{/users/\{userid\}}, wobei \texttt{\{userid\}} die Identifikationsnummer eines konkreten Nutzers bezeichnet. Diese Ressource enthält dabei eine Menge von Elementen, ein Beispiel für eine Ressource die nur ein einziges Element enthält ist \texttt{/serverTime}. 
 
 \subsubsection{Repräsentation}
 
@@ -54,7 +54,7 @@ Ein Beispiel für eine solche Angabe von Metainformationen ist in \Cref{lst:meta
 
 Konnektoren stellen eine Schnittstelle für die Kommunikation mit Komponenten der REST-Webanwendung dar. Aktionen auf Ressourcen und der Austausch von Repräsentationen finden über diese Schnittstellen statt. Der Konnektor bildet die Parameter der Schnittstelle auf das gewünschte Protokoll ab.
 
-Eingangsparameter\footnote{\textperiodcentered optionaler Parameter}:
+Eingangsparameter:
 \begin{compactitem}
     \item Anfrage-Kontrolldaten
     \item Ressourcenidentifizierung (Ressourcenbezeichner)
@@ -67,9 +67,11 @@ Ausgangsparameter:
     \item[\textperiodcentered] Repräsentation der Ressource
 \end{compactitem}
 
-\Cref{tab:RESTconnectors} listet Beispiele für Konnektoren auf.
+{\begin{center}\footnotesize\textperiodcentered optionaler Parameter\end{center}}
 
-\begin{table}[tb]
+%\Cref{tab:RESTconnectors} listet Beispiele für Konnektoren auf.
+
+\begin{table}
     \begin{longtable}[c]{l l}
         \toprule
         \rowcolor{lightgray}
@@ -115,7 +117,7 @@ Die fünf Grundlegenden REST-Prinzipien, nach \cite[11 ff.]{Tilkov09}:
 Um eine \emph{eindeutige Identifikation} zu erreichen, wird jeder Ressource eine \gls{URI} vergeben. Dadurch ist es möglich zu jeder verfügbaren Ressource einen Link zu setzen. 
 Nachfolgend eine Beispiel-URI, um den Artikel 42 aus dem Warenkorb 84 anzusprechen:
 \[
-    \underbrace{http://api.spreadshirt.net/api/v1/}_{Basis-URL}\underbrace{\overbrace{baskets/84}^{Warenkorb}\overbrace{/item/42}^{Artikel}}_{Ressource}
+    \underbrace{\texttt{http://api.spreadshirt.net/api/v1/}}_{Basis-URL}\underbrace{\overbrace{\texttt{baskets/84}}^{Warenkorb}\overbrace{\texttt{/item/42}}^{Artikel}}_{Ressource}
     \label{RESTexampleURL}
 \]
 
@@ -131,17 +133,17 @@ Innerhalb einer Ressource kann auf weitere verlinkt werden (\emph{Hypermedia}). 
 
 Durch die Nutzung von \emph{Standardmethoden} ist abgesichert das eine Anwendung mit den Ressourcen arbeiten kann, vorausgesetzt sie unterstützt diese. 
 
-\gls{REST} ist nicht auf HTTP beschränkt, praktisch alle REST-APIs nutzen aber dieses Protokoll. HTTP umfasst dabei folgende Methoden\footnote{Kapitel 9 des HTTP 1.1 RFC2616 beschreibt diese inklusive \emph{TRACE} und \emph{CONNECT} umfassend \cite{rfc2616}}:
+\gls{REST} ist nicht auf \textsc{Http} beschränkt, praktisch alle REST-APIs nutzen aber dieses Protokoll. Die gebräuchlichsten HTTP-Methoden sind folgende \footnote{Kapitel 9 des HTTP 1.1 RFC2616 beschreibt diese inklusive \emph{TRACE} und \emph{CONNECT} umfassend \cite{rfc2616}}:
 \begin{compactitem}
-    \item GET
-    \item PUT
-    \item POST
-    \item DELETE
-    \item HEAD
-    \item OPTIONS
+    \item \textsc{Get}
+    \item \textsc{Put}
+    \item \textsc{Post}
+    \item \textsc{Delete}
+    \item \textsc{Head}
+    \item \textsc{Options}
 \end{compactitem}
 
-Alle bis auf \emph{POST} und \emph{OPTIONS} sind \emph{idempotent} (\cite{rfc2616} Kapitel 9), d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf. Dies bedeutet das sich ein \emph{RESTful Web Service} serverseitig ebenso verhalten muss.
+Alle bis auf \textsc{Post} und \textsc{Options} sind \emph{idempotent} (\cite{rfc2616} Kapitel 9), d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf. Dies bedeutet das sich ein \emph{RESTful Web Service} serverseitig ebenso verhalten muss.
 
 \subsubsection{Repräsentationen von Ressourcen}
 \label{sec:representationofresources}

@@ -5,7 +5,7 @@
 Das \emph{Hypertext Transfer Protocol (HTTP)} ist allgemeines und \emph{zustandsloses} Protokoll, zur Übertragung von Daten über ein Netzwerk, was durch Erweiterung seiner Anfragemethoden, Statuscodes und Header für viele unterschiedliche Anwendungen verwendet werden kann (\cite[][Abstract]{rfc2616}).
 }
 
-HTTP arbeitet auf der Anwendungsschicht\footnote{OSI-Modell Level 7} und ist somit unabhängig von dem zum Datentransport eingesetzten Protokoll. 
+HTTP arbeitet auf der Anwendungsschicht (\enquote{Application Layer} des OSI-Modells) und ist somit unabhängig von dem zum Datentransport eingesetzten Protokoll. 
 Über eindeutige \glspl{URI} werden HTTP-Ressourcen angesprochen. Dabei sendet ein \emph{Client} eine Anfrage (\emph{request}) und erhält daraufhin vom Server eine Antwort (\emph{response}). Anfrage und Antwort stellt dabei eine HTTP-Nachricht dar, die aus den zwei Elementen \emph{Header} und \emph{Body} besteht. Letzterer trägt die Nutzdaten und kann, je nach verwendeter HTTP-Methode, auch leer sein.
 
 \citetitle{rfc2616} (\cite{rfc2616}) definiert einige HTTP-Methoden, wobei die gebräuchlichsten die folgenden sind:
@@ -23,7 +23,7 @@ Eine Nachricht kann je nach verwendeter HTTP-Methode auch nur aus einem Header b
 \subsection{Header}
 \label{sec:http-header}
 
-Ein Header einer HTTP-Nachricht besteht aus einer \emph{Request Line} (erste Zeile des Headers) und einer Menge von Schlüssel-Wert Paaren. \Cref{lst:headGETrequest} zeigt einen Beispiel Header für die GET Anfrage auf die Spreadshirt-API Ressource:\\
+Ein Header einer HTTP-Nachricht besteht aus einer \emph{Request Line} (erste Zeile des Headers) und einer Menge von Schlüssel-Wert Paaren. \Cref{lst:headGETrequest} zeigt einen Beispiel Header für die GET Anfrage auf die Spreadshirt-API Ressource:
 \texttt{http://api.spreadshirt.net/api/v1/locales}.
 
 \begin{lstlisting}[
@@ -78,25 +78,12 @@ Der Body enthält die eigentlichen Nutzdaten. Deren Format wird mit dem \emph{Co
 \begin{lstlisting}[
     language=XML,
     label=lst:bodyGETresponse,
-    caption=HTTP-Body von GET Response aus Spreadshirt-API Ressource \texttt{http://api.spreadshirt.net/api/v1/locales}
+    caption=HTTP-Body der Response aus der GET-Methode auf der Spreadshirt-API-Ressource \texttt{http://api.spreadshirt.net/api/v1/locales}
 ]
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <locales xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://api.spreadshirt.net" xlink:href="http://api.spreadshirt.net/api/v1/locales" offset="0" limit="50" count="16" sortField="default" sortOrder="default">
     <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/de_DE" id="de_DE"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/fr_FR" id="fr_FR"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/en_GB" id="en_GB"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/nl_NL" id="nl_NL"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/it_IT" id="it_IT"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/no_NO" id="no_NO"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/se_SE" id="se_SE"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/es_ES" id="es_ES"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/en_EU" id="en_EU"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/en_IE" id="en_IE"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/dk_DK" id="dk_DK"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/pl_PL" id="pl_PL"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/fi_FI" id="fi_FI"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/de_AT" id="de_AT"/>
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/fr_BE" id="fr_BE"/>
+    ...
     <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/nl_BE" id="nl_BE"/>
 </locales>
 \end{lstlisting}

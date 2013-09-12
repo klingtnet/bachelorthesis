@@ -5,12 +5,12 @@
     % Blocks
     \node(abstract)[greyBlock, double copy shadow]{abstrakte\\API Beschreibung};
     \node(parser)[greyBlock, right=of abstract]{Parser};
-    \node(APImodel)[greyBlock, right=of parser]{REST-API Modell};
-    \node(generator)[greyBlock, right=of APImodel]{Codegenerator\\\emph{Java}};
-    \node(languagemodel)[greyBlock, right= of generator]{Sprachenmodell\\\emph{Abstrakter Syntaxbaum}};
+    \node(APImodel)[greyBlock, right=of parser]{REST-API\\Modell};
+    \node(generator)[greyBlock, right=of APImodel]{Codegenerator\\\textbf{Java}};
+    \node(languagemodel)[greyBlock, right= of generator]{Sprachenmodell\\\emph{Abstrakter}\\ \emph{Syntaxbaum}};
     \node(infrastructurecode)[greyBlock, above=of generator]{Infrastrukturcode};
     \node(printer)[greyBlock, right= of languagemodel]{Ausgabemodul};
-	\node(bib)[greyBlock, right=of printer]{Client-Bibliothek\\\emph{PHP}};
+	\node(bib)[greyBlock, right=of printer]{Client-Bibliothek\\\textbf{PHP}};
 	% Lines  
 	\path[arrow, ->] (abstract) -- (parser);
 	\path[arrow, ->] (parser) -- (APImodel);
