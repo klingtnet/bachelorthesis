@@ -1,19 +1,19 @@
 \section{WADL}
 \label{sec:wadl}
 
-Die \emph{Web Application Description Language} (kurz \gls{WADL}) ist eine maschinenlesbare Beschreibung einer HTTP-basierten Webanwendung, einschließlich einer Menge von \emph{XML Schematas} \cite{hadleyWADL}.
-Die aktuelle Revision ist vom \citedate{WADLcurrent} \cite{WADLcurrent}, im weiteren beziehe ich mich aber auf die in der Spreadshirt-API verwendeten Version, datiert am 9. November 2006. Die Unterschiede zwischen beiden Revisionen können unter \cite{WADLchanges} nachvollzogen werden.
+Die \emph{Web Application Description Language} (kurz \gls{WADL}) ist eine maschinenlesbare Beschreibung einer \textsc{Http}-basierten Webanwendung, einschließlich einer Menge von \textsc{Xml} Schematas \cite{hadleyWADL}.
+Die aktuelle Revision ist vom \citedate{WADLcurrent} \cite{WADLcurrent}, im weiteren beziehe ich mich aber auf die in der Spreadshirt-\textsc{Api} verwendeten Version, datiert am 9. November 2006. Die Unterschiede zwischen beiden Revisionen können unter \cite{WADLchanges} nachvollzogen werden.
 
-Die Beschreibung eines Webservices durch WADL besteht nach \cite{hadleyWADL} im groben aus den folgenden vier Bestandteilen:
+Die Beschreibung eines Webservices durch \textsc{Wadl} besteht nach \cite{hadleyWADL} im groben aus den folgenden vier Bestandteilen:
 \begin{description}
      \item[Set of resources] Analog einer Sitemap, die Übersicht aller verfügbaren Ressourcen.
      \item[Relationships between resources] Die kausale und referentielle Verknüpfung zwischen Ressourcen.
-     \item[Methods that can be applied to each resource] Die von der jeweiligen Ressource unterstützten [HTTP]-Methoden, deren Ein- und Ausgabe, sowie die unterstützten Formate.
+     \item[Methods that can be applied to each resource] Die von der jeweiligen Ressource unterstützten [\textsc{Http}]-Methoden, deren Ein- und Ausgabe, sowie die unterstützten Formate.
      \item[Resource representation formats] Die unterstützten \gls{MIME}-Typen und verwendeten Datenschemas (\cref{sec:xsd}).
  \end{description} 
 
 %\begin{minipage}{\textwidth}
-\begin{lstlisting}[language=XML, caption={Beispielaufbau einer WADL-Datei anhand der Spreadshirt-API Beschreibung}, label=lst:wadlstructure, name=wadlstructure]
+\begin{lstlisting}[language=XML, caption={Beispielaufbau einer \textsc{Wadl}-Datei anhand der Spreadshirt-\textsc{Api} Beschreibung}, label=lst:wadlstructure, name=wadlstructure]
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?> //@\ding{202}@//
 <application xmlns="http://research.sun.com/wadl/2006/10"> //@\ding{203}@//
     <grammars> //@\ding{204}@//
@@ -55,17 +55,17 @@ Die Beschreibung eines Webservices durch WADL besteht nach \cite{hadleyWADL} im 
 %\end{minipage}
 
 %% ToDo: verfeinern der Beschreibung, was ist erlaubt, was nicht?
-Die Datei beginnt mit der Angabe der XML-Deklaration \ding{202}.
-Die Attribute des Wurzelknotens \texttt{<application>} enthalten \emph{namespace} Definitionen, u. a. auch den der verwendeten WADL-Spezifikation \ding{203}.
-Innerhalb des \texttt{<grammars>} Elements werden die benutzten \emph{XML Schemas} angegeben \ding{204}. 
+Die Datei beginnt mit der Angabe der \textsc{Xml}-Deklaration \ding{202}.
+Die Attribute des Wurzelknotens \texttt{<application>} enthalten \emph{namespace} Definitionen, u. a. auch den der verwendeten \textsc{Wadl}-Spezifikation \ding{203}.
+Innerhalb des \texttt{<grammars>} Elements werden die benutzten \textsc{Xml} Schemas angegeben \ding{204}. 
 Um die Ressourcen der Webanwendung ansprechen zu können wird noch die Angabe der Basisadresse benötigt \ding{205}. 
-Innerhalb des \texttt{<resources>} Elements findet sich die Beschreibung der einzelnen Ressourcen. Diese sind gekennzeichnet, durch eine zur Basisadresse relativen \gls{URI} \ding{206}. In \texttt{\{\ldots\}} eingeschlossene Teile einer \gls{URI}, werden durch den Wert des gleichnamigen \emph{request} Parameters ersetzt um die URI zu bilden (generative URIs).
-Im Folgenden werden die von der Ressource unterstützten HTTP-Methoden beschrieben \ding{207}, deren Anfrageparameter \texttt{<request>} \ding{208}, sowie die möglichen Ausgaben der jeweiligen Methode \texttt{<response>} \ding{209}.
+Innerhalb des \texttt{<resources>} Elements findet sich die Beschreibung der einzelnen Ressourcen. Diese sind gekennzeichnet, durch eine zur Basisadresse relativen \gls{URI} \ding{206}. In \texttt{\{\ldots\}} eingeschlossene Teile einer \gls{URI}, werden durch den Wert des gleichnamigen \emph{request} Parameters ersetzt um die \gls{URI} zu bilden (generative \glspl{URI}).
+Im Folgenden werden die von der Ressource unterstützten \textsc{Http}-Methoden beschrieben \ding{207}, deren Anfrageparameter \texttt{<request>} \ding{208}, sowie die möglichen Ausgaben der jeweiligen Methode \texttt{<response>} \ding{209}.
 
-Die Dokumentations-Tags \texttt{<doc>} sind für alle XML-Elemente optional.
+Die Dokumentations-Tags \texttt{<doc>} sind für alle \textsc{Xml}-Elemente optional.
 Um das Listing nicht unnötig zu verlängern wurden die schließenden \emph{Tags} weggelassen.
 
-\Cref{fig:wadlstructure} zeigt die Struktur einer WADL-Datei.
+\Cref{fig:wadlstructure} zeigt die Struktur einer \textsc{Wadl}-Datei.
 
 \newpage
 
@@ -74,6 +74,6 @@ Um das Listing nicht unnötig zu verlängern wurden die schließenden \emph{Tags
     \resizebox{!}{0.5\paperheight}{
         \input{tikz_pgf/wadlstructure}
     }
-    \caption{Struktur einer WADL-Datei, nach Kapitel 2 \cite{hadleyWADL}}
+    \caption{Struktur einer \textsc{Wadl}-Datei, nach Kapitel 2 \cite{hadleyWADL}}
     \label{fig:wadlstructure}
 \end{figure}

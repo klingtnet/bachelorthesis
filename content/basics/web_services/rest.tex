@@ -1,39 +1,39 @@
-\section{RESTful Web Service}
+\section{\textsc{Rest}ful Web Service}
 \label{sec:rest}
 
-\emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding\footnote{Roy Thomas Fielding, geboren 1965, ist einer der Hauptautoren der HTTP-Spezifikation} in seiner Dissertation aus dem Jahre 2000  beschrieben wurde \cite[Kapitel 5][95 ff.]{fieldingDissertation}. 
+\emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding\footnote{Roy Thomas Fielding, geboren 1965, ist einer der Hauptautoren der \textsc{Http}-Spezifikation} in seiner Dissertation aus dem Jahre 2000  beschrieben wurde \cite[Kapitel 5][95 ff.]{fieldingDissertation}. 
 
 Als \gls{RESTful} bezeichnet man dabei eine Webanwendung die den Prinzipien von \gls{REST} entspricht. 
 
 % Diesen Part über die Grundprinzipien verschieben
-\subsection{Elemente von REST}
+\subsection{Elemente von \textsc{Rest}}
 
-Im folgenden werden die Grundbausteine einer REST-Anwendung erläutert. \Cref{sec:RESTcomponents} beschreibt die Komponenten, die an einer Aktion auf einer \emph{Ressource} beteiligt sind. Dieser Abschnitt basiert auf Kapitel 5.2 von \cite[][S. 86 ff.]{fieldingDissertation}.
+Im folgenden werden die Grundbausteine einer \textsc{Rest}-Anwendung erläutert. \Cref{sec:RESTcomponents} beschreibt die Komponenten, die an einer Aktion auf einer \emph{Ressource} beteiligt sind. Dieser Abschnitt basiert auf Kapitel 5.2 von \cite[][S. 86 ff.]{fieldingDissertation}.
 
 \subsubsection{Ressource}
 
-Eine Ressource stellt die wichtigste Abstraktion von Information im REST-Modell dar. Fielding definiert eine \emph{ressource} wie folgt:
+Eine Ressource stellt die wichtigste Abstraktion von Information im \textsc{Rest}-Modell dar. Fielding definiert eine \emph{ressource} wie folgt:
 
 \thesisquote{Any information that can be named can be a resource: a document or image, [\ldots]. A resource is a conceptual mapping
 to a set of entities, not the entity that corresponds to the mapping at any particular point in
 time.}
 
 Eine Ressource kann somit alle Konzepte abbilden die sich über einen Bezeichner referenzieren lassen. Dies können konkrete Dokumente, aber auch Dienste oder sogar Sammlungen von Ressourcen sein.
-Außerdem identifiziert ein Ressourcenbezeichner, meist eine \emph{URI} (siehe \cref{sec:unambigiousidentification}), immer dieselbe Ressource, nicht aber deren Wert oder Zustand.
+Außerdem identifiziert ein Ressourcenbezeichner, meist eine \gls{URI} (siehe \cref{sec:unambigiousidentification}), immer dieselbe Ressource, nicht aber deren Wert oder Zustand.
 
-Ein Beispiel für eine Ressource in der Spreadshirt API \texttt{/users/\{userid\}}, wobei \texttt{\{userid\}} die Identifikationsnummer eines konkreten Nutzers bezeichnet. Diese Ressource enthält dabei eine Menge von Elementen, ein Beispiel für eine Ressource die nur ein einziges Element enthält ist \texttt{/serverTime}. 
+Ein Beispiel für eine Ressource in der Spreadshirt \gls{API} \texttt{/users/\{userid\}}, wobei \texttt{\{userid\}} die Identifikationsnummer eines konkreten Nutzers bezeichnet. Diese Ressource enthält dabei eine Menge von Elementen, ein Beispiel für eine Ressource die nur ein einziges Element enthält ist \texttt{/serverTime}. 
 
 \subsubsection{Repräsentation}
 
 Eine Repräsentation (\emph{representation}) stellt den aktuellen oder den gewünschten Zustand einer Ressource dar. Das Format der Repräsentation ist dabei unabhängig von dem der Ressource, siehe \cref{sec:representationofresources}.
-Aktionen mit Komponenten einer REST-API werden durch den Austausch von solchen Repräsentationen durchgeführt.
+Aktionen mit Komponenten einer \textsc{Rest}-\textsc{Api} werden durch den Austausch von solchen Repräsentationen durchgeführt.
 
-Im Allgemeinen wird unter einer Repräsentation nur eine Folge von Bytes verstanden, inklusive \emph{Metainformationen} welche den Inhalt der Bytefolge klassifiziert, sowie \emph{Kontrolldaten} die die gewünschte Aktion oder die Bedeutung der Anfrage beschreiben. Letztere sind meist HTTP-Header-Felder (siehe \cref{sec:http-header}), bspw. um das Cachingverhalten zu ändern.
+Im Allgemeinen wird unter einer Repräsentation nur eine Folge von Bytes verstanden, inklusive \emph{Metainformationen} welche den Inhalt der Bytefolge klassifiziert, sowie \emph{Kontrolldaten} die die gewünschte Aktion oder die Bedeutung der Anfrage beschreiben. Letztere sind meist \textsc{Http}-Header-Felder (siehe \cref{sec:http-header}), bspw. um das Cachingverhalten zu ändern.
 
 \begin{minipage}{\textwidth}
     \begin{lstlisting}[
         language=XML,
-        caption=Beispiel zu Metainformationen für REST-Repräsentation aus WADL-Datei der Spreadshirt-API,
+        caption=Beispiel zu Metainformationen für \textsc{Rest}-Repräsentation aus \textsc{Wadl}-Datei der Spreadshirt-\textsc{Api},
         label=lst:metainformationREST
         ]
     ...
@@ -52,7 +52,7 @@ Ein Beispiel für eine solche Angabe von Metainformationen ist in \Cref{lst:meta
 
 \subsubsection{Konnektoren}
 
-Konnektoren stellen eine Schnittstelle für die Kommunikation mit Komponenten der REST-Webanwendung dar. Aktionen auf Ressourcen und der Austausch von Repräsentationen finden über diese Schnittstellen statt. Der Konnektor bildet die Parameter der Schnittstelle auf das gewünschte Protokoll ab.
+Konnektoren stellen eine Schnittstelle für die Kommunikation mit Komponenten der \textsc{Rest}-Webanwendung dar. Aktionen auf Ressourcen und der Austausch von Repräsentationen finden über diese Schnittstellen statt. Der Konnektor bildet die Parameter der Schnittstelle auf das gewünschte Protokoll ab.
 
 Eingangsparameter:
 \begin{compactitem}
@@ -78,10 +78,10 @@ Ausgangsparameter:
         \textbf{Konnektor}   & \textbf{Beispiel}\\
         \midrule
         client      & libwww\\
-        server      & libwww, Apache HTTP-Server API\\
+        server      & libwww, Apache \textsc{Http}-Server \textsc{Api}\\
         cache       & browser cache, Akamai\\
         resolver    & bind\\
-        tunnel      & SOCKS\\
+        tunnel      & \textsc{Socks}\\
         \bottomrule
         \caption{Beispiele für Konnektoren nach \cite{fieldingDissertation}}
         \label{tab:RESTconnectors}
@@ -97,12 +97,12 @@ Ausgangsparameter:
     \item[Proxy] Zwischenkomponente die explizit vom Client verwendet kann, aus Sicherheits-, Performance- oder Kompatibilitätsgründen.
     \item[Gateway] Dient als Schnittstelle zwischen Client- und Servernetzwerk, kann zusätzlich aus den gleichen Gründen wie der Proxy verwendet werden. Konträr zum Proxy kann der Client aber nicht entscheiden ob er einen Gateway nutzen möchte.
     \item[User Client] 
-        Ein clientseitiger \emph{Konnektor}, der die Anfrage an die API startet und einziger Empfänger der Antwort ist. In den meisten Fällen ist dies einfach ein \emph{Webbrowser}.
+        Ein clientseitiger \emph{Konnektor}, der die Anfrage an die \textsc{Api} startet und einziger Empfänger der Antwort ist. In den meisten Fällen ist dies einfach ein \emph{Webbrowser}.
 \end{description}
 
 \subsection{REST-Prinzipien}
 
-Die fünf Grundlegenden REST-Prinzipien, nach \cite[11 ff.]{Tilkov09}:
+Die fünf Grundlegenden \textsc{Rest}-Prinzipien, nach \cite[11 ff.]{Tilkov09}:
 \begin{compactitem}
     \item Ressourcen mit eindeutiger Indentifikation
     \item Verknüpfungen / Hypermedia
@@ -115,7 +115,7 @@ Die fünf Grundlegenden REST-Prinzipien, nach \cite[11 ff.]{Tilkov09}:
 \label{sec:unambigiousidentification}
 
 Um eine \emph{eindeutige Identifikation} zu erreichen, wird jeder Ressource eine \gls{URI} vergeben. Dadurch ist es möglich zu jeder verfügbaren Ressource einen Link zu setzen. 
-Nachfolgend eine Beispiel-URI, um den Artikel 42 aus dem Warenkorb 84 anzusprechen:
+Nachfolgend eine Beispiel-\textsc{Uri}, um den Artikel 42 aus dem Warenkorb 84 anzusprechen:
 \[
     \underbrace{\texttt{http://api.spreadshirt.net/api/v1/}}_{Basis-URL}\underbrace{\overbrace{\texttt{baskets/84}}^{Warenkorb}\overbrace{\texttt{/item/42}}^{Artikel}}_{Ressource}
     \label{RESTexampleURL}
@@ -133,7 +133,7 @@ Innerhalb einer Ressource kann auf weitere verlinkt werden (\emph{Hypermedia}). 
 
 Durch die Nutzung von \emph{Standardmethoden} ist abgesichert das eine Anwendung mit den Ressourcen arbeiten kann, vorausgesetzt sie unterstützt diese. 
 
-\gls{REST} ist nicht auf \textsc{Http} beschränkt, praktisch alle REST-APIs nutzen aber dieses Protokoll. Die gebräuchlichsten HTTP-Methoden sind folgende \footnote{Kapitel 9 des HTTP 1.1 RFC2616 beschreibt diese inklusive \emph{TRACE} und \emph{CONNECT} umfassend \cite{rfc2616}}:
+\gls{REST} ist nicht auf \textsc{Http} beschränkt, praktisch alle \textsc{Rest}-\textsc{Api}s nutzen aber dieses Protokoll. Die gebräuchlichsten \textsc{Http}-Methoden sind folgende \footnote{Kapitel 9 des \textsc{Http} 1.1 RFC2616 beschreibt diese inklusive \textsc{Trace} und \textsc{Connect} umfassend \cite{rfc2616}}:
 \begin{compactitem}
     \item \textsc{Get}
     \item \textsc{Put}
@@ -143,14 +143,14 @@ Durch die Nutzung von \emph{Standardmethoden} ist abgesichert das eine Anwendung
     \item \textsc{Options}
 \end{compactitem}
 
-Alle bis auf \textsc{Post} und \textsc{Options} sind \emph{idempotent} (\cite{rfc2616} Kapitel 9), d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf. Dies bedeutet das sich ein \emph{RESTful Web Service} serverseitig ebenso verhalten muss.
+Alle bis auf \textsc{Post} und \textsc{Options} sind \emph{idempotent} (\cite{rfc2616} Kapitel 9), d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf. Dies bedeutet das sich ein \textsc{Rest}ful Web Service serverseitig ebenso verhalten muss.
 
 \subsubsection{Repräsentationen von Ressourcen}
 \label{sec:representationofresources}
 
 Die Repräsentation sollte unabhängig von der Ressource sein, um die Darstellung gegebenenfalls für den Client anzupassen. 
-Die Client-Anwendung kann dadurch mittels \emph{Query-Parameter} oder als Information im \emph{HTTP-Header} (siehe \cref{sec:http-header}) das gewünschte Format angeben und erhält die entsprechend formatierte Antwort.
-Anhand des \emph{Content-Type} Feldes aus dem HTTP-Header kann der Client das Format der Antwort überprüfen, für \gls{JSON} lautet dies bspw. \texttt{application/json}.
+Die Client-Anwendung kann dadurch mittels \emph{Query-Parameter} oder als Information im \textsc{Http}-Header (siehe \cref{sec:http-header}) das gewünschte Format angeben und erhält die entsprechend formatierte Antwort.
+Anhand des \emph{Content-Type} Feldes aus dem \textsc{Http}-Header kann der Client das Format der Antwort überprüfen, für \gls{JSON} lautet dies bspw. \texttt{application/json}.
 
 \subsubsection{Statuslose Kommunikation}
 \label{sec:stateless_communication}

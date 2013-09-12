@@ -4,13 +4,13 @@
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.6\textwidth]{resources/typemodel}
-    \caption{UML Klassendiagramm des Schemadatenmodells}
+    \caption{\textsc{Uml} Klassendiagramm des Schemadatenmodells}
     \label{fig:schema_model}
 \end{figure}
 
 Wurzel des Schemadatenmodells ist die Klasse \textbf{Schema}. Ein Schema kann Objekte vom Typ \emph{Complex-} und \emph{SimpleType} sowie \emph{Attribute} und \emph{Element} enthalten.
 
-XSD-Dateien (siehe \cref{sec:xsd}) erlauben das importieren anderer Schemadefinitionen, die Klasse \textbf{Import} ermöglicht dies im Schemamodell. Sie besitzt ein Objekt des zu importierenden Schemas sowie eine URI auf die zugehörige XSD-Datei.
+\textsc{Xsd}-Dateien (siehe \cref{sec:xsd}) erlauben das importieren anderer Schemadefinitionen, die Klasse \textbf{Import} ermöglicht dies im Schemamodell. Sie besitzt ein Objekt des zu importierenden Schemas sowie eine \gls{URI} auf die zugehörige \textsc{Xsd}-Datei.
 
 Primitive Schematypen werden durch die Klasse \emph{SimpleType} abgebildet. Objekte dieser Klasse enthalten eine Kennzeichnung der Art des SimpleType (Enumerator, Liste, einfacher Wert) und bei Enumeratoren zusätzlich die einzelnen Enumeratorwerte, sowie die Angabe des Basisdatentyps.
 
@@ -33,7 +33,7 @@ Durch die Klasse \textbf{Namespace} werden der Namensraumbezeichner und der konk
     \begin{minipage}[b]{0.50\linewidth}
         \begin{lstlisting}[
             language=XML,
-            caption=Point Datentyp aus der Spreadshirt-API Schemabeschreibung,
+            caption=Point Datentyp aus der Spreadshirt-\textsc{Api} Schemabeschreibung,
             label=lst:xsdExamplePoint,    
             basicstyle=\tiny\ttfamily,
             numbers=none,

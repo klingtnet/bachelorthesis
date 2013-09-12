@@ -18,7 +18,7 @@ Bei dieser Definition wird der Begriff \emph{Informationsmodell} genutzt, er bes
 
 Bei einem Codegenerator entspricht das Datenmodell der internen Darstellung der Spezifikation. Neben den direkt in der Spezifikation enthaltenen Informationen kann der Generator im Analyseschritt (siehe \cref{sec:generator_tasks}) bspw. Datenabhängigkeiten erkennen und diese zur Optimierung nutzen oder das interne Datenmodell damit anreichern. Das \emph{erkennen von Semantik} im Eingabemodell ist aber nicht auf Datenabhängigkeiten beschränkt sondern kann auf beliebige Beziehungen ausgeweitet werden. 
 
-Wie man in \Cref{fig:wadlstructure} erkennen kann, entspricht die Struktur einer WADL-Datei einem Baum. Aus diesem Grund eignet sich eine Baumstruktur für das Datenmodell des Generators besonders gut. Um die Zielsprache (siehe \cref{sec:target_language}) im internen Datenmodell abbilden zu können, wird ein \gls{AST} als Datenstruktur gewählt.
+Wie man in \Cref{fig:wadlstructure} erkennen kann, entspricht die Struktur einer \gls{WADL}-Datei einem Baum. Aus diesem Grund eignet sich eine Baumstruktur für das Datenmodell des Generators besonders gut. Um die Zielsprache (siehe \cref{sec:language_model}) im internen Datenmodell abbilden zu können, wird ein \gls{AST} als Datenstruktur gewählt.
 
 \subsection{Abstract Syntax Tree (AST)}
 \label{sec:ast}
@@ -32,7 +32,7 @@ Im Allgemeinen kann für jedes Programmierkonstrukt ein Operator erzeugt werden,
 %Etwas kürzer definiert \citeauthor{gruneCompiler} den Begriff in \cite[][S. 9 ff.]{gruneCompiler} (eigene Übersetzung):
 % \thesisDefinition{Abstract Syntax Tree -- \citeauthor{gruneCompiler}}{ Der abstrakte Syntaxbaum stellt die verschiedenen Teile eines Programmtextes aus Sicht der Grammatik, dar. }
 
-Er ist das Endprodukt eines Parsingschrittes des Quelltextes, im Gegensatz zum \emph{konkreten Syntaxbaum} (auch \emph{Parse Tree}) enthält der \emph{AST} keine Formatierungsspezifische Syntax (bspw. Klammern). 
+Er ist das Endprodukt eines Parsingschrittes des Quelltextes, im Gegensatz zum \emph{konkreten Syntaxbaum} (auch \emph{Parse Tree}) enthält der \textsc{Ast} keine Formatierungsspezifische Syntax (bspw. Klammern). 
 
 \begin{figure}[htb]
     \centering
@@ -63,7 +63,7 @@ Er ist das Endprodukt eines Parsingschrittes des Quelltextes, im Gegensatz zum \
                 ]
         \end{tikzpicture}        
     %}
-    \caption{Beispiel AST für den rekursiven euklidischen Algorithmus}
+    \caption{Beispiel \textsc{Ast} für den rekursiven euklidischen Algorithmus}
     \label{fig:ast}   
 \end{figure}
 

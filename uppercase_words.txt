@@ -2,11 +2,9 @@
 ./content/introduction/spreadshirt.tex:20:Die \emph{sprd.net AG} zu der auch der Leipziger Hauptsitz gehört beschäftigt derzeit (Juni 2013) 178 Mitarbeiter, davon 29 in der IT.
 ./content/introduction/problem_statement.tex:4:Es ist ein Codegenerator zu erstellen, der aus der abstrakten Beschreibung der \gls{RESTful} Spreadshirt \gls{API} eine Client-Bibliothek erstellt. 
 ./content/introduction/problem_statement.tex:7:Für das Bibliotheksdesign ist eine \gls{DSL} (Domain-Specific Language) zu realisieren, mit dem Ziel die Nutzung der \gls{API} zu vereinfachen. 
-./content/introduction/problem_statement.tex:9:Als Programmiersprache für den Generator wird \emph{Java} verwendet, als Zielsprache der Bibliothek dient \emph{PHP}. Um die gewünschte Flexibilität bezüglich der Zielsprache zu erreichen, wird eine \gls{template-engine} verwendet.
-./content/introduction/introduction.tex:15:Das Ziel dieser Arbeit ist die Erstellung eines Codegenerators, der aus der abstrakten Beschreibung der Spreadshirt-API eine Client-Bibliothek erstellt.
+./content/introduction/introduction.tex:15:Das Ziel dieser Arbeit ist die Erstellung eines Codegenerators, der aus der abstrakten Beschreibung der Spreadshirt-\gls{API} eine Client-Bibliothek erstellt.
 ./content/introduction/introduction.tex:18:Für das Bibliotheksdesign ist eine \gls{DSL} (Domain-Specific Language) zu realisieren, mit dem Ziel die Nutzung der \gls{API} zu vereinfachen. 
 ./content/introduction/introduction.tex:20:Als Programmiersprache für den Generator wird \emph{Java} verwendet, \emph{PHP} ist die Zielsprache der Bibliothek.
-./content/introduction/introduction.tex:21:Eine gute Lesbarkeit, hohe Testabdeckung und größtmögliche Typsicherheit, soweit \emph{PHP} dies zulässt, sind Erfolgskriterien für die zu generierende Bibliothek.
 ./content/evaluation/evaluation.tex:10:\section{PHP-Zielsprachenmodell}
 ./content/basics/web_services/xml_schema/xsd.tex:1:\subsection{XML Schema Description (XSD)}
 ./content/basics/web_services/xml_schema/xsd.tex:4:\emph{XML Schema Description} ist ein stark erweiterte Nachfolger der \emph{DTD} (Document Type Definition), derzeit spezifiert in Version 1.1 \cite{XMLSchema11Specification}. 
