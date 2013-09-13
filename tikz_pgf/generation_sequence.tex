@@ -5,16 +5,17 @@
     % Blocks
     \node(abstractDescription)[greyBlock]{Abstrakte\\Beschreibung\\der Spreadshirt-API};
     \node(dummy1)[dummy, right=of abstractDescription]{};
-    \node(wadlAnalysis)[greyBlock, above right=of abstractDescription]{Analyse\\WADL-Datei};
+    \node(wadlAnalysis)[greyBlock, above=of abstractDescription]{Analyse\\WADL-Datei};
     \node(restModel)[greyBlock, right=of wadlAnalysis]{REST-\\Modell};
-    \node(xsdAnalysis)[greyBlock, below right=of abstractDescription]{Analyse\\XSD-Datei};
+    \node(xsdAnalysis)[greyBlock, below=of abstractDescription]{Analyse\\XSD-Datei};
     \node(schemaModel)[greyBlock, right=of xsdAnalysis]{Schema-\\Modell};
     \node(modelCombine)[greyBlock, right=of dummy1]{Kombinierer};
     \node(applicationModel)[greyBlock, right=of modelCombine]{Applikations-\\Modell};
     \node(generator)[greyBlock, right=of applicationModel]{Generator};
     \node(languageModel)[greyBlock, right=of generator]{Zielsprachen-\\Modell};
-    \node(languageFactory)[greyBlock, below=of generator]{Language Factory};
-    \node(filePrinter)[greyBlock, right=of languageModel]{File Printer};
+    \node(languageFactory)[greyBlock, below=of generator]{Language-\\Factory};
+    \node(languageVisitor)[greyBlock, right=of languageModel]{Language-\\Visitor};
+    \node(filePrinter)[greyBlock, right=of languageVisitor]{Ausgabemodul\\(File Printer)};
     \node(library)[greyBlock, double copy shadow, right=of filePrinter]{Bibliotheks-\\Dateien};
     \node(staticFiles)[greyBlock, double copy shadow, below=of library]{Statische Dateien};
 
@@ -30,7 +31,8 @@
     \path[arrow, ->] (applicationModel) -- (generator);
     \path[arrow, ->] (languageFactory) -- (generator);
     \path[arrow, ->] (generator) -- (languageModel);
-    \path[arrow, ->] (languageModel) -- (filePrinter);
+    \path[arrow, ->] (languageModel) -- (languageVisitor);
+    \path[arrow, ->] (languageVisitor) -- (filePrinter);
     \path[arrow, ->] (filePrinter) -- (library);
     \path[arrow, ->] (staticFiles) -- (library);
 

@@ -1,31 +1,36 @@
-\section{Generatorsystem}
-\label{sec:generatorsystem}
+\section{Codegenerator}
+\label{sec:codegenerator}
 
-\Cref{fig:generation_process} zeigt ein Ablaufdiagramm des Generators
+Nachdem in \cref{sec:concrete_models} die Datenmodelle des Generators betrachtet wurden, widmet sich dieser Abschnitt nur dem Aufbau des Codegenerators und den dort verwendeten Entwurfsmustern, \emph{Factory} (\cref{sec:language_factory}) und \emph{Visitor} (\cref{sec:language_visitor}). \Cref{fig:generation_process} zeigt ein Ablaufdiagramm des Generators.
 
 \begin{sidewaysfigure}
     \centering
-    \resizebox{0.9\textwidth}{!}{
+    \resizebox{ \textwidth}{!}{
         \input{tikz_pgf/generation_sequence}
     } 
     \caption{Ablaufdiagram des Generators}
     \label{fig:generation_process}
 \end{sidewaysfigure}
 
-% Sprachschnittstelle!
 \subsection{Language Factory}
 \label{sec:language_factory}
 
 Das \emph{Factory}-Pattern behandelt das Problem Familien von Objekten erzeugen zu wollen ohne die konkreten Klassen zu spezifizieren, sondern nur Interfaces festzulegen \cite[][S. 26]{patternsKompakt}.
-Um eine Zielsprachenunabhängigkeit zu erreichen, wird aus diesem Grund dem Generator bei der Erzeugung eine Factory übergeben die das Interface \emph{Language Factory} des Sprachmodells implementiert. 
+Um eine Zielsprachenunabhängigkeit zu erreichen, wird dem Generator bei der Erzeugung eine Factory übergeben die das Interface \emph{Language Factory} des Sprachenmodells implementiert. 
 
-Der Generator erzeugt Sprachelemente nur über diese Factory. Ein Aufruf einer Factorymethode gibt ein Sprachelement der Zielsprache zurück, der Generator kennt aber nur den Interface-Typ. Für ihn ist die konkrete Implementierung somit transparent.
-
-\subsection{Ausgabemodul}
-\label{sec:printer}
+Der Generator erzeugt Sprachelemente nur über diese Factory. Ein Aufruf einer Factorymethode gibt ein Sprachelement der Zielsprache zurück, der Generator kennt aber nur den Interface-Typ. Für ihn ist die konkrete Implementierung somit transparent. 
+Die \emph{Language Factory} bildet damit die Schnittstelle zwischen dem Generator und der Implementierung des Zielsprachenmodells.
 
 \subsubsection{Language Visitor}
 \label{sec:language_visitor}
 
-Kapitel gehört eher zu Generator
-% Attribut information aus Modell und nicht aus Datenklassen
+\citeauthor{patternsKompakt} definieren den Verwenduszweck des Patterns in \cite[][S. 60]{patternsKompakt} so: 
+\thesisquote{Dieses Pattern ermöglicht es, neue Operationen auf den Elementen einer
+Struktur zu definieren, ohne die Elemente selbst anzupassen.}
+
+Die Aufgabe des \emph{Language Visitor} im Generator ist die Transformation des Sprachenmodells in eine Zeichenketten-Darstellung. Wie in \cref{sec:language_model} schon erwähnt, enthält die Klasse die das \emph{LanguageVisitor}-Interface implementiert, Regeln für eine syntaktisch korrekte Ausgabe des Sprachenmodells. Zusätzlich können in den LanguageVisitor \enquote{code conventions} implementiert werden, bspw. Einrückungstiefen, Zeilenlängen etc.
+
+\subsection{Ausgabemodul}
+\label{sec:printer_module}
+
+Das Ausgabemodul implementiert Methoden zur Speicherung der Zeichenkettendarstellung aus dem \emph{Language Visitor}. Üblicherweise ist dies die Speicherung in Dateiform, es ist aber ebenso die Ausgabe auf \texttt{stdout} oder die Speicherung in einer Datenbank möglich.
