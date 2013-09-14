@@ -1,20 +1,215 @@
-\section{Erzeugte Bibliothek}
-\label{sec:created_library}
+\section{Client-Bibliothek}
+\label{sec:client_library}
+
+Die generierte Client-Bibliothek lässt sich in 2 verschiedene Arten von Klassen gliedern:
+\begin{compactitem}
+    \item[] erstens Klassen die die Elemente und Typen aus der \textsc{Xml}-Schemabeschreibung repräsentieren (\emph{Datenklassen});
+    \item[] zweitens solche die \textsc{Api}-Ressourcen und deren Methoden abbilden (\emph{Ressourcenklassen}).
+\end{compactitem}
+
+Zusätzlich wurden für Aufgaben wie \textsc{Http}-Methodenaufrufe, die keiner Generierung bedürfen, manuell Klassen mit statischen Methoden erstellt. Dem Generator werden die Klassen als Abhängigkeiten im Eingabemodell bekannt gegeben und an enstprechender Stelle durch ihn als \emph{Import}-Anweisungen in der Bibliothek eingefügt.
 
 \subsection{Datenklassen}
 \label{sec:dataclasses}
 
-Zielsprachenabhängige Repräsentation
+Die Datenklassen sind die zielsprachenabhängige Repräsentation der Elemente und Typen aus der \textsc{Xml}-Schemabeschreibung. 
+
+Der Name der Klasse entspricht dabei der Bezeichnung des Typs oder Elements. Die Variablen einer solchen Klasse sind die Attribute und Elemente aus der Schemabeschreibung des Typs. \textsc{Php} bietet keine Enumeratoren, deshalb werden die einzelnen Enum-Werte als statische Variablen vom Typ \texttt{string} generiert. Für alle Variablen werden außerdem Getter- und Setter-Methoden durch den Codegenerator erzeugt.
+
+Konstruktoren zur Erzeugung von Objekten aus den Datenklassen werden ebenfalls vom Generator erstellt. Dabei werden die \emph{Häufigkeitsindikatoren} aus der Schemabeschreibung berücksichtigt. Bei einem \texttt{minOccurs}-Wert größer 1, wird das Element zu den Konstruktor-Parametern hinzugefügt. Somit ist sichergestellt das notwendigen Angaben auch Werte zugeordnet werden.
+
+Methoden zur De-/Serialisierung (siehe \cref{sec:serialiser}) in eine der beiden von der Spreadshirt-\textsc{Api} unterstützen Dokumentbeschreibungsformate (\textsc{Json}, \textsc{Xml}) sind ebenfalls Bestandteil einer Datenklasse.
+
+\Cref{lst:generatedDataClass} zeigt einen gekürzten Ausschnitt der generierten Datenklasse zum Element \texttt{Point} aus der Schemabeschreibung der Spreadshirt-\textsc{Api}.
+
+\begin{lstlisting}[
+    language=PHP,
+    caption=Point-Klasse als (gekürztes) Beispiel für eine generierte Datenklasse,
+    label=lst:generatedDataClass
+]
+<?php
+   require_once('Unit.php');
+
+   class Point
+   {
+      private $unit; // unit 
+      private $y; // double 
+      private $x; // double 
+
+      function __construct(
+            /* double */ $y,
+            /* double */ $x
+         )
+      {
+         $this->y = $y;
+         $this->x = $x;
+      }
+
+      public function setUnit(
+            /* unit */ $unit
+         )
+      {
+         $this->unit = $unit;
+      }
+
+      public function toJSON()
+      {
+         $json = json_decode(/* Point */ $this);
+         return $json;
+      }
+
+      public function toXML()
+      {
+         $xml =  new SimpleXMLElement(/* Point */ '<login xmlns="http://api.spreadshirt.net"/>');
+         $xml->addChild(/* string */ 'unit',/* unit */ $this->unit);
+         $xml->addChild(/* string */ 'y',/* double */ $this->y);
+         $xml->addChild(/* string */ 'x',/* double */ $this->x);
+         return $xml->asXML();
+      }
+
+      public static function fromXML(
+            /* SimpleXMLElement */ $xml
+         )
+      {
+         $unit = Unit::fromXML(/* SimpleXMLElement */ $xml->unit);
+         $y = $xml->y;
+         $x = $xml->x;
+         $Point =  new Point(/* double */ $y,/* double */ $x);
+         $Point->setUnit(/* unit */ $unit);
+         return $Point;
+      }
+
+      ...
+
+      public function getX()
+      {
+         return $x = $this->x;
+      }
+   }
+?>
+\end{lstlisting}
 
 \subsection{Ressourcenklassen}
 \label{sec:ressourceclasses}
 
-Nur Zielsprachenabhängig
+Ressourcenklassen sind die zielsprachenabhängige Abbildung der Ressourcenbeschreibungen aus WADL-Datei der Spreadshirt-\textsc{Api}.
 
-\subsection{Serialisierer}
+Eine Ressourcenklasse beinhaltet:
+\begin{compactitem}
+    \item[\ding{202}] ein Feld welches die Basis-\textsc{Url} der API beinhaltet;
+    \item[\ding{203}] ein Feld in welches die komplette \textsc{Url}, inklusive der ersetzten Template-Parameter (siehe \cref{sec:rest_model}), der Ressource erhält;
+    \item[\ding{204}] eine Menge von Feldern die jeweils einem Template-Parameter zugeordnet sind;
+    \item[\ding{205}] einen Konstruktor dessen Argumente den Template-Parametern entsprechen und der aus diesen und der Basis-\textsc{Url} die Ressourcen-\textsc{Url} erstellt;
+    \item[\ding{206}] Abbildungen der Methoden aus der Ressourcenbeschreibung. Methodenparameter die zur Authentifizierung an der \textsc{Api} notwendig sind, werden durch einen Parameter der Klasse \textsc{ApiUser} (siehe \cref{sec:api_auth}) substituiert \ding{207}.
+\end{compactitem}
+
+\Cref{lst:generatedRessourceClass} beinhaltet die generierte Klasse zur Ressource \texttt{users/{userId}/products} der Spreadshirt-\textsc{Api}.
+
+\begin{lstlisting}[
+    language=PHP,
+    caption=Klasse zur Ressource \texttt{users/{userId}/products} als Beispiel für eine Ressourcenklasse,
+    label=lst:generatedRessourceClass
+]
+<?php
+   require_once('Static/methods.php'); //@\label{lst:importMethods}@//
+   require_once('Static/apiUser.php'); //@\label{lst:importApiUser}@//
+
+   /* Create or list products for user. */
+   class UsersUserIdProducts
+   {
+      private $baseUrl = 'http://192.168.13.10:8080/api/v1/'; // string //@\ding{202}@//
+      public $userId; // string //@\ding{204}@//
+      private $resourceUrl = ''; // string //@\ding{203}@//
+
+      /*  */
+      public function POST( //@\ding{206}@//
+            /* array */ $parameters,
+            /* ApiUser */ $apiUser,
+            /* ProductDTO */ $productDTO
+         )
+      {
+         $auth = $apiUser->getAuthentificationHeader(/* string */ 'POST',/* string */ $this->resourceUrl);
+         return Methods::post(/* string */ $this->resourceUrl,/* string */ $auth,/* array */ $parameters,/* ProductDTO */ $productDTO); //@\label{lst:staticMethodPost}@//
+      }
+
+      /* Sample Url is:  http://192.168.13.10:8080/api/v1/users/40000/products?apiKey=123456789&sig=e8673f36a0747168deab4b5b1dd6e86667dfba73&time=1378985680084&sessionId=123Sample Url for full data is:  http://192.168.13.10:8080/api/v1/users/40000/products?apiKey=123456789&sig=bf37a3ca1821ac477dfd4ebedaa40f2be0d9cc17&time=1378985680108&sessionId=123&fullData=true&limit=10 */
+      public function GET( //@\ding{206}@//
+            /* array */ $parameters,
+            /* ApiUser */ $apiUser //@\ding{207}@//
+         )
+      {
+         $auth = $apiUser->getAuthentificationHeader(/* string */ 'GET',/* string */ $this->resourceUrl);
+         return Methods::get(/* string */ $this->resourceUrl,/* string */ $auth,/* array */ $parameters); //@\label{lst:staticMethodGet}@//
+      }
+
+      function __construct( //@\ding{205}@//
+            /* string */ $userId
+         )
+      {
+         $this->userId = $userId;
+         $this->resourceUrl = $this->baseUrl . 'users' . '/' . $userId . 'products';
+      }
+   }
+?>
+\end{lstlisting}
+
+\subsection{De-/Serialisierer}
 \label{sec:serialiser}
+% todo: transportunabhängig als Schlagwort entfernen?
 
-Transportorientierte Repräsentation
+Um \emph{Ressourcen-Repräsentationen} (siehe \cref{sec:representation}) mit der Spreadshirt-\textsc{Api} transportunabhängig austauschen zu können müssen die strukturierten Datenklassen \emph{serialisiert} werden. In umgekehrter Richtung müssen \emph{Repräsentation} aus der \textsc{Api} deserialisiert --- also wieder in eine Datenklasse transformiert --- werden.
 
-\subsection{Deserialisierer}
-\label{sec:deserialiser}
+Die Datenklassen-Methoden zur Serialiserung und Deserialiserung besitzen einheitliche Bezeichner, nach dem Schema \texttt{toXML}, \texttt{toJSON}, respektive \texttt{fromXML}, \texttt{fromJSON}. Die Deserialisierer-Methoden sind \emph{statisch}, um das unnötige Instanziieren einer Datenklasse zu vermeiden, nur um ihre Klassendarstellung aus der serialisierten Form zu erhalten.
+
+Beispiele für beide Arten finden sich in \Cref{lst:generatedDataClass}.
+
+\subsection{Statische Klassen}
+\label{sec:static_classes}
+
+\emph{Statische Klassen} bedeutet in dem Codegenerierungskontext, dass diese \emph{manuell} erstellt wurden. 
+
+Die Client-Bibliothek beinhaltet dabei zwei dieser Klassen:
+\begin{compactenum}
+    \item zur Kommunikation mit der \textsc{Api} über \textsc{Http}-Methoden
+    \item zur Kapselung von Authentifizierungsinformationen
+\end{compactenum}
+
+Den Import beider Klassen zeigt \Cref{lst:generatedRessourceClass} in Zeile~\ref{lst:importMethods} und ~\ref{lst:importApiUser}.
+
+% todo: Abschnittstitel ändern
+\subsubsection{Nutzung der HTTP-Methoden}
+\label{sec:staticMethodsClass}
+
+Um die generierten Ressourcenklassen nicht unnötig zu vergrößern wurde der \emph{einheitliche} Vorgang zum Aufruf der \textsc{Http}-Methoden in eine manuell erstellte Klasse ausgelagert.
+
+\Cref{lst:generatedRessourceClass} zeigt in Zeile~\ref{lst:staticMethodPost} und ~\ref{lst:staticMethodGet} den Aufruf zweier solcher Methoden aus einer Ressourcenklasse.
+
+\subsubsection{API Authentifizierung}
+\label{sec:api_auth}
+
+In der Spreadshirt-\textsc{Api} sind geschützte und ungeschützte Ressourcen vorhanden. Eine Ressource kann dabei durch 
+
+Das zur Authentifizierung eines \textsc{Api}-Nutzers verwendete Protokoll \emph{SprdAuth} basiert auf \enquote{\textsc{Http}s Authorization Request Header} sowie dem \enquote{\textsc{Www}-Authentificate Response Header} \cite{apiSecurity}.
+
+Die Spreadshirt-\textsc{Api} unterstüzt dabei die Übergabe der nötigen Authentifizierungsparameter als Teil der \gls{URI}-Query oder in Form des \emph{Authentification-Header}. Die erzeugte Client-Bibliothek beschränkt sich dabei auf die Nutzung des \emph{Authorization-Headers}, dieser besitzt folgenden Aufbau:
+
+\begin{lstlisting}[
+    language=JavaScript,
+    caption=Aufbau des Spreadshirt Authentification Header,
+    label=lst:authHeader
+]
+Authorization:  SprdAuth apiKey="<apikey>", //@\ding{202}@// 
+                data="<method> <url> <time>", 
+                sig="SHA1(<method> <url> <time> <secret> //@\ding{203}@// )", 
+                sessionId="<sessionId>" //@\ding{204}@//
+\end{lstlisting}
+
+Die Klasse \textbf{ApiUser} kapselt die Daten die zur Authentifizierung an der \textsc{Api} nötig sind und stellt eine Methode bereit die dem Nutzer das erstellen des Authorization-Headers erspart. Der Konstruktor der ApiUser-Klasse erwartet dabei die Angabe der folgenden Parameter:
+
+\begin{compactitem}
+    \item \emph{UserID}, die Indentifikationsnummer des Spreadshirt-Nutzers
+    \item \emph{ApiKey} und \emph{Secret} (\ding{202}, \ding{203}), diese Informationen erhält der Nutzer wenn er sich als \textsc{Api}-User bei Spreadshirt registriert
+    \item \emph{SessionID} (\ding{204}), die SessionID ist in der Response der POST-Methode auf Ressource \texttt{sessions} enthalten.
+\end{compactitem}
+
+Alle Methoden die eine Authentifizierung benötigen erhalten vom Codegenerator einen Parameter vom Typ \emph{ApiUser} wie \ding{206} in \Cref{lst:generatedRessourceClass} zeigt.
