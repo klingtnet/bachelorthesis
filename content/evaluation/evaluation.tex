@@ -7,14 +7,79 @@
 % Leistungsbewertung konkret an 1-2 Beispielen
 % Codemetriken
 
+% todo: Überschrift ändern
 \section{PHP-Zielsprachenmodell}
 \label{sec:php_target_language_model}
+
+\Cref{fig:modelRepresentationOfBatchDTO} zeigt die Gegenüberstellung von \Cref{lst:batchDTO} in Form des \gls{AST} der durch das Sprachmodell gebildet wird. 
+
+\begin{lstlisting}[
+    language=PHP,
+    caption=Ausschnitt der Datenklasse BatchDTO,
+    label=lst:batchDTO
+]
+<?php
+   require_once('Dto.php');
+   require_once('OperationDTO.php');
+
+   class BatchDTO
+   {
+      private $operations = array(); // operationDTO 
+      ...
+      public static function fromXML(
+            /* SimpleXMLElement */ $xml
+         )
+      {
+         $operations = OperationDTO::fromXML(/* SimpleXMLElement */ $xml->operations);
+          ...
+      }
+      ...
+   }
+?>
+\end{lstlisting}
+
+\begin{sidewaysfigure}
+    \centering
+    \resizebox{1.05\textheight}{!}{
+      \input{tikz_pgf/languageModelRepresentation}
+    }
+    \caption{Darstellung von BatchDTO aus \Cref{lst:batchDTO} im Sprachenmodell}
+    \label{fig:modelRepresentationOfBatchDTO}
+\end{sidewaysfigure}
 
 \section{Nutzbarkeit}
 \label{sec:usability}
 
 \section{Leistungsbewertung}
 \label{sec:performance_measurement}
+
+\begin{lstlisting}[
+    language=PHP,
+    caption=Beispiel fuer eine Interaktion mit der Spreadshirt-API über die generierte Client-Bibliothek
+    label=lst:giveMeALabel
+]
+<?php
+
+require_once("data/LoginDTO.php");
+require_once("resources/UsersUserId.php");
+require_once("resources/Sessions.php");
+
+$userId = "1102730";
+$apiKey = "098fc12a-0777-426f-b47c-a7bb872cdf09";
+$secret = "ba125903-68b2-4f3b-93ae-a83090e20ce8";
+
+$loginDTO = new LoginDTO();
+$loginDTO->setUsername("username");
+$loginDTO->setPassword("password");
+$resource = new Sessions();
+$session = $resource->POST(null, $loginDTO);
+var_dump($session);
+
+$user = new UsersUserId($userId);
+var_dump($user->GET(null));
+
+?>
+\end{lstlisting}
 
 %\section{Codemetriken}
 %\label{sec:codemetrics}

@@ -1,0 +1,88 @@
+\begin{tikzpicture}[every tree node/.style={font=\ttfamily}]    
+    \Tree
+    [.ClassFile 
+        [ .Import 
+            [ .Literal 
+                [ .PrimitiveType 
+                    {'Dto.php'}
+                ] 
+            ]            
+        ]
+        [ .Import 
+            {\ldots}
+        ]    
+        [ .CommonClass
+            {'BatchDTO'}
+            [
+                .AssignmentStatement
+                [ .Variable
+                    {"operations"}
+                    [ .Modifiers
+                        {"private"}
+                    ]
+                ]
+                [ .Operator 
+                    {"="}
+                ]                
+                [
+                    .MethodInvocation
+                    {"array"}
+                ]
+            ]
+            [
+                .DefinitionStatement        
+                {"fromXML"}
+                [
+                    .Modifiers
+                    {"public"}
+                    {"static"}
+                ] 
+                [ .Identifier
+                    [ .Comment
+                        {"SimpleXMLElement"}
+                    ]
+                    {"xml"}
+                ]
+                [
+                    .Block
+                    [
+                        [ .AssignmentStatement 
+                            [ .Identifier
+                                {"operations"}
+                            ]
+                            [ .Operator
+                                {"="}
+                            ]
+                            [ .SimpleExpression
+                                [ .Identifier
+                                    {"OperationDTO"}
+                                ]                
+                                [ .Operator 
+                                    {"::"}
+                                ]
+                                [
+                                    .MethodInvocation
+                                    {"fromXML"}
+                                    [                                                
+                                        .SimpleExpression                                                
+                                        [ .Identifier
+                                            [ .Comment
+                                                {"SimpleXMLElement"}
+                                            ]
+                                            {"xml"}
+                                        ]
+                                        [ .Operator
+                                            {"->"}
+                                        ]
+                                        [ .Identifier   {"operations"}
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]                                                    
+                    ]
+                ]
+            ]            
+        ]
+    ]
+\end{tikzpicture}
