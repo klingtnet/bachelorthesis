@@ -50,6 +50,8 @@
 \section{Nutzbarkeit}
 \label{sec:usability}
 
+Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier von strukturierten Typen noch nicht fehlerfrei generiert werden. Die Informationen die nötig sind um Datenklassen verlustfrei zu serialisieren bzw. deren \textsc{Xml}-Repräsentation zu deserialisieren sind im Schema-Modell (siehe \cref{sec:schema_model}) vorhanden, der Algorithmus im Codegenerator zur Erzeugung dieser Methoden muss deshalb überarbeitet werden.
+
 \section{Leistungsbewertung}
 \label{sec:performance_measurement}
 
@@ -64,7 +66,7 @@ require_once("data/LoginDTO.php");
 require_once("resources/UsersUserId.php");
 require_once("resources/Sessions.php");
 
-$userId = "1102730";
+$userId = "1234567";
 $apiKey = "098fc12a-0777-426f-b47c-a7bb872cdf09";
 $secret = "ba125903-68b2-4f3b-93ae-a83090e20ce8";
 
@@ -73,10 +75,8 @@ $loginDTO->setUsername("username");
 $loginDTO->setPassword("password");
 $resource = new Sessions();
 $session = $resource->POST(null, $loginDTO);
-var_dump($session);
 
 $user = new UsersUserId($userId);
-var_dump($user->GET(null));
 
 ?>
 \end{lstlisting}
