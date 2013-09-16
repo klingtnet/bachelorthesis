@@ -3,9 +3,7 @@
 
 \chapterQuote{There are two ways to write error-free programs; only the third one works}{\citeauthor{alanPerlis}}{\citeyear{alanPerlis}}{\cite{alanPerlis}}
 
-% wie werden Tests generiert
-% Leistungsbewertung konkret an 1-2 Beispielen
-% Codemetriken
+Die Bewertung --- oder auch Evaluierung --- der generierten Client-Bibliothek gegenüber den Anforderungen (siehe \cref{item:requirements}) anhand von Anwendungsbeispielen ist Bestandteil dieses Kapitels.
 
 % todo: Überschrift ändern
 \section{PHP-Zielsprachenmodell}
@@ -40,7 +38,7 @@
 
 \begin{sidewaysfigure}
     \centering
-    \resizebox{1.05\textheight}{!}{
+    \resizebox{1.0\textheight}{!}{
       \input{tikz_pgf/languageModelRepresentation}
     }
     \caption{Darstellung von BatchDTO aus \Cref{lst:batchDTO} im Sprachenmodell}
@@ -57,7 +55,7 @@ Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier v
 
 \begin{lstlisting}[
     language=PHP,
-    caption=Beispiel fuer eine Interaktion mit der Spreadshirt-API über die generierte Client-Bibliothek,
+    caption=Beispiel für eine Interaktion mit der Spreadshirt-API über die generierte Client-Bibliothek,
     label=lst:giveMeALabel
 ]
 <?php
