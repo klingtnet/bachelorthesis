@@ -9,6 +9,8 @@ Die Bewertung --- oder auch Evaluierung --- der generierten Client-Bibliothek ge
 \section{PHP-Zielsprachenmodell}
 \label{sec:php_target_language_model}
 
+Das PHP-Zielsprachemodell ist die Implementierung der Schnittstellen die durch das Sprachenmodell vorgegeben sind.
+
 \Cref{fig:modelRepresentationOfBatchDTO} zeigt die Gegenüberstellung von \Cref{lst:batchDTO} in Form des \gls{AST} der durch das Sprachmodell gebildet wird. 
 
 \begin{lstlisting}[
@@ -48,33 +50,46 @@ Die Bewertung --- oder auch Evaluierung --- der generierten Client-Bibliothek ge
 \section{Nutzbarkeit}
 \label{sec:usability}
 
+Quellcodefiles welche Bibliotheksfunktionalitäten nutzen müssen im Wurzelverzeichnis selbiger liegen. Dies ist damit begründet das der \textsc{Php}-Interpreter bei Importanweisungen mit relativen Pfaden, den aktuellen Pfad der ausgeführten Datei als Basis nimmt.
+
 Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier von strukturierten Typen noch nicht fehlerfrei generiert werden. Die Informationen die nötig sind um Datenklassen verlustfrei zu serialisieren bzw. deren \textsc{Xml}-Repräsentation zu deserialisieren sind im Schema-Modell (siehe \cref{sec:schema_model}) vorhanden, der Algorithmus im Codegenerator zur Erzeugung dieser Methoden muss deshalb überarbeitet werden.
 
 \section{Leistungsbewertung}
 \label{sec:performance_measurement}
 
+Im folgenden soll eine typischer Arbeitsablauf mit der Client-Bibliothek gezeigt werden. Der Client sollte zum Einstieg ein Objekt der Datenklasse \textbf{LoginDTO} anlegen \ding{202} und seine Login-Informationen eintragen, dies wird benötigt um über die Ressourcenklasse \textbf{Sessions} auf der gleichnamigen \textsc{Api}-Ressource eine neue Sitzung (\enquote{Session}) anzulegen.
+Die \emph{Response} der Session-Ressource enthält eine \textsc{Uri} auf die Ressource der angelegten Sitzung. Diese \textsc{Uri} enthält die \emph{SessionID} welche durch \ding{204} aus der \textsc{Uri} extrahiert wird.
+
+Nun sind alle nötigen Informationen vorhanden um ein Objekt der Klasse \textbf{ApiUser} anzulegen \ding{205}, welches die Authentifizierungsinformationen für gesicherte Ressourcen der Spreadshirt-\textsc{Api} enthält.
+
+Nun kann über die Bibliotheksklassen auch auf geschützte \textsc{Api}-Ressourcen zugegriffen werden, in diesem Fall werden bspw. die Produkte eines bestimmten Users abgefragt. Entegegen den vorherigen Aufrufen von Methoden der Ressourceklassen wird ein Parameter-Array erzeugt \ding{206} um den \emph{mediaType} der Response festzulegen.
+Vor dem Zugriff auf die Ressource muss noch die entsprechende Ressourcenklasse instanziiert werden \ding{207}.
+
 \begin{lstlisting}[
     language=PHP,
-    caption=Beispiel für eine Interaktion mit der Spreadshirt-API über die generierte Client-Bibliothek,
+    caption=Beispiel für eine Interaktion mit der Spreadshirt-API über die generierte Client-Bibliothek (Authentifizierungsinformationen wurden anonymisiert),
     label=lst:giveMeALabel
 ]
 <?php
 
 require_once("data/LoginDTO.php");
+require_once("Static/apiUser.php");
 require_once("resources/UsersUserId.php");
+require_once("resources/UsersUserIdProducts.php");
 require_once("resources/Sessions.php");
 
-$userId = "1234567";
-$apiKey = "098fc12a-0777-426f-b47c-a7bb872cdf09";
-$secret = "ba125903-68b2-4f3b-93ae-a83090e20ce8";
-
-$loginDTO = new LoginDTO();
+$loginDTO = new LoginDTO(); //@\ding{202}@//
 $loginDTO->setUsername("username");
 $loginDTO->setPassword("password");
 $resource = new Sessions();
-$session = $resource->POST(null, $loginDTO);
+$session = $resource->POST(null, $loginDTO); //@\ding{203}@//
+$sessionId = preg_replace('/.*\//',"",$session['header']['Location']); //@\ding{204}@//
 
-$user = new UsersUserId($userId);
+$apiUser = new ApiUser("userId", "apiKey", "secret", $sessionId); //@\ding{205}@//
+
+$parameters = array("mediaType"=>"json"); //@\ding{206}@//
+$resource = new UsersUserIdProducts($userId); //@\ding{207}@//
+$products = $resource->GET($parameters, $apiUser); //@\ding{208}@//
 
 ?>
 \end{lstlisting}
