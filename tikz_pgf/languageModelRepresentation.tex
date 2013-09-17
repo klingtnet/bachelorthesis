@@ -1,88 +1,87 @@
-\begin{tikzpicture}[every tree node/.style={font=\ttfamily}]    
-    \Tree
-    [.ClassFile 
-        [ .Import 
-            [ .Literal 
-                [ .PrimitiveType 
-                    {'Dto.php'}
-                ] 
-            ]            
-        ]
-        [ .Import 
-            {\ldots}
-        ]    
-        [ .CommonClass
-            {'BatchDTO'}
-            [
-                .AssignmentStatement
-                [ .Variable
-                    {"operations"}
-                    [ .Modifiers
-                        {"private"}
-                    ]
-                ]
-                [ .Operator 
-                    {"="}
-                ]                
-                [
-                    .MethodInvocation
-                    {"array"}
-                ]
-            ]
-            [
-                .DefinitionStatement        
-                {"fromXML"}
-                [
-                    .Modifiers
-                    {"public"}
-                    {"static"}
-                ] 
-                [ .Identifier
-                    [ .Comment
-                        {"SimpleXMLElement"}
-                    ]
-                    {"xml"}
-                ]
-                [
-                    .Block
-                    [
-                        [ .AssignmentStatement 
-                            [ .Identifier
-                                {"operations"}
-                            ]
-                            [ .Operator
-                                {"="}
-                            ]
-                            [ .SimpleExpression
-                                [ .Identifier
-                                    {"OperationDTO"}
-                                ]                
-                                [ .Operator 
-                                    {"::"}
-                                ]
-                                [
-                                    .MethodInvocation
-                                    {"fromXML"}
-                                    [                                                
-                                        .SimpleExpression                                                
-                                        [ .Identifier
-                                            [ .Comment
-                                                {"SimpleXMLElement"}
-                                            ]
-                                            {"xml"}
-                                        ]
-                                        [ .Operator
-                                            {"->"}
-                                        ]
-                                        [ .Identifier   {"operations"}
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]                                                    
-                    ]
-                ]
-            ]            
-        ]
+\begin{tikzpicture}[
+    level distance=1.2cm,
+    level 1/.style={sibling distance=5cm}
     ]
+    \node (root) [classNode] {ClassFile} 
+    [edge from parent fork down]
+    child [sibling distance = 3cm] { node [classNode] {Import}
+        child { node [classNode] {Literal}
+            child { node [classNode] {PrimitiveType}
+                child { node [stringNode] {'Dto.php'} }
+            }
+        }
+    }
+    child { node [classNode] {Import}
+        child { node [classNode] {Literal}
+            child { node [classNode] {PrimitiveType}
+                child { node [stringNode] {'OperationDTO.php'} }
+            }
+        }
+    }
+    child { child { child { 
+    child { node [classNode] {CommonClass}
+        child { node [stringNode] {'BatchDTO'} }
+        child { node [classNode] {AssignmentStatement}
+            child [sibling distance = 3cm] { node [classNode] {Variable} 
+                child { node [stringNode] {'operations'} }
+                child { node [classNode] {Modifiers} 
+                    child { node [stringNode] {'private'} }
+                }
+            }
+            child [sibling distance = 3cm] { node [classNode] {Operator}
+                child { node [stringNode] {'='} }
+            }
+            child [sibling distance = 3cm] { node [classNode] {MethodInvocation} 
+                child { node [stringNode] {'array'} }
+            }
+        }
+        child { child { child {
+        child [sibling distance = 3.5cm] { node [classNode] {DefinitionStatement} 
+            child { node [stringNode] {'fromXML'} }
+            child { node [classNode] {Modifiers}
+                child { node [stringNode] {'public'} }
+                child { node [stringNode] {'static'} }
+            }
+            child {
+            child { node [classNode] {Identifier}
+                child { node [classNode] {Comment} 
+                    child { node [stringNode] {'SimpleXMLElement'} }
+                }
+                child { node [stringNode] {'xml'} }
+            }
+            }
+            child { child { 
+            child { node [classNode] {Block}
+                child { node [classNode] {AssignmentStatement}
+                                   child { node [classNode] {Identifier}
+                        child { node [stringNode] {'operations'} }
+                    }                    
+                    child { node [classNode] {'Operator'} 
+                        child { node [stringNode] {'::'} }
+                    }
+                    child { node [classNode] {'MethodInvocation'} 
+                        child { node [stringNode] {'fromXML'} }
+                        child { node [classNode] {SimpleExpression} 
+                            child { node [classNode] {Identifier}
+                                child { node [classNode] {Comment}
+                                    child { node [stringNode] {'SimpleXMLElement'} }
+                                }
+                                child { node [stringNode] {'xml'} }
+                            }
+                            child { node [classNode] {Operator}
+                                child { node [stringNode] {'->'} }
+                            }
+                            child { node [classNode] {Identifier} 
+                                child { node [stringNode] {'operations'} }
+                            }
+                        }
+                    }
+                }
+            }
+            }}
+        }
+        }}}
+    }}}
+    }
+    ;
 \end{tikzpicture}
