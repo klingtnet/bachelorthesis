@@ -6,8 +6,7 @@
 Die Bewertung --- oder auch Evaluierung --- der generierten Client-Bibliothek gegenüber den Anforderungen (siehe \cref{item:requirements}) anhand von Anwendungsbeispielen ist Bestandteil dieses Kapitels.
 
 % todo: Überschrift ändern
-\section{PHP-Zielsprachenmodell}
-\label{sec:php_target_language_model}
+\section{PHP-Zielsprachenmodell}\label{sec:php_target_language_model}
 
 Das PHP-Zielsprachemodell ist die Implementierung der Schnittstellen die durch das Sprachenmodell vorgegeben sind.
 
@@ -30,8 +29,8 @@ Das PHP-Zielsprachemodell ist die Implementierung der Schnittstellen die durch d
             /* SimpleXMLElement */ $xml
          )
       {
-         $operations = OperationDTO::fromXML(/* SimpleXMLElement */ $xml->operations);
-          ...
+         $operations = OperationDTO::fromXML(/* SimpleXMLElement */ $xml->operations)
+;          ...
       }
       ...
    }
