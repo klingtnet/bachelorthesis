@@ -2,7 +2,7 @@
 \label{sec:http}
 
 \thesisDefinition{\textsc{Http}}{
-Das \emph{Hypertext Transfer Protocol (\textsc{Http})} ist allgemeines und \emph{zustandsloses} Protokoll, zur Übertragung von Daten über ein Netzwerk, was durch Erweiterung seiner Anfragemethoden, Statuscodes und Header für viele unterschiedliche Anwendungen verwendet werden kann (\cite[][Abstract]{rfc2616}).
+Das \emph{Hypertext Transfer Protocol (\textsc{Http})} ist ein allgemeines und \emph{zustandsloses} Protokoll, zur Übertragung von Daten über ein Netzwerk, was durch Erweiterung seiner Anfragemethoden, Statuscodes und Header für viele unterschiedliche Anwendungen verwendet werden kann (\cite[][Abstract]{rfc2616}).
 }
 
 \textsc{Http} arbeitet auf der Anwendungsschicht (\enquote{Application Layer} des \textsc{Osi}-Modells) und ist somit unabhängig von dem zum Datentransport eingesetzten Protokoll. 
@@ -23,7 +23,7 @@ Eine Nachricht kann je nach verwendeter \textsc{Http}-Methode auch nur aus einem
 \subsection{Header}
 \label{sec:http-header}
 
-Ein Header einer \textsc{Http}-Nachricht besteht aus einer \emph{Request Line} (erste Zeile des Headers) und einer Menge von Schlüssel-Wert Paaren. \Cref{lst:headGETrequest} zeigt einen Beispiel Header für die \textsc{Get} Anfrage auf die Spreadshirt-\gls{API} Ressource:
+Ein Header einer \textsc{Http}-Nachricht besteht aus einer \emph{Request Line} (erste Zeile des Headers) und einer Menge von Schlüssel-Wert-Paaren. \Cref{lst:headGETrequest} zeigt einen Beispiel-Header für die \textsc{Get}-Anfrage auf die Spreadshirt-\gls{API} Ressource:
 \texttt{http://api.spreadshirt.net/api/v1/locales}.
 
 \begin{lstlisting}[
@@ -40,9 +40,9 @@ Accept: */* //@\ding{207}@//
     \item[\ding{202}] Angabe der \textsc{Http}-Methode
     \item[\ding{203}] Ressource
     \item[\ding{204}] verwendete \textsc{Http}-Version
-    \item[\ding{205}] \emph{User-Agent}, Angabe zum Client-System das die Anfrage versendet
-    \item[\ding{206}] \emph{Host}, Server der die Anfrage erhält und der die Ressource \ding{203} verwaltet
-    \item[\ding{207}] Angabe von \emph{Content-Types} die der Client als Antwort akzeptiert, in diesem Fall eine \emph{Wildcard}, also alle Typen sind als Antwort erlaubt
+    \item[\ding{205}] \emph{User-Agent}, Angabe zum Client-System, das die Anfrage versendet
+    \item[\ding{206}] \emph{Host}, der Server welcher die Anfrage erhält und der die Ressource \ding{203} verwaltet
+    \item[\ding{207}] Angabe von \emph{Content-Types}, die der Client als Antwort akzeptiert, in diesem Fall eine \emph{Wildcard}, also alle Typen sind als Antwort erlaubt
 \end{compactitem}
 
 Nachfolgend die \emph{Response} auf den soeben beschrieben \emph{Request}.
@@ -68,12 +68,12 @@ Connection: keep-alive
     \item[\ding{203}] Angabe des Content-Types des Bodys der Nachricht
 \end{compactitem}
 
-Welche Einträge der Header einer \textsc{Http}-Nachricht letztendlich enhtält, ist abhängig von der Implementierung des Clients oder Servers und es können auch jederzeit eigene Einträge, die nicht in der \textsc{Http}-Spezifikation enthalten sind, hinzugefügt werden.
+Welche Einträge der Header einer \textsc{Http}-Nachricht letztendlich enthält, ist abhängig von der Implementierung des Clients oder Servers und es können auch jederzeit eigene Einträge, die nicht in der \textsc{Http}-Spezifikation enthalten sind, hinzugefügt werden.
 
 \subsection{Body}
 \label{sec:http-body}
 
-Der Body enthält die eigentlichen Nutzdaten. Deren Format wird mit dem \emph{Content-Type} Eintrag des Headers angegeben. \Cref{lst:bodyGETresponse} zeigt den Body der \emph{response} von \cref{lst:headGETresponse} in \gls{XML} Format (siehe \cref{sec:xml}).
+Der Body enthält die eigentlichen Nutzdaten. Deren Format wird mit dem \emph{Content-Type}-Eintrag des Headers angegeben. \Cref{lst:bodyGETresponse} zeigt den Body der \emph{response} von \cref{lst:headGETresponse} in \gls{XML} Format (siehe \cref{sec:xml}).
 
 \begin{lstlisting}[
     language=XML,

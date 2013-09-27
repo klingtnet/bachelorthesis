@@ -2,12 +2,11 @@
 \label{sec:xsd}
 
 \textsc{XML} Schema Description ist ein stark erweiterte Nachfolger der \textsc{DTD} (Document Type Definition), derzeit spezifiert in Version 1.1 \cite{XMLSchema11Specification}. 
-Die Syntax von \emph{\textsc{Xsd}} ist \textsc{Xml}, damit ist die Schemabeschreibung ebenfalls ein gültiges \textsc{Xml}-Dokument. Als Dateiendung wird üblicherweise \texttt{.xsd} verwendet.
+Die Syntax von \emph{\textsc{Xsd}} ist \textsc{Xml}. Damit ist die Schemabeschreibung ebenfalls ein gültiges \textsc{Xml}-Dokument. Als Dateiendung wird üblicherweise \texttt{.xsd} verwendet.
 
-Die Hauptmerkmale von \textsc{Xsd} sind nach \cite[Kapitel 3.2][]{taxonomyXMLSchema}
-, die folgenden:
+Die Hauptmerkmale von \textsc{Xsd} sind nach \cite[Kapitel 3.2][]{taxonomyXMLSchema} die folgenden:
 \begin{compactitem}
-    \item Komplexe Typen (strukturierter Inhalt)
+    \item komplexe Typen (strukturierter Inhalt)
     \item anonyme Typen (besitzen kein \texttt{type}-Attribut)
     \item Modellgruppen
     \item Ableitung durch Erweiterung oder Einschränkung (\enquote{derivation by extension/restriction})
@@ -35,7 +34,7 @@ Der Wert des Attributs \emph{elementFormDefault} gibt an, ob Elemente des Schema
 
 Externe Schemadefinitionen lassen sich unter Angabe des Namensraumes und einer \gls{URI} zu der \textsc{Xsd}-Datei einbinden \ding{204}.
 
-\textsc{Xml} Schema Description erlaubt die Definition von simplen Typen (\enquote{SimpleType}) und Typen mit strukturiertem Inhalt (\enquote{ComplexType}).
+\textsc{Xml}-Schema Description erlaubt die Definition von simplen Typen (\enquote{SimpleType}) und Typen mit strukturiertem Inhalt (\enquote{ComplexType}).
 
 \begin{lstlisting}[
     language=XML,
@@ -96,11 +95,11 @@ Die Definition eines strukturierten Typs zeigt \Cref{lst:xsdExampleAbstractList}
 </xs:complexType>
 \end{lstlisting}
 
-Das \emph{ComplexType}-Tag \ding{202} umschließt die Definiton des strukturierten Typs. \textsc{Xml} Schema Description erlaubt das definieren von abstrakten Typen, nur Ableitungen davon dürfen als Instanzen in einem Dokument auftreten. Abgeleitete Typen dürfen dabei den abstrakten Typ \emph{erweitern} o. \emph{einschränken} (\enquote{derivation by extension/restriction}).
+Das \emph{ComplexType}-Tag \ding{202} umschließt die Definiton des strukturierten Typs. \textsc{Xml}-Schema Description erlaubt das Definieren von abstrakten Typen, nur Ableitungen davon dürfen als Instanzen in einem Dokument auftreten. Abgeleitete Typen dürfen dabei den abstrakten Typ \emph{erweitern} o. \emph{einschränken} (\enquote{derivation by extension/restriction}).
 
-Mit \emph{Reihenfolgeindikatoren} \ding{203} kann die Ordnung von Elementen festgelegt werden. Elemente unterhalb eines \emph{Sequence}-Tags dürfen nur in der Abfolge auftreten in der sie unterhalb des Sequence-Tag definiert worden sind. Das \emph{All}-Tag \ding{205} hingegen erlaubt das auftreten ohne festgelegte Reihenfolge. Der Reihenfolgeindikator \emph{Choice} erlaubt das auftreten nur eines der Elemente die unterhalb dieses Tags vorkommen.
+Mit \emph{Reihenfolgeindikatoren} \ding{203} kann die Ordnung von Elementen festgelegt werden. Elemente unterhalb eines \emph{Sequence}-Tags dürfen nur in der Abfolge auftreten, in der sie unterhalb des Sequence-Tag definiert worden sind. Das \emph{All}-Tag \ding{205} hingegen erlaubt das Auftreten ohne festgelegte Reihenfolge. Der Reihenfolgeindikator \emph{Choice} erlaubt das Auftreten nur eines der Elemente, die unterhalb dieses Tags vorkommen.
 
-Durch die optionale Angabe von \emph{Häufigkeitsindikatoren} \ding{204} kann festgelegt werden wie oft ein Element an der definierten Stelle vorkommen darf. Entfällt dies, entspricht der Wert von \emph{min-, maxOccurs} "1", das heisst das Element darf genau einmal an dieser Stelle vorkommen.
+Durch die optionale Angabe von \emph{Häufigkeitsindikatoren} \ding{204} kann festgelegt werden wie oft ein Element an der definierten Stelle vorkommen darf. Entfällt dies, entspricht der Wert von \emph{min-, maxOccurs} "1", das heißt, das Element darf genau einmal an dieser Stelle vorkommen.
 
 Elemente einer \textsc{Xml}-Datei werden durch das gleichnamige \emph{Element} \ding{205} im \textsc{Xsd} definiert. Ein Element benötigt die Angabe eines Namens und Typs. Die Angabe des Typs kann dabei als Referenz auf die Typdefinition \ding{207} oder als Definition unterhalb des Element-Tags erfolgen \ding{206}.
 

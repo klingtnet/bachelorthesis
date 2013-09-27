@@ -3,7 +3,7 @@
 
 \emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding\footnote{Roy Thomas Fielding, geboren 1965, ist einer der Hauptautoren der \textsc{Http}-Spezifikation} in seiner Dissertation aus dem Jahre 2000  beschrieben wurde \cite[Kapitel 5][95 ff.]{fieldingDissertation}. 
 
-Als \gls{RESTful} bezeichnet man dabei eine Webanwendung die den Prinzipien von \gls{REST} entspricht. 
+Als \gls{RESTful} bezeichnet man dabei eine Webanwendung, die den Prinzipien von \gls{REST} entspricht. 
 
 % Diesen Part über die Grundprinzipien verschieben
 \subsection{Elemente von \textsc{Rest}}
@@ -18,10 +18,10 @@ Eine Ressource stellt die wichtigste Abstraktion von Information im \textsc{Rest
 to a set of entities, not the entity that corresponds to the mapping at any particular point in
 time.}
 
-Eine Ressource kann somit alle Konzepte abbilden die sich über einen Bezeichner referenzieren lassen. Dies können konkrete Dokumente, aber auch Dienste oder sogar Sammlungen von Ressourcen sein.
+Eine Ressource kann somit alle Konzepte abbilden, die sich über einen Bezeichner referenzieren lassen. Dies können konkrete Dokumente, aber auch Dienste oder sogar Sammlungen von Ressourcen sein.
 Außerdem identifiziert ein Ressourcenbezeichner, meist eine \gls{URI} (siehe \cref{sec:unambigiousidentification}), immer dieselbe Ressource, nicht aber deren Wert oder Zustand.
 
-Ein Beispiel für eine Ressource in der Spreadshirt \gls{API} \texttt{/users/\{userid\}}, wobei \texttt{\{userid\}} die Identifikationsnummer eines konkreten Nutzers bezeichnet. Diese Ressource enthält dabei eine Menge von Elementen, ein Beispiel für eine Ressource die nur ein einziges Element enthält ist \texttt{/serverTime}. 
+Ein Beispiel für eine Ressource in der Spreadshirt \gls{API} \texttt{/users/\{userid\}}, wobei \texttt{\{userid\}} die Identifikationsnummer eines konkreten Nutzers bezeichnet. Diese Ressource enthält dabei eine Menge von Elementen, ein Beispiel für eine Ressource, die nur ein einziges Element enthält, ist \texttt{/serverTime}. 
 
 \subsubsection{Repräsentation}
 \label{sec:representation}
@@ -29,7 +29,7 @@ Ein Beispiel für eine Ressource in der Spreadshirt \gls{API} \texttt{/users/\{u
 Eine Repräsentation (\emph{representation}) stellt den aktuellen oder den gewünschten Zustand einer Ressource dar. Das Format der Repräsentation ist dabei unabhängig von dem der Ressource, siehe \cref{sec:representationofresources}.
 Aktionen mit Komponenten einer \textsc{Rest}-\textsc{Api} werden durch den Austausch von solchen Repräsentationen durchgeführt.
 
-Im Allgemeinen wird unter einer Repräsentation nur eine Folge von Bytes verstanden, inklusive \emph{Metainformationen} welche den Inhalt der Bytefolge klassifiziert, sowie \emph{Kontrolldaten} die die gewünschte Aktion oder die Bedeutung der Anfrage beschreiben. Letztere sind meist \textsc{Http}-Header-Felder (siehe \cref{sec:http-header}), bspw. um das Cachingverhalten zu ändern.
+Im Allgemeinen wird unter einer Repräsentation nur eine Folge von Bytes verstanden, inklusive \emph{Metainformationen}, welche den Inhalt der Bytefolge klassifiziert, sowie \emph{Kontrolldaten}, die die gewünschte Aktion oder die Bedeutung der Anfrage beschreiben. Letztere sind meist \textsc{Http}-Header-Felder (siehe \cref{sec:http-header}), bspw. um das Cachingverhalten zu ändern.
 
 \begin{minipage}{\textwidth}
     \begin{lstlisting}[
@@ -94,16 +94,16 @@ Ausgangsparameter:
 
 \begin{description}
     \item[Ursprungsserver] 
-        Serverseitiger Konnektor der die angeforderten Ressourcen verwaltet. Er ist die einzige Quelle für Repräsentationen, sowie der endgültige Empfänger von Änderungsanfragen an seine Ressourcen. (siehe \cref{sec:unambigiousidentification}).
-    \item[Proxy] Zwischenkomponente die explizit vom Client verwendet kann, aus Sicherheits-, Performance- oder Kompatibilitätsgründen.
-    \item[Gateway] Dient als Schnittstelle zwischen Client- und Servernetzwerk, kann zusätzlich aus den gleichen Gründen wie der Proxy verwendet werden. Konträr zum Proxy kann der Client aber nicht entscheiden ob er einen Gateway nutzen möchte.
+        Serverseitiger Konnektor, der die angeforderten Ressourcen verwaltet. Er ist die einzige Quelle für Repräsentationen sowie der endgültige Empfänger von Änderungsanfragen an seine Ressourcen (siehe \cref{sec:unambigiousidentification})
+    \item[Proxy] Zwischenkomponente, die explizit vom Client verwendet werden kann, aus Sicherheits-, Performance- oder Kompatibilitätsgründen
+    \item[Gateway] dient als Schnittstelle zwischen Client- und Servernetzwerk und kann zusätzlich aus den gleichen Gründen wie der Proxy verwendet werden. Konträr zum Proxy kann der Client aber nicht entscheiden, ob er einen Gateway nutzen möchte.
     \item[User Client] 
-        Ein clientseitiger \emph{Konnektor}, der die Anfrage an die \textsc{Api} startet und einziger Empfänger der Antwort ist. In den meisten Fällen ist dies einfach ein \emph{Webbrowser}.
+        clientseitiger \emph{Konnektor}, der die Anfrage an die \textsc{Api} startet und einziger Empfänger der Antwort ist. In den meisten Fällen ist dies einfach ein \emph{Webbrowser}
 \end{description}
 
 \subsection{REST-Prinzipien}
 
-Die fünf Grundlegenden \textsc{Rest}-Prinzipien, nach \cite[11 ff.]{Tilkov09}:
+Die fünf Grundlegenden \textsc{Rest}-Prinzipien, nach \cite[11 ff.]{Tilkov09} sind:
 \begin{compactitem}
     \item Ressourcen mit eindeutiger Indentifikation
     \item Verknüpfungen / Hypermedia
@@ -115,24 +115,28 @@ Die fünf Grundlegenden \textsc{Rest}-Prinzipien, nach \cite[11 ff.]{Tilkov09}:
 \subsubsection{Eindeutige Identifikation}
 \label{sec:unambigiousidentification}
 
-Um eine \emph{eindeutige Identifikation} zu erreichen, wird jeder Ressource eine \gls{URI} vergeben. Dadurch ist es möglich zu jeder verfügbaren Ressource einen Link zu setzen. 
-Nachfolgend eine Beispiel-\textsc{Uri}, um den Artikel 42 aus dem Warenkorb 84 anzusprechen:
-\[
-    \underbrace{\texttt{http://api.spreadshirt.net/api/v1/}}_{Basis-URL}\underbrace{\overbrace{\texttt{baskets/84}}^{Warenkorb}\overbrace{\texttt{/item/42}}^{Artikel}}_{Ressource}
-    \label{RESTexampleURL}
-\]
+Um eine \emph{eindeutige Identifikation} zu erreichen, wird jeder Ressource eine \gls{URI} vergeben. Dadurch ist es möglich zu jeder verfügbaren Ressource einen Link zu setzen (Beispiel siehe \cref{fig:RESTexampleURI}).
+
+\begin{figure}
+    \centering
+    \[
+        \underbrace{\texttt{http://api.spreadshirt.net/api/v1/}}_{Basis-URL}\underbrace{\overbrace{\texttt{baskets/84}}^{Warenkorb}\overbrace{\texttt{/item/42}}^{Artikel}}_{Ressource}
+    \]
+    \caption{Beispiel-\textsc{Uri}, um den Artikel 42 aus dem Warenkorb 84 anzusprechen}
+    \label{fig:RESTexampleURI}
+\end{figure}
 
 \subsubsection{Hypermedia}
 \label{sec:hypermedia}
 
-Innerhalb einer Ressource kann auf weitere verlinkt werden (\emph{Hypermedia}). Als Nebeneffekt der eindeutigen Identifikation durch \glspl{URI} sind diese auch außerhalb des Kontextes der aktuellen Anwendung gültig. 
+Innerhalb einer Ressource kann auf Weitere verlinkt werden (\emph{Hypermedia}). Als Nebeneffekt der eindeutigen Identifikation durch \glspl{URI} sind diese auch außerhalb des Kontextes der aktuellen Anwendung gültig. 
 
 % Das Folgen eines Links entspricht dabei einer Zustandsänderung innerhalb der Anwendung. Die vorhandenen Verknüpfungen legen fest welche Zustandsübergänge erlaubt sind.
 
 \subsubsection{Standardmethoden}
 \label{sec:standardmethods}
 
-Durch die Nutzung von \emph{Standardmethoden} ist abgesichert das eine Anwendung mit den Ressourcen arbeiten kann, vorausgesetzt sie unterstützt diese. \gls{REST} ist nicht auf \textsc{Http} beschränkt, praktisch alle \textsc{Rest}-\textsc{Api}s nutzen aber dieses Protokoll. Die gebräuchlichsten \textsc{Http}-Methoden sind folgende \footnote{Kapitel 9 des \textsc{Http} 1.1 RFC2616 beschreibt diese inklusive \textsc{Trace} und \textsc{Connect} umfassend \cite{rfc2616}}:
+Durch die Nutzung von \emph{Standardmethoden} ist abgesichert, dass eine Anwendung mit den Ressourcen arbeiten kann, vorausgesetzt, sie unterstützt diese. \gls{REST} ist nicht auf \textsc{Http} beschränkt, praktisch alle \textsc{Rest}-\textsc{Api}s nutzen aber dieses Protokoll. Die gebräuchlichsten \textsc{Http}-Methoden sind folgende \footnote{Kapitel 9 des \textsc{Http} 1.1 RFC2616 beschreibt diese inklusive \textsc{Trace} und \textsc{Connect} umfassend \cite{rfc2616}}:
 \begin{compactitem}
     \item \textsc{Get}
     \item \textsc{Put}
@@ -142,14 +146,14 @@ Durch die Nutzung von \emph{Standardmethoden} ist abgesichert das eine Anwendung
     \item \textsc{Options}
 \end{compactitem}
 
-Alle bis auf \textsc{Post} und \textsc{Options} sind \emph{idempotent} (\cite{rfc2616} Kapitel 9), d.h. eine hintereinander Ausführung der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf. Dies bedeutet das sich ein \textsc{Rest}ful Web Service serverseitig ebenso verhalten muss.
+Alle bis auf \textsc{Post} und \textsc{Options} sind \emph{idempotent} (\cite{rfc2616} Kapitel 9), d.h. eine Komposition\footnote{Ausführung der Methoden hintereinander} der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf. Dies bedeutet das sich ein \textsc{Rest}ful Web Service serverseitig ebenso verhalten muss.
 
 \subsubsection{Repräsentationen von Ressourcen}
 \label{sec:representationofresources}
 
 Die Repräsentation sollte unabhängig von der Ressource sein, um die Darstellung gegebenenfalls für den Client anzupassen. 
 Die Client-Anwendung kann dadurch mittels \emph{Query-Parameter} oder als Information im \textsc{Http}-Header (siehe \cref{sec:http-header}) das gewünschte Format angeben und erhält die entsprechend formatierte Antwort.
-Anhand des \emph{Content-Type} Feldes aus dem \textsc{Http}-Header kann der Client das Format der Antwort überprüfen, für \gls{JSON} lautet dies bspw. \texttt{application/json}.
+Anhand des \emph{Content-Type}-Feldes aus dem \textsc{Http}-Header kann der Client das Format der Antwort überprüfen, für \gls{JSON} lautet dies bspw. \texttt{application/json}.
 
 \subsubsection{Statuslose Kommunikation}
 \label{sec:stateless_communication}
