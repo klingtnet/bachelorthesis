@@ -2,7 +2,7 @@
 \label{sec:datamodel}
 
 % todo: Spezifikation oder domänenspezifisches Modell?
-Das Datenmodell enthält die Informationen der Spezifikation und dient als Eingabe für den Generator, es ist somit die \emph{Basis der Codegenerierung}. \citeauthor{rfc3198} definieren den Begriff in \cite{rfc3198} folgenderweise\footnote{eigene Übersetzung}:
+Das Datenmodell enthält die Informationen der Spezifikation und dient als Eingabe für den Generator. Es ist somit die \emph{Basis der Codegenerierung}. \citeauthor{rfc3198} definieren den Begriff in \cite{rfc3198} folgenderweise\footnote{eigene Übersetzung}:
 
 \thesisDefinition{Datenmodell}{
     Ein Datenmodell ist im Grunde die Darstellung eines Informationsmodells unter Berücksichtigung einer Menge von Mechanismen für die Darstellung, Organisierung, Speicherung und Bearbeitung von Daten.
@@ -14,9 +14,9 @@ Das Datenmodell enthält die Informationen der Spezifikation und dient als Einga
     \end{compactitem}
 }
 
-Bei dieser Definition wird der Begriff \emph{Informationsmodell} genutzt, er beschreibt die Informationen die im Datenmodell abgebildet werden sollen ohne Berücksichtigung softwaretechnischer Aspekte. Das Informationsmodell stellt somit die \enquote{natürlichen Daten} dar.
+Bei dieser Definition wird der Begriff \emph{Informationsmodell} genutzt. Er beschreibt die Informationen, die im Datenmodell abgebildet werden sollen ohne Berücksichtigung softwaretechnischer Aspekte. Das Informationsmodell stellt somit die \enquote{natürlichen Daten} dar.
 
-Bei einem Codegenerator entspricht das Datenmodell der internen Darstellung der Spezifikation. Neben den direkt in der Spezifikation enthaltenen Informationen kann der Generator im Analyseschritt (siehe \cref{sec:generator_tasks}) bspw. Datenabhängigkeiten erkennen und diese zur Optimierung nutzen oder das interne Datenmodell damit anreichern. Das \emph{erkennen von Semantik} im Eingabemodell ist aber nicht auf Datenabhängigkeiten beschränkt sondern kann auf beliebige Beziehungen ausgeweitet werden. 
+Bei einem Codegenerator entspricht das Datenmodell der internen Darstellung der Spezifikation. Neben den direkt in der Spezifikation enthaltenen Informationen kann der Generator im Analyseschritt (siehe \cref{sec:generator_tasks}) bspw. Datenabhängigkeiten erkennen und diese zur Optimierung nutzen oder das interne Datenmodell damit anreichern. Das \emph{Erkennen von Semantik} im Eingabemodell ist aber nicht auf Datenabhängigkeiten beschränkt sondern kann auf beliebige Beziehungen ausgeweitet werden. 
 
 Wie man in \Cref{fig:wadlstructure} erkennen kann, entspricht die Struktur einer \gls{WADL}-Datei einem Baum. Aus diesem Grund eignet sich eine Baumstruktur für das Datenmodell des Generators besonders gut. Um die Zielsprache (siehe \cref{sec:language_model}) im internen Datenmodell abbilden zu können, wird ein \gls{AST} als Datenstruktur gewählt.
 
@@ -32,7 +32,7 @@ Im Allgemeinen kann für jedes Programmierkonstrukt ein Operator erzeugt werden,
 %Etwas kürzer definiert \citeauthor{gruneCompiler} den Begriff in \cite[][S. 9 ff.]{gruneCompiler} (eigene Übersetzung):
 % \thesisDefinition{Abstract Syntax Tree -- \citeauthor{gruneCompiler}}{ Der abstrakte Syntaxbaum stellt die verschiedenen Teile eines Programmtextes aus Sicht der Grammatik, dar. }
 
-Er ist das Endprodukt eines Parsingschrittes des Quelltextes, im Gegensatz zum \emph{konkreten Syntaxbaum} (auch \emph{Parse Tree}) enthält der \textsc{Ast} keine Formatierungsspezifische Syntax (bspw. Klammern). 
+Er ist das Endprodukt eines Parsingschrittes des Quelltextes. Im Gegensatz zum \emph{konkreten Syntaxbaum} (auch \emph{Parse Tree}) enthält der \textsc{Ast} keine Formatierungsspezifische Syntax (bspw. Klammern). 
 
 \begin{figure}[htb]
     \centering

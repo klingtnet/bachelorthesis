@@ -7,7 +7,7 @@ Der Begriff \enquote{Generator} ist sehr allgemein und wird für verschiedene Te
 \emph{Generator} und \emph{Codegenerator} werden in diesem Kapitel synonym verwendet.
 
 \thesisDefinition{Codegenerator}{
-Ein \emph{Codegenerator} ist ein Programm, welches aus einer höhersprachigen Spezifikation\footnote{m. a. W.: auf einem höheren Abstraktionslevel als die zur Implementierung verwendete Programmiersprache} einer Software oder eines Teilaspektes, die Implementierung erzeugt (nach \cite{czarnecki2000generative}).
+Ein \emph{Codegenerator} ist ein Programm, welches aus einer höhersprachigen Spezifikation (m. a. W.: auf einem höheren Abstraktionslevel als die zur Implementierung verwendete Programmiersprache), einer Software oder eines Teilaspektes die Implementierung erzeugt (nach \cite{czarnecki2000generative}).
 }
 
 Folglich ist der Generator die Schnittstelle zwischen dem \emph{Modell-} und \emph{Implementationsraum}. Der Modellraum beinhaltet das \emph{domänenspezifische Modell}. Dieses Modell wird durch die höhersprachige Spezifikation in einer \emph{Systemspezifikationssprache} beschrieben. In Bezug auf einen \textsc{Rest}ful Webservice ist bspw. \gls{WADL} inklusive seiner verwendeten Schemata\footnote{siehe \cref{sec:document_description_formats}} die Spezifikationssprache und eine \gls{WADL}-Datei mit den konkreten Spezifikationen demzufolge das domänenspezifische Modell.
@@ -18,14 +18,14 @@ Der Informationsgehalt der Spezifikation ist ausschlaggebend für den Grad der z
 \label{sec:generator_tasks}
 
 \begin{compactenum}
-    \item[optional)] Analyse der Spezifikation
+    \item[(optional)] Analyse der Spezifikation
     \item Validieren der Spezifikation
     \item Spezifikation durch Vorgabewerte vervollständigen
     \item Optimierungen vornehmen
     \item Implementierung erzeugen
 \end{compactenum}
 
-Je nach Form der Spezifikation, muss diese durch einen Analyse-Schritt (\emph{parsing}) in die interne Darstellung des Generators überführt werden, bspw. bei einem Compiler in einen \emph{Abstrakten Syntaxbaum} (siehe \cref{sec:ast}).
+Je nach Form der Spezifikation muss diese durch einen Analyse-Schritt (\emph{parsing}) in die interne Darstellung des Generators überführt werden, bspw. bei einem Compiler in einen \emph{Abstrakten Syntaxbaum} (siehe \cref{sec:ast}).
 
 \subsection{Vorteile für den Entwickler}
 \label{sec:advantages_for_the_developer}
@@ -44,7 +44,7 @@ Bei der Nutzung eines Codegenerierungsansatzes ergeben sich nach \cite[][S. 15]{
         Aufgrund des verringerten Implementierungsaufwandes kann der Entwickler mehr Zeit für das Design seiner Architektur, \gls{API} etc. verwenden. Designfehlentscheidungen können durch Änderungen am Modell korrigiert werden und bedürfen somit keiner manuellen Korrektur aller generierten Klassen.
 \end{description}
 
-Die Erstellung eines Generatorsystems geht mit einem nicht unerheblichen Aufwand einher, dieser sollte in Relation zum Umfang des zu erzeugenden Codes gesehen werden.
+Die Erstellung eines Generatorsystems geht mit einem nicht unerheblichen Aufwand einher. Dieser sollte in Relation zum Umfang des zu erzeugenden Codes gesehen werden.
 Ist der Umfang des Erzeugnisses zu gering, kann der Aufwand zur Entwicklung einer Generatorlösung kontraproduktiv sein.
 
 \subsection{Generatorformen}
@@ -69,13 +69,13 @@ Die folgende Tabelle\footnote{Tier, zu deutsch \enquote{Stufe}} klassifiziert ei
 \citeauthor{herrington2003code} beschreibt in \cite[Kapitel 4][]{herrington2003code} die Formen aus \Cref{tab:generatorclassification} so:
 \begin{description}
     \item[Inline-Code Expander]
-        Ein Inline-Code Expander nimmt Quellcode als Eingabe und ersetzt spezielle Mark-Up Sequenzen durch seine Ausgabe. Die Änderungen werden hierbei nicht in das Quellfile übernommen sondern meist direkt zu dem Compiler oder Interpreter weitergeleitet.
+        Ein Inline-Code Expander nimmt Quellcode als Eingabe und ersetzt spezielle Mark-Up-Sequenzen durch seine Ausgabe. Die Änderungen werden hierbei nicht in das Quellfile übernommen, sondern meist direkt zu dem Compiler oder Interpreter weitergeleitet.
     \item[Mixed-Code Generator]
-        Der Mixed-Code Generator arbeitet grundsätzlich wie der Inline-Code Expander, seine Änderungen werden aber in die Quelle zurückgeschrieben.
+        Der Mixed-Code Generator arbeitet grundsätzlich wie der Inline-Code-Expander, seine Änderungen werden aber in die Quelle zurückgeschrieben.
     \item[Partial-Class Generator]
-        Partial-Class Generatoren erzeugen aus einer abstrakten Beschreibung und Templates einen Satz von Klassen, diese bilden aber nicht das vollständige Programm sondern werden durch manuell erzeugten Code vervollständigt. % todo: manuell erzeugt = handgeschrieben?
+        Partial-Class Generatoren erzeugen aus einer abstrakten Beschreibung und Templates einen Satz von Klassen, diese bilden aber nicht das vollständige Programm, sondern werden durch manuell erzeugten Code vervollständigt. % todo: manuell erzeugt = handgeschrieben?
     \item[Tier-Generator]
-        Die Arbeitsweise des Stufen- oder Tier-Generators entspricht der des Partial-Class Generators, mit der Ausnahme das vollständiger Code erzeugt wird, der keiner Nacharbeit bedarf.\footnote{Der im Laufe dieser Arbeit entwickelte Generator entspricht diesem Schema.}
+        Die Arbeitsweise des Stufen- oder Tier-Generators entspricht der des Partial-Class Generators, mit der Ausnahme, dass ein vollständiger Code erzeugt wird, der keiner Nacharbeit bedarf.\footnote{Der im Laufe dieser Arbeit entwickelte Generator entspricht diesem Schema.}
     \item[$n$-Tier Generator] 
         Ein $n$-Tier Generator erzeugt neben dem eigentlichen Quellcode noch beliebige andere Informationen, bspw. eine Dokumentation oder Testfälle.
 \end{description}
@@ -84,7 +84,7 @@ Die Entwicklung einer \enquote{Full-Domain Language} stellt die oberste Stufe de
 
 \subsection{Optimierung durch den Generator}
 
-Die Effektivität von Optimierungen steigt mit dem Abstraktionslevel, deshalb ist es ratsam diese vom Generator durchführen zu lassen. Im Gegensatz zum Compiler, der viele dieser Optimierungen auch selbst durchführt, besitzt der Generator domänenspezifisches \enquote{Wissen} und kann teilweise ohne Abhängigkeiten der Zielsprache optimieren (\emph{domain-specific optimization}).
+Die Effektivität von Optimierungen steigt mit dem Abstraktionslevel. Deshalb ist es ratsam diese vom Generator durchführen zu lassen. Im Gegensatz zum Compiler, der viele dieser Optimierungen auch selbst durchführt, besitzt der Generator domänenspezifisches \enquote{Wissen} und kann teilweise ohne Abhängigkeiten der Zielsprache optimieren (\emph{domain-specific optimization}).
 
 % \citeauthor{czarnecki2000generative} beschreiben in \cite{czarnecki2000generative} Optimierungen die vom Generator durchgeführt werden können, einen um \emph{Parallelisierung} erweiterten Auszug bietet die nachfolgende Liste:
 
