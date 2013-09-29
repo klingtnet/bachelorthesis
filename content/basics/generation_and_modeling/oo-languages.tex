@@ -69,6 +69,14 @@ Es wird zwischen zwei grundlegenden Formen von Typsystemen unterschieden, \emph{
 Im Gegensatz zu \emph{Java} ist \textsc{Php} nicht statisch typisiert und muss zur Ausführung auch nicht kompiliert werden. \textsc{Php} ist \emph{dynamisch typisiert} und wird von einem Interpreter --- dem namensgebenden \emph{Hypertext Preprocessor} --- ausgeführt.
 Es werden seit Version 5.0 mehrere Programmierparadigmen unterstützt, neben Imperativer- auch Objektorientierte Programmierung. Version 5.3 fügte die Unterstützung von \glspl{closure} hinzu.
 
+\begin{compactitem}
+    \item[\ding{202}] Die Start- und Endtags eines \textsc{Php}-Files, wobei letzteres optional ist. Deren Funktion ist die Abgrenzung vom umliegenden Markup, bspw. wenn der \textsc{Php}-Code in eine \textsc{Html} Datei eingebettet ist.
+    \item[\ding{203}] \textsc{Php} unterstützt das Importieren von Quellcodefiles anhand verschiedener Befehle, in diesem Fall \texttt{require\_once}.
+    \item[\ding{204}] Nur in der Argumentliste einer Methodendefinition sind Typangaben erlaubt, solange der Typ kein primitiver ist, d.h. den sprachinternen primitiven Datentypen wie bspw. String oder Integer entspricht. 
+    \item[\ding{205}] Statische Methoden, können ohne Instanz der umgebenden Klasse aufgerufen werden.
+\end{compactitem}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[language=php, caption=Durch den Generator erzeugte Batch\textsc{DTO} Datenklasse der Spreadshirt-\textsc{API} als Beispiel für eine \textsc{PHP}-Datei]
 <?php //@\ding{202}@//
    require_once('Dto.php'); //@\ding{203}@//
@@ -113,10 +121,5 @@ Es werden seit Version 5.0 mehrere Programmierparadigmen unterstützt, neben Imp
 
 ?> //@\ding{202}@//
 \end{lstlisting}
+\end{minipage}
 
-\begin{compactitem}
-    \item[\ding{202}] Die Start- und Endtags eines \textsc{Php}-Files, wobei letzteres optional ist. Deren Funktion ist die Abgrenzung vom umliegenden Markup, bspw. wenn der \textsc{Php}-Code in eine \textsc{Html} Datei eingebettet ist.
-    \item[\ding{203}] \textsc{Php} unterstützt das Importieren von Quellcodefiles anhand verschiedener Befehle, in diesem Fall \texttt{require\_once}.
-    \item[\ding{204}] Nur in der Argumentliste einer Methodendefinition sind Typangaben erlaubt, solange der Typ kein primitiver ist, d.h. den sprachinternen primitiven Datentypen wie bspw. String oder Integer entspricht. 
-    \item[\ding{205}] Statische Methoden, können ohne Instanz der umgebenden Klasse aufgerufen werden.
-\end{compactitem}

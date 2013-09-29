@@ -12,7 +12,7 @@ Die Beschreibung eines Webservices durch \textsc{Wadl} besteht nach \cite{hadley
      \item[Resource representation formats] die unterstützten \gls{MIME}-Typen und verwendeten Datenschemata (\cref{sec:xsd})
  \end{description} 
 
-%\begin{minipage}{\textwidth}
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[language=XML, caption={Beispielaufbau einer \textsc{Wadl}-Datei anhand der Spreadshirt-\textsc{Api} Beschreibung}, label=lst:wadlstructure, name=wadlstructure]
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?> //@\ding{202}@//
 <application xmlns="http://research.sun.com/wadl/2006/10"> //@\ding{203}@//
@@ -52,9 +52,9 @@ Die Beschreibung eines Webservices durch \textsc{Wadl} besteht nach \cite{hadley
                     }
                 ...
 \end{lstlisting}
-%\end{minipage}
+\end{minipage}
 
-%% ToDo: verfeinern der Beschreibung, was ist erlaubt, was nicht?
+% ToDo: verfeinern der Beschreibung, was ist erlaubt, was nicht?
 Die Datei beginnt mit der Angabe der \textsc{Xml}-Deklaration \ding{202}.
 Die Attribute des Wurzelknotens \texttt{<application>} enthalten \emph{namespace} Definitionen, u. a. auch den der verwendeten \textsc{Wadl}-Spezifikation \ding{203}.
 Innerhalb des \texttt{<grammars>} Elements werden die benutzten \textsc{Xml} Schemas angegeben \ding{204}. 

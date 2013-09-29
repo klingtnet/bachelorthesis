@@ -12,6 +12,7 @@ Das PHP-Zielsprachemodell ist die Implementierung der Schnittstellen die durch d
 
 \Cref{fig:modelRepresentationOfBatchDTO} zeigt die Gegenüberstellung von \Cref{lst:batchDTO} in Form des \gls{AST} der durch das Sprachmodell gebildet wird. 
 
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[
     language=PHP,
     caption=Ausschnitt der Datenklasse BatchDTO,
@@ -36,6 +37,7 @@ Das PHP-Zielsprachemodell ist die Implementierung der Schnittstellen die durch d
    }
 ?>
 \end{lstlisting}
+\end{minipage}
 
 \begin{sidewaysfigure}
     \centering
@@ -64,6 +66,7 @@ Nun sind alle nötigen Informationen vorhanden um ein Objekt der Klasse \textbf{
 Nun kann über die Bibliotheksklassen auch auf geschützte \textsc{Api}-Ressourcen zugegriffen werden, in diesem Fall werden bspw. die Produkte eines bestimmten Users abgefragt. Entegegen den vorherigen Aufrufen von Methoden der Ressourceklassen wird ein Parameter-Array erzeugt \ding{206} um den \emph{mediaType} der Response festzulegen.
 Vor dem Zugriff auf die Ressource muss noch die entsprechende Ressourcenklasse instanziiert werden \ding{207}.
 
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[
     language=PHP,
     caption=Beispiel für eine Interaktion mit der Spreadshirt-API über die generierte Client-Bibliothek (Authentifizierungsinformationen wurden anonymisiert),
@@ -92,6 +95,7 @@ $products = $resource->GET($parameters, $apiUser); //@\ding{208}@//
 
 ?>
 \end{lstlisting}
+\end{minipage}
 
 %\section{Codemetriken}
 %\label{sec:codemetrics}

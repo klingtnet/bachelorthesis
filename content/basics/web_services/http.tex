@@ -75,15 +75,26 @@ Welche Einträge der Header einer \textsc{Http}-Nachricht letztendlich enthält,
 
 Der Body enthält die eigentlichen Nutzdaten. Deren Format wird mit dem \emph{Content-Type}-Eintrag des Headers angegeben. \Cref{lst:bodyGETresponse} zeigt den Body der \emph{response} von \cref{lst:headGETresponse} in \gls{XML} Format (siehe \cref{sec:xml}).
 
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[
     language=XML,
     label=lst:bodyGETresponse,
     caption=\textsc{Http}-Body der Response aus der \textsc{Get}-Methode auf der Spreadshirt-\textsc{Api}-Ressource \texttt{http://api.spreadshirt.net/api/v1/locales}
 ]
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<locales xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://api.spreadshirt.net" xlink:href="http://api.spreadshirt.net/api/v1/locales" offset="0" limit="50" count="16" sortField="default" sortOrder="default">
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/de_DE" id="de_DE"/>
+<locales 
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    xmlns="http://api.spreadshirt.net" 
+    xlink:href="http://api.spreadshirt.net/api/v1/locales" 
+    offset="0" limit="50" count="16" 
+    sortField="default" sortOrder="default">
+    <locale 
+        xlink:href="http://api.spreadshirt.net/api/v1/locales/de_DE" 
+        id="de_DE"/>
     ...
-    <locale xlink:href="http://api.spreadshirt.net/api/v1/locales/nl_BE" id="nl_BE"/>
+    <locale 
+        xlink:href="http://api.spreadshirt.net/api/v1/locales/nl_BE" 
+        id="nl_BE"/>
 </locales>
 \end{lstlisting}
+\end{minipage}
