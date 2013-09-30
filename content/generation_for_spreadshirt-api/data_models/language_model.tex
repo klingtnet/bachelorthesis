@@ -8,8 +8,6 @@
     \label{fig:language_model}
 \end{sidewaysfigure}
 
-Die Aufgabe des Generators ist die Transformierung des Applikationsmodells in das Modell der Zielsprache. 
-
 Um die gewünschte Austauschbarkeit der Zielsprache zu gewährleisten wurde ein abstraktes Sprachenmodell entworfen welches die Konstrukte einer dateibasierten objektorientierten Programmiersprache (siehe \cref{sec:oo_languages}) abbildet. 
 %Anforderungen erstellen und referenzieren.
 Die gewünschte Zielsprache muss dabei die Klassen und Methoden des Modells implementieren sowie eine \emph{Language Factory} (siehe \cref{sec:language_factory}) bereitstellen um vom Generator genutzt werden zu können.
@@ -57,13 +55,12 @@ Operatoren der Zielsprache müssen das Interface \textbf{Operator} implementiere
 \subsubsection{Kompositum-Pattern im Sprachenmodell}
 \label{sec:composite_pattern}
 
-Zweck des Composite- oder auch Kompositum-Patterns ist die Gleichbehandlung von Einzel-
-elementen und Elementgruppierungen in einer verschachtelten Struktur
+Zweck des Composite- oder auch Kompositum-Patterns ist die Gleichbehandlung von Einzelelementen und Elementgruppierungen in einer verschachtelten Struktur
 (z. B. Baum), sodass aus Sicht des Clients keine explizite Unterscheidung
 notwendig ist (nach \cite[][S. 102]{patternsKompakt}).
 
 Anwendung fand das Pattern an zwei Stellen im Modell, erstens in den Klassen welche \textbf{Expression} und zweitens, welche \textbf{Statement} implementieren.
-Ein Beispiel für den Aufbau eines Ausdrucks durch Klassen des Interface \emph{Expression} aus dem Sprachenmodell zeigt \cref{fig:example_expression}. Von \emph{Statement} abgeleitete Klassen können ebenso eine Baumstruktur bilden. \emph{Block} kann bspw. selbst wieder Codeblöcke --- also Statements vom Typ Block --- enthalten. 
+Ein Beispiel für den Aufbau eines Ausdrucks durch Klassen des Interface \emph{Expression} aus dem Sprachenmodell zeigt \cref{fig:example_expression}. Von \emph{Statement} abgeleitete Klassen können ebenso eine Baumstruktur bilden. \emph{Block} kann beispielsweise selbst wieder Codeblöcke --- also Statements vom Typ Block --- enthalten. 
 
 \begin{figure}
     \[

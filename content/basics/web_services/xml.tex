@@ -1,15 +1,15 @@
 \subsection{XML}
 \label{sec:xml}
 
-\thesisDefinition{\textsc{Xml}}{
-Die \emph{Extensible Markup Language}, kurz \gls{XML}, ist eine Auszeichnungssprache (\enquote{Markup Language}), die eine Menge von Regeln beschreibt um Dokumente in einem mensch- und maschinenlesbaren Format zu kodieren \cite{XML10Specification}.
+\thesisDefinition{\gls{XML}}{
+Die \enquote{Extensible Markup Language}, kurz \gls{XML}, ist eine Auszeichnungssprache (\enquote{Markup Language}), die eine Menge von Regeln beschreibt um Dokumente in einem mensch- und maschinenlesbaren Format zu kodieren \cite{XML10Specification}.
 }
 
-Obwohl das Design von \textsc{Xml} auf Dokumente ausgerichtet ist, wird es häufig für die Darstellung von beliebigen Daten benutzt \cite{wiki:xml}, z.B. um diese für die Übertragung zu serialisieren.
+Obwohl das Design von \gls{XML} auf Dokumente ausgerichtet ist, wird es häufig für die Darstellung von beliebigen Daten benutzt \cite{wiki:xml}, z.B. um diese für die Übertragung zu serialisieren.
 
 \begin{lstlisting}[
         language=XML, 
-        caption=Die gekürzte Antwort der \textsc{API}-Ressource \texttt{users/{userid}/designs/{designID}} als Beispiel für eine \textsc{Xml}-Datei
+        caption=Die gekürzte Antwort der \textsc{API}-Ressource \texttt{users/{userid}/designs/{designID}} als Beispiel für eine \gls{XML}-Datei
     ][htb]
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?> //@\ding{202}@//
 <design xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -30,8 +30,8 @@ Obwohl das Design von \textsc{Xml} auf Dokumente ausgerichtet ist, wird es häuf
 </design>//@\ding{206}@//
 \end{lstlisting}
 
-Eine valide \textsc{Xml}-Datei beginnt mit der \textsc{Xml}-Deklaration \ding{202}. Diese enthält Angaben über die verwendete \textsc{Xml}-Spezifikation und die Kodierung der Datei. 
+Eine valide \gls{XML}-Datei beginnt mit der \gls{XML}-Deklaration \ding{202}. Diese enthält Angaben über die verwendete \gls{XML}-Spezifikation und die Kodierung der Datei. 
 Im Gegensatz zu gewöhnlichen Tags wird dieses mit \texttt{<?} und mit \texttt{?>} beendet. 
 Danach folgen beliebig viele baumartig geschachtelte \emph{Elemente} mit einem Wurzelelement \ding{203}. Die Elemente können Attribute enthalten und werden, wenn sie kein leeres Element sind \ding{204}, von einem schließenden Tag in der gleichen Stufe abgeschlossen \ding{206}. Nicht leere Zeichenketten als Kindelement sind ebenfalls erlaubt \ding{205}.
 
-Mit Hilfe von \emph{Schemabeschreibungssprachen} (siehe \cref{sec:xmlschema}) kann der Inhalt und die Struktur eines Dokumentes festgelegt und gegen diese validiert werden. Der Begriff \textsc{Xml} Schema ist mehrdeutig und wird oft auch für eine konkrete Beschreibungssprache, die \enquote{\textsc{Xml} Schema Definition}, kurz \gls{XSD}, verwendet.
+Mit Hilfe von \emph{Schemabeschreibungssprachen} (siehe \cref{sec:xmlschema}) kann der Inhalt und die Struktur eines Dokumentes festgelegt und gegen diese validiert werden. Der Begriff \gls{XML} Schema ist mehrdeutig und wird oft auch für eine konkrete Beschreibungssprache, die \enquote{\gls{XML} Schema Definition}, kurz \gls{XSD}, verwendet.

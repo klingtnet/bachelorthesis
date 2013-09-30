@@ -2,18 +2,18 @@
 \label{sec:xml_parser}
 %todo: quellen
 
-Um mit der abstrakten Beschreibung der Spreadshirt-\textsc{Api} arbeiten zu können, muss diese zuerst in das interne Datenmodell überführt werden. Diese liegt in \textsc{Xml}-basierter Form vor, welche in \cref{chap:web_services} näher beschrieben wurde. Folglich wird ein \textsc{Xml}-Parser für die Verarbeitung der Beschreibungsformate benötigt.  
+Um mit der abstrakten Beschreibung der Spreadshirt-\gls{API} arbeiten zu können, muss diese zuerst in das interne Datenmodell überführt werden. Diese liegt in \gls{XML}-basierter Form vor, welche in \cref{chap:web_services} näher beschrieben wurde. Folglich wird ein \gls{XML}-Parser für die Verarbeitung der Beschreibungsformate benötigt.  
 
-Die \enquote{Java \textsc{Api} for \textsc{Xml} Processing} kurz \textsc{Jaxp} abstrahiert die Parserschnittstelle von der eigentlichen Implementierung. \textsc{Jaxp} ist dabei keine einzelne \gls{API}, sondern es beschreibt Schnittstellen für folgende vier \textsc{Xml}-Parser Modelle:
+Die \enquote{Java \gls{API} for \gls{XML} Processing} kurz \textsc{Jaxp} abstrahiert die Parserschnittstelle von der eigentlichen Implementierung. \textsc{Jaxp} ist dabei keine einzelne \gls{API}, sondern es beschreibt Schnittstellen für folgende vier \gls{XML}-Parser Modelle:
 
 \begin{description}
-    \item[\textsc{Dom}] \enquote{Document Object Model}-Parser überführen das \textsc{Xml}-Dokument in ein baumartiges Objektmodell, welches vollständig im Arbeitsspeicher liegt.
-    \item[\textsc{Sax}] Die \enquote{Simple \textsc{Api} for \textsc{Xml}} basierten sogenannten Push-Parser verarbeiten das \textsc{Xml}-Dokument seriell und eventbasiert. Ein Event ist hierbei bspw. ein öffnendes oder schließendes Xml-Element.
-    \item[StAX] Auf \enquote{Streaming \textsc{Api} for \textsc{Xml}} basierende sogenannte Pull-Parser arbeiten ebenso wie bei \textsc{Sax} seriell und eventbasiert, können aber im Gegensatz dazu die Erzeugung von Events selber steuern. 
-    \item[TrAX] Die \enquote{Transformation \textsc{Api} for \textsc{Xml}} bietet eine Schnittstelle, mit der sich \textsc{Xml}-Dokumente durch \emph{Extensible Stylesheet Language Transformations (\textsc{Xslt})} in Java transformieren lassen.
+    \item[\textsc{Dom}] \enquote{Document Object Model}-Parser überführen das \gls{XML}-Dokument in ein baumartiges Objektmodell, welches vollständig im Arbeitsspeicher liegt.
+    \item[\textsc{Sax}] Die \enquote{Simple \gls{API} for \gls{XML}} basierten sogenannten Push-Parser verarbeiten das \gls{XML}-Dokument seriell und eventbasiert. Ein Event ist hierbei beispielsweise ein öffnendes oder schließendes Xml-Element.
+    \item[StAX] Auf \enquote{Streaming \gls{API} for \gls{XML}} basierende sogenannte Pull-Parser arbeiten ebenso wie bei \textsc{Sax} seriell und eventbasiert, können aber im Gegensatz dazu die Erzeugung von Events selber steuern. 
+    \item[TrAX] Die \enquote{Transformation \gls{API} for \gls{XML}} bietet eine Schnittstelle, mit der sich \gls{XML}-Dokumente durch \emph{Extensible Stylesheet Language Transformations (\textsc{Xslt})} in Java transformieren lassen.
 \end{description}
 
-\Cref{tab:xmlParsingModels} enthält eine Übersicht zu den Parsing-Konzepten, ausgenommen TrAX, da diese \textsc{Api} vorwiegend für die Modifikation von \textsc{Xml}-Dateien gedacht ist.
+\Cref{tab:xmlParsingModels} enthält eine Übersicht zu den Parsing-Konzepten, ausgenommen TrAX, da diese \gls{API} vorwiegend für die Modifikation von \gls{XML}-Dateien gedacht ist.
 
 Bei dem zu entwickelnden Codegenerator sind der Speicherverbrauch und die verwendete \textsc{Cpu}-Zeit kein Teil der \emph{nichtfunktionalen Anforderungen}. Somit fiel die Entscheidung auf einen \textsc{Dom}-Parser. Dieser lässt sich durch das komplett im Speicher gehaltene Objektmodell mit geringem Aufwand verwenden. Durch \textsc{Jaxp} ist die Implementierung transparent und es wird die im \textsc{Jdk} enthaltene Standart \textsc{Dom}-Parser Implementierung verwendet.
 
@@ -30,7 +30,7 @@ Bei dem zu entwickelnden Codegenerator sind der Speicherverbrauch und die verwen
         \textbf{Nutzerfreundlichkeit}       & niedrig           & hoch              & mittel \\
         \textbf{XML schreiben}              & ja                & nein              & ja \\
         \bottomrule
-        \caption{Übersicht über die verschiedenen \textsc{Xml}-Parsing Konzepte in \textsc{Jaxp}}
+        \caption{Übersicht über die verschiedenen \gls{XML}-Parsing Konzepte in \textsc{Jaxp}}
         \label{tab:xmlParsingModels}
     \end{longtable}
 \end{table}

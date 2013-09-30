@@ -12,6 +12,8 @@ Nachdem in \cref{sec:concrete_models} die Datenmodelle des Generators betrachtet
     \label{fig:generation_process}
 \end{sidewaysfigure}
 
+Die Aufgabe des Generators ist die Transformierung des Applikationsmodells in das Modell der Zielsprache. Als Form wurde die des Tier-Generators gewählt, da vollständiger Code vom Generator erzeugt werden soll der keiner Nacharbeit mehr Bedarf. 
+
 \subsection{Language Factory}
 \label{sec:language_factory}
 
@@ -28,7 +30,7 @@ Die \emph{Language Factory} bildet damit die Schnittstelle zwischen dem Generato
 \thesisquote{Dieses Pattern ermöglicht es, neue Operationen auf den Elementen einer
 Struktur zu definieren, ohne die Elemente selbst anzupassen.}
 
-Die Aufgabe des \emph{Language Visitor} im Generator ist die Transformation des Sprachenmodells in eine Zeichenketten-Darstellung. Wie in \cref{sec:language_model} schon erwähnt, enthält die Klasse, die das \emph{LanguageVisitor}-Interface implementiert, Regeln für eine syntaktisch korrekte Ausgabe des Sprachenmodells. Zusätzlich können in den LanguageVisitor \enquote{code conventions} implementiert werden, bspw. Einrückungstiefen, Zeilenlängen etc.
+Die Aufgabe des \emph{Language Visitor} im Generator ist die Transformation des Sprachenmodells in eine Zeichenketten-Darstellung. Wie in \cref{sec:language_model} schon erwähnt, enthält die Klasse, die das \emph{LanguageVisitor}-Interface implementiert, Regeln für eine syntaktisch korrekte Ausgabe des Sprachenmodells. Zusätzlich können in den LanguageVisitor \enquote{code conventions} implementiert werden, beispielsweise Einrückungstiefen, Zeilenlängen etc.
 
 \subsection{Ausgabemodul}
 \label{sec:printer_module}

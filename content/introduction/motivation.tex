@@ -12,7 +12,7 @@ Codegenerierung greift bei beiden Punkten an und kann zu einer Steigerung der \e
 Die gewonnenen Freiräume kann der Entwickler nutzen um sich mit den grundlegenden Herausforderungen und Problemen seiner Software zu beschäftigen.
 
 Durch die Festlegung eines Schemas für Variablennamen und Funktionssignaturen wird eine hohe \emph{Konsistenz} über die gesamte Codebasis hinweg erreicht.
-Diese Einheitlichkeit vereinfacht auch die Nutzung des Generats\footnote{Ergebnis des Codegenerierungsvorgangs}, da beispielsweise nicht mit Überraschungen bei den verwendeten Bezeichnern zu rechnen ist.
+Diese Einheitlichkeit vereinfacht auch die Nutzung des Generats, da beispielsweise nicht mit Überraschungen bei den verwendeten Bezeichnern zu rechnen ist.
 
 % Als Eingabe für den Generator dient ein \emph{abstraktes Modell} des betreffenden Geschäftsbereiches. Die Erstellung eines solchen Modells vertieft das Verständnis des Entwicklers für das Geschäftsfeld und gibt gleichzeitig Spezialisten aus dem Fachbereich die Möglichkeit Fragestellungen anhand dieses Modells zu formulieren.
 
@@ -21,8 +21,8 @@ Diese Einheitlichkeit vereinfacht auch die Nutzung des Generats\footnote{Ergebni
 Zusätzlich zu dem bereits genannten allgemeinen Nutzen einer Codegenerierungslösung, entstehen für Spreadshirt noch die folgenden Vorteile:
 \begin{compactitem}
     \item Vereinheitlichung bestehender Implementierungen in Form der generierten Bibliothek
-    \item Vereinfachen der Authentifizierung durch Integration in Client-Bibliothek (siehe \cref{sec:api_auth})
-    \item Erleichterung der \textsc{Api}-Nutzung für externe Entwickler
+    \item Kapselung der Authentifizierung durch Integration in Client-Bibliothek (siehe \cref{sec:api_auth})
+    \item Erleichterung der \gls{API}-Nutzung für externe Entwickler
 \end{compactitem}
 
 % todo: allgemeine Motivation warum Codegenerierung ueberhaupt gemacht wird. Hier sollte aber speziell stehen warum gerade bei Spreadshirt Codegenerierung verwendet werden soll. Außerdem sollte anhand eines kurzen Beispiels gezeigt werden wie der Stand vor- und nach der Generierung war.
@@ -36,5 +36,5 @@ Zusätzlich zu dem bereits genannten allgemeinen Nutzen einer Codegenerierungsl�
     \item gute Lesbarkeit des erzeugten Codes
     \item größtmögliche Typsicherheit
     \item hohe Testabdeckung der Bibliothek
-    \item vollständige Generierung aller Methoden aus der \textsc{Api}-Beschreibung
+    \item vollständige Generierung aller Methoden aus der \gls{API}-Beschreibung
 \end{compactitem}

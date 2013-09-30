@@ -1,34 +1,40 @@
 \section{HTTP}
 \label{sec:http}
 
-\thesisDefinition{\textsc{Http}}{
-Das \emph{Hypertext Transfer Protocol (\textsc{Http})} ist ein allgemeines und \emph{zustandsloses} Protokoll, zur Übertragung von Daten über ein Netzwerk, was durch Erweiterung seiner Anfragemethoden, Statuscodes und Header für viele unterschiedliche Anwendungen verwendet werden kann (\cite[][Abstract]{rfc2616}).
+\thesisDefinition{\gls{HTTP}}{
+    Das \emph{Hypertext Transfer Protocol (\gls{HTTP})} ist ein allgemeines und \emph{zustandsloses} Protokoll, zur Übertragung von Daten über ein Netzwerk, was durch Erweiterung seiner Anfragemethoden, Statuscodes und Header für viele unterschiedliche Anwendungen verwendet werden kann (\cite[][Abstract]{rfc2616}).
 }
 
-\textsc{Http} arbeitet auf der Anwendungsschicht (\enquote{Application Layer} des \textsc{Osi}-Modells) und ist somit unabhängig von dem zum Datentransport eingesetzten Protokoll. 
-Über eindeutige \glspl{URI} werden \textsc{Http}-Ressourcen angesprochen. Dabei sendet ein \emph{Client} eine Anfrage (\emph{request}) und erhält daraufhin vom Server eine Antwort (\emph{response}). Anfrage und Antwort stellt dabei eine \textsc{Http}-Nachricht dar, die aus den zwei Elementen \emph{Header} und \emph{Body} besteht. Letzterer trägt die Nutzdaten und kann, je nach verwendeter \textsc{Http}-Methode, auch leer sein.
+\gls{HTTP} arbeitet auf der Anwendungsschicht des \gls{OSI} und ist somit unabhängig von dem zum Datentransport eingesetzten Protokoll. Über eindeutige \glspl{URI} werden \gls{HTTP}-Ressourcen angesprochen. Dabei sendet ein \emph{Client} eine Anfrage (\emph{request}) und erhält daraufhin vom Server eine Antwort (\emph{response}). Anfrage und Antwort stellt dabei eine \gls{HTTP}-Nachricht dar, die aus den zwei Elementen \emph{Header} und \emph{Body} besteht. Letzterer trägt die Nutzdaten und kann, je nach verwendeter \gls{HTTP}-Methode, auch leer sein.
 
-\citetitle{rfc2616} (\cite{rfc2616}) definiert einige \textsc{Http}-Methoden, wobei die gebräuchlichsten die folgenden sind:
+\subsection{Methoden}
+\label{sec:http_methods}
+
+\citetitle{rfc2616} (\cite{rfc2616}) definiert einige \gls{HTTP}-Methoden, wobei die am meisten verwendeten die folgenden sind:
 \begin{compactitem}
-    \item \textsc{Get}
+    \item \textsc{Get} (Aufruf einer Webseite im Browser $\rightarrow$ \textsc{Get}-Request an Server)
     \item \textsc{Put}
-    \item \textsc{Post}
+    \item \textsc{Post} (Übermittlung von Formulardaten eines Client an Server)
     \item \textsc{Delete}
+    \item \textsc{Options}
 \end{compactitem}
+
+Alle bis auf \textsc{Post} und \textsc{Options} sind \emph{idempotent} (\cite{rfc2616} Kapitel 9), d.h. eine Komposition (Ausführung der Methoden hintereinander) der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf.
+
+Methodennamen sind üblicherweise Verben die die auszuführende Aktion beschreiben, deswegen werden HTTP-Methoden auch \enquote{verbs} genannt. Die Definition von eigenen Methoden ist möglich.
 
 %Sie gehören zur Gruppe der sogenannten \emph{CRUD}-Methoden (Create, Receive, Update, Delete) .
 %\emph{Header} und \emph{Body} bilden die grundlegenden Elemente einer HTTP-Nachricht. 
-Eine Nachricht kann je nach verwendeter \textsc{Http}-Methode auch nur aus einem Header bestehen.
 
 \subsection{Header}
 \label{sec:http-header}
 
-Ein Header einer \textsc{Http}-Nachricht besteht aus einer \emph{Request Line} (erste Zeile des Headers) und einer Menge von Schlüssel-Wert-Paaren. \Cref{lst:headGETrequest} zeigt einen Beispiel-Header für die \textsc{Get}-Anfrage auf die Spreadshirt-\gls{API} Ressource:
+Ein Header einer \gls{HTTP}-Nachricht besteht aus einer \emph{Request Line} (erste Zeile des Headers) und einer Menge von Schlüssel-Wert-Paaren. \Cref{lst:headGETrequest} zeigt einen Beispiel-Header für die \textsc{Get}-Anfrage auf die Spreadshirt-\gls{API} Ressource:
 \texttt{http://api.spreadshirt.net/api/v1/locales}.
 
 \begin{lstlisting}[
     label=lst:headGETrequest,
-    caption=\textsc{Http}-Header von \textsc{Get} Request auf Spreadshirt-\textsc{Api} Ressource \texttt{http://api.spreadshirt.net/api/v1/locales}
+    caption=\gls{HTTP}-Header von \textsc{Get} Request auf Spreadshirt-\gls{API} Ressource \texttt{http://api.spreadshirt.net/api/v1/locales}
 ]
 GET //@\ding{202}@// /api/v1/locales //@\ding{203}@// HTTP/1.1 //@\ding{204}@//
 User-Agent: curl/7.29.0 //@\ding{205}@//
@@ -37,9 +43,9 @@ Accept: */* //@\ding{207}@//
 \end{lstlisting} 
 
 \begin{compactitem}
-    \item[\ding{202}] Angabe der \textsc{Http}-Methode
+    \item[\ding{202}] Angabe der \gls{HTTP}-Methode
     \item[\ding{203}] Ressource
-    \item[\ding{204}] verwendete \textsc{Http}-Version
+    \item[\ding{204}] verwendete \gls{HTTP}-Version
     \item[\ding{205}] \emph{User-Agent}, Angabe zum Client-System, das die Anfrage versendet
     \item[\ding{206}] \emph{Host}, der Server welcher die Anfrage erhält und der die Ressource \ding{203} verwaltet
     \item[\ding{207}] Angabe von \emph{Content-Types}, die der Client als Antwort akzeptiert, in diesem Fall eine \emph{Wildcard}, also alle Typen sind als Antwort erlaubt
@@ -49,12 +55,13 @@ Nachfolgend die \emph{Response} auf den soeben beschrieben \emph{Request}.
 
 \begin{lstlisting}[
     label=lst:headGETresponse,
-    caption=\textsc{Http}-Header von \textsc{Get} Response aus Spreadshirt-\textsc{Api} Ressource \texttt{http://api.spreadshirt.net/api/v1/locales}
+    caption=\gls{HTTP}-Header von \textsc{Get} Response aus Spreadshirt-\gls{API} Ressource \texttt{http://api.spreadshirt.net/api/v1/locales}
 ]
 HTTP/1.1 200 OK //@\ding{202}@//
 Expires: Tue, 20 Aug 2013 19:05:25 GMT
 Content-Language: en-gb
-Content-Type: application/xml;charset=UTF-8 //@\ding{203}@//
+Content-Type: application/xml; //@\ding{203}@//
+charset=UTF-8 //@\ding{204}@//
 X-Cache-Lookup: MISS from fish07:80
 X-Server-Name: mem1
 True-Client-IP: 88.79.226.66
@@ -64,22 +71,28 @@ Connection: keep-alive
 \end{lstlisting}
 
 \begin{compactitem}
-    \item[\ding{202}] \emph{Response Line}, Angabe der \textsc{Http}-Version am Anfang und danach der \textsc{Http}-Statuscode mit Kurzbeschreibung
-    \item[\ding{203}] Angabe des Content-Types des Bodys der Nachricht
+    \item[\ding{202}] \emph{Response Line}, Angabe der \gls{HTTP}-Version am Anfang und danach der \gls{HTTP}-Statuscode mit Kurzbeschreibung
+    \item[\ding{203}] Angabe des Content-Types des Bodys der Nachricht (hier \gls{XML})
+    \item[\ding{204}] Kodierung der Nachricht
 \end{compactitem}
 
-Welche Einträge der Header einer \textsc{Http}-Nachricht letztendlich enthält, ist abhängig von der Implementierung des Clients oder Servers und es können auch jederzeit eigene Einträge, die nicht in der \textsc{Http}-Spezifikation enthalten sind, hinzugefügt werden.
+Welche Einträge der Header einer \gls{HTTP}-Nachricht letztendlich enthält, ist abhängig von der Implementierung des Clients oder Servers und es können auch jederzeit eigene Einträge, die nicht in der \gls{HTTP}-Spezifikation enthalten sind, hinzugefügt werden.
+
+\subsubsection{Authorization Request Header}
+\label{sec:http-authorization-header}
+
+Die \gls{HTTP}-Spezifikation \cite[][Abschnitt 14]{rfc2616} sieht ein Feld für Autorisierungsinformationen im Header vor. 
+%Diese Feld wird meist von einem Client gesetzt um sich an einem Web Service zu autorisieren. 
+Der Feld ist folgendermaßen aufgebaut: \texttt{Authorization: credentials}. Der Aufbau des Berechtigungsnachweises (engl. \enquote {credentials}) ist nicht näher spezifiziert und kann vom Web Service Betreiber selbst festgelegt werden. Die Spreadshirt-\gls{API} definiert einen eigenen Autorisierungs-Header (\cref{sec:api_auth}).
 
 \subsection{Body}
 \label{sec:http-body}
-
-Der Body enthält die eigentlichen Nutzdaten. Deren Format wird mit dem \emph{Content-Type}-Eintrag des Headers angegeben. \Cref{lst:bodyGETresponse} zeigt den Body der \emph{response} von \cref{lst:headGETresponse} in \gls{XML} Format (siehe \cref{sec:xml}).
 
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[
     language=XML,
     label=lst:bodyGETresponse,
-    caption=\textsc{Http}-Body der Response aus der \textsc{Get}-Methode auf der Spreadshirt-\textsc{Api}-Ressource \texttt{http://api.spreadshirt.net/api/v1/locales}
+    caption=\gls{HTTP}-Body der Response aus der \textsc{Get}-Methode auf der Spreadshirt-\gls{API}-Ressource \texttt{http://api.spreadshirt.net/api/v1/locales}
 ]
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <locales 
@@ -98,3 +111,5 @@ Der Body enthält die eigentlichen Nutzdaten. Deren Format wird mit dem \emph{Co
 </locales>
 \end{lstlisting}
 \end{minipage}
+
+Der Body enthält die eigentlichen Nutzdaten. Deren Format wird mit dem \emph{Content-Type}-Eintrag des Headers angegeben. \Cref{lst:bodyGETresponse} zeigt den Body der \emph{response} von \Cref{lst:headGETresponse}.

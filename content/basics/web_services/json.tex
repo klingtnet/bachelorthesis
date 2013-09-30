@@ -1,13 +1,13 @@
 \subsection{JSON}
 \label{sec:json}
 
-\thesisDefinition{\textsc{Json}}{
-\emph{Javascript Object Notation}, kurz \textsc{Json}, ist ein leichtgewichtiges, textbasiertes und sprachunbhängiges Datenaustauschformat. Es ist von JavaScript abgeleitet und definiert eine kleine Menge von Formatierungsregeln für die transportable Darstellung (Serialisierung) von strukturierten Daten (nach \cite{JSONRFC}).
+\thesisDefinition{\gls{JSON}}{
+    \enquote{JavaScript Object Notation}, kurz \gls{JSON}, ist ein leichtgewichtiges, textbasiertes und sprachunbhängiges Datenaustauschformat. Es ist von JavaScript abgeleitet und definiert eine kleine Menge von Formatierungsregeln für die transportable Darstellung (Serialisierung) von strukturierten Daten (nach \cite{JSONRFC}).
 }
 
-Im Gegensatz zu \textsc{Xml} ist \textsc{Json} weit weniger mächtig, es gibt z.B. keine Unterstützung für Namensräume und es wird nur eine geringe Menge an Datentypen unterstützt (siehe \cref{tab:jsonDatatypes}). 
+Im Gegensatz zu \gls{XML} ist \gls{JSON} weit weniger mächtig, es gibt z.B. keine Unterstützung für Namensräume und es wird nur eine geringe Menge an Datentypen unterstützt (siehe \cref{tab:jsonDatatypes}). 
 Durch seine einfache Struktur wird aber ein deutlich geringerer \enquote{syntaktischer Overhead} erzeugt.
-Mit \textsc{Json}-Schema \cite{json-schema-draft} ist es möglich eine Dokumentstruktur vorzugeben und gegen diese zu validieren. 
+Mit \gls{JSON}-Schema \cite{json-schema-draft} ist es möglich eine Dokumentstruktur vorzugeben und gegen diese zu validieren. 
 
 \begin{table}[tb]
     \begin{longtable}[c]{l l}
@@ -21,12 +21,12 @@ Mit \textsc{Json}-Schema \cite{json-schema-draft} ist es möglich eine Dokuments
         Booleans            & \\
         null                & \\
         \bottomrule
-        \caption{\textsc{Json} Datentypen}
+        \caption{\gls{JSON} Datentypen}
         \label{tab:jsonDatatypes}
     \end{longtable}
 \end{table}
 
-Objekte werden in \textsc{Json} von geschweiften \ding{202}, Arrays hingegen von eckigen Klammern begrenzt \ding{203}. 
+Objekte werden in \gls{JSON} von geschweiften \ding{202}, Arrays hingegen von eckigen Klammern begrenzt \ding{203}. 
 Objekte enthalten \emph{key-value-pairs} (Schlüssel-Wert-Paare) \ding{204}. Schlüssel sind immer Zeichenketten, die Werte dürfen von allen Typen aus \cref{tab:jsonDatatypes} sein und beliebig tief geschachtelt werden.
 %
 % wrapping in a minipage prevents the listings block from splitting on pagebreak
@@ -34,7 +34,7 @@ Objekte enthalten \emph{key-value-pairs} (Schlüssel-Wert-Paare) \ding{204}. Sch
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[
     language=JavaScript,
-    caption=Die gekürzte Antwort der \textsc{Api}-Ressource \texttt{users/{userid}/designs/{designID}} als Beispiel für eine \textsc{Json}-Datei
+    caption=Die gekürzte Antwort der \gls{API}-Ressource \texttt{users/{userid}/designs/{designID}} als Beispiel für eine \gls{JSON}-Datei
 ]
 {
     "name": "tape_recorder", //@\ding{204}@//

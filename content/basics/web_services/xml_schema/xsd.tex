@@ -1,10 +1,10 @@
 \subsection{XML Schema Description (XSD)}
 \label{sec:xsd}
 
-\textsc{XML} Schema Description ist ein stark erweiterte Nachfolger der \textsc{DTD} (Document Type Definition), derzeit spezifiert in Version 1.1 \cite{XMLSchema11Specification}. 
-Die Syntax von \emph{\textsc{Xsd}} ist \textsc{Xml}. Damit ist die Schemabeschreibung ebenfalls ein gültiges \textsc{Xml}-Dokument. Als Dateiendung wird üblicherweise \texttt{.xsd} verwendet.
+\textsc{XML} Schema Description ist ein stark erweiterte Nachfolger der \gls{DTD} (Document Type Definition), derzeit spezifiert in Version 1.1 \cite{XMLSchema11Specification}. 
+Die Syntax von \emph{\gls{XSD}} ist \gls{XML}. Damit ist die Schemabeschreibung ebenfalls ein gültiges \gls{XML}-Dokument. Als Dateiendung wird üblicherweise \texttt{.xsd} verwendet.
 
-Die Hauptmerkmale von \textsc{Xsd} sind nach \cite[Kapitel 3.2][]{taxonomyXMLSchema} die folgenden:
+Die Hauptmerkmale von \gls{XSD} sind nach \cite[Kapitel 3.2][]{taxonomyXMLSchema} die folgenden:
 \begin{compactitem}
     \item komplexe Typen (strukturierter Inhalt)
     \item anonyme Typen (besitzen kein \texttt{type}-Attribut)
@@ -17,7 +17,7 @@ Die Hauptmerkmale von \textsc{Xsd} sind nach \cite[Kapitel 3.2][]{taxonomyXMLSch
 
 \begin{lstlisting}[
     language=XML,
-    caption=Beginn der \textsc{Xsd}-Datei für die Spreadshirt-\textsc{Api},
+    caption=Beginn der \gls{XSD}-Datei für die Spreadshirt-\gls{API},
     label=lst:xsdIntro
     ]
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?> //@\ding{202}@//
@@ -26,19 +26,19 @@ Die Hauptmerkmale von \textsc{Xsd} sind nach \cite[Kapitel 3.2][]{taxonomyXMLSch
     ...
 \end{lstlisting}
 
-Eine \textsc{Xsd}-Datei beginnt wie jede \textsc{Xml}-Datei mit der \textsc{Xml}-Deklaration \ding{202}.
+Eine \gls{XSD}-Datei beginnt wie jede \gls{XML}-Datei mit der \gls{XML}-Deklaration \ding{202}.
 
 Das Wurzelelement der Schemadefinition zeigt \ding{203}. 
-Das Attribut \emph{xmlns:xs= "http://www.w3.org/2001/XMLSchema"} führt den Namespace-Prefix \emph{xs} ein und gibt außerdem an, dass die Elemente und vordefinierten Datentypen (siehe \cref{fig:xsddatatypes}) aus dem Namensraum \emph{http://www.w3.org/2001/XMLSchema} verwendet werden. Durch das Attribut \emph{targetNamespace} wird der Namensraum der Elemente festgelegt, die in dieser Schemadefinition definiert werden. \emph{Version} gibt die \textsc{Xsd}-Version an.
+Das Attribut \emph{xmlns:xs= "http://www.w3.org/2001/XMLSchema"} führt den Namespace-Prefix \emph{xs} ein und gibt außerdem an, dass die Elemente und vordefinierten Datentypen (siehe \cref{fig:xsddatatypes}) aus dem Namensraum \emph{http://www.w3.org/2001/XMLSchema} verwendet werden. Durch das Attribut \emph{targetNamespace} wird der Namensraum der Elemente festgelegt, die in dieser Schemadefinition definiert werden. \emph{Version} gibt die \gls{XSD}-Version an.
 Der Wert des Attributs \emph{elementFormDefault} gibt an, ob Elemente des Schemas den \emph{targetNamespace} explizit angeben müssen (\enquote{qualified}) oder ob dies implizit geschieht (\enquote{unqualified}), die Angabe ist optional.
 
-Externe Schemadefinitionen lassen sich unter Angabe des Namensraumes und einer \gls{URI} zu der \textsc{Xsd}-Datei einbinden \ding{204}.
+Externe Schemadefinitionen lassen sich unter Angabe des Namensraumes und einer \gls{URI} zu der \gls{XSD}-Datei einbinden \ding{204}.
 
-\textsc{Xml}-Schema Description erlaubt die Definition von simplen Typen (\enquote{SimpleType}) und Typen mit strukturiertem Inhalt (\enquote{ComplexType}).
+\gls{XML}-Schema Description erlaubt die Definition von simplen Typen (\enquote{SimpleType}) und Typen mit strukturiertem Inhalt (\enquote{ComplexType}).
 
 \begin{lstlisting}[
     language=XML,
-    caption=Beispiel für einen SimpleType anhand des Type \enquote{unit} der Spreadshirt-API,
+    caption=Beispiel für einen SimpleType namens \enquote{unit} der Spreadshirt-API,
     label=lst:xsdExampleUnit
 ]
 <xs:simpleType name="unit">
@@ -51,7 +51,7 @@ Externe Schemadefinitionen lassen sich unter Angabe des Namensraumes und einer \
 
 \emph{SimpleType}-Definitionen dienen zur Beschreibung einfacher Typen wie \emph{Enumeratoren}, oder \emph{Listen} für Daten eines primitiven Typs. Ein Beispiel für die Definition eines Enumerators durch einen SimpleType zeigt \Cref{lst:xsdExampleUnit}. Der Basisdatentyp des Enumerators wird dabei durch die Angabe des Attributs \emph{base} \ding{202} festgelegt. Zuordnung von Werten zu dem Enumerator zeigt \ding{203}.
 
-Durch einen SimpleType definierte Listen sind durch Leerzeichen separierte Strings, sie werden meist für den Wert eines Attributes einer \textsc{Xml}-Datei verwendet. 
+Durch einen SimpleType definierte Listen sind durch Leerzeichen separierte Strings, sie werden meist für den Wert eines Attributes einer \gls{XML}-Datei verwendet. 
 
 \begin{lstlisting}[
     language=XML,
@@ -75,7 +75,7 @@ Die Definition eines strukturierten Typs zeigt \Cref{lst:xsdExampleAbstractList}
 
 \begin{lstlisting}[
     language=XML, 
-    caption=Beispiel für eine Schemabeschreibung mit \textsc{Xsd} anhand des \enquote{abstractList}-Typs der Spreadshirt-API,
+    caption=Beispiel für eine Schemabeschreibung mit \gls{XSD} anhand des \enquote{abstractList}-Typs der Spreadshirt-API,
     label=lst:xsdExampleAbstractList
     ]
 <xs:complexType name="abstractList" abstract="true"> //@\ding{202}@//
@@ -95,27 +95,33 @@ Die Definition eines strukturierten Typs zeigt \Cref{lst:xsdExampleAbstractList}
 </xs:complexType>
 \end{lstlisting}
 
-Das \emph{ComplexType}-Tag \ding{202} umschließt die Definiton des strukturierten Typs. \textsc{Xml}-Schema Description erlaubt das Definieren von abstrakten Typen, nur Ableitungen davon dürfen als Instanzen in einem Dokument auftreten. Abgeleitete Typen dürfen dabei den abstrakten Typ \emph{erweitern} o. \emph{einschränken} (\enquote{derivation by extension/restriction}).
+Das \emph{ComplexType}-Tag \ding{202} umschließt die Definiton des strukturierten Typs. \gls{XML}-Schema Description erlaubt das Definieren von abstrakten Typen, nur Ableitungen davon dürfen als Instanzen in einem Dokument auftreten. Abgeleitete Typen dürfen dabei den abstrakten Typ \emph{erweitern} oder \emph{einschränken} (\enquote{derivation by extension/restriction}).
 
-Mit \emph{Reihenfolgeindikatoren} \ding{203} kann die Ordnung von Elementen festgelegt werden. Elemente unterhalb eines \emph{Sequence}-Tags dürfen nur in der Abfolge auftreten, in der sie unterhalb des Sequence-Tag definiert worden sind. Das \emph{All}-Tag \ding{205} hingegen erlaubt das Auftreten ohne festgelegte Reihenfolge. Der Reihenfolgeindikator \emph{Choice} erlaubt das Auftreten nur eines der Elemente, die unterhalb dieses Tags vorkommen.
+Mit \emph{Reihenfolgeindikatoren} \ding{203} kann die Ordnung von Elementen festgelegt werden. Elemente unterhalb eines \emph{Sequence}-Tags dürfen nur in der Abfolge auftreten, in der sie definiert worden sind. Das \emph{All}-Tag \ding{205} hingegen erlaubt das Vorkommen ohne festgelegte Reihenfolge. Der Reihenfolgeindikator \emph{Choice} erlaubt nur eines der Elemente, die unterhalb dieses Tags vorkommen.
 
-Durch die optionale Angabe von \emph{Häufigkeitsindikatoren} \ding{204} kann festgelegt werden wie oft ein Element an der definierten Stelle vorkommen darf. Entfällt dies, entspricht der Wert von \emph{min-, maxOccurs} "1", das heißt, das Element darf genau einmal an dieser Stelle vorkommen.
+Durch die optionale Angabe von \emph{Häufigkeitsindikatoren} \ding{204} kann festgelegt werden wie oft ein Element an der definierten Stelle vorkommen darf. Entfällt dies, entspricht der Wert von \emph{minOccurs} "1" und \emph{maxOccurs} "1", das heißt, das Element darf genau einmal an dieser Stelle vorkommen.
 
-Elemente einer \textsc{Xml}-Datei werden durch das gleichnamige \emph{Element} \ding{205} im \textsc{Xsd} definiert. Ein Element benötigt die Angabe eines Namens und Typs. Die Angabe des Typs kann dabei als Referenz auf die Typdefinition \ding{207} oder als Definition unterhalb des Element-Tags erfolgen \ding{206}.
+Elemente einer \gls{XML}-Datei werden durch das gleichnamige \emph{Element} \ding{205} im \gls{XSD} definiert. Ein Element benötigt die Angabe eines Namens und Typs. Die Angabe des Typs kann dabei als Referenz auf die Typdefinition \ding{207} oder als Definition unterhalb des Element-Tags erfolgen \ding{206}.
 
-Attribute eines \textsc{Xml}-Tags werden durch das \emph{Attribute}-Element definiert. Dies geschieht durch Angabe von Name und Typ \ding{208} oder durch eine Referenz auf eine Attributdefinition \ding{207}.
+Attribute eines \gls{XML}-Tags werden durch das \emph{Attribute}-Element definiert. Dies geschieht durch Angabe von Name und Typ \ding{208} oder durch eine Referenz auf eine Attributdefinition \ding{207}.
 
 Referenzen haben die Form \emph{Namensraumbezeicher}:\emph{Elementname}. Wobei mit Elementname jedes Element der Schemabeschreibung gemeint ist, welches ein \emph{name}-Attribut besitzt. Der konkrete Namensraum eines solchen Bezeichners wird vorher mit der Angabe eines Attributes in dieser Form eingeführt:
 
 \[  
-    \underbrace{\text{xmlns}}_{\text{\textsc{Xml}-Namespace}}
+    \underbrace{\text{\texttt{xmlns}}}_{\text{\ding{202}}}
     :
-    \overbrace{\text{tns}}^{\text{Namensraumbezeichner}}
+    \underbrace{\text{\texttt{tns}}}^{\text{\ding{203}}}
     \texttt{=}
     \underbrace{
         \texttt{"http://api.spreadshirt.net"}
-    }_{\text{Konkreter Namensraum}}
+    }_{\text{\ding{204}}}
 \]
+
+\begin{compactitem}
+    \item[\ding{202}] \gls{XML}-Namespace
+    \item[\ding{203}] Namensraumbezeichner
+    \item[\ding{204}] Konkreter Namensraum
+\end{compactitem}
 
 %
 % todo: xml schema genauer beschreiben, relaxng entfernen --: Beispiel fuer Instanz und Definition des Typs!
@@ -161,6 +167,6 @@ Referenzen haben die Form \emph{Namensraumbezeicher}:\emph{Elementname}. Wobei m
     \resizebox{0.5\textheight}{!}{
             \input{tikz_pgf/xsd_predefined_types_legend}
     }        
-    \caption{vordefinierte \textsc{Xsd} Datentypen nach \cite{XMLSchema11Specification} Kapitel 3}
+    \caption{vordefinierte \gls{XSD} Datentypen nach \cite{XMLSchema11Specification} Kapitel 3}
     \label{fig:xsddatatypes}
 \end{sidewaysfigure}

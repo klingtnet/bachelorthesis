@@ -1,18 +1,19 @@
 \section{Objektorientierte Sprachen}
 \label{sec:oo_languages}
 
-Ziel des Generators ist die Erzeugung von Code in einer objektorientierten\footnote{nachfolgend nur noch \textsc{Oo}} Sprache. Aus diesem Grund werden die elementaren Konzepte solcher Sprachen in diesem Abschnitt näher erläutert sowie die Besonderheiten der Generatorzielsprache (\textsc{Php}) beschrieben.
+Ziel des Generators ist die Erzeugung von Code in einer objektorientierten Sprache. Aus diesem Grund werden die elementaren Konzepte solcher Sprachen in diesem Abschnitt näher erläutert sowie die Besonderheiten der Generatorzielsprache (\textsc{Php}) beschrieben.
 
-Im Gegensatz zu \emph{Prozeduralen Sprachen} (z.B. C), in denen ein Programm eine Liste von Funktionen ist, wird dieses im \textsc{Oo}-Programmierparadigma aus der Interaktion von \emph{Objekten} gebildet. 
+Im Gegensatz zu \emph{prozeduralen Sprachen} (z.B. C), in denen ein Programm eine Liste von Funktionen ist, wird es in objektorientierten Sprachen aus der Interaktion von \emph{Objekten} gebildet. 
 
-\textsc{Oo}-Sprachen stellen eine Teilmenge der Imperativen Sprachen dar. Programme aus einer Imperativen Sprache bestehen dabei aus einer Folge von \emph{Anweisungen} (\enquote{Statements}). Anweisungen sind Befehle, formuliert in der Syntax der Programmiersprache, bspw. Zuweisungen, Unterprogrammaufrufe oder Schleifen. \emph{Ausdrücke} (\enquote{Expressions}) unterscheiden sich zu Anweisungen, indem sie nebenwirkungsfrei sind und nach der Auswertung einen Wert zurückliefern. Viele Programmiersprachen vermischen beide Konstrukte. Ein Beispiel dafür ist der Inkrement-Operator (\texttt{++}). Er inkrementiert den Wert einer Variable und liefert ihn zurück, ist also nicht nebenwirkungsfrei.
+Objektorientierte Sprachen stellen eine Teilmenge der imperativen Sprachen dar. Programme aus einer imperativen Sprache bestehen dabei aus einer Folge von \emph{Anweisungen} (\enquote{Statements}). Anweisungen sind Befehle, formuliert in der Syntax der Programmiersprache, beispielsweise Zuweisungen, Unterprogrammaufrufe oder Schleifen. \emph{Ausdrücke} (\enquote{Expressions}) unterscheiden sich zu Anweisungen, indem sie nebenwirkungsfrei sind und nach der Auswertung einen Wert zurückliefern. Viele Programmiersprachen vermischen beide Konstrukte. Ein Beispiel dafür ist der Inkrement-Operator (\texttt{++}). Er inkrementiert den Wert einer Variable und liefert ihn zurück, ist also nicht nebenwirkungsfrei.
 Ein Operator ist ein Operationssymbol der Programmiersprache mit einer bestimmten Stelligkeit und Notation (Post-, Prä-, Infix).
 \Cref{lst:expression} zeigt den Aufbau eines Ausdrucks, dargestellt durch eine \textsc{Ebnf}.
 
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[
   style=EBNF, 
   language=EBNF,
-  caption=Aufbau eines Ausdrucks einer Imperativen Programmiersprache als \textsc{Ebnf},
+  caption=Aufbau eines Ausdrucks einer imperativen Programmiersprache als \textsc{Ebnf},
   label=lst:expression
 ]
 Ausdruck ::=  Wert 
@@ -21,6 +22,7 @@ Ausdruck ::=  Wert
               | Ausdruck  [ Operator ]
               | Ausdruck  Operator  Ausdruck
 \end{lstlisting}
+\end{minipage}
 \vspace{-\baselineskip}
 {\footnotesize \begin{center} \texttt{[]} optional, \texttt{|} Auswahl, \texttt{::=} Definition. \end{center}}
 
@@ -28,15 +30,15 @@ Ausdruck ::=  Wert
 \label{sec:elements_of_object_oriented_languages}
 
 % rekursiv definieren, Objekt enthält methoden und felder, felder und methoden access modifier ...
-Die Beschreibung der Elemente einer \textsc{Oo}-Sprache basiert auf \cite{oopSkript2012}.
+Die Beschreibung der Elemente einer objektorientierten Sprache basiert auf \cite{oopSkript2012}.
 
 \begin{description}
     \item[Objekte] 
-        Sind eine elementare logische Einheit, kapselt Variablen und \emph{Methoden} (Kapselung) und schützt private Daten vor äußerem Zugriff (Data-Hiding). Der Zugriff auf die Elemente des Objektes wird über \emph{Access Modifier} geregelt. Objekte bilden einen Namensraum und schützen davor das Änderungen an privaten Daten sich auf andere Objekte auswirken.
+        Sind eine elementare logische Einheit, kapselt Variablen und \emph{Methoden} (Kapselung) und schützt private Daten vor äußerem Zugriff (Data-Hiding). Sie bilden einen Namensraum und schützen davor das Änderungen an privaten Daten sich auf andere Objekte auswirken.
     % Identität, Zustand und Verhalten
     \item[Klassen] 
         Klassen beschreiben die Variablen und Methoden für Objekte, die aus ihnen erzeugt werden. Ein Objekt ist eine \emph{Instanz} einer Klasse. Eine Klasse kann ein aus ihr erzeugtes Objekt mit bestimmten Vorgabewerten initialisieren. Objekte einer Klasse werden erzeugt oder auch instanziiert durch den Aufruf der Konstruktormethode der Klasse.
-        Die meisten \textsc{Oo}-Sprachen bieten Möglichkeiten der Vererbung, d.h., dass Klassen gewisse Eigenschaften und Methoden von einer Klasse \enquote{erben} können. Weiterhin können Klassen auch abstrakt sein, also die in ihnen enthaltenen Klassen und Methoden sind nur Bezeichner, aber besitzen keine Definition. Diese müssen dann von den Klassen definiert werden, die diese Abstrakten Klassen \emph{implementieren}.
+        Die meisten objektorientierten Sprachen bieten Möglichkeiten der Vererbung, d.h., dass Klassen gewisse Eigenschaften und Methoden von einer Klasse \enquote{erben} können. Weiterhin können Klassen auch abstrakt sein, also die in ihnen enthaltenen Klassen und Methoden sind nur Bezeichner, aber besitzen keine Definition. Diese müssen dann von den Klassen definiert werden, die diese Abstrakten Klassen \emph{implementieren}.
     \item[Methoden]
         Methoden sind die \emph{Funktionen} des Objektes, sie beschreiben sein \emph{Verhalten}.
     \item[Felder]
@@ -44,7 +46,7 @@ Die Beschreibung der Elemente einer \textsc{Oo}-Sprache basiert auf \cite{oopSkr
     \item[Access Modifier]    
         Access Modifier regeln den Zugriff auf die Elemente eines Objektes. Die Gebräuchlichsten sind hierbei \texttt{public, private} und \texttt{protected}. Durch deren Verwendung wird die Kapselung von Daten erreicht. Welche Arten der Zugriffskontrolle letztendlich vorhanden sind, ist abhängig von der verwendeten Programmiersprache.
     \item[Namensräume]
-        Namensräume erlauben die Verwendung von gleichen Bezeichnern in unterschiedlichen Namensräumen. Wie im Punkt Objekte erwähnt, bilden diese bspw. einen eigenen Namensraum. Der Zugriff auf ein Element eines Objektes erfolgt über seinen Namensraum. Will man auf das Element \texttt{bar} des Objektes \texttt{foo} zugreifen, geschieht dies z.B. in \textsc{Php} folgendermaßen: \texttt{foo->bar}.
+        Namensräume erlauben die Verwendung von gleichen Bezeichnern in unterschiedlichen Namensräumen. Wie im Punkt Objekte erwähnt, bilden diese beispielsweise einen eigenen Namensraum. Der Zugriff auf ein Element eines Objektes erfolgt über seinen Namensraum. Will man auf das Element \texttt{bar} des Objektes \texttt{foo} zugreifen, geschieht dies z.B. in \textsc{Php} folgendermaßen: \texttt{\$foo->bar}.
         % todo: packages, namespace (section 7 of the java language specification)
         % PHP als Beispiel
 \end{description}
@@ -52,7 +54,7 @@ Die Beschreibung der Elemente einer \textsc{Oo}-Sprache basiert auf \cite{oopSkr
 \subsection{Typsystem}
 \label{sec:typesystem}
 
-\citeauthor{voelterDSLEngineering} definiert den Begriff \enquote{Typsystem} auf \cite[][S. 253]{voelterDSLEngineering} so (eigene Übersetzung):
+Den Begriff \enquote{Typsystem} definiert \citeauthor{voelterDSLEngineering} in \cite[][S. 253]{voelterDSLEngineering} so (eigene Übersetzung):
 
 \thesisDefinition{Typsystem}{
     Ein Typsystem ordnet den Programmelementen Typen zu und prüft die Konformität dieser Typen nach bestimmten vordefinierten Regeln.
@@ -66,13 +68,13 @@ Es wird zwischen zwei grundlegenden Formen von Typsystemen unterschieden, \emph{
 \label{sec:php}
 
 \textsc{Php} ist eine \gls{GPL}, die aber vorwiegend auf die Entwicklung von serverseitigen Webapplikationen ausgerichtet ist. \textsc{Php} Skripte können in \textsc{Html}-Dateien eingebettet werden, welche der Server bei einer Client-Anfrage verarbeitet, die \textsc{Php} Elemente durch deren Ausgabe ersetzt und dem Client zurücksendet. Die Sprache gehört somit zu den \emph{Server-Side Scripting Languages}. Die Verwendung ist aber nicht auf diesen Bereich beschränkt, denn \textsc{Php} Anweisungen müssen nicht in \textsc{Html} eingebettet sein, sondern können auch unabhängig davon als eigene Datei ausgeführt werden.
-Im Gegensatz zu \emph{Java} ist \textsc{Php} nicht statisch typisiert und muss zur Ausführung auch nicht kompiliert werden. \textsc{Php} ist \emph{dynamisch typisiert} und wird von einem Interpreter --- dem namensgebenden \emph{Hypertext Preprocessor} --- ausgeführt.
-Es werden seit Version 5.0 mehrere Programmierparadigmen unterstützt, neben Imperativer- auch Objektorientierte Programmierung. Version 5.3 fügte die Unterstützung von \glspl{closure} hinzu.
+Im Gegensatz zu statisch typisierten Sprachen wie \emph{Java} muss \textsc{Php} zur Ausführung nicht kompiliert werden. \textsc{Php} ist \emph{dynamisch typisiert} und wird von einem Interpreter --- dem namensgebenden \emph{Hypertext Preprocessor} --- ausgeführt.
+Es werden seit Version 5.0 mehrere Programmierparadigmen unterstützt, neben imperativer- auch objektorientierte Programmierung. Version 5.3 fügte die Unterstützung von funktionaler Programmierung durch die Verwendung von \glspl{closure} hinzu.
 
 \begin{compactitem}
-    \item[\ding{202}] Die Start- und Endtags eines \textsc{Php}-Files, wobei letzteres optional ist. Deren Funktion ist die Abgrenzung vom umliegenden Markup, bspw. wenn der \textsc{Php}-Code in eine \textsc{Html} Datei eingebettet ist.
+    \item[\ding{202}] Die Start- und Endtags eines \textsc{Php}-Files, wobei letzteres optional ist. Deren Funktion ist die Abgrenzung vom umliegenden Markup, beispielsweise wenn der \textsc{Php}-Code in eine \textsc{Html} Datei eingebettet ist.
     \item[\ding{203}] \textsc{Php} unterstützt das Importieren von Quellcodefiles anhand verschiedener Befehle, in diesem Fall \texttt{require\_once}.
-    \item[\ding{204}] Nur in der Argumentliste einer Methodendefinition sind Typangaben erlaubt, solange der Typ kein primitiver ist, d.h. den sprachinternen primitiven Datentypen wie bspw. String oder Integer entspricht. 
+    \item[\ding{204}] Nur in der Argumentliste einer Methodendefinition sind Typangaben erlaubt, solange der Typ kein primitiver ist, d.h. den sprachinternen primitiven Datentypen wie beispielsweise String oder Integer entspricht. 
     \item[\ding{205}] Statische Methoden, können ohne Instanz der umgebenden Klasse aufgerufen werden.
 \end{compactitem}
 

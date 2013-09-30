@@ -10,7 +10,7 @@
 
 Wurzel des Schemadatenmodells ist die Klasse \textbf{Schema}. Ein Schema kann Objekte vom Typ \emph{Complex-} und \emph{SimpleType} sowie \emph{Attribute} und \emph{Element} enthalten.
 
-\textsc{Xsd}-Dateien (siehe \cref{sec:xsd}) erlauben das Importieren anderer Schemadefinitionen, die Klasse \textbf{Import} ermöglicht dies im Schemamodell. Sie besitzt ein Objekt des zu importierenden Schemas sowie eine \gls{URI} auf die zugehörige \textsc{Xsd}-Datei.
+\gls{XSD}-Dateien erlauben das Importieren anderer Schemadefinitionen, die Klasse \textbf{Import} ermöglicht dies im Schemamodell. Sie besitzt ein Objekt des zu importierenden Schemas sowie eine \gls{URI} auf die zugehörige \gls{XSD}-Datei.
 
 Primitive Schematypen werden durch die Klasse \emph{SimpleType} abgebildet. Objekte dieser Klasse enthalten eine Kennzeichnung der Art des SimpleType (Enumerator, Liste, einfacher Wert) und bei Enumeratoren zusätzlich die einzelnen Enumeratorwerte sowie die Angabe des Basisdatentyps.
 
@@ -21,7 +21,7 @@ Ein ComplexType kann Attribute, Elemente, Elementsequenzen und strukturierten In
 
 Attribute werden durch die gleichnamige Klasse \textbf{Attribute} gekapselt, sie besitzen einen Attributnamen sowie eine Definition ihres Typs.
 
-Elementsequenzen werden durch die \textbf{Sequence}-Klasse repräsentiert. Sie enthält einen Reihenfolgeindikator (siehe \cref{sec:xsd}) und die Elemente der Sequenz.
+Elementsequenzen werden durch die \textbf{Sequence}-Klasse repräsentiert. Sie enthält einen Reihenfolgeindikator und die Elemente der Sequenz.
 
 Objekte der Klasse \textbf{Element} besitzen einen Bezeichner sowie einen Complex- oder SimpleType und optional eine Angabe der Auftrittshäufigkeit. Die Klasse \emph{ElementParameter} dient nur zur Kapselung der Daten, welche an den Konstruktor der Elementklasse gegeben werden.
 
@@ -29,12 +29,10 @@ Durch die Klasse \textbf{Namespace} werden der Namensraumbezeichner und der konk
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}[b]{0.50\linewidth}
+    \begin{minipage}[b]{0.6\linewidth}
         \begin{lstlisting}[
             language=XML,
-            caption=Point Datentyp aus der Spreadshirt-\textsc{Api} Schemabeschreibung,
-            label=lst:xsdExamplePoint,    
-            basicstyle=\tiny\ttfamily,
+            label=lst:xsdExamplePoint,                
             numbers=none,
             xleftmargin=0mm,
             framexleftmargin=2mm,
@@ -45,8 +43,10 @@ Durch die Klasse \textbf{Namespace} werden der Namensraumbezeichner und der konk
 
 <xs:complexType name="point">
     <xs:sequence>
-        <xs:element type="xs:double" name="x"/>
-        <xs:element type="xs:double" name="y"/>
+        <xs:element 
+            type="xs:double" name="x"/>
+        <xs:element 
+            type="xs:double" name="y"/>
     </xs:sequence>
     <xs:attribute 
         xmlns:tns="http://api.spreadshirt.net" 
@@ -55,8 +55,8 @@ Durch die Klasse \textbf{Namespace} werden der Namensraumbezeichner und der konk
         \end{lstlisting}
     \end{minipage}
     \quad    
-    \begin{minipage}[b]{0.45\linewidth}
-        \begin{tikzpicture}[every tree node/.style={font=\tiny}]
+    \begin{minipage}[b]{0.35\linewidth}
+        \begin{tikzpicture}[every tree node/.style={font=\footnotesize}]
             \Tree
             [
                 .Element
@@ -70,7 +70,7 @@ Durch die Klasse \textbf{Namespace} werden der Namensraumbezeichner und der konk
                 ]
             ]
         \end{tikzpicture}
-        \caption{Klassendarstellung des Datentyps Point im Schemamodell}
         %\label{fig:minipage2}
     \end{minipage}
+    \caption{Datentyp Point mit Gegenüberstellung im Schemamodell}
 \end{figure}

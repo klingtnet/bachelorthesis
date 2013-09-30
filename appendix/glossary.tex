@@ -1,4 +1,82 @@
-% Todo: check glossaryentries
+\newglossaryentry{URI}{
+	name=\textsc{Uri},
+	description={
+	    Ein \enquote{Uniform Resource Identifier} (\gls{URI}) ist eine kompakte Zeichenkette zur Identifizierung einer abstrakten oder physischen Ressource. \ldots{} Eine Ressource ist alles was identifizierbar ist, beispielsweise elektronische Dokumente, Bilder, Dienste und Sammlungen von Ressourcen. (eigene Übersetzung von \cite{w3cURI}).
+		%\emph{Unified Resource Identifier} ist ein Folge von Zeichen, die einen Name oder eine Web-Ressource identifiziert	
+	},
+	plural=\textsc{Uri}s
+}
+
+\newglossaryentry{URL}{
+	name=\textsc{Url},
+	description={
+		%\emph{Unified Resource Locator} sind eine Untermenge der \emph{URIs}. Der Unterschied besteht in der expliziten Angabe des Zugrissmechanismus und des Ortes (\enquote{Location}) durch \emph{URLs}, beispielsweise \texttt{http} oder \texttt{ftp}
+	    Der Begriff \enquote{Uniform Resource Locator} (\gls{URL}) bezieht sich auf eine Teilmenge von \glspl{URI}. \glspl{URL} identifizieren Ressourcen über den Zugriffsmechanismus, anstelle des Namens oder anderer Attribute der Ressource.
+    	(eigene Übersetzung von \cite{w3cURI}).   
+	},
+	plural=\textsc{Url}s,
+	see=URI
+}
+
+\newglossaryentry{URN}{
+	name=\textsc{Urn},
+	description={
+	    Eine Teilmenge der \glspl{URI}, die sogenannten \enquote{Uniform Resource Names} (\glspl{URN}), sind global eindeutige und beständige Bezeichner für Ressourcen. Sie müssen verfügbar bleiben auch wenn die bezeichnete Ressource nicht mehr erreichbar oder vorhanden ist. \ldots{} Der Unterschied zu einer \gls{URL} besteht darin, das ihr primärer Zweck in der dauerhaften Auszeichnung einer Ressource mit einem Bezeichner besteht.
+    	(eigene Übersetzung von \cite{w3cURI}).
+	},
+	plural=\textsc{Urn}s,
+	see=URI
+}
+
+\newglossaryentry{OSI}{
+	name=\textsc{Osi}-Modell,
+	description={
+		Das \textsc{Osi}-Modell (\enquote{Open Systems Interconnection}) ist ein Konzeptuelles Modell, dass Funktionalitäten von Netzwerkprotokollen durch die Aufteilung in Abstraktionsschichten beschreibt und vereinheitlicht \cite{wiki:osi}
+	}
+}
+
+\newglossaryentry{HTTP}{
+	name=\textsc{Http},
+	description={
+		Das \emph{Hypertext Transfer Protocol (\textsc{Http})} ist ein allgemeines und \emph{zustandsloses} Protokoll, zur Übertragung von Daten über ein Netzwerk, was durch Erweiterung seiner Anfragemethoden, Statuscodes und Header für viele unterschiedliche Anwendungen verwendet werden kann (\cite[][Abstract]{rfc2616})
+	}
+}
+
+\newglossaryentry{Typsystem}{
+	name=Typsystem,
+	description={
+		Ein Typsystem ordnet den Programmelementen Typen zu und prüft die Konformität dieser Typen nach bestimmten vordefinierten Regeln
+	}
+}
+
+\newglossaryentry{Datenmodell}{
+	name=Datenmodell,
+	description={
+	    Ein Datenmodell ist im Grunde die Darstellung eines Informationsmodells unter Berücksichtigung einer Menge von Mechanismen für die Darstellung, Organisierung, Speicherung und Bearbeitung von Daten.
+	    Das Modell besteht aus einer Sammlung von \ldots
+	    \begin{compactitem}
+	        \item{Datenstrukturen, wie Listen, Tabellen, Relationen etc.}
+	        \item{Operationen die auf die Strukturen angewendet werden können, wie Abfrage, Aktualisierung, ...}
+	        \item{Integritätsbedingungen die gültige Zustände (Menge von Werten) odder Zustandsänderungen (Operationen auf Werten) definieren.}
+	    \end{compactitem}
+	}
+}
+
+\newglossaryentry{Konzeptuelles_Modell}{
+	name=Konzeptuelles Modell,
+	description={
+	    Ein \emph{Konzeptuelles Modell} beschreibt alle Objekte, Attribute, Rollen und Beziehungen sowie die Beschränkungen einer bestimmten Problemdomäne\footnote{Teil einer Applikation oder Fachbereich, der untersucht werden muss um die Problemstellung zu lösen \cite{wiki:problemdomain}}.
+    	Bei der Erstellung des Modells werden explizit Design- und Implementierungsentscheidungen außer acht gelassen. 
+    	Das Ziel ist die Bedeutung von Begriffen und Konzepten aus der Domäne zu formalisieren, Beziehungen zwischen den Konzepten finden und Mehrdeutigkeiten bei der Nutzung der Domänentermini zu vermeiden
+	}
+}
+
+\newglossaryentry{Codegenerator}{
+	name={Codegenerator},
+	description={
+		Ein \emph{Codegenerator} ist ein Programm, welches aus einer höhersprachigen Spezifikation (m. a. W.: auf einem höheren Abstraktionslevel als die zur Implementierung verwendete Programmiersprache), einer Software oder eines Teilaspektes die Implementierung erzeugt (nach \cite{czarnecki2000generative})
+	}
+}
 
 \newglossaryentry{Parsing}{
 	name=Parsing,
@@ -10,7 +88,7 @@
 \newglossaryentry{REST}{
 	name=\textsc{Rest}, 
 	description={
-		\emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding in seiner \printhref{http://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf}{Dissertation} beschrieben wurde. Die Daten liegen dabei in eindeutig addressierbaren \emph{resources} vor. Die Interaktion basiert auf dem Austausch von \emph{representations} -- also ein Dokument was den aktuellen oder gewünschten Zustand einer resource beschreibt.
+		\emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding in seiner Dissertation \cite{fieldingDissertation} beschrieben wurde. Die Daten liegen dabei in eindeutig addressierbaren \emph{resources} vor. Die Interaktion basiert auf dem Austausch von \emph{representations} -- also ein Dokument was den aktuellen oder gewünschten Zustand einer resource beschreibt.
 		Beispiel-URL für das Item \emph{84} aus dem Warenkorb \emph{42}:\\
 		\texttt{http://api.spreadshirt.net/api/v1/baskets/84/item/42}
 	}
@@ -28,20 +106,23 @@
 	name=\textsc{Api}, 
 	description={
 		\emph{Application Programming Interface} (deutsch: \enquote{Schnittstelle zur Anwendungsprogrammierung}) spezifiziert, wie Softwarekomponenten über diese Schnittstelle miteinander interagieren können
-	}
+	},
+	plural=\textsc{Api}s
 }
 
 \newglossaryentry{XML}{
 	name=\textsc{Xml},
 	description={
-		\emph{Extensible Markup Language} (deutsch: \enquote{erweiterbare Auszeichnungssprache}) ist ein mensch- und maschinenlesbares Format für Codierung und Austausch von Daten, \printhref{http://www.w3.org/TR/REC-xml}{spezifiziert vom W3C}
+		Die \emph{Extensible Markup Language}, kurz \textsc{Xml}, ist eine Auszeichnungssprache (\enquote{Markup Language}), die eine Menge von Regeln beschreibt um Dokumente in einem mensch- und maschinenlesbaren Format zu kodieren \cite{XML10Specification}
+		%\emph{Extensible Markup Language} (deutsch: \enquote{erweiterbare Auszeichnungssprache}) ist ein mensch- und maschinenlesbares Format für Codierung und Austausch von Daten, \printhref{http://www.w3.org/TR/REC-xml}{spezifiziert vom W3C}
 	}
 }
 
 \newglossaryentry{JSON}{
 	name=\textsc{Json},
 	description={
-		\emph{JavaScript Object Notation} ist ein Mensch- und Maschinenlesbares Format zu Codierung und Austausch von Daten. Es bietet im Gegensatz zu XML keine Erweiterbarkeit und Unterstützung für Namesräume, ist aber kompakter und einfacher zu parsen
+		\emph{JavaScript Object Notation}, kurz \textsc{Json}, ist ein leichtgewichtiges, textbasiertes und sprachunbhängiges Datenaustauschformat. Es ist von JavaScript abgeleitet und definiert eine kleine Menge von Formatierungsregeln für die transportable Darstellung (Serialisierung) von strukturierten Daten (nach \cite{JSONRFC})
+		%\emph{JavaScript Object Notation} ist ein Mensch- und Maschinenlesbares Format zu Codierung und Austausch von Daten. Es bietet im Gegensatz zu XML keine Erweiterbarkeit und Unterstützung für Namesräume, ist aber kompakter und einfacher zu parsen
 	}, 
 	see=XML
 }
@@ -80,14 +161,14 @@
 \newglossaryentry{Metaprogramming}{
 	name=Metaprogramming,
 	description={
-		beschreibt das erstellen von Programmen welche sich selbst, oder andere Programme, modifizieren oder die einen Teil des Kompilierungsschrittes übernehmen (bspw. der C-Präprozessor)
+		beschreibt das erstellen von Programmen welche sich selbst, oder andere Programme, modifizieren oder die einen Teil des Kompilierungsschrittes übernehmen (beispielsweise der C-Präprozessor)
 	}
 }
 
 \newglossaryentry{DSL}{
 	name=\textsc{Dsl},
 	description={
-		\emph{Domain Specific Language} (deutsch: \enquote{Domänenspezifische Sprache}) ist eine Programmiersprache die nur auf eine bestimmte Domäne oder auch Problembereich optimiert ist.
+		\emph{Domain Specific Language} (deutsch: \enquote{Domänenspezifische Sprache}) ist eine Programmiersprache die nur auf eine bestimmte Domäne oder auch Problembereich optimiert ist
 	}
 }
 
@@ -103,23 +184,6 @@
 	description={
 		\emph{Multipurpose Internet Mail Extensions} dienen zu Deklaration von Inhalten (Typ des Inhalts) in verschiedenen Internetprotokollen
 	}
-}
-
-\newglossaryentry{URI}{
-	name=\textsc{Uri},
-	description={
-		\emph{Unified Resource Identifier} ist ein Folge von Zeichen, die einen Name oder eine Web-Ressource identifiziert
-	},
-	plural=\textsc{Uri}s
-}
-
-\newglossaryentry{URL}{
-	name=\textsc{Url},
-	description={
-		\emph{Unified Resource Locator} sind eine Untermenge der \emph{URIs}. Der Unterschied besteht in der expliziten Angabe des Zugrissmechanismus und des Ortes (\enquote{Location}) durch \emph{URLs}, bspw. \texttt{http} oder \texttt{ftp}
-	},
-	plural=\textsc{Url}s,
-	see=URI
 }
 
 \newglossaryentry{DTD}{
@@ -139,25 +203,25 @@
 }
 
 % Wikipedia
-\newglossaryentry{MDSD}{
-	name=\textsc{Mdsd},
-	description={
-		\emph{Model Driven Software Development}, auch \emph{Model Driven Engineering} ist eine Softwareentwicklungsmethode welche ihren Fokus auf das erzeugen und nutzen von Domänen-Modellen, anstelle der algorithmischen Konzepte, legt
- 	}	
-}
+% \newglossaryentry{MDSD}{
+% 	name=\textsc{Mdsd},
+% 	description={
+% 		\emph{Model Driven Software Development}, auch \emph{Model Driven Engineering} ist eine Softwareentwicklungsmethode welche ihren Fokus auf das erzeugen und nutzen von Domänen-Modellen, anstelle der algorithmischen Konzepte, legt
+%  	}	
+% }
 
-\newglossaryentry{MDE}{
-	name=\textsc{Mde},
-	description={
-		\emph{Model Driven Engineering}
-	},
-	see=MDSD
-}
+% \newglossaryentry{MDE}{
+% 	name=\textsc{Mde},
+% 	description={
+% 		\emph{Model Driven Engineering}
+% 	},
+% 	see=MDSD
+% }
 
 \newglossaryentry{AST}{
 	name=Abstract Syntax Tree,
 	description={
-		Ein \emph{Abstrakter Syntaxbaum} ist die Baumdarstellung einer abstrakten Syntaktischen Struktur von Quellcode einer Programmiersprache. Jeder Knoten des Baumes kennzeichnet ein Konstrukt des Quellcodes. Der \emph{AST} stellt für gewöhnlich nicht alle Details des Quelltextes dar, bspw. formatierende Element wie etwa Klammern werden häufig weggelassen
+		Ein \emph{Abstrakter Syntaxbaum} ist die Baumdarstellung einer abstrakten Syntaktischen Struktur von Quellcode einer Programmiersprache. Jeder Knoten des Baumes kennzeichnet ein Konstrukt des Quellcodes. Der \emph{AST} stellt für gewöhnlich nicht alle Details des Quelltextes dar, beispielsweise formatierende Element wie etwa Klammern werden häufig weggelassen
 	}
 }
 

@@ -1,18 +1,18 @@
-\section{\textsc{Rest}ful Web Service}
+\section{RESTful Web Service}
 \label{sec:rest}
 
-\emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding\footnote{Roy Thomas Fielding, geboren 1965, ist einer der Hauptautoren der \textsc{Http}-Spezifikation} in seiner Dissertation aus dem Jahre 2000  beschrieben wurde \cite[Kapitel 5][95 ff.]{fieldingDissertation}. 
+\emph{Representational State Transfer} (deutsch: \enquote{Gegenständlicher Zustandstransfer}) ist ein Softwarearchitekturstil für Webanwendungen, welcher von Roy Fielding --- einer der Hauptautoren der \gls{HTTP}-Spezifikation --- in seiner Dissertation aus dem Jahre 2000  beschrieben wurde \cite[Kapitel 5][95 ff.]{fieldingDissertation}. 
 
 Als \gls{RESTful} bezeichnet man dabei eine Webanwendung, die den Prinzipien von \gls{REST} entspricht. 
 
 % Diesen Part über die Grundprinzipien verschieben
-\subsection{Elemente von \textsc{Rest}}
+\subsection{Elemente von REST}
 
-Im folgenden werden die Grundbausteine einer \textsc{Rest}-Anwendung erläutert. \Cref{sec:RESTcomponents} beschreibt die Komponenten, die an einer Aktion auf einer \emph{Ressource} beteiligt sind. Dieser Abschnitt basiert auf Kapitel 5.2 von \cite[][S. 86 ff.]{fieldingDissertation}.
+Im folgenden werden die Grundbausteine einer \gls{REST}-Anwendung erläutert. \Cref{sec:RESTcomponents} beschreibt die Komponenten, die an einer Aktion auf einer \emph{Ressource} beteiligt sind. Dieser Abschnitt basiert auf Kapitel 5.2 von \cite[][S. 86 ff.]{fieldingDissertation}.
 
 \subsubsection{Ressource}
 
-Eine Ressource stellt die wichtigste Abstraktion von Information im \textsc{Rest}-Modell dar. Fielding definiert eine \emph{ressource} wie folgt:
+Eine Ressource stellt die wichtigste Abstraktion von Information im \gls{REST}-Modell dar. Fielding definiert eine \emph{ressource} wie folgt:
 
 \thesisquote{Any information that can be named can be a resource: a document or image, [\ldots]. A resource is a conceptual mapping
 to a set of entities, not the entity that corresponds to the mapping at any particular point in
@@ -27,14 +27,14 @@ Ein Beispiel für eine Ressource in der Spreadshirt \gls{API} \texttt{/users/\{u
 \label{sec:representation}
 
 Eine Repräsentation (\emph{representation}) stellt den aktuellen oder den gewünschten Zustand einer Ressource dar. Das Format der Repräsentation ist dabei unabhängig von dem der Ressource, siehe \cref{sec:representationofresources}.
-Aktionen mit Komponenten einer \textsc{Rest}-\textsc{Api} werden durch den Austausch von solchen Repräsentationen durchgeführt.
+Aktionen mit Komponenten einer \gls{REST}-\gls{API} werden durch den Austausch von solchen Repräsentationen durchgeführt.
 
-Im Allgemeinen wird unter einer Repräsentation nur eine Folge von Bytes verstanden, inklusive \emph{Metainformationen}, welche den Inhalt der Bytefolge klassifiziert, sowie \emph{Kontrolldaten}, die die gewünschte Aktion oder die Bedeutung der Anfrage beschreiben. Letztere sind meist \textsc{Http}-Header-Felder (siehe \cref{sec:http-header}), bspw. um das Cachingverhalten zu ändern.
+Im Allgemeinen wird unter einer Repräsentation nur eine Folge von Bytes verstanden, inklusive \emph{Metainformationen}, welche den Inhalt der Bytefolge klassifiziert, sowie \emph{Kontrolldaten}, die die gewünschte Aktion oder die Bedeutung der Anfrage beschreiben. Letztere sind meist \gls{HTTP}-Header-Felder (siehe \cref{sec:http-header}), beispielsweise um das Cachingverhalten zu ändern.
 
 \begin{minipage}{\textwidth}
     \begin{lstlisting}[
         language=XML,
-        caption=Beispiel zu Metainformationen für \textsc{Rest}-Repräsentation aus \textsc{Wadl}-Datei der Spreadshirt-\textsc{Api},
+        caption=Beispiel zu Metainformationen für \gls{REST}-Repräsentation aus \gls{WADL}-Datei der Spreadshirt-\gls{API},
         label=lst:metainformationREST
         ]
     ...
@@ -53,22 +53,20 @@ Ein Beispiel für eine solche Angabe von Metainformationen ist in \Cref{lst:meta
 
 \subsubsection{Konnektoren}
 
-Konnektoren stellen eine Schnittstelle für die Kommunikation mit Komponenten der \textsc{Rest}-Webanwendung dar. Aktionen auf Ressourcen und der Austausch von Repräsentationen finden über diese Schnittstellen statt. Der Konnektor bildet die Parameter der Schnittstelle auf das gewünschte Protokoll ab.
+Konnektoren stellen eine Schnittstelle für die Kommunikation mit Komponenten der \gls{REST}-Webanwendung dar. Aktionen auf Ressourcen und der Austausch von Repräsentationen finden über diese Schnittstellen statt. Der Konnektor bildet die Parameter der Schnittstelle auf das gewünschte Protokoll ab.
 
 Eingangsparameter:
 \begin{compactitem}
     \item Anfrage-Kontrolldaten
     \item Ressourcenidentifizierung (Ressourcenbezeichner)
-    \item[\textperiodcentered] Repräsentation der Ressource
+    \item[{\footnotesize (optional)}] Repräsentation der Ressource
 \end{compactitem}
 Ausgangsparameter:
 \begin{compactitem}
     \item Antwort-Kontrolldaten
-    \item[\textperiodcentered] Metainformationen
-    \item[\textperiodcentered] Repräsentation der Ressource
+    \item[{\footnotesize (optional)}] Metainformationen
+    \item[{\footnotesize (optional)}] Repräsentation der Ressource
 \end{compactitem}
-
-{\begin{center}\footnotesize\textperiodcentered optionaler Parameter\end{center}}
 
 %\Cref{tab:RESTconnectors} listet Beispiele für Konnektoren auf.
 
@@ -79,7 +77,7 @@ Ausgangsparameter:
         \textbf{Konnektor}   & \textbf{Beispiel}\\
         \midrule
         client      & libwww\\
-        server      & libwww, Apache \textsc{Http}-Server \textsc{Api}\\
+        server      & libwww, Apache \gls{HTTP}-Server \gls{API}\\
         cache       & browser cache, Akamai\\
         resolver    & bind\\
         tunnel      & \textsc{Socks}\\
@@ -98,12 +96,12 @@ Ausgangsparameter:
     \item[Proxy] Zwischenkomponente, die explizit vom Client verwendet werden kann, aus Sicherheits-, Performance- oder Kompatibilitätsgründen
     \item[Gateway] dient als Schnittstelle zwischen Client- und Servernetzwerk und kann zusätzlich aus den gleichen Gründen wie der Proxy verwendet werden. Konträr zum Proxy kann der Client aber nicht entscheiden, ob er einen Gateway nutzen möchte.
     \item[User Client] 
-        clientseitiger \emph{Konnektor}, der die Anfrage an die \textsc{Api} startet und einziger Empfänger der Antwort ist. In den meisten Fällen ist dies einfach ein \emph{Webbrowser}
+        clientseitiger \emph{Konnektor}, der die Anfrage an die \gls{API} startet und einziger Empfänger der Antwort ist. In den meisten Fällen ist dies einfach ein \emph{Webbrowser}
 \end{description}
 
 \subsection{REST-Prinzipien}
 
-Die fünf Grundlegenden \textsc{Rest}-Prinzipien, nach \cite[11 ff.]{Tilkov09} sind:
+Die fünf grundlegenden \gls{REST}-Prinzipien nach \cite[11 ff.]{Tilkov09} lauten:
 \begin{compactitem}
     \item Ressourcen mit eindeutiger Indentifikation
     \item Verknüpfungen / Hypermedia
@@ -111,6 +109,8 @@ Die fünf Grundlegenden \textsc{Rest}-Prinzipien, nach \cite[11 ff.]{Tilkov09} s
     \item unterschiedliche Repräsentationen
     \item statuslose Kommunikation
 \end{compactitem}
+
+Nachfolgend werden diese Prinzipien im Detail erläutert.
 
 \subsubsection{Eindeutige Identifikation}
 \label{sec:unambigiousidentification}
@@ -122,7 +122,7 @@ Um eine \emph{eindeutige Identifikation} zu erreichen, wird jeder Ressource eine
     \[
         \underbrace{\texttt{http://api.spreadshirt.net/api/v1/}}_{Basis-URL}\underbrace{\overbrace{\texttt{baskets/84}}^{Warenkorb}\overbrace{\texttt{/item/42}}^{Artikel}}_{Ressource}
     \]
-    \caption{Beispiel-\textsc{Uri}, um den Artikel 42 aus dem Warenkorb 84 anzusprechen}
+    \caption{Beispiel-\gls{URI}, um den Artikel 42 aus dem Warenkorb 84 anzusprechen}
     \label{fig:RESTexampleURI}
 \end{figure}
 
@@ -136,24 +136,14 @@ Innerhalb einer Ressource kann auf Weitere verlinkt werden (\emph{Hypermedia}). 
 \subsubsection{Standardmethoden}
 \label{sec:standardmethods}
 
-Durch die Nutzung von \emph{Standardmethoden} ist abgesichert, dass eine Anwendung mit den Ressourcen arbeiten kann, vorausgesetzt, sie unterstützt diese. \gls{REST} ist nicht auf \textsc{Http} beschränkt, praktisch alle \textsc{Rest}-\textsc{Api}s nutzen aber dieses Protokoll. Die gebräuchlichsten \textsc{Http}-Methoden sind folgende \footnote{Kapitel 9 des \textsc{Http} 1.1 RFC2616 beschreibt diese inklusive \textsc{Trace} und \textsc{Connect} umfassend \cite{rfc2616}}:
-\begin{compactitem}
-    \item \textsc{Get}
-    \item \textsc{Put}
-    \item \textsc{Post}
-    \item \textsc{Delete}
-    \item \textsc{Head}
-    \item \textsc{Options}
-\end{compactitem}
-
-Alle bis auf \textsc{Post} und \textsc{Options} sind \emph{idempotent} (\cite{rfc2616} Kapitel 9), d.h. eine Komposition\footnote{Ausführung der Methoden hintereinander} der Methode führt zu demselben Ergebnis wie ein einzelner Aufruf. Dies bedeutet das sich ein \textsc{Rest}ful Web Service serverseitig ebenso verhalten muss.
+Durch die Nutzung von \emph{Standardmethoden} ist abgesichert, dass eine Anwendung mit den Ressourcen arbeiten kann, vorausgesetzt, sie unterstützt diese. \gls{REST} ist nicht auf \gls{HTTP} beschränkt, praktisch alle \gls{REST}-\glspl{API} nutzen aber dieses Protokoll. Bei der Implementierung eines \gls{RESTful} Web Service ist darauf zu achten, dass das serverseitige Verhalten dem der HTTP-Methode entspricht (beispielsweise Idempotenz).
 
 \subsubsection{Repräsentationen von Ressourcen}
 \label{sec:representationofresources}
 
 Die Repräsentation sollte unabhängig von der Ressource sein, um die Darstellung gegebenenfalls für den Client anzupassen. 
-Die Client-Anwendung kann dadurch mittels \emph{Query-Parameter} oder als Information im \textsc{Http}-Header (siehe \cref{sec:http-header}) das gewünschte Format angeben und erhält die entsprechend formatierte Antwort.
-Anhand des \emph{Content-Type}-Feldes aus dem \textsc{Http}-Header kann der Client das Format der Antwort überprüfen, für \gls{JSON} lautet dies bspw. \texttt{application/json}.
+Die Client-Anwendung kann dadurch mittels \emph{Query-Parameter} oder als Information im \gls{HTTP}-Header (siehe \cref{sec:http-header}) das gewünschte Format angeben und erhält die entsprechend formatierte Antwort.
+Anhand des \emph{Content-Type}-Feldes aus dem \gls{HTTP}-Header kann der Client das Format der Antwort überprüfen, für \gls{JSON} lautet dies zum Beispiel \texttt{application/json}.
 
 \subsubsection{Statuslose Kommunikation}
 \label{sec:stateless_communication}
@@ -163,7 +153,7 @@ Diese Restriktion führt zu einigen Vorteilen:
 \begin{compactitem}
     \item Verringerung der Kopplung zwischen Client und Server
     \item zwei aufeinanderfolgende Anfragen können von unterschiedlichen Serverinstanzen beantwortet werden
-    \item[$\hookrightarrow$] verbesserte Skalierbarkeit
 \end{compactitem}
+In Summe wird dadurch eine verbesserte Skalierbarkeit erreicht.
 
-Daraus resultiert eine erhöhte Netzwerklast, da die Statusinformationen bei jeder Anfrage mitgesendet werden müssen.
+Das Mitsenden von Statusinformationen bei jeder Anfrage wirkt sich, durch eine erhöhte Netzwerklast, nachteilig aus.

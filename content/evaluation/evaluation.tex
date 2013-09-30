@@ -53,17 +53,17 @@ Das PHP-Zielsprachemodell ist die Implementierung der Schnittstellen die durch d
 
 Quellcodefiles welche Bibliotheksfunktionalitäten nutzen müssen im Wurzelverzeichnis selbiger liegen. Dies ist damit begründet das der \textsc{Php}-Interpreter bei Importanweisungen mit relativen Pfaden, den aktuellen Pfad der ausgeführten Datei als Basis nimmt.
 
-Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier von strukturierten Typen noch nicht fehlerfrei generiert werden. Die Informationen, die nötig sind um Datenklassen verlustfrei zu serialisieren bzw. deren \textsc{Xml}-Repräsentation zu deserialisieren sind im Schema-Modell (siehe \cref{sec:schema_model}) vorhanden, der Algorithmus im Codegenerator zur Erzeugung dieser Methoden muss deshalb überarbeitet werden.
+Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier von strukturierten Typen noch nicht fehlerfrei generiert werden. Die Informationen, die nötig sind um Datenklassen verlustfrei zu serialisieren beziehungsweise deren \gls{XML}-Repräsentation zu deserialisieren sind im Schema-Modell (siehe \cref{sec:schema_model}) vorhanden, der Algorithmus im Codegenerator zur Erzeugung dieser Methoden muss deshalb überarbeitet werden.
 
 \section{Leistungsbewertung}
 \label{sec:performance_measurement}
 
-Im folgenden soll eine typischer Arbeitsablauf mit der Client-Bibliothek gezeigt werden. Der Client sollte zum Einstieg ein Objekt der Datenklasse \textbf{LoginDTO} anlegen \ding{202} und seine Login-Informationen eintragen, dies wird benötigt um über die Ressourcenklasse \textbf{Sessions} auf der gleichnamigen \textsc{Api}-Ressource eine neue Sitzung (\enquote{Session}) anzulegen.
-Die \emph{Response} der Session-Ressource enthält eine \textsc{Uri} auf die Ressource der angelegten Sitzung. Diese \textsc{Uri} enthält die \emph{SessionID} welche durch \ding{204} aus der \textsc{Uri} extrahiert wird.
+Im folgenden soll eine typischer Arbeitsablauf mit der Client-Bibliothek gezeigt werden. Der Client sollte zum Einstieg ein Objekt der Datenklasse \textbf{LoginDTO} anlegen \ding{202} und seine Login-Informationen eintragen, dies wird benötigt um über die Ressourcenklasse \textbf{Sessions} auf der gleichnamigen \gls{API}-Ressource eine neue Sitzung (\enquote{Session}) anzulegen.
+Die \emph{Response} der Session-Ressource enthält eine \gls{URI} auf die Ressource der angelegten Sitzung. Diese \gls{URI} enthält die \emph{SessionID} welche durch \ding{204} aus der \gls{URI} extrahiert wird.
 
-Nun sind alle nötigen Informationen vorhanden um ein Objekt der Klasse \textbf{ApiUser} anzulegen \ding{205}, welches die Authentifizierungsinformationen für gesicherte Ressourcen der Spreadshirt-\textsc{Api} enthält.
+Nun sind alle nötigen Informationen vorhanden um ein Objekt der Klasse \textbf{ApiUser} anzulegen \ding{205}, welches die Authentifizierungsinformationen für gesicherte Ressourcen der Spreadshirt-\gls{API} enthält.
 
-Nun kann über die Bibliotheksklassen auch auf geschützte \textsc{Api}-Ressourcen zugegriffen werden, in diesem Fall werden bspw. die Produkte eines bestimmten Users abgefragt. Entegegen den vorherigen Aufrufen von Methoden der Ressourceklassen wird ein Parameter-Array erzeugt \ding{206} um den \emph{mediaType} der Response festzulegen.
+Nun kann über die Bibliotheksklassen auch auf geschützte \gls{API}-Ressourcen zugegriffen werden, in diesem Fall werden beispielsweise die Produkte eines bestimmten Users abgefragt. Entegegen den vorherigen Aufrufen von Methoden der Ressourceklassen wird ein Parameter-Array erzeugt \ding{206} um den \emph{mediaType} der Response festzulegen.
 Vor dem Zugriff auf die Ressource muss noch die entsprechende Ressourcenklasse instanziiert werden \ding{207}.
 
 \begin{minipage}{\textwidth}
