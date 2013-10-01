@@ -16,12 +16,12 @@ Das Datenmodell enthält die Informationen der Spezifikation und dient als Einga
 
 Bei dieser Definition wird der Begriff \emph{Informationsmodell} genutzt. Er beschreibt die Informationen, die im Datenmodell abgebildet werden sollen ohne Berücksichtigung softwaretechnischer Aspekte. Das Informationsmodell stellt somit die \enquote{natürlichen Daten} dar.
 
-Bei einem Codegenerator entspricht das Datenmodell der internen Darstellung der Spezifikation. Neben den direkt in der Spezifikation enthaltenen Informationen kann der Generator im Analyseschritt (siehe \cref{sec:generator_tasks}) beispielsweise Datenabhängigkeiten erkennen und diese zur Optimierung nutzen oder das interne Datenmodell damit anreichern. Das \emph{Erkennen von Semantik} im Eingabemodell ist aber nicht auf Datenabhängigkeiten beschränkt sondern kann auf beliebige Beziehungen ausgeweitet werden. 
+Bei einem Codegenerator entspricht das Datenmodell der internen Darstellung der Spezifikation. Neben den direkt in der Spezifikation enthaltenen Informationen kann der Generator im Analyseschritt (\cref{sec:generator_tasks}) beispielsweise Datenabhängigkeiten erkennen und diese zur Optimierung nutzen oder das interne Datenmodell damit anreichern. Das \emph{Erkennen von Semantik} im Eingabemodell ist aber nicht auf Datenabhängigkeiten beschränkt sondern kann auf beliebige Beziehungen ausgeweitet werden. 
 
 \subsection{Abstract Syntax Tree (AST)}
 \label{sec:ast}
 
-Der Generator erzeugt aus den Elementen des Sprachenmodells (siehe \cref{sec:language_model}) einen \gls{AST}. 
+Der Generator erzeugt aus den Elementen des Sprachenmodells (\cref{sec:language_model}) einen \gls{AST}. 
 Die Bestandteile der generierten Klassen beschreiben einen Abstrakten Syntaxbaum.
 
 Eine anschauliche Definition eines \gls{AST} bietet \cite[][S. 69]{ahoCompiler} (eigene Übersetzung):

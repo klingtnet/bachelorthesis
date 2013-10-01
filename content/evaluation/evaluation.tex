@@ -1,21 +1,20 @@
-\chapter{Evaluation}
+\chapter{Evaluierung}
 \label{chap:evaluation}
 
 \chapterQuote{There are two ways to write error-free programs; only the third one works}{\citeauthor{alanPerlis}}{\citeyear{alanPerlis}}{\cite{alanPerlis}}
 
 In diesem Kapitel soll der Generator und die erzeugte Bibliothek gegenüber den Anforderungen evaluiert werden. Dies geschieht für die Nutzbarkeit (\cref{sec:usability}) anhand eines einfachen Anwendungsbeispieles.
 
-% todo: Überschrift ändern
-\section{PHP-Zielsprachenmodell}\label{sec:php_target_language_model}
+\section{PHP-Zielsprachenmodell}
+\label{sec:php_target_language_model}
 
 Das PHP-Zielsprachemodell ist die Implementierung der Schnittstellen die durch das Sprachenmodell vorgegeben sind.
-
-\Cref{fig:modelRepresentationOfBatchDTO} zeigt die Gegenüberstellung von \Cref{lst:batchDTO} in Form des \gls{AST} der durch das Sprachmodell gebildet wird. 
+Eine Gegenüberstellung eines Ausschnittes einer generierten Klassendatei mit ihrer Repräsentation im \gls{AST} der aus Elementen des Sprachenmodells gebildet wird, zeigen \Cref{fig:modelRepresentationOfBatchDTO} und \Cref{lst:batchDTO}.
 
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[
     language=PHP,
-    caption=Ausschnitt der Datenklasse BatchDTO,
+    caption=Ausschnitt der generierten Datenklasse BatchDTO,
     label=lst:batchDTO
 ]
 <?php
@@ -51,14 +50,16 @@ Das PHP-Zielsprachemodell ist die Implementierung der Schnittstellen die durch d
 \subsection{Implementierung einer Zielsprache}
 \label{sec:target_language_implementation}
 
-\ldots
+Um eine neue Zielsprache für den Generator zu implementieren ist es notwendig alle Interfaces des Sprachenmodells (\cref{sec:language_model}) zu implementieren. Methoden zum Erhalt von Schlüsselwörter, Sichtbarkeitsmodifikatoren und Symbole sind in den Interfaces \emph{Keywords, Modifiers} und \emph{Symbols} deklariert. Die Syntax der Zielsprache, sowie der verwendete Code-Style werden durch die Implementierung des Interfaces \emph{LanguageVisitor} festgelegt.
+
+Neben den Interfaces des Sprachenmodells müssen auch die statischen Klassen in der Zielsprache implementiert werden. Die Erzeugung der Sprachelemente findet durch die \emph{LanguageFactory} statt, die dem Generator übergeben wird.
 
 \section{Nutzbarkeit}
 \label{sec:usability}
 
 Quellcodefiles welche Bibliotheksfunktionalitäten nutzen müssen im Wurzelverzeichnis selbiger liegen. Dies ist damit begründet das der \textsc{Php}-Interpreter bei Importanweisungen mit relativen Pfaden, den aktuellen Pfad der ausgeführten Datei als Basis nimmt.
 
-Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier von strukturierten Typen noch nicht fehlerfrei generiert werden. Die Informationen, die nötig sind um Datenklassen verlustfrei zu serialisieren beziehungsweise deren \gls{XML}-Repräsentation zu deserialisieren sind im Schema-Modell (siehe \cref{sec:schema_model}) vorhanden, der Algorithmus im Codegenerator zur Erzeugung dieser Methoden muss deshalb überarbeitet werden.
+Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier von strukturierten Typen noch nicht fehlerfrei generiert werden. Die Informationen, die nötig sind um Datenklassen verlustfrei zu serialisieren beziehungsweise deren \gls{XML}-Repräsentation zu deserialisieren sind im Schema-Modell (\cref{sec:schema_model}) vorhanden, der Algorithmus im Codegenerator zur Erzeugung dieser Methoden muss deshalb überarbeitet werden.
 
 Der Aufruf des Generators erfolgt über die Kommandozeile. Als einziges Argument wird die \gls{URL} zur \gls{WADL}-Datei erwartet. Beispiel:\\ 
 \texttt{java api-client-libs.jar http://api.spreadshirt.net/api/v1/metaData/api.wadl}

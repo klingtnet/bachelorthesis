@@ -8,12 +8,12 @@
     \label{fig:language_model}
 \end{sidewaysfigure}
 
-Um die gewünschte Austauschbarkeit der Zielsprache zu gewährleisten wurde ein abstraktes Sprachenmodell entworfen welches die Konstrukte einer dateibasierten objektorientierten Programmiersprache (siehe \cref{sec:oo_languages}) abbildet. 
+Um die gewünschte Austauschbarkeit der Zielsprache zu gewährleisten wurde ein abstraktes Sprachenmodell entworfen welches die Konstrukte einer dateibasierten objektorientierten Programmiersprache (\cref{sec:oo_languages}) abbildet. 
 %Anforderungen erstellen und referenzieren.
-Die gewünschte Zielsprache muss dabei die Klassen und Methoden des Modells implementieren sowie eine \emph{Language Factory} (siehe \cref{sec:language_factory}) bereitstellen um vom Generator genutzt werden zu können.
-Um Semantik und Syntax der Zielsprache im Modell zu trennen --- abgesehen von Symbolen und Schlüsselwörtern --- wird die Syntax in der Klasse \emph{LanguageVisitor} (siehe \cref{sec:language_visitor}) gekapselt. Das Sprachenmodell kapselt somit die Semantik der Zielsprache.
+Die gewünschte Zielsprache muss dabei die Klassen und Methoden des Modells implementieren sowie eine \emph{Language Factory} (\cref{sec:language_factory}) bereitstellen um vom Generator genutzt werden zu können.
+Um Semantik und Syntax der Zielsprache im Modell zu trennen --- abgesehen von Symbolen und Schlüsselwörtern --- wird die Syntax in der Klasse \emph{LanguageVisitor} (\cref{sec:language_visitor}) gekapselt. Das Sprachenmodell kapselt somit die Semantik der Zielsprache.
 
-Alle Interfaces des Modells (siehe \cref{fig:language_model}) erweitern das Interface \textbf{Visitor}. Somit ist sichergestellt, dass alle Klassen, die diese Schnittstellen implementieren, eine \emph{accept}-Methode für den \emph{LanguageVisitor} bereitstellen.
+Alle Interfaces des Modells (\cref{fig:language_model}) erweitern das Interface \textbf{Visitor}. Somit ist sichergestellt, dass alle Klassen, die diese Schnittstellen implementieren, eine \emph{accept}-Methode für den \emph{LanguageVisitor} bereitstellen.
 
 Basis des Modells ist das Interface \textbf{ClassFile}. Es abstrahiert eine Klassendatei mit den Eigenschaften:
 \begin{compactitem}
@@ -27,7 +27,7 @@ Die Liste von Abhängigkeiten der zu generierenden Klassen muss vorher aus dem E
 
 \textbf{Dependency} enthält das Schlüsselwort oder Methodenaufruf zum Import einer Quellcodedatei. In \textsc{Php} werden solche Dateien bpsw. so importiert: \texttt{require\_once("foo.php");}.
 
-\textbf{Executable} implementieren alle Elemente der Zielsprache die \enquote{ausführbar} sind. Das Modell unterscheidet dabei zwischen \emph{Ausdruck} und \emph{Anweisung} (siehe \cref{sec:oo_languages}). 
+\textbf{Executable} implementieren alle Elemente der Zielsprache die \enquote{ausführbar} sind. Das Modell unterscheidet dabei zwischen \emph{Ausdruck} und \emph{Anweisung} (\cref{sec:oo_languages}). 
 
 Das Interface \textbf{CommonClass} dient der Implementierung einer Klassendefinition. Da das Interface selbst \emph{Statement} erweitert, kann eine Klasse weitere Klassendefinitionen beinhalten. Eine Klassendefinition besteht dabei aus einem Klassename, Modifiers und aus einer Menge von Statements:
 \begin{compactitem}

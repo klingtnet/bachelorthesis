@@ -1,16 +1,7 @@
 \section{Codegenerator}
 \label{sec:codegenerator}
 
-Nachdem in \cref{sec:concrete_models} die Datenmodelle des Generators betrachtet wurden, widmet sich dieser Abschnitt nur dem Aufbau des Codegenerators und den dort verwendeten Entwurfsmustern, \emph{Factory} (\cref{sec:language_factory}) und \emph{Visitor} (\cref{sec:language_visitor}). \Cref{fig:generation_process} zeigt ein Ablaufdiagramm des Generators.
-
-\begin{sidewaysfigure}
-    \centering
-    \resizebox{ \textwidth}{!}{
-        \input{tikz_pgf/generation_sequence}
-    } 
-    \caption{Ablaufdiagram des Generators}
-    \label{fig:generation_process}
-\end{sidewaysfigure}
+Nachdem in \cref{sec:concrete_models} die Datenmodelle des Generators betrachtet wurden, widmet sich dieser Abschnitt nur dem Aufbau des Codegenerators und den dort verwendeten Entwurfsmustern, \emph{Factory} (\cref{sec:language_factory}) und \emph{Visitor} (\cref{sec:language_visitor}).
 
 Die Aufgabe des Generators ist die Transformierung des Applikationsmodells in das Modell der Zielsprache. Als Form wurde die des Tier-Generators gewählt, da vollständiger Code vom Generator erzeugt werden soll der keiner Nacharbeit mehr Bedarf. 
 
@@ -36,3 +27,19 @@ Die Aufgabe des \emph{Language Visitor} im Generator ist die Transformation des 
 \label{sec:printer_module}
 
 Das Ausgabemodul beinhaltet Methoden zur Speicherung der Zeichenkettendarstellung aus dem \emph{Language Visitor}. Üblicherweise ist dies die Speicherung in Dateiform, es ist aber ebenso die Ausgabe auf \texttt{stdout} oder die Speicherung in einer Datenbank möglich.
+
+\subsection{Generatorablauf}
+\label{sec:generation_process}
+
+Die \Cref{fig:generation_process} stellt den Prozess der Bibliotheksgenerierung in Diagrammform dar.
+
+Zu Beginn steht die Analyse der \gls{API}- und Schema-Beschreibung sowie die Überführung in die entsprechenden Datenmodelle. In einem nachgelagerten Schritt werden diese beiden Datenmodelle zu dem \emph{Applikationsmodell} zusammengeführt. Der Generator erhält dieses Modell und eine \emph{LanguageFactory} als Eingabe. Daraus wird das \emph{Zielsprachenmodell} generiert, welches den zu erzeugenden Code in Form eines \gls{AST} enthält. Aus diesem Modell erzeugt das Ausgabemodul mit Hilfe des \emph{LanguageVisitor} die Bibliotheksdateien. Der \emph{LanguageVisitor} enthält die syntaktischen Informationen, um aus dem \gls{AST} gültigen Code zu erzeugen.
+
+\begin{sidewaysfigure}
+    \centering
+    \resizebox{ \textwidth}{!}{
+        \input{tikz_pgf/generation_sequence}
+    } 
+    \caption{Ablaufdiagram des Generators}
+    \label{fig:generation_process}
+\end{sidewaysfigure}

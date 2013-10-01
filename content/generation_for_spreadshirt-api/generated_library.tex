@@ -18,7 +18,7 @@ Der Name der Klasse entspricht dabei der Bezeichnung des Typs oder des Elements.
 
 Konstruktoren zur Erzeugung von Objekten aus den Datenklassen werden ebenfalls vom Generator erstellt. Dabei werden die \emph{Häufigkeitsindikatoren} aus der Schemabeschreibung berücksichtigt. Bei einem \texttt{minOccurs}-Wert größer eins wird das Element zu den Konstruktor-Parametern hinzugefügt. Somit ist sichergestellt, dass notwendigen Angaben auch Werte zugeordnet werden.
 
-Methoden zur De-/Serialisierung (siehe \cref{sec:serialiser}) in eine der beiden von der Spreadshirt-\gls{API} unterstützten Dokumentbeschreibungsformate (\gls{JSON}, \gls{XML}) sind ebenfalls Bestandteil einer Datenklasse.
+Methoden zur De-/Serialisierung (\cref{sec:serialiser}) in eine der beiden von der Spreadshirt-\gls{API} unterstützten Dokumentbeschreibungsformate (\gls{JSON}, \gls{XML}) sind ebenfalls Bestandteil einer Datenklasse.
 
 \Cref{lst:generatedDataClass} zeigt einen gekürzten Ausschnitt der generierten Datenklasse zum Element \texttt{Point} aus der Schemabeschreibung der Spreadshirt-\gls{API}.
 
@@ -97,23 +97,15 @@ Ressourcenklassen sind die zielsprachenabhängige Abbildung der Ressourcenbeschr
 Eine Ressourcenklasse beinhaltet:
 \begin{compactitem}
     \item[\ding{202}] ein Feld, welches die Basis-\gls{URL} der API beinhaltet;
-    \item[\ding{203}] ein Feld in welches die komplette \gls{URL}, inklusive der ersetzten Template-Parameter (siehe \cref{sec:rest_model}), der Ressource erhält;
+    \item[\ding{203}] ein Feld in welches die komplette \gls{URL}, inklusive der ersetzten Template-Parameter (\cref{sec:rest_model}), der Ressource erhält;
     \item[\ding{204}] eine Menge von Feldern, die jeweils einem Template-Parameter zugeordnet sind;
     \item[\ding{205}] einen Konstruktor, dessen Argumente den Template-Parametern entsprechen und der aus diesen und der Basis-\gls{URL} die Ressourcen-\gls{URL} erstellt;
-    \item[\ding{206}] Abbildungen der Methoden aus der Ressourcenbeschreibung. Methodenparameter, die zur Authentifizierung an der \gls{API} notwendig sind, werden durch einen Parameter der Klasse \textsc{ApiUser} (siehe \cref{sec:api_auth}) substituiert \ding{207}.
+    \item[\ding{206}] Abbildungen der Methoden aus der Ressourcenbeschreibung. Methodenparameter, die zur Authentifizierung an der \gls{API} notwendig sind, werden durch einen Parameter der Klasse \textsc{ApiUser} (\cref{sec:api_auth}) substituiert \ding{207}.
 \end{compactitem}
 
 \Cref{lst:generatedRessourceClass} beinhaltet die generierte Klasse zur Ressource \texttt{users/{userId}/products} der Spreadshirt-\gls{API}.
 
-\subsection{De-/Serialisierer}
-\label{sec:serialiser}
-% todo: transportunabhängig als Schlagwort entfernen?
-
-Um \emph{Ressourcen-Repräsentationen} (siehe \cref{sec:representation}) mit der Spreadshirt-\gls{API} transportunabhängig austauschen zu können, müssen die strukturierten Datenklassen \emph{serialisiert} werden. In umgekehrter Richtung müssen \emph{Repräsentation} aus der \gls{API} deserialisiert --- also wieder in eine Datenklasse transformiert --- werden.
-
-Die Datenklassen-Methoden zur Serialiserung und Deserialiserung besitzen einheitliche Bezeichner, nach dem Schema \texttt{toXML}, \texttt{toJSON}, respektive \texttt{fromXML}, \texttt{fromJSON}. Die Deserialisierer-Methoden sind \emph{statisch} um das unnötige Instanziieren einer Datenklasse zu vermeiden, nur um ihre Klassendarstellung aus der serialisierten Form zu erhalten.
-
-Beispiele für beide Arten finden sich in \Cref{lst:generatedDataClass}.
+\newpage
 
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[
@@ -165,16 +157,28 @@ Beispiele für beide Arten finden sich in \Cref{lst:generatedDataClass}.
 \end{lstlisting}
 \end{minipage}
 
+\subsection{De-/Serialisierer}
+\label{sec:serialiser}
+% todo: transportunabhängig als Schlagwort entfernen?
+
+Um \emph{Ressourcen-Repräsentationen} (\cref{sec:representation}) mit der Spreadshirt-\gls{API} transportunabhängig austauschen zu können, müssen die strukturierten Datenklassen \emph{serialisiert} werden. In umgekehrter Richtung müssen \emph{Repräsentation} aus der \gls{API} deserialisiert --- also wieder in eine Datenklasse transformiert --- werden.
+
+Die Datenklassen-Methoden zur Serialiserung und Deserialiserung besitzen einheitliche Bezeichner, nach dem Schema \texttt{toXML}, \texttt{toJSON}, respektive \texttt{fromXML}, \texttt{fromJSON}. Die Deserialisierer-Methoden sind \emph{statisch} um das unnötige Instanziieren einer Datenklasse zu vermeiden, nur um ihre Klassendarstellung aus der serialisierten Form zu erhalten.
+
+Beispiele für beide Arten finden sich in \Cref{lst:generatedDataClass}.
+
 \subsection{Statische Klassen}
 \label{sec:static_classes}
 
-\emph{Statische Klassen} bedeutet in dem Codegenerierungskontext, dass diese \emph{manuell} erstellt wurden. Die statischen Klassen enthalten Code der von anderen Klassen gemeinsam genutzt wird und keine variablen Bestandteile enthält. Prinzipiell werden zwei Probleme durch statische Klassen vermindert:
+\emph{Statische Klassen} bedeutet in dem Codegenerierungskontext, dass diese \emph{manuell} erstellt wurden. Die statischen Klassen enthalten Code der von anderen Klassen gemeinsam genutzt wird und keine variablen Bestandteile enthält. 
+
+Prinzipiell werden zwei Probleme durch statische Klassen vermindert:
 \begin{compactenum}
   \item unnötige Vergrößerung des generierten Codes
   \item Vermeidung des Aufwands zur Implementierung der statischen Inhalte in das Eingabemodell des Generators
 \end{compactenum}
 
-Die Client-Bibliothek beinhaltet dabei zwei dieser Klassen:
+Die generierte Client-Bibliothek beinhaltet dabei zwei dieser Klassen:
 \begin{compactenum}
   \item zur Kommunikation mit der \gls{API} über \gls{HTTP}-Methoden
   \item zur Kapselung von Authentifizierungsinformationen
@@ -182,7 +186,6 @@ Die Client-Bibliothek beinhaltet dabei zwei dieser Klassen:
 
 Den Import beider Klassen zeigt \Cref{lst:generatedRessourceClass} in Zeile~\ref{lst:importMethods} und~\ref{lst:importApiUser}.
 
-% todo: Abschnittstitel ändern
 \subsubsection{Nutzung der HTTP-Methoden}
 \label{sec:staticMethodsClass}
 
@@ -212,10 +215,10 @@ Authorization:  SprdAuth apiKey="<apikey>", //@\ding{202}@//
 
 Die Klasse \textbf{ApiUser} kapselt die Daten, die zur Autorisierung an der \gls{API} nötig sind und stellt eine Methode bereit, die dem Nutzer das Erstellen des Authorization-Headers erspart. Der Konstruktor der ApiUser-Klasse erwartet dabei die Angabe der folgenden Parameter:
 
+Alle Methoden, die eine Autorisation benötigen erhalten vom Codegenerator einen Parameter vom Typ \emph{ApiUser} wie \ding{206} in \Cref{lst:generatedRessourceClass} zeigt.
+
 \begin{compactitem}
     \item \emph{UserID}, die Indentifikationsnummer des Spreadshirt-Nutzers
     \item \emph{ApiKey} und \emph{Secret} (\ding{202}, \ding{203}), diese Informationen erhält der Nutzer, wenn er sich als \gls{API}-User bei Spreadshirt registriert
     \item \emph{SessionID} (\ding{204}), die SessionID ist in der Response der POST-Methode auf Ressource \texttt{sessions} enthalten.
 \end{compactitem}
-
-Alle Methoden, die eine Autorisation benötigen erhalten vom Codegenerator einen Parameter vom Typ \emph{ApiUser} wie \ding{206} in \Cref{lst:generatedRessourceClass} zeigt.
