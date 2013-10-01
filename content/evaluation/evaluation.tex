@@ -8,7 +8,7 @@ In diesem Kapitel soll der Generator und die erzeugte Bibliothek gegenüber den 
 \section{PHP-Zielsprachenmodell}
 \label{sec:php_target_language_model}
 
-Das PHP-Zielsprachemodell ist die Implementierung der Schnittstellen die durch das Sprachenmodell vorgegeben sind.
+Das PHP-Zielsprachenmodell ist die Implementierung der Schnittstellen die durch das Sprachenmodell vorgegeben sind.
 Eine Gegenüberstellung eines Ausschnittes einer generierten Klassendatei mit ihrer Repräsentation im \gls{AST} der aus Elementen des Sprachenmodells gebildet wird, zeigen \Cref{fig:modelRepresentationOfBatchDTO} und \Cref{lst:batchDTO}.
 
 \begin{sidewaysfigure}
@@ -23,9 +23,9 @@ Eine Gegenüberstellung eines Ausschnittes einer generierten Klassendatei mit ih
 \subsection{Implementierung einer Zielsprache}
 \label{sec:target_language_implementation}
 
-Um eine neue Zielsprache für den Generator zu implementieren ist es notwendig alle Interfaces des Sprachenmodells (\cref{sec:language_model}) zu implementieren. Methoden zum Erhalt von Schlüsselwörter, Sichtbarkeitsmodifikatoren und Symbole sind in den Interfaces \emph{Keywords, Modifiers} und \emph{Symbols} deklariert. Die Syntax der Zielsprache, sowie der verwendete Code-Style werden durch die Implementierung des Interfaces \emph{LanguageVisitor} festgelegt.
+Um eine neue Zielsprache für den Generator zu implementieren ist es notwendig alle Interfaces des Sprachenmodells (\cref{sec:language_model}) zu implementieren. Methoden zum Erhalt von Schlüsselwörtern, Sichtbarkeitsmodifikatoren und Symbolen (z.B. Inkrement, Dereferenzoperator, usw.) sind in den Interfaces \emph{Keywords, Modifiers} und \emph{Symbols} deklariert. Die Syntax der Zielsprache, sowie der verwendete Code-Style werden durch die Implementierung des Interfaces \emph{LanguageVisitor} festgelegt.
 
-Neben den Interfaces des Sprachenmodells müssen auch die statischen Klassen in der Zielsprache implementiert werden. Die Erzeugung der Sprachelemente findet durch die \emph{LanguageFactory} statt, die dem Generator übergeben wird.
+Neben den Interfaces des Sprachenmodells müssen auch die statischen Klassen in der Zielsprache implementiert werden.
 
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[
@@ -61,7 +61,7 @@ Um den erzeugten Code möglichst lesbar zu gestalten, wurden folgende Konvention
 \begin{compactitem}
   \item erhöhen der Einrückungstiefe innerhalb jedes Codeblockes
   \item Zeilenumbruch vor jedem Block-Begrenzer (\texttt{\{, \}})
-  \item Zeilenumbruch vor jedem Parameter in einer Funktionsdefinition (z.B. \Cref{lst:generatedRessourceClass}, Zeile~\ref{lst:methodParameters} und folgende)
+  \item Zeilenumbruch vor jedem Parameter in einer Funktionsdefinition (\Cref{lst:generatedRessourceClass}, Zeile~\ref{lst:methodParameters} und folgende)
 \end{compactitem}
 
 \section{Typsicherheit}
@@ -91,7 +91,7 @@ Die Werte wurden über drei Generierungsvorgänge gemittelt und auf folgenden Sy
 \begin{compactitem}
   \item Intel\textsuperscript{\textregistered{}} Core\texttrademark{} i5-2520M CPU
   \item 8GB DDR3 RAM
-  \item 128GB Samsung\textsuperscript{\textregistered{}} 830 SSD
+  \item 256GB Samsung\textsuperscript{\textregistered{}} 830 SSD (ext4)
   \item Linux Kernel 3.8.0-31-generic (x64)
   \item Oracle\textsuperscript{\textregistered{}} Java\texttrademark{} SE Runtime Environment (build 1.7.0\_40-b43)
 \end{compactitem}
@@ -168,10 +168,11 @@ $products = $resource->GET($parameters, $apiUser); //@\ding{208}@//
 \section{Nutzbarkeit}
 \label{sec:usability}
 
-Quellcodefiles welche Bibliotheksfunktionalitäten nutzen müssen im Wurzelverzeichnis selbiger liegen. Dies ist damit begründet das der \textsc{Php}-Interpreter bei Importanweisungen mit relativen Pfaden, den aktuellen Pfad der ausgeführten Datei als Basis nimmt.
-
-Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier von strukturierten Typen noch nicht fehlerfrei generiert werden. Die Informationen, die nötig sind um Datenklassen verlustfrei zu serialisieren beziehungsweise deren \gls{XML}-Repräsentation zu deserialisieren sind im Schema-Modell (\cref{sec:schema_model}) vorhanden, der Algorithmus im Codegenerator zur Erzeugung dieser Methoden muss deshalb überarbeitet werden.
+Quellcodedateien die Bibliotheksfunktionen nutzen müssen im Wurzelverzeichnis dieser Bibliothek liegen. Dies ist damit begründet das der \textsc{Php}-Interpreter bei Importanweisungen mit relativen Pfaden, den aktuellen Pfad der ausgeführten Datei als Basis nimmt.
 
 Der Aufruf des Generators erfolgt über die Kommandozeile. Als einziges Argument wird die \gls{URL} zur \gls{WADL}-Datei erwartet. Beispiel:\\ 
 {\footnotesize \texttt{java api-client-libs.jar http://api.spreadshirt.net/api/v1/metaData/api.wadl}}\\
 Der Ausgabepfad der erzeugten Bibliothek ist relativ zum Aufrufpfad des Generators: \texttt{./generated/php}.
+
+Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier von strukturierten Typen noch nicht fehlerfrei generiert werden. Die Informationen, die nötig sind um Datenklassen verlustfrei zu serialisieren und wieder zu deserialisieren sind im Schema-Modell (\cref{sec:schema_model}) vorhanden. Deshalb muss der Algorithmus im Codegenerator zur Erzeugung dieser Methoden überarbeitet werden.
+
