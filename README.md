@@ -3,10 +3,12 @@
 This repository contains all the files that i used to create my bachelor thesis. The tesis is written in `(Xe-)LaTeX`, with help of `biber` and `makeglossaries`.
 
 ## Requirements
-To build this document you need the following two packages and one font:
+To build this document you need the following three to four packages and one font:
     
     - texlive-full
     - biber
+    - pplatex
+    - [ack-grep]
     - Consolas font for listings
 
 ## Build System
