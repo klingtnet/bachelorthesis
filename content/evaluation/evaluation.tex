@@ -11,6 +11,22 @@ In diesem Kapitel soll der Generator und die erzeugte Bibliothek gegenüber den 
 Das PHP-Zielsprachemodell ist die Implementierung der Schnittstellen die durch das Sprachenmodell vorgegeben sind.
 Eine Gegenüberstellung eines Ausschnittes einer generierten Klassendatei mit ihrer Repräsentation im \gls{AST} der aus Elementen des Sprachenmodells gebildet wird, zeigen \Cref{fig:modelRepresentationOfBatchDTO} und \Cref{lst:batchDTO}.
 
+\begin{sidewaysfigure}
+    \centering
+    \resizebox{\textwidth}{!}{
+      \input{tikz_pgf/languageModelRepresentation}
+    }
+    \caption{Darstellung von BatchDTO aus \Cref{lst:batchDTO} im Sprachenmodell [\textbf{Klasse}, \emph{Zeichenkette}]}
+    \label{fig:modelRepresentationOfBatchDTO}
+\end{sidewaysfigure}
+
+\subsection{Implementierung einer Zielsprache}
+\label{sec:target_language_implementation}
+
+Um eine neue Zielsprache für den Generator zu implementieren ist es notwendig alle Interfaces des Sprachenmodells (\cref{sec:language_model}) zu implementieren. Methoden zum Erhalt von Schlüsselwörter, Sichtbarkeitsmodifikatoren und Symbole sind in den Interfaces \emph{Keywords, Modifiers} und \emph{Symbols} deklariert. Die Syntax der Zielsprache, sowie der verwendete Code-Style werden durch die Implementierung des Interfaces \emph{LanguageVisitor} festgelegt.
+
+Neben den Interfaces des Sprachenmodells müssen auch die statischen Klassen in der Zielsprache implementiert werden. Die Erzeugung der Sprachelemente findet durch die \emph{LanguageFactory} statt, die dem Generator übergeben wird.
+
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[
     language=PHP,
@@ -38,47 +54,71 @@ Eine Gegenüberstellung eines Ausschnittes einer generierten Klassendatei mit ih
 \end{lstlisting}
 \end{minipage}
 
-\begin{sidewaysfigure}
-    \centering
-    \resizebox{\textwidth}{!}{
-      \input{tikz_pgf/languageModelRepresentation}
-    }
-    \caption{Darstellung von BatchDTO aus \Cref{lst:batchDTO} im Sprachenmodell [\textbf{Klasse}, \emph{Zeichenkette}]}
-    \label{fig:modelRepresentationOfBatchDTO}
-\end{sidewaysfigure}
-
-\subsection{Implementierung einer Zielsprache}
-\label{sec:target_language_implementation}
-
-Um eine neue Zielsprache für den Generator zu implementieren ist es notwendig alle Interfaces des Sprachenmodells (\cref{sec:language_model}) zu implementieren. Methoden zum Erhalt von Schlüsselwörter, Sichtbarkeitsmodifikatoren und Symbole sind in den Interfaces \emph{Keywords, Modifiers} und \emph{Symbols} deklariert. Die Syntax der Zielsprache, sowie der verwendete Code-Style werden durch die Implementierung des Interfaces \emph{LanguageVisitor} festgelegt.
-
-Neben den Interfaces des Sprachenmodells müssen auch die statischen Klassen in der Zielsprache implementiert werden. Die Erzeugung der Sprachelemente findet durch die \emph{LanguageFactory} statt, die dem Generator übergeben wird.
-
-\section{Nutzbarkeit}
-\label{sec:usability}
-
-Quellcodefiles welche Bibliotheksfunktionalitäten nutzen müssen im Wurzelverzeichnis selbiger liegen. Dies ist damit begründet das der \textsc{Php}-Interpreter bei Importanweisungen mit relativen Pfaden, den aktuellen Pfad der ausgeführten Datei als Basis nimmt.
-
-Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier von strukturierten Typen noch nicht fehlerfrei generiert werden. Die Informationen, die nötig sind um Datenklassen verlustfrei zu serialisieren beziehungsweise deren \gls{XML}-Repräsentation zu deserialisieren sind im Schema-Modell (\cref{sec:schema_model}) vorhanden, der Algorithmus im Codegenerator zur Erzeugung dieser Methoden muss deshalb überarbeitet werden.
-
-Der Aufruf des Generators erfolgt über die Kommandozeile. Als einziges Argument wird die \gls{URL} zur \gls{WADL}-Datei erwartet. Beispiel:\\ 
-\texttt{java api-client-libs.jar http://api.spreadshirt.net/api/v1/metaData/api.wadl}
-Der Ausgabepfad der erzeugten Bibliothek ist relativ zum Aufrufpfad des Generators: \texttt{./generated/php}.
-
 \subsection{Codestyle/Lesbarkeit}
 \label{se:code_style_readability}
 
-\ldots
+Um den erzeugten Code möglichst lesbar zu gestalten, wurden folgende Konventionen im \emph{LanguageVisitor} implementiert:
+\begin{compactitem}
+  \item erhöhen der Einrückungstiefe innerhalb jedes Codeblockes
+  \item Zeilenumbruch vor jedem Block-Begrenzer (\texttt{\{, \}})
+  \item Zeilenumbruch vor jedem Parameter in einer Funktionsdefinition (z.B. \Cref{lst:generatedRessourceClass}, Zeile~\ref{lst:methodParameters} und folgende)
+\end{compactitem}
 
 \section{Typsicherheit}
 \label{sec:type_safety}
 
-\ldots
+\textsc{Php} bietet durch seine dynamische Typisierung leider keine Typprüfung zur Compilezeit. Da dem Generator die erwarteten Typen bekannt sind, werden die Typnamen an entsprechender Stelle im Code durch ein Block-Kommentar eingefügt (wie u.a. in \cref{lst:generatedRessourceClass} und \Cref{lst:generatedDataClass} zu sehen). Somit ist zumindest eine manuelle Prüfung der zu übergebenden Typen für den Nutzer der Bibliothek möglich.
 
-\section{Testabdeckung}
+Durch die Implementierung speziell formatierter Kommentare --- beispielsweise \texttt{/** @var [typename] */} in IntelliJ \textsc{Idea} --- kann eine Typprüfung durch die \textsc{Ide} ermöglicht werden. Um sich nicht auf eine spezielle \textsc{Ide} festlegen zu müssen, werden derzeit normale Block-Kommentare an dieser Stelle erzeugt.
+
+\section{Generierung von Tests für die erzeugte Bibliothek}
 \label{sec:test_coverage}
 
-\ldots
+Die Generierung von Tests für die erstellte Bibliothek ist derzeit noch nicht implementiert. Ein Testszenario für die erzeugten Datenklassen wäre die Prüfung auf Gleichheit vor und nach der Serialisierung. Zur Überprüfung der Ressourcenklassen werden erfolgreiche Tests der Datenklassen vorausgesetzt, da die Testdaten aus den Datenklassen erstellt werden. Die erfolgreiche Ausführung der Methoden einer Ressourcenklassen lässt sich über deren Statuscode überprüfen.
+
+Eine andere Vorgehensweise zur Prüfung der erzeugten Bibliothek wäre die manuelle Erstellung von Tests basierend auf typischen Anwendungsfällen, wie dem Anlegen neuer Designs oder dem Erstellen neuer Produkte. Besser wäre dieses Vorgehen zusätzlich zu automatisch erzeugten Tests durchzuführen um eine möglichst hohe Abdeckung zu erreichen.
+
+\section{Metriken}
+\label{sec:codemetrics}
+
+Die Erzeugung der Client-Bibliothek erfolgt nur bei Änderungen an der Spreadshirt-\gls{API}, weshalb keine besonderen Anforderungen an die Dauer des Generierungsvorganges gestellt wurden. Um aus der \citetitle{WADL} \cite{WADL} die Bibliothek zu generieren, benötigt der Codegenerator:
+\begin{compactitem}
+  \item \emph{23.1s}, falls die \gls{API}-Beschreibung vom Server generiert werden muss.
+  \item \emph{1.25s}, falls die \gls{API}-Beschreibung gecached ist. 
+\end{compactitem}
+
+Die Werte wurden über drei Generierungsvorgänge gemittelt und auf folgenden System erfasst:
+\begin{compactitem}
+  \item Intel\textsuperscript{\textregistered{}} Core\texttrademark{} i5-2520M CPU
+  \item 8GB DDR3 RAM
+  \item 128GB Samsung\textsuperscript{\textregistered{}} 830 SSD
+  \item Linux Kernel 3.8.0-31-generic (x64)
+  \item Oracle\textsuperscript{\textregistered{}} Java\texttrademark{} SE Runtime Environment (build 1.7.0\_40-b43)
+\end{compactitem}
+
+Der Großteil der Zeit wird für den Verbindungsaufbau mit dem Server und dem anschließenden Transfer der \gls{API}-Beschreibung verbraucht.
+
+\Cref{tab:code_metrics} zeigt den Umfang, der aus der \gls{API}-Beschreibung mit Stand vom 17. September 2013, erzeugten Bibliothek.
+Das Kommando zur Ermittlung der Werte aus \cref{tab:code_metrics} lautet:\\
+\texttt{find data/ resources/ -type f -name *.php -exec wc {} +}
+
+\begin{table}
+    \begin{longtable}{r r r r}
+        \toprule
+        \rowcolor{lightgray}
+                          & \textbf{Dateien}  & \textbf{Zeilen}     & \textbf{Zeichen}\\
+        \midrule
+        Datenklassen      & 192               & 17455               & 38550\\
+        Ressourcenklassen & 97                & 3730                & 11079\\        
+        \midrule
+        $\sum$            & 289               & 21185               & 49629\\
+        \bottomrule
+        \caption{Metriken zur Menge des generierten Codes (ohne statische Klassen)}
+        \label{tab:code_metrics}
+    \end{longtable} 
+\end{table}
+
+Jede erzeugte Datei erhält dabei eine Klasse. Die Gesamtheit aller in \cite{WADL} beschriebenen Ressourcen entsprechen der Anzahl der generierten Ressourcenklassen (97). Somit ist die Anforderung erfüllt alle Methoden aus der \gls{API}-Beschreibung zu generieren.
 
 \section{Leistungsbewertung}
 \label{sec:performance_measurement}
@@ -124,26 +164,14 @@ $products = $resource->GET($parameters, $apiUser); //@\ding{208}@//
 \end{lstlisting}
 \end{minipage}
 
-\section{Codemetriken}
-\label{sec:codemetrics}
 
-\Cref{tab:code_metrics} zeigt den Umfang, der aus der \gls{API}-Beschreibung mit Stand vom 17. September 2013, erzeugten Bibliothek.
+\section{Nutzbarkeit}
+\label{sec:usability}
 
-\begin{table}
-    \begin{longtable}{r r r r}
-        \toprule
-        \rowcolor{lightgray}
-                          & \textbf{Dateien}  & \textbf{Zeilen}     & \textbf{Zeichen}\\
-        \midrule
-        Datenklassen      & 192               & 17455               & 38550\\
-        Ressourcenklassen & 97                & 3730                & 11079\\        
-        \midrule
-        $\sum$            & 289               & 21185               & 49629\\
-        \bottomrule
-        \caption{Metriken zur Menge des generierten Codes (ohne statische Klassen)}
-        \label{tab:code_metrics}
-    \end{longtable} 
-\end{table}
+Quellcodefiles welche Bibliotheksfunktionalitäten nutzen müssen im Wurzelverzeichnis selbiger liegen. Dies ist damit begründet das der \textsc{Php}-Interpreter bei Importanweisungen mit relativen Pfaden, den aktuellen Pfad der ausgeführten Datei als Basis nimmt.
 
-Das Kommando zur Ermittlung der Werte aus \cref{tab:code_metrics} lautet:\\
-\texttt{find data/ resources/ -type f -name *.php -exec wc {} +}
+Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier von strukturierten Typen noch nicht fehlerfrei generiert werden. Die Informationen, die nötig sind um Datenklassen verlustfrei zu serialisieren beziehungsweise deren \gls{XML}-Repräsentation zu deserialisieren sind im Schema-Modell (\cref{sec:schema_model}) vorhanden, der Algorithmus im Codegenerator zur Erzeugung dieser Methoden muss deshalb überarbeitet werden.
+
+Der Aufruf des Generators erfolgt über die Kommandozeile. Als einziges Argument wird die \gls{URL} zur \gls{WADL}-Datei erwartet. Beispiel:\\ 
+{\footnotesize \texttt{java api-client-libs.jar http://api.spreadshirt.net/api/v1/metaData/api.wadl}}\\
+Der Ausgabepfad der erzeugten Bibliothek ist relativ zum Aufrufpfad des Generators: \texttt{./generated/php}.
