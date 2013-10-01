@@ -3,7 +3,7 @@
 
 \chapterQuote{There are two ways to write error-free programs; only the third one works}{\citeauthor{alanPerlis}}{\citeyear{alanPerlis}}{\cite{alanPerlis}}
 
-Die Bewertung --- oder auch Evaluierung --- der generierten Client-Bibliothek gegenüber den Anforderungen (siehe \cref{item:requirements}) anhand von Anwendungsbeispielen ist Bestandteil dieses Kapitels.
+In diesem Kapitel soll der Generator und die erzeugte Bibliothek gegenüber den Anforderungen evaluiert werden. Dies geschieht für die Nutzbarkeit (\cref{sec:usability}) anhand eines einfachen Anwendungsbeispieles.
 
 % todo: Überschrift ändern
 \section{PHP-Zielsprachenmodell}\label{sec:php_target_language_model}
@@ -48,6 +48,11 @@ Das PHP-Zielsprachemodell ist die Implementierung der Schnittstellen die durch d
     \label{fig:modelRepresentationOfBatchDTO}
 \end{sidewaysfigure}
 
+\subsection{Implementierung einer Zielsprache}
+\label{sec:target_language_implementation}
+
+\ldots
+
 \section{Nutzbarkeit}
 \label{sec:usability}
 
@@ -55,8 +60,29 @@ Quellcodefiles welche Bibliotheksfunktionalitäten nutzen müssen im Wurzelverze
 
 Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier von strukturierten Typen noch nicht fehlerfrei generiert werden. Die Informationen, die nötig sind um Datenklassen verlustfrei zu serialisieren beziehungsweise deren \gls{XML}-Repräsentation zu deserialisieren sind im Schema-Modell (siehe \cref{sec:schema_model}) vorhanden, der Algorithmus im Codegenerator zur Erzeugung dieser Methoden muss deshalb überarbeitet werden.
 
+Der Aufruf des Generators erfolgt über die Kommandozeile. Als einziges Argument wird die \gls{URL} zur \gls{WADL}-Datei erwartet. Beispiel:\\ 
+\texttt{java api-client-libs.jar http://api.spreadshirt.net/api/v1/metaData/api.wadl}
+Der Ausgabepfad der erzeugten Bibliothek ist relativ zum Aufrufpfad des Generators: \texttt{./generated/php}.
+
+\subsection{Codestyle/Lesbarkeit}
+\label{se:code_style_readability}
+
+\ldots
+
+\section{Typsicherheit}
+\label{sec:type_safety}
+
+\ldots
+
+\section{Testabdeckung}
+\label{sec:test_coverage}
+
+\ldots
+
 \section{Leistungsbewertung}
 \label{sec:performance_measurement}
+
+% todo: vollständige Generierung aller Methoden aus der \gls{API}-Beschreibung
 
 Im folgenden soll eine typischer Arbeitsablauf mit der Client-Bibliothek gezeigt werden. Der Client sollte zum Einstieg ein Objekt der Datenklasse \textbf{LoginDTO} anlegen \ding{202} und seine Login-Informationen eintragen, dies wird benötigt um über die Ressourcenklasse \textbf{Sessions} auf der gleichnamigen \gls{API}-Ressource eine neue Sitzung (\enquote{Session}) anzulegen.
 Die \emph{Response} der Session-Ressource enthält eine \gls{URI} auf die Ressource der angelegten Sitzung. Diese \gls{URI} enthält die \emph{SessionID} welche durch \ding{204} aus der \gls{URI} extrahiert wird.
@@ -97,5 +123,26 @@ $products = $resource->GET($parameters, $apiUser); //@\ding{208}@//
 \end{lstlisting}
 \end{minipage}
 
-%\section{Codemetriken}
-%\label{sec:codemetrics}
+\section{Codemetriken}
+\label{sec:codemetrics}
+
+\Cref{tab:code_metrics} zeigt den Umfang, der aus der \gls{API}-Beschreibung mit Stand vom 17. September 2013, erzeugten Bibliothek.
+
+\begin{table}
+    \begin{longtable}{r r r r}
+        \toprule
+        \rowcolor{lightgray}
+                          & \textbf{Dateien}  & \textbf{Zeilen}     & \textbf{Zeichen}\\
+        \midrule
+        Datenklassen      & 192               & 17455               & 38550\\
+        Ressourcenklassen & 97                & 3730                & 11079\\        
+        \midrule
+        $\sum$            & 289               & 21185               & 49629\\
+        \bottomrule
+        \caption{Metriken zur Menge des generierten Codes (ohne statische Klassen)}
+        \label{tab:code_metrics}
+    \end{longtable} 
+\end{table}
+
+Das Kommando zur Ermittlung der Werte aus \cref{tab:code_metrics} lautet:\\
+\texttt{find data/ resources/ -type f -name *.php -exec wc {} +}

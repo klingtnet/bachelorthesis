@@ -50,7 +50,7 @@ clean_conflicts:
 
 clean: clean_conflicts
 	@echo "I will clean up this mess ..."
-	rm --verbose *.log
+	rm *.log
 #	@find $(ROOT_DIR) -regex '.*~' -delete
 # $ has to be escaped to $$
 	@cd $(BUILD_DIR); rm --recursive --verbose *
