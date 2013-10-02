@@ -100,7 +100,7 @@ Eine Ressourcenklasse beinhaltet:
     \item[\ding{203}] ein Feld in welches die komplette \gls{URL}, inklusive der ersetzten Template-Parameter (\cref{sec:rest_model}), der Ressource erhält;
     \item[\ding{204}] eine Menge von Feldern, die jeweils einem Template-Parameter zugeordnet sind;
     \item[\ding{205}] einen Konstruktor, dessen Argumente den Template-Parametern entsprechen und der aus diesen und der Basis-\gls{URL} die Ressourcen-\gls{URL} erstellt;
-    \item[\ding{206}] Abbildungen der Methoden aus der Ressourcenbeschreibung. Methodenparameter, die zur Authentifizierung an der \gls{API} notwendig sind, werden durch einen Parameter der Klasse \textsc{ApiUser} (\cref{sec:api_auth}) substituiert \ding{207}.
+    \item[\ding{206}] Abbildungen der Methoden aus der Ressourcenbeschreibung. Methodenparameter, die zur Authentifizierung an der \gls{API} notwendig sind, werden durch einen Parameter der Klasse \emph{ApiUser} (\cref{sec:api_auth}) substituiert \ding{207}.
 \end{compactitem}
 
 \Cref{lst:generatedRessourceClass} beinhaltet die generierte Klasse zur Ressource \texttt{users/{userId}/products} der Spreadshirt-\gls{API}.
