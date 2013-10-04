@@ -96,11 +96,17 @@
     % http://www2.informatik.hu-berlin.de/~piefel/LaTeX-PS/Archive-2004/V07-footnote.pdf
     \pagestyle{mainpartStyle}
     \onehalfspacing
+    \cleardoublepage
     \include{content/introduction/introduction}
+    \cleardoublepage
     \include{content/basics/web_services}
+    \cleardoublepage
     \include{content/basics/codegeneration}
+    \cleardoublepage
     \include{content/generation_for_spreadshirt-api/generation_for_spreadshirt-api}
+    \cleardoublepage
     \include{content/evaluation/evaluation}
+    \cleardoublepage
     \include{content/summary/summary}
     \phantomsection\label{lastPage}
 }
@@ -113,6 +119,7 @@
     %\let\cleardoublepage\relax
     \appendix 
     \pagestyle{appendixStyle}
+    \cleardoublepage
     \pagenumbering{Alph}
     
     \include{content/implementation/implementation}
@@ -120,35 +127,35 @@
     % Glossar        
     %\glsaddall
     \printglossary[type=main,title={Glossar},toctitle={Glossar}]
-    \newpage
+    \cleardoublepage
 
     % Bilderverzeichnis
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\listfigurename}
     \listoffigures
-    \newpage
+    \cleardoublepage
 
     % Tabellenverzeichnis
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\listtablename}
     \listoftables
-    \newpage    
+    \cleardoublepage
 
     % Listingverzeichnis
     \addcontentsline{toc}{chapter}{\lstlistlistingname}
     \lstlistoflistings
-    \newpage    
+    \cleardoublepage
 
     % Definitionsverzeichnis
     \addcontentsline{toc}{chapter}{\listtheoremname}
     \listoftheorems
-    \newpage    
+    \cleardoublepage
 
     % Literaturverzeichnis
         %\cleardoublepage
     \addcontentsline{toc}{chapter}{\bibname}
     \input{bibliography/bibliography}
-    \newpage
+    \cleardoublepage
 
     \input{bibtex_entry}
     \phantomsection\label{lastPageAppendix}

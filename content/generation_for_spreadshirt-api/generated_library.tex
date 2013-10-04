@@ -38,6 +38,55 @@ Eine Ressourcenklasse beinhaltet:
 
 \Cref{lst:generatedRessourceClass} beinhaltet die generierte Klasse zur Ressource \texttt{users/{userId}/products} der Spreadshirt-\gls{API}.
 
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[
+    language=PHP,
+    caption=Klasse zur Ressource \texttt{users/{userId}/products} als Beispiel für eine Ressourcenklasse,
+    label=lst:generatedRessourceClass
+]
+<?php
+   require_once('Static/methods.php'); //@\label{lst:importMethods}@//
+   require_once('Static/apiUser.php'); //@\label{lst:importApiUser}@//
+
+   /* Create or list products for user. */
+   class UsersUserIdProducts
+   {
+      private $baseUrl = 'http://192.168.13.10:8080/api/v1/'; // string //@\ding{202}@//
+      public $userId; // string //@\ding{204}@//
+      private $resourceUrl = ''; // string //@\ding{203}@//
+      /*  */
+      public function POST( //@\ding{206}@// //@\label{lst:methodParameters}@//
+            /* array */ $parameters, 
+            /* ApiUser */ $apiUser,
+            /* ProductDTO */ $productDTO
+         )
+      {
+         $auth = $apiUser->getAuthentificationHeader(/* string */ 'POST',/* string */ $this->resourceUrl);
+         return Methods::post(/* string */ $this->resourceUrl,/* string */ $auth,/* array */ $parameters,/* ProductDTO */ $productDTO); //@\label{lst:staticMethodPost}@//
+      }
+
+      /* Sample Url is:  http://... */
+      public function GET( //@\ding{206}@//
+            /* array */ $parameters,
+            /* ApiUser */ $apiUser //@\ding{207}@//
+         )
+      {
+         $auth = $apiUser->getAuthentificationHeader(/* string */ 'GET',/* string */ $this->resourceUrl);
+         return Methods::get(/* string */ $this->resourceUrl,/* string */ $auth,/* array */ $parameters); //@\label{lst:staticMethodGet}@//
+      }
+
+      function __construct( //@\ding{205}@//
+            /* string */ $userId
+         )
+      {
+         $this->userId = $userId;
+         $this->resourceUrl = $this->baseUrl . 'users' . '/' . $userId . 'products';
+      }
+   }
+?>
+\end{lstlisting}
+\end{minipage}
+
 \begin{lstlisting}[
     language=PHP,
     caption=Point-Klasse als (gekürztes) Beispiel für eine generierte Datenklasse,
@@ -105,58 +154,6 @@ Eine Ressourcenklasse beinhaltet:
 ?>
 \end{lstlisting}
 
-\newpage
-
-\begin{minipage}{\textwidth}
-\begin{lstlisting}[
-    language=PHP,
-    caption=Klasse zur Ressource \texttt{users/{userId}/products} als Beispiel für eine Ressourcenklasse,
-    label=lst:generatedRessourceClass
-]
-<?php
-   require_once('Static/methods.php'); //@\label{lst:importMethods}@//
-   require_once('Static/apiUser.php'); //@\label{lst:importApiUser}@//
-
-   /* Create or list products for user. */
-   class UsersUserIdProducts
-   {
-      private $baseUrl = 'http://192.168.13.10:8080/api/v1/'; // string //@\ding{202}@//
-      public $userId; // string //@\ding{204}@//
-      private $resourceUrl = ''; // string //@\ding{203}@//
-
-      /*  */
-      public function POST( //@\ding{206}@// //@\label{lst:methodParameters}@//
-            /* array */ $parameters, 
-            /* ApiUser */ $apiUser,
-            /* ProductDTO */ $productDTO
-         )
-      {
-         $auth = $apiUser->getAuthentificationHeader(/* string */ 'POST',/* string */ $this->resourceUrl);
-         return Methods::post(/* string */ $this->resourceUrl,/* string */ $auth,/* array */ $parameters,/* ProductDTO */ $productDTO); //@\label{lst:staticMethodPost}@//
-      }
-
-      /* Sample Url is:  http://... */
-      public function GET( //@\ding{206}@//
-            /* array */ $parameters,
-            /* ApiUser */ $apiUser //@\ding{207}@//
-         )
-      {
-         $auth = $apiUser->getAuthentificationHeader(/* string */ 'GET',/* string */ $this->resourceUrl);
-         return Methods::get(/* string */ $this->resourceUrl,/* string */ $auth,/* array */ $parameters); //@\label{lst:staticMethodGet}@//
-      }
-
-      function __construct( //@\ding{205}@//
-            /* string */ $userId
-         )
-      {
-         $this->userId = $userId;
-         $this->resourceUrl = $this->baseUrl . 'users' . '/' . $userId . 'products';
-      }
-   }
-?>
-\end{lstlisting}
-\end{minipage}
-
 \subsection{De-/Serialisierer}
 \label{sec:serialiser}
 % todo: transportunabhängig als Schlagwort entfernen?
@@ -202,6 +199,7 @@ Das zur Authentifizierung eines \gls{API}-Nutzers verwendete Protokoll \emph{Spr
 
 Die Spreadshirt-\gls{API} unterstüzt die Übergabe der nötigen Autorisierungsparameter als Teil der \gls{URI}-Query oder in Form des \emph{Authorization-Header}. Die erzeugte Client-Bibliothek beschränkt sich auf die Nutzung des \emph{Authorization-Headers}, dieser besitzt folgenden Aufbau:
 
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[
     language=JavaScript,
     caption=Aufbau des Spreadshirt Authentification Header,
@@ -212,6 +210,7 @@ Authorization:  SprdAuth apiKey="<apikey>", //@\ding{202}@//
                 sig="SHA1(<method> <url> <time> <secret> //@\ding{203}@// )", 
                 sessionId="<sessionId>" //@\ding{204}@//
 \end{lstlisting}
+\end{minipage}
 
 Die Klasse \classname{ApiUser} kapselt die Daten, die zur Autorisierung an der \gls{API} nötig sind und stellt eine Methode bereit, die dem Nutzer das Erstellen des Authorization-Headers erspart. Der Konstruktor der ApiUser-Klasse erwartet dabei die Angabe der folgenden Parameter:
 
