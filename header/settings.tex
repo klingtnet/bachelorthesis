@@ -30,7 +30,7 @@
 %------------------------------------------------------------------------------
 % color definitions
 %------------------------------------------------------------------------------
-\definecolor{lightgray}{gray}{0.95}
+\definecolor{lightgray}{gray}{0.98}
 \definecolor{darkgray}{gray}{0.4}
 
 %------------------------------------------------------------------------------
@@ -75,7 +75,7 @@
 % hyperref
 %------------------------------------------------------------------------------
 \hypersetup{hidelinks,	% remove box
-			colorlinks=true
+			colorlinks=false
 			}
 
 %------------------------------------------------------------------------------
@@ -87,10 +87,12 @@
 \lstset{
 		basicstyle=\ttfamily\scriptsize,
 		commentstyle=\color{gray},
-		keywordstyle=\bfseries\color{magenta},
+		%keywordstyle=\bfseries\color{magenta},
+		keywordstyle=\bfseries,
 		%identifierstyle=\itshape\color{magenta!50!cyan!40!black},
 		identifierstyle=\itshape\color{black},
-		stringstyle=\itshape\color{cyan!75!black},
+		%stringstyle=\itshape\color{cyan!75!black},
+		stringstyle=\rmfamily\slshape,
 		backgroundcolor=\color{lightgray},
 		numbers=left,
 		numberstyle=\rmfamily\tiny\color{gray!50!black},
@@ -109,9 +111,9 @@
 \lstdefinestyle{EBNF}{
 	numbers=none,
 	basicstyle=\ttfamily\footnotesize,
-	keywordstyle=\color{cyan},
+	%keywordstyle=\color{cyan},
 	identifierstyle=\color{black},
-	stringstyle=\color{black},
+	stringstyle=\slshape\color{black},
 	backgroundcolor=\color{lightgray},
 	escapeinside={//@}{@//},
 	frame=lines,

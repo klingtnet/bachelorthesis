@@ -7,8 +7,8 @@ Um mit der abstrakten Beschreibung der Spreadshirt-\gls{API} arbeiten zu können
 Die \enquote{Java \gls{API} for \gls{XML} Processing} kurz \textsc{Jaxp} abstrahiert die Parserschnittstelle von der eigentlichen Implementierung. \textsc{Jaxp} ist dabei keine einzelne \gls{API}, sondern es beschreibt Schnittstellen für folgende vier \gls{XML}-Parser Modelle:
 
 \begin{description}
-    \item[DOM] \enquote{Document Object Model}-Parser überführen das \gls{XML}-Dokument in ein baumartiges Objektmodell, welches vollständig im Arbeitsspeicher liegt.
-    \item[SAX] Die \enquote{Simple \gls{API} for \gls{XML}} basierten sogenannten Push-Parser verarbeiten das \gls{XML}-Dokument seriell und eventbasiert. Ein Event ist hierbei beispielsweise ein öffnendes oder schließendes Xml-Element.
+    \item[\textsc{Dom}] \enquote{Document Object Model}-Parser überführen das \gls{XML}-Dokument in ein baumartiges Objektmodell, welches vollständig im Arbeitsspeicher liegt.
+    \item[\textsc{Sax}] Die \enquote{Simple \gls{API} for \gls{XML}} basierten sogenannten Push-Parser verarbeiten das \gls{XML}-Dokument seriell und eventbasiert. Ein Event ist hierbei beispielsweise ein öffnendes oder schließendes Xml-Element.
     \item[StAX] Auf \enquote{Streaming \gls{API} for \gls{XML}} basierende sogenannte Pull-Parser arbeiten ebenso wie bei \textsc{Sax} seriell und eventbasiert, können aber im Gegensatz dazu die Erzeugung von Events selber steuern. 
     \item[TrAX] Die \enquote{Transformation \gls{API} for \gls{XML}} bietet eine Schnittstelle, mit der sich \gls{XML}-Dokumente durch \emph{Extensible Stylesheet Language Transformations (\textsc{Xslt})} in Java transformieren lassen.
 \end{description}

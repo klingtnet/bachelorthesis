@@ -20,7 +20,23 @@ Konstruktoren zur Erzeugung von Objekten aus den Datenklassen werden ebenfalls v
 
 Methoden zur De-/Serialisierung (\cref{sec:serialiser}) in eine der beiden von der Spreadshirt-\gls{API} unterstützten Dokumentbeschreibungsformate (\gls{JSON}, \gls{XML}) sind ebenfalls Bestandteil einer Datenklasse.
 
-\Cref{lst:generatedDataClass} zeigt einen gekürzten Ausschnitt der generierten Datenklasse zum Element \texttt{Point} aus der Schemabeschreibung der Spreadshirt-\gls{API}.
+\Cref{lst:generatedDataClass} zeigt einen gekürzten Ausschnitt der generierten Datenklasse zum Element \emph{Point} aus der Schemabeschreibung der Spreadshirt-\gls{API}.
+
+\subsection{Ressourcenklassen}
+\label{sec:ressourceclasses}
+
+Ressourcenklassen sind die zielsprachenabhängige Abbildung der Ressourcenbeschreibungen aus WADL-Datei der Spreadshirt-\gls{API}.
+
+Eine Ressourcenklasse beinhaltet:
+\begin{compactitem}
+    \item[\ding{202}] ein Feld, welches die Basis-\gls{URL} der API beinhaltet;
+    \item[\ding{203}] ein Feld in welches die komplette \gls{URL}, inklusive der ersetzten Template-Parameter (\cref{sec:rest_model}), der Ressource erhält;
+    \item[\ding{204}] eine Menge von Feldern, die jeweils einem Template-Parameter zugeordnet sind;
+    \item[\ding{205}] einen Konstruktor, dessen Argumente den Template-Parametern entsprechen und der aus diesen und der Basis-\gls{URL} die Ressourcen-\gls{URL} erstellt;
+    \item[\ding{206}] Abbildungen der Methoden aus der Ressourcenbeschreibung. Methodenparameter, die zur Authentifizierung an der \gls{API} notwendig sind, werden durch einen Parameter der Klasse \emph{ApiUser} (\cref{sec:api_auth}) substituiert \ding{207}.
+\end{compactitem}
+
+\Cref{lst:generatedRessourceClass} beinhaltet die generierte Klasse zur Ressource \texttt{users/{userId}/products} der Spreadshirt-\gls{API}.
 
 \begin{lstlisting}[
     language=PHP,
@@ -88,22 +104,6 @@ Methoden zur De-/Serialisierung (\cref{sec:serialiser}) in eine der beiden von d
    }
 ?>
 \end{lstlisting}
-
-\subsection{Ressourcenklassen}
-\label{sec:ressourceclasses}
-
-Ressourcenklassen sind die zielsprachenabhängige Abbildung der Ressourcenbeschreibungen aus WADL-Datei der Spreadshirt-\gls{API}.
-
-Eine Ressourcenklasse beinhaltet:
-\begin{compactitem}
-    \item[\ding{202}] ein Feld, welches die Basis-\gls{URL} der API beinhaltet;
-    \item[\ding{203}] ein Feld in welches die komplette \gls{URL}, inklusive der ersetzten Template-Parameter (\cref{sec:rest_model}), der Ressource erhält;
-    \item[\ding{204}] eine Menge von Feldern, die jeweils einem Template-Parameter zugeordnet sind;
-    \item[\ding{205}] einen Konstruktor, dessen Argumente den Template-Parametern entsprechen und der aus diesen und der Basis-\gls{URL} die Ressourcen-\gls{URL} erstellt;
-    \item[\ding{206}] Abbildungen der Methoden aus der Ressourcenbeschreibung. Methodenparameter, die zur Authentifizierung an der \gls{API} notwendig sind, werden durch einen Parameter der Klasse \emph{ApiUser} (\cref{sec:api_auth}) substituiert \ding{207}.
-\end{compactitem}
-
-\Cref{lst:generatedRessourceClass} beinhaltet die generierte Klasse zur Ressource \texttt{users/{userId}/products} der Spreadshirt-\gls{API}.
 
 \newpage
 
@@ -175,7 +175,7 @@ Beispiele für beide Arten finden sich in \Cref{lst:generatedDataClass}.
 Prinzipiell werden zwei Probleme durch statische Klassen vermindert:
 \begin{compactenum}
   \item unnötige Vergrößerung des generierten Codes
-  \item Vermeidung des Aufwands zur Implementierung der statischen Inhalte in das Eingabemodell des Generators
+  \item Vermeidung des Aufwands zur Implementierung der statischen Inhalte in dem Eingabemodell des Generators
 \end{compactenum}
 
 Die generierte Client-Bibliothek beinhaltet dabei zwei dieser Klassen:
@@ -213,7 +213,7 @@ Authorization:  SprdAuth apiKey="<apikey>", //@\ding{202}@//
                 sessionId="<sessionId>" //@\ding{204}@//
 \end{lstlisting}
 
-Die Klasse \textbf{ApiUser} kapselt die Daten, die zur Autorisierung an der \gls{API} nötig sind und stellt eine Methode bereit, die dem Nutzer das Erstellen des Authorization-Headers erspart. Der Konstruktor der ApiUser-Klasse erwartet dabei die Angabe der folgenden Parameter:
+Die Klasse \classname{ApiUser} kapselt die Daten, die zur Autorisierung an der \gls{API} nötig sind und stellt eine Methode bereit, die dem Nutzer das Erstellen des Authorization-Headers erspart. Der Konstruktor der ApiUser-Klasse erwartet dabei die Angabe der folgenden Parameter:
 
 Alle Methoden, die eine Autorisation benötigen erhalten vom Codegenerator einen Parameter vom Typ \emph{ApiUser} wie \ding{206} in \Cref{lst:generatedRessourceClass} zeigt.
 

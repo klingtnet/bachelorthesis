@@ -3,13 +3,8 @@
 
 % todo: implementierung anderer Sprachmodelle, Schnittstelle zu Generator
 
-Der in dieser Arbeit dokumentierte Codegenerator bietet mehrere Ansatzpunkte für Erweiterungen oder Verbesserungen:
+Der in dieser \thesisDesignator{} dokumentierte Codegenerator bietet mehrere Ansatzpunkte für Erweiterungen oder Verbesserungen. Im Bereich der Nutzbarkeit ist die Generierung von \emph{Parameterobjekten} denkbar. Diese würden die in der aktuellen Version an die Methoden übergebenen Parameter-Arrays ablösen und dem Nutzer dabei unterstützen nur erlaubte Parameter übergeben zu können. Ebenso wäre die Generierung eines \emph{Fluent-Interface} Pattern für die Methoden der Ressourcenklassen möglich. Dieses Entwurfsmuster wurde von \citeauthor{fowler2010domain} in \cite{fowler2010domain} beschrieben und basiert auf der Technik des \enquote{method-chaining}, also der Hintereinanderausführung von Methoden, wobei jede Methode mit dem Resultat der vorangegangen arbeitet. Somit ließe sich eine \gls{DSL} für die Client-Bibliothek erstellen.
+
+Die Implementierung weiterer Sprachenmodelle, insbesondere für Java, wären eine lohnende Erweiterung. Der Ausbau des Codegenerators auf einen \emph{n-Tier} Generator, der neben dem eigentlichen Quellcode auch noch Dokumentationen und Testfälle sowie Testdaten erstellt wäre eine wesentliche Verbesserung. Diese Änderung wäre aber sehr umfangreich und würde für sich genommen genügend Material für eine weitere wissenschaftliche Arbeit liefern.
 
 % n-Tier Generator (Dokumentation, Tests ...)
-
-\begin{compactitem}
-    \item Generierung eines \emph{Fluent-Interface} Pattern. Dieses Entwurfsmuster wurde von \citeauthor{fowler2010domain} in \cite{fowler2010domain} beschrieben und basiert auf der Technik des \enquote{method-chaining}, also der Hintereinanderausführung von Methoden, wobei jede Methode mit dem Resultat der vorangegangen arbeitet.
-    \item Die Erzeugung von Parameterobjekten welche die Parametersignatur der jeweiligen Methode repräsentieren, wird verhindert das der Nutzer unerlaubte Parameter an eine Methode übergibt. Dies ist derzeit möglich, da vom Nutzer beliebiger Inhalt die Arrays eingetragen werden kann, die zur Übermittlung der Methodenparameter dienen.
-    \item Implementieren weiterer Sprachenmodelle, beispielsweise zur Generierung einer Java-Bibliothek. 
-    \item Erzeugen von Tests durch den Generator um die generierte Bibliothek automatisch prüfen zu können.
-\end{compactitem}

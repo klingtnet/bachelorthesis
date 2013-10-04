@@ -8,24 +8,24 @@
     \label{fig:schema_model}
 \end{figure}
 
-Wurzel des Schemadatenmodells ist die Klasse \textbf{Schema}. Ein Schema kann Objekte vom Typ \emph{Complex-} und \emph{SimpleType} sowie \emph{Attribute} und \emph{Element} enthalten.
+Wurzel des Schemadatenmodells ist die Klasse \classname{Schema}. Ein Schema kann Objekte vom Typ \emph{Complex-} und \emph{SimpleType} sowie \emph{Attribute} und \emph{Element} enthalten.
 
-\gls{XSD}-Dateien erlauben das Importieren anderer Schemadefinitionen, die Klasse \textbf{Import} ermöglicht dies im Schemamodell. Sie besitzt ein Objekt des zu importierenden Schemas sowie eine \gls{URI} auf die zugehörige \gls{XSD}-Datei.
+\gls{XSD}-Dateien erlauben das Importieren anderer Schemadefinitionen, die Klasse \classname{Import} ermöglicht dies im Schemamodell. Sie besitzt ein Objekt des zu importierenden Schemas sowie eine \gls{URI} auf die zugehörige \gls{XSD}-Datei.
 
 Primitive Schematypen werden durch die Klasse \emph{SimpleType} abgebildet. Objekte dieser Klasse enthalten eine Kennzeichnung der Art des SimpleType (Enumerator, Liste, einfacher Wert) und bei Enumeratoren zusätzlich die einzelnen Enumeratorwerte sowie die Angabe des Basisdatentyps.
 
-Die \textbf{ComplexType}-Klasse repräsentiert die gleichnamigen strukturierten Typen aus der Schemabeschreibung. 
+Die \classname{ComplexType}-Klasse repräsentiert die gleichnamigen strukturierten Typen aus der Schemabeschreibung. 
 Ein ComplexType kann Attribute, Elemente, Elementsequenzen und strukturierten Inhalt (\emph{ComplexContent}) enthalten.
 
-\textbf{ComplexContent} kann die gleichen Objekte wie \emph{ComplexType} enthalten, sowie einen Basistyp der erweitert oder eingeschränkt wird (\enquote{derivation by extension/restriction}).
+\classname{ComplexContent} kann die gleichen Objekte wie \emph{ComplexType} enthalten, sowie einen Basistyp der erweitert oder eingeschränkt wird (\enquote{derivation by extension/restriction}).
 
-Attribute werden durch die gleichnamige Klasse \textbf{Attribute} gekapselt, sie besitzen einen Attributnamen sowie eine Definition ihres Typs.
+Attribute werden durch die gleichnamige Klasse \classname{Attribute} gekapselt, sie besitzen einen Attributnamen sowie eine Definition ihres Typs.
 
-Elementsequenzen werden durch die \textbf{Sequence}-Klasse repräsentiert. Sie enthält einen Reihenfolgeindikator und die Elemente der Sequenz.
+Elementsequenzen werden durch die \classname{Sequence}-Klasse repräsentiert. Sie enthält einen Reihenfolgeindikator und die Elemente der Sequenz.
 
-Objekte der Klasse \textbf{Element} besitzen einen Bezeichner sowie einen Complex- oder SimpleType und optional eine Angabe der Auftrittshäufigkeit. Die Klasse \emph{ElementParameter} dient nur zur Kapselung der Daten, welche an den Konstruktor der Elementklasse gegeben werden.
+Objekte der Klasse \classname{Element} besitzen einen Bezeichner sowie einen Complex- oder SimpleType und optional eine Angabe der Auftrittshäufigkeit. Die Klasse \emph{ElementParameter} dient nur zur Kapselung der Daten, welche an den Konstruktor der Elementklasse gegeben werden.
 
-Durch die Klasse \textbf{Namespace} werden der Namensraumbezeichner und der konkrete Namensraum eines Typs aus dem Schema gekapselt. 
+Durch die Klasse \classname{Namespace} werden der Namensraumbezeichner und der konkrete Namensraum eines Typs aus dem Schema gekapselt. 
 
 \begin{figure}[ht]
     \centering

@@ -16,7 +16,7 @@ Eine Gegenüberstellung eines Ausschnittes einer generierten Klassendatei mit ih
     \resizebox{\textwidth}{!}{
       \input{tikz_pgf/languageModelRepresentation}
     }
-    \caption{Darstellung von BatchDTO aus \Cref{lst:batchDTO} im Sprachenmodell [\textbf{Klasse}, \emph{Zeichenkette}]}
+    \caption{Darstellung von BatchDTO aus \Cref{lst:batchDTO} im Sprachenmodell [\classname{Klasse}, \emph{Zeichenkette}]}
     \label{fig:modelRepresentationOfBatchDTO}
 \end{sidewaysfigure}
 
@@ -106,7 +106,7 @@ Das Kommando zur Ermittlung der Werte aus \cref{tab:code_metrics} lautet:\\
     \begin{longtable}{r r r r}
         \toprule
         \rowcolor{lightgray}
-                          & \textbf{Dateien}  & \textbf{Zeilen}     & \textbf{Zeichen}\\
+                          & \classname{Dateien}  & \classname{Zeilen}     & \classname{Zeichen}\\
         \midrule
         Datenklassen      & 192               & 17455               & 38550\\
         Ressourcenklassen & 97                & 3730                & 11079\\        
@@ -118,14 +118,14 @@ Das Kommando zur Ermittlung der Werte aus \cref{tab:code_metrics} lautet:\\
     \end{longtable} 
 \end{table}
 
-Jede erzeugte Datei erhält dabei eine Klasse. Die Gesamtheit aller in \cite{WADL} beschriebenen Ressourcen entsprechicht der Anzahl der generierten Ressourcenklassen (97). Somit ist die Anforderung erfüllt alle Methoden aus der \gls{API}-Beschreibung zu generieren.
+Jede erzeugte Datei erhält dabei eine Klasse. Die Gesamtheit aller in \cite{WADL} beschriebenen Ressourcen entspricht der Anzahl der generierten Ressourcenklassen (insgesamt 97). Somit ist die Anforderung erfüllt alle Methoden aus der \gls{API}-Beschreibung zu generieren.
 
 \section{Leistungsbewertung}
 \label{sec:performance_measurement}
 
 % todo: vollständige Generierung aller Methoden aus der \gls{API}-Beschreibung
 
-Im folgenden soll eine typischer Arbeitsablauf mit der Client-Bibliothek gezeigt werden. 
+Im folgenden soll ein typischer Arbeitsablauf mit der Client-Bibliothek gezeigt werden. 
 
 \begin{minipage}{\textwidth}
 \begin{lstlisting}[
@@ -158,10 +158,10 @@ $products = $resource->GET($parameters, $apiUser); //@\ding{208}@//
 \end{lstlisting}
 \end{minipage}
 
-Der Client sollte zum Einstieg ein Objekt der Datenklasse \textbf{LoginDTO} anlegen \ding{202} und seine Login-Informationen eintragen, dies wird benötigt um über die Ressourcenklasse \textbf{Sessions} auf der gleichnamigen \gls{API}-Ressource eine neue Sitzung (\enquote{Session}) anzulegen.
+Der Client sollte zum Einstieg ein Objekt der Datenklasse \classname{LoginDTO} anlegen \ding{202} und seine Login-Informationen eintragen, dies wird benötigt um über die Ressourcenklasse \classname{Sessions} auf der gleichnamigen \gls{API}-Ressource eine neue Sitzung (\enquote{Session}) anzulegen.
 Die \emph{Response} der Session-Ressource enthält eine \gls{URI} auf die Ressource der angelegten Sitzung. Diese \gls{URI} enthält die \emph{SessionID} welche durch \ding{204} aus der \gls{URI} extrahiert wird.
 
-Nun sind alle nötigen Informationen vorhanden um ein Objekt der Klasse \textbf{ApiUser} anzulegen \ding{205}, welches die Authentifizierungsinformationen für gesicherte Ressourcen der Spreadshirt-\gls{API} enthält.
+Nun sind alle nötigen Informationen vorhanden um ein Objekt der Klasse \classname{ApiUser} anzulegen \ding{205}, welches die Authentifizierungsinformationen für gesicherte Ressourcen der Spreadshirt-\gls{API} enthält.
 
 Nun kann über die Bibliotheksklassen auch auf geschützte \gls{API}-Ressourcen zugegriffen werden, in diesem Fall werden beispielsweise die Produkte eines bestimmten Users abgefragt. Entgegen den vorherigen Aufrufen von Methoden der Ressourcenklassen wird ein Parameter-Array erzeugt \ding{206} um den \emph{mediaType} der Response festzulegen.
 Vor dem Zugriff auf die Ressource muss noch die entsprechende Ressourcenklasse instanziiert werden \ding{207}. Die Rückgabe der Ressourcenmethode enthält ein Objekt vom Typ \emph{Products} der Spreadshirt-\gls{API}, zur Verwendung in nachfolgenden Aktionen auf \gls{API}-Ressourcen.
@@ -172,7 +172,7 @@ Das \Cref{lst:longUsageExample} dient zur Gegenüberstellung von Quellcode mit d
   \frac{\text{Codezeilen bei Nutzung der Bibliothek}}{\text{Codezeilen ohne Nutzung der Bibliothek}} = \frac{22}{70} \approx 31\%
 \]
 
-Mit zunehmender Komplexität der Anwendung wird sich dieses Verhältnis, durch häufige Wiederverwendung von Bibliotheksfunktionen, noch stärker verringern. Der Nutzer der Bibliothek muss sich außerdem nicht um Serialisierung seiner Daten kümmern, da dies vollständig in den Daten- und Ressourcenklassen gekapselt wurde. Ein bewusst gewähltes Negativbeispiel ist in \Cref{lst:longUsageExample} an Position \ding{202} zu sehen. An dieser Stelle findet die Serialisierung der Logininformationne als fehlerträchtige Textersetzung statt.
+Mit zunehmender Komplexität der Anwendung wird sich dieses Verhältnis, durch häufige Wiederverwendung von Bibliotheksfunktionen, noch stärker verringern. Der Nutzer der Bibliothek muss sich außerdem nicht um Serialisierung seiner Daten kümmern, da dies vollständig in den Daten- und Ressourcenklassen gekapselt wurde. Ein bewusst gewähltes Negativbeispiel ist in \Cref{lst:longUsageExample} an Position \ding{202} zu sehen. An dieser Stelle findet die Serialisierung der Logininformationen als fehlerträchtige Textersetzung statt.
 
 \newpage
 
@@ -196,5 +196,5 @@ Der Aufruf des Generators erfolgt über die Kommandozeile. Als einziges Argument
 {\footnotesize \texttt{java api-client-libs.jar http://api.spreadshirt.net/api/v1/metaData/api.wadl}}\\
 Der Ausgabepfad der erzeugten Bibliothek ist relativ zum Aufrufpfad des Generators: \texttt{./generated/php}.
 
-Derzeit ist die Bibliothek noch eingeschränkt nutzbar, da die De-/Serialisier von strukturierten Typen noch nicht fehlerfrei generiert werden. Die Informationen, die nötig sind um Datenklassen verlustfrei zu serialisieren und wieder zu deserialisieren sind im Schema-Modell (\cref{sec:schema_model}) vorhanden. Deshalb muss der Algorithmus im Codegenerator zur Erzeugung dieser Methoden überarbeitet werden.
+Derzeit ist die Bibliothek noch eingeschränkt nutzbar. Die De-/Serialisier von strukturierten Typen, welche Elemente mit Attributen enthalten, werden noch nicht fehlerfrei generiert. Das Schemamodell enthält die nötigen Informationen um korrekte Serialisierer zu generieren. Aus diesem Grund muss der Algorithmus im Codegenerator zur Erzeugung dieser Methoden noch überarbeitet werden.
 

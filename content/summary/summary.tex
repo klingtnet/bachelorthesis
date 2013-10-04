@@ -3,20 +3,33 @@
 
 \chapterQuote{The most important property of a program is whether it accomplishes the intention of its user.}{\citeauthor{hoareAxiomatic}}{\citeyear{hoareAxiomatic}}{\cite[][S. 4]{hoareAxiomatic}}
 
-Im Verlauf dieser \thesisDesignator{} konnten die allgemeinen Konzepte von Web Services, Dokumentbeschreibungssprachen und Codegeneratoren erläutert werden. Aus den beschriebenen Grundlagen konnten Datenmodelle erstellt werden, welche als Ein- und Ausgabemodell des Generators dienen. Das Eingabedatenmodell enthielt die Spreadshirt-\gls{API} Beschreibung und das Ausgabemodell abstrahierte die zu generierende Zielsprache. Im weiteren wurde auch der Ablauf der Codegenerierung besprochen und in einem Diagramm veranschaulicht (\cref{fig:generation_process}). Eine Evaluierung der erzeugten Bibliothek gegenüber den Anforderungen fand ebenfalls statt.
+Das Ziel dieser Arbeit war die Erstellung eines Codegenerators mit flexibler Zielsprache der aus einer abstrakten Beschreibung eines \gls{RESTful} Web Service eine Client-Bibliothek erzeugen sollte. Dies geschah am Beispiel der Spreadshirt-\gls{API} mit \textsc{Php} als Zielsprache der Bibliothek. 
+Während der Bearbeitung der Aufgabenstellung stellten sich die folgenden vier Schwerpunkte heraus:
+\begin{compactitem}
+    \item Erstellung von Datenmodellen für die abstrakte Web Service Beschreibung
+    \item Überführung der abstrakten Web Service Beschreibung in die Datenmodelle
+    \item Analysieren der Konzepte von objektorientierten Programmiersprachen zur Erzeugung eines Sprachenmodells
+    \item Design der Client-Bibliothek auf einfache Nutzung optimieren (beispielweise durch Integration der \gls{API}-Autorisierung)
+\end{compactitem}
+
+Der im Rahmen dieser \thesisDesignator{} aus den gewonnen Erkenntnissen entwickelte Codegenerator erzeugt aus der abstrakten Beschreibung der Spreadshirt-\gls{API} eine Client-Bibliothek, die derzeit, wenn auch in eingeschränktem Umfang, nutzbar ist. Da der Generator zielsprachenunabhängig arbeitet, kann er durch Implementierung eines Sprachenmodells eine Client-Bibliothek in einer neuen objektorientierten Zielsprache erzeugen. Durch die Trennung von Syntax und Semantik im Sprachenmodell, ließen sich mit geringem Aufwand Konventionen für den \enquote{code style} der generierten Bibliothek festlgegen. Dies resultiert in gut lesbaren Quellcode der erzeugten Klassen.
+
+Die Aufgabenstellung war umfangreich und fordernd, aber dennoch lösbar. Die Erstellung des Sprachenmodells bedurfte der Auseinandersetzung mit grundlegenden Programmiersprachkonzepten und den Grundlagen des Compilerbaus.
+
+%Im Verlauf dieser \thesisDesignator{} konnten die allgemeinen Konzepte von Web Services, Dokumentbeschreibungssprachen und Codegeneratoren erläutert werden. Aus den beschriebenen Grundlagen konnten Datenmodelle erstellt werden, welche als Ein- und Ausgabemodell des Generators dienen. Das Eingabedatenmodell enthielt die Spreadshirt-\gls{API} Beschreibung und das Ausgabemodell abstrahierte die zu generierende Zielsprache. Im weiteren wurde auch der Ablauf der Codegenerierung besprochen und in einem Diagramm veranschaulicht (\cref{fig:generation_process}). Eine Evaluierung der erzeugten Bibliothek gegenüber den Anforderungen fand ebenfalls statt.
 
 %Im Verlauf dieser \thesisDesignator{} konnte das Zusammenwirken von Datenmodellen und einem 
 %Im Verlauf dieser \thesisDesignator{} konnte gezeigt werden wie mit Hilfe der Grundlagen über Web Services, Dokumentbeschreibungs- und objektorientierte Programmiersprachen, darauf basierende Datenmodelle erstellt wurden. 
-Anhand dieser \thesisDesignator{} konnte die Vorgehensweise gezeigt werden ...
-Erstellung einer Client-Bibliothek aus der abstrakten Beschreibung eines Web Services.
-Der entwickelte Codegenerator zur Erzeugung einer Client-Bibliothek für die Spreadshirt-\gls{API} \ldots\\
-Vorteile die sich daraus ergeben\ldots\\
+%Anhand dieser \thesisDesignator{} konnte die Vorgehensweise gezeigt werden ...
+%Erstellung einer Client-Bibliothek aus der abstrakten Beschreibung eines Web Services.
+%Der entwickelte Codegenerator zur Erzeugung einer Client-Bibliothek für die Spreadshirt-\gls{API} \ldots\\
+%Vorteile die sich daraus ergeben\ldots\\
 
-Probleme bei der Erstellung\ldots
-    In neue Programmiersprache einarbeiten
-    Überführen der Beschreibung in ein geeignetes Modell
-    Komplexität des Sprachenmodells (Konzepte der Programmiersprachen, Gemeinsamkeiten herausarbeiten)
-    Erstellung des Generators aufwendig 
+%Schwierigkeiten und Probleme bei der Erstellung\ldots
+%    In neue Programmiersprache einarbeiten
+%    Überführen der Beschreibung in ein geeignetes Modell
+%    Komplexität des Sprachenmodells (Konzepte der Programmiersprachen, Gemeinsamkeiten herausarbeiten)
+%    Erstellung des Generators aufwendig 
 
 \input{content/summary/prospect}
 \label{sec:prospect}
