@@ -15,6 +15,7 @@ Die Hauptmerkmale von \gls{XSD} sind nach \cite[Kapitel 3.2][]{taxonomyXMLSchema
         \emph{unique}, \emph{keys} und \emph{keyref}, dies entspricht den \emph{unique-}, \emph{primary-} und \emph{foreign}-keys aus dem Bereich der Datenbanken        
 \end{compactitem}
 
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[
     language=XML,
     caption=Beginn der \gls{XSD}-Datei für die Spreadshirt-\gls{API},
@@ -25,6 +26,7 @@ Die Hauptmerkmale von \gls{XSD} sind nach \cite[Kapitel 3.2][]{taxonomyXMLSchema
     <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/> //@\ding{204}@//
     ...
 \end{lstlisting}
+\end{minipage}
 
 Eine \gls{XSD}-Datei beginnt wie jede \gls{XML}-Datei mit der \gls{XML}-Deklaration \ding{202}.
 
@@ -53,6 +55,7 @@ Externe Schemadefinitionen lassen sich unter Angabe des Namensraumes und einer \
 
 Durch einen SimpleType definierte Listen sind durch Leerzeichen separierte Strings, sie werden meist für den Wert eines Attributes einer \gls{XML}-Datei verwendet. 
 
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[
     language=XML,
     caption=Beispiel für einen Listentyp definiert duch einen SimpleType,
@@ -62,6 +65,7 @@ Durch einen SimpleType definierte Listen sind durch Leerzeichen separierte Strin
     <xs:list itemType="xs:string"/>
 </xs:simpleType>
 \end{lstlisting}
+\end{minipage}
 
 \begin{lstlisting}[
     language=XML,

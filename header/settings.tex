@@ -168,6 +168,7 @@
 %------------------------------------------------------------------------------
 \newfontfamily\chunkFiveEx[]{ChunkFive Ex}
 \newfontfamily\vollkorn[]{Vollkorn}
+\newfontfamily{\biolinum}[]{Linux Biolinum O}
 %\newfontfamily\bitstream[]{Bitstream Charter}
 %\setmainfont[Ligatures={Common,TeX}, Numbers=OldStyle]{Linux Libertine O}
 
@@ -183,8 +184,10 @@
 %
 % set style of description labels
 %
-\renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}\textrm{\textsl{\small{#1}}:}}
-\setlist[description]{style=nextline}
+%\renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}\textrm{\textsl{\small{#1}}:}}
+\renewcommand{\descriptionlabel}[1]{\textrm{\textsl{\biolinum #1}:}}
+%\renewcommand{\descriptionlabel}[1]{\textrm{\textbf{#1}}}
+%\setlist[description]{style=nextline}
 
 %
 % setup captions
