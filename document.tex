@@ -76,6 +76,8 @@
 \tableofcontents
 %\blankpage{\thesisBlankPageText}
 
+\cleardoublepage
+
 %
 % Beginn des eigentlichen Inhalts
 % arabische Seitennumerrierung
@@ -88,15 +90,13 @@
             filecolor=cyan
             }
 
-\pagenumbering{arabic}
-
 % headline even on first page of chapter
 \renewcommand*{\chapterpagestyle}{chapterStyle}
 {           
-    % http://www2.informatik.hu-berlin.de/~piefel/LaTeX-PS/Archive-2004/V07-footnote.pdf
-    \pagestyle{mainpartStyle}
+    % http://www2.informatik.hu-berlin.de/~piefel/LaTeX-PS/Archive-2004/V07-footnote.pdf            
     \onehalfspacing
-    \cleardoublepage
+    \pagenumbering{arabic}
+    \pagestyle{mainpartStyle}
     \include{content/introduction/introduction}
     \cleardoublepage
     \include{content/basics/web_services}
