@@ -35,7 +35,6 @@ Bei der Nutzung eines Codegenerierungsansatzes ergeben sich nach \cite[][S. 15]{
     \item[Konsistenz]
         Durch ein vorgegebenes Schema für die Schnittstellen- und Variablenbezeichner wird eine hohe Einheitlichkeit erreicht.
     \item[zentrale Wissensbasis]
-        % todo: Metamodell erklären
         Das domänenspezifische Wissen wird in dem Meta- oder auch domänenspezifischen Modell gebündelt, das dem Generator als Eingabe dient. Änderungen am Modell werden durch den Generator in die gesamte Codebasis eingepflegt.
     \item[signifikantere Designentscheidungen]
         Aufgrund des verringerten Implementierungsaufwandes kann der Entwickler mehr Zeit für das Design seiner Architektur, \gls{API} etc. verwenden. Designfehlentscheidungen können durch Änderungen am Modell und nachfolgender Regenierung korrigiert werden und bedürfen somit keiner manuellen Korrektur aller generierten Klassen.
@@ -70,7 +69,7 @@ Die folgende Tabelle klassifiziert einige Generatorformen nach der Menge des erz
     \item[Mixed-Code Generator]
         Der Mixed-Code Generator arbeitet grundsätzlich wie der Inline-Code-Expander, seine Änderungen werden aber in die Quelle zurückgeschrieben.
     \item[Partial-Class Generator]
-        Partial-Class Generatoren erzeugen aus einer abstrakten Beschreibung und Templates einen Satz von Klassen, diese bilden aber nicht das vollständige Programm, sondern werden durch manuell erzeugten Code vervollständigt. % todo: manuell erzeugt = handgeschrieben?
+        Partial-Class Generatoren erzeugen aus einer abstrakten Beschreibung und Templates einen Satz von Klassen, diese bilden aber nicht das vollständige Programm, sondern werden durch manuell erzeugten Code vervollständigt.
     \item[Tier-Generator]
         Die Arbeitsweise des Stufen- oder Tier-Generators entspricht der des Partial-Class Generators, mit der Ausnahme, dass ein vollständiger Code erzeugt wird, der keiner Nacharbeit bedarf.
     \item[$n$-Tier Generator] 
