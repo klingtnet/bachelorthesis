@@ -30,3 +30,4 @@ _dump/*
 *~
 resources/books/*
 .fuse*curl_http.txt
+.fuse_*
